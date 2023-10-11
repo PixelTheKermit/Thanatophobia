@@ -1,0 +1,60 @@
+- type: entity
+  parent: PelletShotgun
+  id: PelletShotgunShip
+  name: pellet (grapeshot)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 20
+        Structural: 15
+
+- type: entity
+  parent: BaseBullet
+  id: ShipBulletLaserBolt
+  name: high powered laser bolt
+  noSpawn: true
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 17
+        Structural: 30
+    soundHit:
+      path: "/Audio/Weapons/tap.ogg"
+    soundForce: true

@@ -1,0 +1,161 @@
+- type: entity
+  parent: BaseStructure
+  id: WeaponShipGunBase
+  name: ship gun
+  description: You don't want to be on the wrong side of this... oh wait it's non-functional.
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Actions
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: CombatMode
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      # TODO: Construction graph
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 3
+            max: 5
+  - type: DeviceLinkSink
+    ports:
+      - ShipGunControl
+  - type: ShipGun
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: Appearance
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunBallistic
+  name: Ballistic Ship Gun
+  description: It costs physical ammo to use, but it's better than heat.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/ballistic.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunLaser
+  name: Laser Ship Gun
+  description: It uses the MV output of your ship to shoot hot energy beams. Quite ineffective and takes a long time to fully charge.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/laser.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+    - state: mag-unshaded-3
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ExaminableBattery
+  - type: NodeContainer
+    examinable: false
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+  - type: BatteryCharger
+    voltage: Medium
+  - type: PowerNetworkBattery
+    maxSupply: 50
+    maxChargeRate: 10
+    supplyRampTolerance: 10
+    supplyRampRate: 5
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    fireRate: 4
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipBulletLaserBolt
+    fireCost: 50
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunShotgun
+  name: Shotgun Ship Gun
+  description: Good for destroying hulls, yet ammo is expensive to produce.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/shotgun.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: MagazineAmmoProvider
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShipShotgun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineShipShotgun

@@ -1,0 +1,4 @@
+- type: sinkPort
+  id: ShipGunControl
+  name: signal-port-name-gun-control
+  description: signal-port-description-gun-control

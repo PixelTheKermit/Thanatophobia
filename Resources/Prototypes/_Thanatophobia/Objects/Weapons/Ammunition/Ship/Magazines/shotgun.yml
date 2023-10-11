@@ -1,0 +1,36 @@
+- type: entity
+  id: MagazineShipBase
+  name: ammo drum (grapeshot)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    size: 40
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Appearance
+
+- type: entity
+  parent: MagazineShipBase
+  id: MagazineShipShotgun
+  name: ammo drum (grapeshot)
+  components:
+  - type: Tag
+    tags:
+    - MagazineShipShotgun
+  - type: BallisticAmmoProvider
+    capacity: 24
+    whitelist:
+      tags:
+        - ShipShotgunShell
+    proto: ShipShotgunShell
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Ammunition/Ship/Magazines/shotgun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]

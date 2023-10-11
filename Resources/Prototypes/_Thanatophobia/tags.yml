@@ -1,0 +1,7 @@
+
+# Ammo (ships)
+- type: Tag
+  id: ShipShotgunShell
+
+- type: Tag
+  id: MagazineShipShotgun

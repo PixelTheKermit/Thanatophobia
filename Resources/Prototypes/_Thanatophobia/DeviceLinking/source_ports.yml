@@ -1,0 +1,19 @@
+- type: sourcePort
+  id: ShipGunGroup1
+  name: signal-port-name-gun-group-1
+  description: signal-port-description-gun-group-1
+
+- type: sourcePort
+  id: ShipGunGroup2
+  name: signal-port-name-gun-group-2
+  description: signal-port-description-gun-group-2
+
+- type: sourcePort
+  id: ShipGunGroup3
+  name: signal-port-name-gun-group-3
+  description: signal-port-description-gun-group-3
+
+- type: sourcePort
+  id: ShipGunGroup4
+  name: signal-port-name-gun-group-4
+  description: signal-port-description-gun-group-4
