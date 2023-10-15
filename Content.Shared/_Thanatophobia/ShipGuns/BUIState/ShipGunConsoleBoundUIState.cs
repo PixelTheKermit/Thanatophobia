@@ -33,9 +33,14 @@ public sealed class ShipGunConsoleBoundUIState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public sealed class ShipGunState
+public struct ShipGunState
 {
     public NetEntity Uid;
+    public Vector2 LocalPos;
+    public Angle LocalRot;
+    public int Ammo;
+    public int MaxAmmo;
+    public NetEntity? GridUid;
 }
 
 [Serializable, NetSerializable]
@@ -57,6 +62,12 @@ public sealed class ShipGunConsoleShootMessage : BoundUserInterfaceMessage
 [Serializable, NetSerializable]
 public sealed class ShipGunConsoleUnshootMessage : BoundUserInterfaceMessage
 {
+}
+
+[Serializable, NetSerializable]
+public sealed class ShipGunConsoleGetInfoMessage : BoundUserInterfaceMessage
+{
+    public List<ShipGunState> GunsInfo = new();
 }
 
 [Serializable, NetSerializable]

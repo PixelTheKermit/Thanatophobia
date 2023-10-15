@@ -17,3 +17,8 @@
   id: ShipGunGroup4
   name: signal-port-name-gun-group-4
   description: signal-port-description-gun-group-4
+
+- type: sourcePort
+  id: ShipAmmoOutput
+  name: signal-port-name-ship-ammo-output
+  description: signal-port-description-ship-ammo-output

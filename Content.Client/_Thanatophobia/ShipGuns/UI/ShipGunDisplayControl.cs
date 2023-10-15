@@ -22,8 +22,14 @@ public class ShipGunDisplayControl : MapGridControl
     private readonly SharedTransformSystem _transform;
 
     private const float GridLinesDistance = 32f;
+    public new const int UIDisplayRadius = 210;
+    protected new int ScaledMinimapRadius => (int) (UIDisplayRadius * UIScale);
+    protected new float MinimapScale => WorldRange != 0 ? ScaledMinimapRadius / WorldRange : 0f;
+    protected new int SizeFull => (int) ((UIDisplayRadius + MinimapMargin) * 2 * UIScale);
+    protected new int MidPoint => SizeFull / 2;
+    protected new Vector2 MidpointVector => new(MidPoint, MidPoint);
 
-    private List<ShipGunState> _gunsInfo;
+    public List<ShipGunState> GunsInfo;
 
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
@@ -39,8 +45,10 @@ public class ShipGunDisplayControl : MapGridControl
 
     public ShipGunDisplayControl() : base(64f, 256f, 256f)
     {
+        SetSize = new Vector2(SizeFull, SizeFull);
+
         _transform = _entManager.System<SharedTransformSystem>();
-        _gunsInfo = new();
+        GunsInfo = new();
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
@@ -99,7 +107,7 @@ public class ShipGunDisplayControl : MapGridControl
 
         ActualRadarRange = Math.Clamp(ActualRadarRange, WorldMinRange, WorldMaxRange);
 
-        _gunsInfo = ls.GunsInfo;
+        GunsInfo = ls.GunsInfo;
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -201,16 +209,39 @@ public class ShipGunDisplayControl : MapGridControl
     {
         const float gunScale = 2f;
 
-        foreach (var gun in _gunsInfo)
+        foreach (var gun in GunsInfo)
         {
-            if (!_entManager.EntityExists(_entManager.GetEntity(gun.Uid))
-            || !_entManager.TryGetComponent<TransformComponent>(_entManager.GetEntity(gun.Uid), out var xform)
-            || xform.GridUid != grid.Owner)
-                continue;
+            Vector2 position;
+            Matrix3 rotation;
+            var ammo = 0;
+            var maxAmmo = 0;
 
+            if (_entManager.EntityExists(_entManager.GetEntity(gun.Uid))) // Let the client do it: It's going to update faster.
+            {
+                if (!_entManager.TryGetComponent<TransformComponent>(_entManager.GetEntity(gun.Uid), out var xform)
+                || xform.GridUid != grid.Owner)
+                {
+                    continue;
+                }
 
-            var position = xform.LocalPosition;
-            var rotation = Matrix3.CreateRotation(xform.LocalRotation);
+                position = xform.LocalPosition;
+                rotation = Matrix3.CreateRotation(xform.LocalRotation);
+
+                var ev = new GetAmmoCountEvent();
+                _entManager.EventBus.RaiseLocalEvent(_entManager.GetEntity(gun.Uid), ref ev);
+
+                ammo = ev.Count;
+                maxAmmo = ev.Capacity;
+            }
+            else
+            {
+                if (_entManager.GetEntity(gun.GridUid) != grid.Owner)
+                    continue;
+
+                position = gun.LocalPos;
+                rotation = Matrix3.CreateRotation(gun.LocalRot);
+            }
+
             var uiPosition = matrix.Transform(position);
 
             if (uiPosition.Length() > WorldRange - gunScale)
@@ -218,11 +249,8 @@ public class ShipGunDisplayControl : MapGridControl
 
             var color = Color.DeepPink;
 
-            var ev = new GetAmmoCountEvent();
-            _entManager.EventBus.RaiseLocalEvent(_entManager.GetEntity(gun.Uid), ref ev);
-
-            if (ev.Capacity != 0)
-                color = Color.InterpolateBetween(Color.Yellow, Color.DarkRed, (float) (ev.Capacity - ev.Count) / ev.Capacity);
+            if (maxAmmo != 0)
+                color = Color.InterpolateBetween(Color.Yellow, Color.DarkRed, (float) (maxAmmo - ammo) / maxAmmo);
 
             var verts = new[]
             {

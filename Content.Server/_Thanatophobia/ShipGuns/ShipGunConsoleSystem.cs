@@ -29,6 +29,7 @@ public sealed partial class ShipGunConsoleSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ShipGunConsoleComponent, ComponentStartup>(OnUpdateEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, NewLinkEvent>(OnUpdateEvent);
+        SubscribeLocalEvent<ShipGunConsoleComponent, PortDisconnectedEvent>(OnUpdateEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, AnchorStateChangedEvent>(OnUpdateRefEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, PowerChangedEvent>(OnUpdateRefEvent);
 
@@ -36,6 +37,7 @@ public sealed partial class ShipGunConsoleSystem : EntitySystem
         SubscribeLocalEvent<ShipGunConsoleComponent, ShipGunConsoleShootMessage>(ShootEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, ShipGunConsoleUnshootMessage>(UnshootEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, ShipGunConsoleSetGroupMessage>(SetGroupEvent);
+
     }
 
     public override void Update(float frameTime)
@@ -71,13 +73,24 @@ public sealed partial class ShipGunConsoleSystem : EntitySystem
                 if (!HasComp<ShipGunComponent>(gun))
                     continue;
 
-                var ev = new GetAmmoCountEvent();
-                RaiseLocalEvent(gun, ref ev);
+                if (!TryComp<TransformComponent>(gun, out var gunXform))
+                    continue;
 
-                gunsInfo.Add(new ShipGunState()
+                var ammoEv = new GetAmmoCountEvent();
+
+                RaiseLocalEvent(gun, ref ammoEv);
+
+                var gunState = new ShipGunState()
                 {
                     Uid = GetNetEntity(gun),
-                });
+                    LocalPos = gunXform.LocalPosition,
+                    LocalRot = gunXform.LocalRotation,
+                    GridUid = GetNetEntity(gunXform.GridUid),
+                    Ammo = ammoEv.Count,
+                    MaxAmmo = ammoEv.Capacity
+                };
+
+                gunsInfo.Add(gunState);
             }
         }
 

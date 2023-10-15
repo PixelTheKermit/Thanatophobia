@@ -2,3 +2,8 @@
   id: ShipGunControl
   name: signal-port-name-gun-control
   description: signal-port-description-gun-control
+
+- type: sinkPort
+  id: ShipAmmoInput
+  name: signal-port-name-ship-ammo-input
+  description: signal-port-description-ship-ammo-input

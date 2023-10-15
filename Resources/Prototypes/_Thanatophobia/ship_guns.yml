@@ -48,6 +48,9 @@
   - type: DeviceLinkSink
     ports:
       - ShipGunControl
+  - type: DeviceLinkSource
+    ports:
+      - ShipAmmoOutput
   - type: ShipGun
   - type: Gun
     fireRate: 6
@@ -60,8 +63,8 @@
 - type: entity
   parent: WeaponShipGunBase
   id: WeaponShipGunBallistic
-  name: Ballistic Ship Gun
-  description: It costs physical ammo to use, but it's better than heat.
+  name: SOW-B7 # Ship Offensive Weapon: Ballistic v7
+  description: An expensive, but overall strong gun. The original designer of this is unknown.
   components:
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/ballistic.rsi
@@ -88,8 +91,8 @@
 - type: entity
   parent: WeaponShipGunBase
   id: WeaponShipGunLaser
-  name: Laser Ship Gun
-  description: It uses the MV output of your ship to shoot hot energy beams. Quite ineffective and takes a long time to fully charge.
+  name: BLG-4 # Big Laser Gun 4
+  description: A laser gun designed by Alphalight. It's low costs, paired with it's effectivity in the long term makes it a must have for any vessel.
   components:
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/laser.rsi
@@ -99,63 +102,37 @@
     - state: mag-unshaded-3
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: ExaminableBattery
-  - type: NodeContainer
-    examinable: false
-    nodes:
-      input:
-        !type:CableDeviceNode
-        nodeGroupID: MVPower
-  - type: BatteryCharger
-    voltage: Medium
-  - type: PowerNetworkBattery
-    maxSupply: 50
-    maxChargeRate: 10
-    supplyRampTolerance: 10
-    supplyRampRate: 5
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    fireRate: 4
-  - type: Battery
-    maxCharge: 2500
-    startingCharge: 2500
-  - type: ProjectileBatteryAmmoProvider
-    proto: ShipBulletLaserBolt
-    fireCost: 50
+    fireRate: 5
   - type: MagazineVisuals
     magState: mag
     steps: 4
     zeroVisible: true
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderBattery
 
 - type: entity
   parent: WeaponShipGunBase
   id: WeaponShipGunShotgun
-  name: Shotgun Ship Gun
-  description: Good for destroying hulls, yet ammo is expensive to produce.
+  name: XSW-45 # X Ship Weapon 45.
+  description: A strong hull breaching weapon designed by X. It's used in most fighter vessels to destroy hulls quickly.
   components:
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/shotgun.rsi
     drawdepth: Mobs
     layers:
     - state: icon
-  - type: MagazineAmmoProvider
   - type: Gun
     fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineShipShotgun
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineShipShotgun
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderShotgun

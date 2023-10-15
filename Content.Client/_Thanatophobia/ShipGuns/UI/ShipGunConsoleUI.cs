@@ -35,8 +35,8 @@ public sealed partial class ShipGunConsoleWindow : FancyWindow
 
         Title = Loc.GetString("tp-ship-gun-console-ui");
 
-        SetSize = new Vector2(930, 740);
-        MinSize = new Vector2(930, 740);
+        SetSize = new Vector2(695, 515);
+        MinSize = new Vector2(695, 515);
 
         var allContainer = new BoxContainer
         {
@@ -62,7 +62,7 @@ public sealed partial class ShipGunConsoleWindow : FancyWindow
 
         var radarPanel = new PanelContainer
         {
-            MinSize = new Vector2(256, 256),
+            MinSize = new Vector2(128, 128),
             HorizontalAlignment = HAlignment.Left,
             VerticalExpand = true,
             HorizontalExpand = true,
@@ -95,7 +95,10 @@ public sealed partial class ShipGunConsoleWindow : FancyWindow
             HorizontalAlignment = HAlignment.Center
         };
 
-        var footerBack = new StripeBack();
+        var footerBack = new StripeBack()
+        {
+            VerticalAlignment = VAlignment.Bottom,
+        };
 
         var footerLabel = new RichTextLabel
         {

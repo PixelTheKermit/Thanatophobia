@@ -91,7 +91,6 @@ public sealed partial class ShipGunConsoleBoundUI : BoundUserInterface
         if (_consoleUI == null)
             return;
 
-
         if (_rightClickHeld)
         {
             var coords = RadarToWorldCoords(_consoleUI, _inputManager.MouseScreenPosition.Position / _consoleUI.Radar.UIScale - _consoleUI.Radar.GlobalPosition);
@@ -105,11 +104,11 @@ public sealed partial class ShipGunConsoleBoundUI : BoundUserInterface
 
     private EntityCoordinates RadarToWorldCoords(ShipGunConsoleWindow consoleUI, Vector2 mousePos)
     {
-        var sizeFull = (int) ((MapGridControl.UIDisplayRadius + 4) * 2 * consoleUI.Radar.UIScale);
+        var sizeFull = (int) ((ShipGunDisplayControl.UIDisplayRadius + 4) * 2 * consoleUI.Radar.UIScale);
         var midPoint = sizeFull / 2;
         Vector2 midpointVector = new(midPoint, midPoint);
 
-        var scaledMinimapRadius = (int) (MapGridControl.UIDisplayRadius * consoleUI.Radar.UIScale);
+        var scaledMinimapRadius = (int) (ShipGunDisplayControl.UIDisplayRadius * consoleUI.Radar.UIScale);
         var minimapScale = consoleUI.Radar.WorldRange != 0 ? scaledMinimapRadius / consoleUI.Radar.WorldRange : 0f;
 
         var a = (mousePos - midpointVector) / minimapScale;

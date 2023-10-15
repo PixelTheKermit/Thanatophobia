@@ -1,7 +1,13 @@
 
 # Ammo (ships)
 - type: Tag
+  id: MagazineShipShotgun
+
+- type: Tag
   id: ShipShotgunShell
 
 - type: Tag
-  id: MagazineShipShotgun
+  id: ShipGunAmmoProviderBattery
+
+- type: Tag
+  id: ShipGunAmmoProviderShotgun
