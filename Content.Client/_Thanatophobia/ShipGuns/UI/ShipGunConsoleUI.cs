@@ -136,19 +136,22 @@ public sealed partial class ShipGunConsoleWindow : FancyWindow
     {
         Radar.UpdateState(scc);
 
-        GroupBox.DisposeAllChildren();
-
-        for (var i = 0; i < scc.PortCount; i++)
+        if (GroupBox.ChildCount != scc.PortCount || !((ShipGunGroupButton) GroupBox.GetChild(scc.CurGroup)).Disabled)
         {
-            var groupButton = new ShipGunGroupButton(_boundUI)
-            {
-                Text = Loc.GetString("tp-ship-gun-console-ui-group-text", ("group", i + 1)),
-                MinSize = new Vector2(50, 50),
-                Index = i,
-                Disabled = i == scc.CurGroup
-            };
+            GroupBox.DisposeAllChildren();
 
-            GroupBox.AddChild(groupButton);
+            for (var i = 0; i < scc.PortCount; i++)
+            {
+                var groupButton = new ShipGunGroupButton(_boundUI)
+                {
+                    Text = Loc.GetString("tp-ship-gun-console-ui-group-text", ("group", i + 1)),
+                    MinSize = new Vector2(50, 50),
+                    Index = i,
+                    Disabled = i == scc.CurGroup
+                };
+
+                GroupBox.AddChild(groupButton);
+            }
         }
 
         TotalGunsLabel.SetMarkup(Loc.GetString("tp-ship-gun-console-ui-guns-in-group", ("count", scc.GunsInfo.Count)));

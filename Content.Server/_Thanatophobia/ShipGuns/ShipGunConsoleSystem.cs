@@ -30,6 +30,7 @@ public sealed partial class ShipGunConsoleSystem : EntitySystem
         SubscribeLocalEvent<ShipGunConsoleComponent, ComponentStartup>(OnUpdateEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, NewLinkEvent>(OnUpdateEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, PortDisconnectedEvent>(OnUpdateEvent);
+        SubscribeLocalEvent<ShipGunConsoleComponent, ShipGunUpdateUIEvent>(OnUpdateEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, AnchorStateChangedEvent>(OnUpdateRefEvent);
         SubscribeLocalEvent<ShipGunConsoleComponent, PowerChangedEvent>(OnUpdateRefEvent);
 
@@ -156,8 +157,6 @@ public sealed partial class ShipGunConsoleSystem : EntitySystem
     {
         if (args.Session.AttachedEntity is not { })
             return;
-
-        UnshootGuns(uid);
 
         UnshootGuns(uid, comp);
     }

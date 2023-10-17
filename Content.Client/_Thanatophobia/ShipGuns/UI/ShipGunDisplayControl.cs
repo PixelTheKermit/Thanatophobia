@@ -211,36 +211,13 @@ public class ShipGunDisplayControl : MapGridControl
 
         foreach (var gun in GunsInfo)
         {
-            Vector2 position;
-            Matrix3 rotation;
-            var ammo = 0;
-            var maxAmmo = 0;
+            if (gun.GridUid != _entManager.GetNetEntity(grid.Owner))
+                continue;
 
-            if (_entManager.EntityExists(_entManager.GetEntity(gun.Uid))) // Let the client do it: It's going to update faster.
-            {
-                if (!_entManager.TryGetComponent<TransformComponent>(_entManager.GetEntity(gun.Uid), out var xform)
-                || xform.GridUid != grid.Owner)
-                {
-                    continue;
-                }
-
-                position = xform.LocalPosition;
-                rotation = Matrix3.CreateRotation(xform.LocalRotation);
-
-                var ev = new GetAmmoCountEvent();
-                _entManager.EventBus.RaiseLocalEvent(_entManager.GetEntity(gun.Uid), ref ev);
-
-                ammo = ev.Count;
-                maxAmmo = ev.Capacity;
-            }
-            else
-            {
-                if (_entManager.GetEntity(gun.GridUid) != grid.Owner)
-                    continue;
-
-                position = gun.LocalPos;
-                rotation = Matrix3.CreateRotation(gun.LocalRot);
-            }
+            var position = gun.LocalPos;
+            var rotation = Matrix3.CreateRotation(gun.LocalRot);
+            var ammo = gun.Ammo;
+            var maxAmmo = gun.MaxAmmo;
 
             var uiPosition = matrix.Transform(position);
 
