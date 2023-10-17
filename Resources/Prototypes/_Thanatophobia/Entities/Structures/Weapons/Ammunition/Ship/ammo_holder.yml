@@ -121,3 +121,27 @@
           tags:
             - MagazineShipShotgun
   - type: MagazineAmmoProvider
+
+- type: entity
+  id: ShipGunAmmoProviderCannon
+  parent: ShipGunAmmoProviderBase
+  name: cannon ship ammo provider
+  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for cannon ammunition.
+  components:
+  - type: Tag
+    tags:
+    - ShipGunAmmoProviderCannon
+    priority: Low
+  - type: Sprite
+    layers:
+    - state: balls
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BallisticAmmoProvider
+    proto: ShipCannonBall
+    capacity: 15
+    whitelist:
+      tags:
+      - ShipCannonBall

@@ -136,3 +136,22 @@
     whitelist:
       tags:
         - ShipGunAmmoProviderShotgun
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunCannon
+  name: Cannon
+  description: A strong weapon used by pirates long, long ago. It seems it's ancient design stuck in space .
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/cannon.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: Gun
+    fireRate: 1
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderCannon

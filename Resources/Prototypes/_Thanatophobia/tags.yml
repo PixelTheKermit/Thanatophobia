@@ -1,13 +1,21 @@
+# Should have some sort of organisation. Try do everything alphabetically first.
+
 
 # Ammo (ships)
 - type: Tag
   id: MagazineShipShotgun
 
 - type: Tag
+  id: ShipCannonBall
+
+- type: Tag
   id: ShipShotgunShell
 
 - type: Tag
   id: ShipGunAmmoProviderBattery
+
+- type: Tag
+  id: ShipGunAmmoProviderCannon
 
 - type: Tag
   id: ShipGunAmmoProviderShotgun

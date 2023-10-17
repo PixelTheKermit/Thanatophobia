@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseCartridge
+  id: ShipCannonBall
+  name: cannon ball
+  description: It may be a giant round rock, but it's still great for breaching hulls.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShipCannonBall
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: ShipCannonBallProjectile
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Projectiles/Ship/ball.rsi
+    layers:
+      - state: icon
+  - type: Appearance

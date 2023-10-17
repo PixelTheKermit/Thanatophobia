@@ -58,3 +58,33 @@
     soundHit:
       path: "/Audio/Weapons/tap.ogg"
     soundForce: true
+
+- type: entity
+  parent: BaseBullet
+  id: ShipCannonBallProjectile
+  name: cannon ball
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Projectiles/Ship/ball.rsi
+    layers:
+    - state: icon
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: *flybyfixture
+  - type: Ammo
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 30
+        Structural: 150
+    soundForce: true
