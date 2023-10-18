@@ -100,7 +100,6 @@
   - type: Tag
     tags:
     - ShipGunAmmoProviderShotgun
-    priority: Low
   - type: Sprite
     layers:
     - state: shotgun
@@ -131,7 +130,6 @@
   - type: Tag
     tags:
     - ShipGunAmmoProviderCannon
-    priority: Low
   - type: Sprite
     layers:
     - state: balls
@@ -155,7 +153,6 @@
   - type: Tag
     tags:
     - ShipGunAmmoProviderBallistic
-    priority: Low
   - type: Sprite
     layers:
     - state: ballistic
