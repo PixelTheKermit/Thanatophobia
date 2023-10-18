@@ -1,0 +1,148 @@
+# Currently just dumping all the guns here for now. May change later.
+
+- type: entity
+  parent: BaseStructure
+  id: WeaponShipGunBase
+  name: ship gun
+  description: You don't want to be on the wrong side of this... oh wait it's non-functional.
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Actions
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: CombatMode
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      # TODO: Construction graph
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 3
+            max: 5
+  - type: DeviceLinkSink
+    ports:
+      - ShipGunControl
+  - type: DeviceLinkSource
+    ports:
+      - ShipAmmoOutput
+  - type: ShipGun
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: Appearance
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunBallistic
+  name: SOW-B7 # Ship Offensive Weapon: Ballistic v7
+  description: An expensive, but overall strong gun. The original designer of this is unknown.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/ballistic.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderBallistic
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunLaser
+  name: BLG-4 # Big Laser Gun 4
+  description: A laser gun designed by Alphalight. It's low costs, paired with it's effectivity in the long term makes it a must have for any vessel.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/laser.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+    - state: mag-unshaded-3
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    fireRate: 5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderBattery
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunShotgun
+  name: XSW-45 # X Ship Weapon 45.
+  description: A strong hull breaching weapon designed by X. It's used in most fighter vessels to destroy hulls quickly.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/shotgun.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderShotgun
+
+- type: entity
+  parent: WeaponShipGunBase
+  id: WeaponShipGunCannon
+  name: Cannon
+  description: A strong weapon used by pirates long, long ago. It seems it's ancient design stuck in space .
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Weapons/ShipGuns/cannon.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: Gun
+    fireRate: 1
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderCannon

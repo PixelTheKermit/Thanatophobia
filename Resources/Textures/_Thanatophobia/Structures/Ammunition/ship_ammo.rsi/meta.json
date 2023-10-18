@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by PixelTheKermit (github) for Thanatophobia, a fork of SS14.",
+  "states": [
+    {
+      "name": "laser"
+    },
+    {
+      "name": "laser-mag-unshaded-0",
+      "delays":
+      [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "laser-mag-unshaded-1"
+    },
+    {
+      "name": "laser-mag-unshaded-2"
+    },
+    {
+      "name": "laser-mag-unshaded-3"
+    },
+    {
+      "name": "shotgun"
+    },
+    {
+      "name": "balls"
+    },
+    {
+      "name": "ballistic"
+    }
+  ]
+}

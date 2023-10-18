@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseComputer
+  id: BaseShipGunConsole
+  name: ship gun console
+  description: Used for shooting the guns on a ship.
+  components:
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      - key: enum.RadarConsoleUiKey.Key
+        type: ShipGunConsoleBoundUI
+  - type: ShipGunConsole
+    gunPorts:
+      - ShipGunGroup1
+      - ShipGunGroup2
+      - ShipGunGroup3
+      - ShipGunGroup4
+  - type: RadarConsole
+  - type: WorldLoader
+    radius: 256
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#43ccb5"
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: DeviceLinkSource
+    ports:
+      - ShipGunGroup1
+      - ShipGunGroup2
+      - ShipGunGroup3
+      - ShipGunGroup4
+  - type: DeviceNetwork

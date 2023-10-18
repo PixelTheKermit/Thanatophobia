@@ -1,0 +1,61 @@
+- type: entity
+  parent: BaseShellShotgun
+  id: ShipShotgunShell
+  name: shell (grapeshot)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShipShotgunShell
+  - type: CartridgeAmmo
+    proto: PelletShotgunShip
+    count: 8
+    spread: 20
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Ammunition/Ship/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+
+- type: entity
+  parent: BaseCartridge
+  id: ShipCannonBall
+  name: cannon ball
+  description: It may be a giant round rock, but it's still great for breaching hulls.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShipCannonBall
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: ShipCannonBallProjectile
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Projectiles/Ship/ball.rsi
+    layers:
+      - state: icon
+  - type: Appearance
+
+- type: entity
+  parent: BaseCartridge
+  id: ShipCartridgeAntiShip
+  name: cannon ball
+  description: The bullet is made from a special alloy that destroys non-organic material when it's shot with high speeds.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShipCannonBall
+  - type: CartridgeAmmo
+    proto: ShipBulletAntiShip
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance

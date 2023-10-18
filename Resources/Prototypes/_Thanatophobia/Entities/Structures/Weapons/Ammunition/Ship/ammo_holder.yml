@@ -1,0 +1,175 @@
+- type: entity
+  id: ShipGunAmmoProviderBase
+  parent: BaseMachinePowered
+  name: ship ammo provider
+  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one appears to be non-functional.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Ammunition/ship_ammo.rsi
+    snapCardinals: true
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+  - type: Anchorable
+  - type: DoAfter
+  - type: StaticPrice
+    price: 100
+  - type: DeviceLinkSink
+    ports:
+      - ShipAmmoInput
+
+- type: entity
+  id: ShipGunAmmoProviderBattery
+  parent: ShipGunAmmoProviderBase
+  name: laser ship ammo provider
+  description: Turns medium voltage power into cheap yet reliable ship-destroying projectiles.
+  components:
+  - type: Tag
+    tags:
+    - ShipGunAmmoProviderBattery
+  - type: ApcPowerReceiver
+    powerLoad: 200
+    priority: Low
+  - type: Sprite
+    layers:
+    - state: laser
+    - state: laser-mag-unshaded-3
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipBulletLaserBolt
+    fireCost: 50
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500
+  - type: MagazineVisuals
+    magState: laser-mag
+    steps: 4
+    zeroVisible: true
+  - type: ExaminableBattery
+  - type: NodeContainer
+    examinable: false
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+  - type: BatteryCharger
+    voltage: Medium
+  - type: PowerNetworkBattery
+    maxSupply: 50
+    maxChargeRate: 10
+    supplyRampTolerance: 10
+    supplyRampRate: 5
+
+- type: entity
+  id: ShipGunAmmoProviderShotgun
+  parent: ShipGunAmmoProviderBase
+  name: shotgun ship ammo provider
+  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for grapeshot ammunition.
+  components:
+  - type: Tag
+    tags:
+    - ShipGunAmmoProviderShotgun
+  - type: Sprite
+    layers:
+    - state: shotgun
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShipShotgun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineShipShotgun
+  - type: MagazineAmmoProvider
+
+- type: entity
+  id: ShipGunAmmoProviderCannon
+  parent: ShipGunAmmoProviderBase
+  name: cannon ship ammo provider
+  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for cannon ammunition.
+  components:
+  - type: Tag
+    tags:
+    - ShipGunAmmoProviderCannon
+  - type: Sprite
+    layers:
+    - state: balls
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BallisticAmmoProvider
+    proto: ShipCannonBall
+    capacity: 15
+    whitelist:
+      tags:
+      - ShipCannonBall
+
+- type: entity
+  id: ShipGunAmmoProviderBallistic
+  parent: ShipGunAmmoProviderBase
+  name: ballistic ship ammo provider
+  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for ballistic ammunition.
+  components:
+  - type: Tag
+    tags:
+    - ShipGunAmmoProviderBallistic
+  - type: Sprite
+    layers:
+    - state: ballistic
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShipAntiShip
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineShipAntiShip
+  - type: MagazineAmmoProvider
