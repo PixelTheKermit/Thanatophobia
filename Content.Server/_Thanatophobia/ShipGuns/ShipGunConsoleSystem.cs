@@ -109,9 +109,9 @@ public sealed partial class ShipGunConsoleSystem : EntitySystem
         }
     }
 
-    private List<EntityUid>? GetPortEnts(EntityUid uid, ShipGunConsoleComponent comp, DeviceLinkSourceComponent? sourceComp = null)
+    private List<EntityUid>? GetPortEnts(EntityUid uid, ShipGunConsoleComponent comp)
     {
-        if (!Resolve(uid, ref sourceComp))
+        if (!TryComp<DeviceLinkSourceComponent>(uid, out var sourceComp))
             return null;
 
         if (!comp.GunPorts.Any())
