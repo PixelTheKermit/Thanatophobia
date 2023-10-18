@@ -145,3 +145,34 @@
     whitelist:
       tags:
       - ShipCannonBall
+
+- type: entity
+  id: ShipGunAmmoProviderBallistic
+  parent: ShipGunAmmoProviderBase
+  name: ballistic ship ammo provider
+  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for ballistic ammunition.
+  components:
+  - type: Tag
+    tags:
+    - ShipGunAmmoProviderBallistic
+    priority: Low
+  - type: Sprite
+    layers:
+    - state: ballistic
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShipAntiShip
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineShipAntiShip
+  - type: MagazineAmmoProvider

@@ -1,3 +1,5 @@
+# Currently just dumping all the guns here for now. May change later.
+
 - type: entity
   parent: BaseStructure
   id: WeaponShipGunBase
@@ -71,22 +73,11 @@
     drawdepth: Mobs
     layers:
     - state: icon
-  - type: MagazineAmmoProvider
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineLightRifle
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifle
+  - type: LinkedAmmoProvider
+    port: ShipAmmoOutput
+    whitelist:
+      tags:
+        - ShipGunAmmoProviderBallistic
 
 - type: entity
   parent: WeaponShipGunBase

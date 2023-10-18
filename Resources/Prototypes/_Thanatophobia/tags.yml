@@ -3,13 +3,22 @@
 
 # Ammo (ships)
 - type: Tag
+  id: MagazineShipAntiShip
+
+- type: Tag
   id: MagazineShipShotgun
 
 - type: Tag
   id: ShipCannonBall
 
 - type: Tag
+  id: ShipCartridgeAntiShip
+
+- type: Tag
   id: ShipShotgunShell
+
+- type: Tag
+  id: ShipGunAmmoProviderBallistic
 
 - type: Tag
   id: ShipGunAmmoProviderBattery
