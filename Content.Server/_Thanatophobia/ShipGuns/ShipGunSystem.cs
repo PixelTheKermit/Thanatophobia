@@ -26,14 +26,14 @@ public sealed partial class ShipGunSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var shipGuns = EntityQueryEnumerator<ShipGunComponent, GunComponent>();
+        var shipGuns = EntityQueryEnumerator<ShipGunComponent, GunComponent, TransformComponent>();
 
-        while (shipGuns.MoveNext(out var uid, out var comp, out var gunComp))
+        while (shipGuns.MoveNext(out var uid, out var comp, out var gunComp, out var xform))
         {
             if (comp.IsRotating)
             {
-                var worldRot = _transformSystem.GetWorldRotation(uid);
-                _transformSystem.SetWorldRotation(uid, worldRot + Math.Clamp(Angle.ShortestDistance(worldRot, comp.PointTo), -comp.MaxRotSpeed * frameTime, comp.MaxRotSpeed * frameTime));
+                var worldRot = xform.LocalRotation;
+                _transformSystem.SetLocalRotation(uid, worldRot + Math.Clamp(Angle.ShortestDistance(worldRot, comp.PointTo), -comp.MaxRotSpeed * frameTime, comp.MaxRotSpeed * frameTime));
 
                 if (Angle.ShortestDistance(worldRot, comp.PointTo) == 0)
                     comp.IsRotating = false;
@@ -43,8 +43,13 @@ public sealed partial class ShipGunSystem : EntitySystem
 
     private void OnRotUpdate(EntityUid uid, ShipGunComponent comp, ShipGunUpdateRotation args)
     {
+        if (!TryComp<TransformComponent>(uid, out var xform))
+            return;
+
+        var gridAngle = _transformSystem.GetWorldRotation(xform.ParentUid);
+
         var rotVector = args.PointTo - _transformSystem.GetWorldPosition(uid);
-        comp.PointTo = rotVector.ToWorldAngle();
+        comp.PointTo = rotVector.ToWorldAngle() - gridAngle;
         comp.IsRotating = true;
     }
 
