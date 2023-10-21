@@ -16,9 +16,6 @@
   name: high powered laser bolt
   noSpawn: true
   components:
-  - type: Reflective
-    reflective:
-    - Energy
   - type: FlyBySound
     sound:
       collection: EnergyMiss
