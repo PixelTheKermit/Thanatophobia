@@ -1,0 +1,13 @@
+- type: gameMap
+  id: Star
+  minPlayers: 0
+  maxPlayers: 1
+  mapName: 'Star'
+  mapPath: /Maps/_Thanatophobia/star.yml
+  fallback: true
+  stations:
+    Star:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Star'

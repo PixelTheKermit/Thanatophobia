@@ -68,7 +68,7 @@
   - type: Appearance
   - type: ProjectileBatteryAmmoProvider
     proto: ShipBulletLaserBolt
-    fireCost: 50
+    fireCost: 25
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500

@@ -4,6 +4,8 @@
   name: pellet (grapeshot)
   noSpawn: true
   components:
+  - type: Reflective
+    reflective: None
   - type: Projectile
     damage:
       types:
@@ -16,6 +18,8 @@
   name: high powered laser bolt
   noSpawn: true
   components:
+  - type: Reflective
+    reflective: None
   - type: FlyBySound
     sound:
       collection: EnergyMiss
@@ -63,6 +67,8 @@
   name: bullet (.30 anti-ship)
   noSpawn: true
   components:
+  - type: Reflective
+    reflective: None
   - type: Projectile
     damage:
       types:
@@ -75,6 +81,8 @@
   name: cannon ball
   noSpawn: true
   components:
+  - type: Reflective
+    reflective: None
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Objects/Projectiles/Ship/ball.rsi
     layers:

@@ -1,0 +1,13 @@
+- type: gameMap
+  id: Spade
+  minPlayers: 0
+  maxPlayers: 1
+  mapName: 'Spade'
+  mapPath: /Maps/_Thanatophobia/spade.yml
+  fallback: true
+  stations:
+    Spade:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spade'

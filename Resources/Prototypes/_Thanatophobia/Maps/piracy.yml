@@ -1,0 +1,13 @@
+- type: gameMap
+  id: Piracy
+  minPlayers: 0
+  maxPlayers: 1
+  mapName: 'Piracy'
+  mapPath: /Maps/_Thanatophobia/piracy.yml
+  fallback: true
+  stations:
+    Piracy:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Piracy'
