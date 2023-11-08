@@ -1,0 +1,24 @@
+- type: job
+  id: TPWanderer
+  name: job-name-wanderer
+  description: job-description-wanderer
+  playTimeTracker: TPJobWanderer
+  startingGear: TPWandererGear
+  icon: "JobIconWanderer"
+
+- type: startingGear
+  id: TPWandererGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    outerClothing: ClothingOuterArmorBasicSlim
+    back: ClothingBackpackSalvage
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesColorBlack
+    pocket1: FlashlightSeclite
+    pocket2: CombatKnife
+  innerclothingskirt: ClothingUniformJumpskirtTacticool
+  satchel: ClothingBackpackSatchelSalvage
+  duffelbag: ClothingBackpackDuffelSalvage
+
+- type: playTimeTracker
+  id: TPJobWanderer

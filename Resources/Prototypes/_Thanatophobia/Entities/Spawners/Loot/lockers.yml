@@ -1,0 +1,106 @@
+- type: entity
+  id: TPClosetMaintenanceFilledRandomRare
+  suffix: Filled, Random, Rare
+  parent: ClosetMaintenance
+  components:
+    - type: StorageFill
+      contents:
+        - id: Lantern
+          prob: 0.05
+        - id: Wirecutter
+          prob: 0.1
+        - id: Screwdriver
+          prob: 0.1
+        - id: Wrench
+          prob: 0.1
+        - id: Crowbar
+          prob: 0.1
+        - id: Welder
+          prob: 0.1
+        - id: Multitool
+          prob: 0.05
+        - id: Soap
+          prob: 0.05
+        - id: PlushieCarp
+          prob: 0.005
+        - id: PlushieSlime
+          prob: 0.005
+        - id: PlushieSnake
+          prob: 0.005
+        - id: ClothingHandsGlovesColorYellow
+          prob: 0.025
+        - id: ClothingBeltUtility
+          prob: 0.005
+        - id: WeaponFlareGun
+          prob: 0.1
+        - id: StrangePill
+          prob: 0.05
+        - id: ModularReceiver
+          prob: 0.05
+        - id: DrinkSpaceGlue
+          prob: 0.1
+        - id: DrinkSpaceLube
+          prob: 0.1
+        # Syndicate loot
+        - id: null
+          prob: 0.95
+          orGroup: syndiemaintloot
+        - id: ClothingUniformJumpskirtOperative
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: ClothingUniformJumpsuitOperative
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: ClothingBackpackDuffelSyndicate
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: CyberPen
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: CigPackSyndicate
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: ClothingBackpackDuffelSyndicatePyjamaBundle
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: ClothingBeltMilitaryWebbing
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: ClothingShoesBootsCombatFilled
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: ToolboxSyndicateFilled
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: BalloonSyn
+          prob: 0.005
+          orGroup: syndiemaintloot
+        - id: WeaponSniperMosin
+          prob: 0.0010
+          orGroup: syndiemaintloot
+
+- type: entity
+  id: TPClosetEmergencyFilledRandomRare
+  parent: ClosetEmergency
+  suffix: Filled, Random, Rare
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterSuitEmergency
+        prob: 0.25
+      - id: ClothingMaskBreath
+        prob: 0.25
+      - id: EmergencyOxygenTankFilled
+        prob: 0.20
+        orGroup: EmergencyTankOrRegularTank
+      - id: OxygenTankFilled
+        prob: 0.05
+        orGroup: EmergencyTankOrRegularTank
+      - id: ToolboxEmergencyFilled
+        prob: 0.1
+      - id: MedkitOxygenFilled
+        prob: 0.05
+      - id: WeaponFlareGun
+        prob: 0.05
+      - id: BoxMRE
+        prob: 0.05

@@ -1,0 +1,8 @@
+- type: worldgenConfig
+  id: TPDefault
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - TPAsteroidsStandard
+    - type: WorldShipSpawner

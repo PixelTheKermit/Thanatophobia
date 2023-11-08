@@ -1,0 +1,26 @@
+- type: spaceBiome
+  id: TPAsteroidsStandard
+  priority: 0
+  noiseRanges: {}
+  chunkComponents:
+    - type: DebrisFeaturePlacerController
+      densityNoiseChannel: Density
+    - type: SimpleDebrisSelector
+      debrisTable:
+        - id: TPAsteroidDebrisSmall
+        - id: TPAsteroidDebrisMedium
+        - id: TPAsteroidDebrisLarge
+          prob: 0.7
+        - id: TPAsteroidDebrisLarger
+          prob: 0.4
+    - type: NoiseDrivenDebrisSelector
+      noiseChannel: Wreck
+      debrisTable:
+        - id: TPScrapDebrisSmall
+        - id: TPScrapDebrisMedium
+        - id: TPScrapDebrisLarge
+          prob: 0.5
+    - type: NoiseRangeCarver
+      ranges:
+        - 0.4, 0.6
+      noiseChannel: Carver

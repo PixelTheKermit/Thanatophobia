@@ -1,0 +1,6 @@
+- type: shipSpawnPool
+  id: Default
+  ships:
+    Spade: TPWanderer
+    Star: TPWanderer
+    Piracy: TPWanderer

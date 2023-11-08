@@ -4,6 +4,7 @@ using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.Preferences;
 using Content.Client.Preferences.UI;
+using Content.Client.Thanatophobia.LateJoin;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Robust.Client;
@@ -126,7 +127,9 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            new LateJoinGui().OpenCentered();
+            // Thanatophobia edits start here
+            new TPLateJoinGui().OpenCentered();
+            // And then they end here.
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
