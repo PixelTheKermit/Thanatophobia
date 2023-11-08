@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Inventory;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.Stack;
@@ -9,6 +9,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -17,17 +18,17 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition;
-using Content.Shared.Verbs;
 using Content.Shared.Stacks;
+using Content.Shared.Storage;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared.Tag;
-using Content.Shared.Storage;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -61,7 +62,7 @@ public sealed class FoodSystem : EntitySystem
 
         // TODO add InteractNoHandEvent for entities like mice.
         // run after openable for wrapped/peelable foods
-        SubscribeLocalEvent<FoodComponent, UseInHandEvent>(OnUseFoodInHand, after: new[] { typeof(OpenableSystem) });
+        SubscribeLocalEvent<FoodComponent, UseInHandEvent>(OnUseFoodInHand, after: new[] { typeof(OpenableSystem), typeof(ServerInventorySystem) });
         SubscribeLocalEvent<FoodComponent, AfterInteractEvent>(OnFeedFood);
         SubscribeLocalEvent<FoodComponent, GetVerbsEvent<AlternativeVerb>>(AddEatVerb);
         SubscribeLocalEvent<FoodComponent, ConsumeDoAfterEvent>(OnDoAfter);
@@ -102,6 +103,9 @@ public sealed class FoodSystem : EntitySystem
         if (!TryComp<BodyComponent>(target, out var body))
             return (false, false);
 
+        if (HasComp<UnremoveableComponent>(food))
+            return (false, false);
+
         if (_openable.IsClosed(food, user))
             return (false, true);
 
@@ -119,7 +123,7 @@ public sealed class FoodSystem : EntitySystem
             return (false, false);
 
         // Check for used storage on the food item
-        if (TryComp<StorageComponent>(food, out var storageState) && storageState.StorageUsed != 0)
+        if (TryComp<StorageComponent>(food, out var storageState) && storageState.Container.ContainedEntities.Any())
         {
             _popup.PopupEntity(Loc.GetString("food-has-used-storage", ("food", food)), user, user);
             return (false, true);
@@ -308,7 +312,7 @@ public sealed class FoodSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        if (string.IsNullOrEmpty(component.TrashPrototype))
+        if (string.IsNullOrEmpty(component.Trash))
             QueueDel(uid);
         else
             DeleteAndSpawnTrash(component, uid, args.User);
@@ -318,7 +322,7 @@ public sealed class FoodSystem : EntitySystem
     {
         //We're empty. Become trash.
         var position = Transform(food).MapPosition;
-        var finisher = Spawn(component.TrashPrototype, position);
+        var finisher = Spawn(component.Trash, position);
 
         // If the user is holding the item
         if (user != null && _hands.IsHolding(user.Value, food, out var hand))
