@@ -11,12 +11,12 @@ using Content.Server.Worldgen.Tools;
 using Content.Shared.Roles;
 using Content.Shared.Thanatophobia.CCVar;
 using Content.Shared.Thanatophobia.LateJoin;
-using FastAccessors;
 using Robust.Server.Maps;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -108,7 +108,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
             var grids = _gameTicker.LoadGameMap(gameMap, coords.MapId, loadOptions);
             Log.Warning($"{args.SenderSession} spawned in {msg.ShipToSpawn} and loaded {grids.Count} grids.");
 
-            _gameTicker.MakeJoinGame((IPlayerSession) args.SenderSession, (EntityUid) _stationSystem.GetOwningStation(grids[0])!, job);
+            _gameTicker.MakeJoinGame(args.SenderSession, (EntityUid) _stationSystem.GetOwningStation(grids[0])!, job);
 
             return; // Doesn't need to do anything else now that the map is spawned.
         }

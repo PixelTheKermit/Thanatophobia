@@ -1,7 +1,7 @@
 - type: entity
   id: MagazineShipBase
   name: ammo box
-  description: It cost way too much to purchase this box, and in only 12 seconds it's all gone.
+  description: Large, heavy, and chunky. At least it's useful.
   parent: BaseItem
   abstract: true
   components:
@@ -10,7 +10,7 @@
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
-    size: 40
+    size: Ginormous
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
