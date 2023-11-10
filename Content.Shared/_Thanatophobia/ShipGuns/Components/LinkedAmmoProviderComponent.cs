@@ -21,6 +21,6 @@ public sealed partial class LinkedAmmoProviderComponent : Component
     [DataField("whitelist", required: true)]
     public EntityWhitelist Whitelist = new();
 
-    [AutoNetworkedField(true)]
+    [AutoNetworkedField]
     public List<NetEntity> Outputs = new();
 }
