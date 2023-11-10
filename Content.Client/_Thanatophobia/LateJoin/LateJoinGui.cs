@@ -71,6 +71,8 @@ public sealed class TPLateJoinGui : FancyWindow
         ShuttleInfo = new RichTextLabel
         {
             VerticalAlignment = VAlignment.Top,
+            HorizontalAlignment = HAlignment.Left,
+            Margin = new Thickness(5, 5, 5, 5),
             MinWidth = 380,
             MaxWidth = 380,
         };
@@ -79,7 +81,7 @@ public sealed class TPLateJoinGui : FancyWindow
         var textScrollContainer = new ScrollContainer
         {
             HScrollEnabled = false,
-            Children = { ShuttleInfo }
+            Children = { ShuttleInfo },
         };
 
         var leftDisplay = new BoxContainer()
