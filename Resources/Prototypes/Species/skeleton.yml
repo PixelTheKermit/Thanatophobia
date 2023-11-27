@@ -10,6 +10,8 @@
   femaleFirstNames: skeletonNamesFirst
   dollPrototype: MobSkeletonPersonDummy
   skinColoration: TintedHues
+  allowedTraits:
+  - Organic
 
 - type: speciesBaseSprites
   id: MobSkeletonSprites

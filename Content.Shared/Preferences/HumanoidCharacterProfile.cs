@@ -304,27 +304,115 @@ namespace Content.Shared.Preferences
             return new(this, _jobPriorities, list, _traitPreferences);
         }
 
+        # region Thanatophobia Edits
         public HumanoidCharacterProfile WithTraitPreference(string traitId, bool pref)
         {
-            var list = new List<string>(_traitPreferences);
+            // ! I just kinda wrote this today. This is likely insane.
 
-            // TODO: Maybe just refactor this to HashSet? Same with _antagPreferences
-            if(pref)
+            var protoManager = IoCManager.Resolve<IPrototypeManager>();
+
+            var validTraitProto = protoManager.TryIndex<TraitPrototype>(traitId, out var traitProto);
+
+            if (!protoManager.TryIndex<SpeciesPrototype>(Species, out var speciesProto)) // Species prototype required for max traits.
+                speciesProto = protoManager.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
+
+            var totalCost = 0;
+            var totalTraits = 0;
+
+            var isTraitValid = pref;
+
+            List<string> newTraits = new();
+            List<string> exclusiveTags = new();
+
+            foreach (var ownedTrait in _traitPreferences)
             {
-                if(!list.Contains(traitId))
+                if (newTraits.Any(x => x == ownedTrait)) // Prevent duplicates.
+                    continue;
+
+                if (!protoManager.TryIndex<TraitPrototype>(ownedTrait, out var ownTraitProto)) // And then check if there's a valid prototype for that trait.
+                    continue;
+
+                if (ownedTrait == traitId) // First check if a duplicate is being added.
                 {
-                    list.Add(traitId);
+                    if (pref)
+                        isTraitValid = false;
+                    else // A trait might be being removed instead.
+                        continue;
                 }
+
+                if (ownTraitProto.Cost != 0) // 0 points == Neutral / RP trait.
+                {
+                    if (totalTraits >= speciesProto.MaxTraits) // A check if the profile has way too many traits.
+                        continue;
+
+                    totalTraits++;
+                }
+
+                var canUse = true;
+                foreach (var tag in ownTraitProto.Exclusive) // Check if there already exists a trait that the trait trying to be added is mutually exclusive to.
+                {
+                    if (exclusiveTags.Any(i => i == tag))
+                    {
+                        canUse = false;
+                        break;
+                    }
+                }
+
+                foreach (var tag in ownTraitProto.Allowed) // Check if the current species can have this trait.
+                {
+                    if (!speciesProto.AllowedTraits.Any(i => i == tag))
+                    {
+                        canUse = true;
+                        break;
+                    }
+                }
+
+                if (!canUse)
+                    continue;
+                else if (validTraitProto)
+                {
+                    foreach (var tag in traitProto!.Exclusive)
+                        exclusiveTags.Add(tag);
+                }
+
+                totalCost += ownTraitProto.Cost;
+                newTraits.Add(ownedTrait);
             }
-            else
+
+            if (totalCost > 0)
+                newTraits = new List<string>(); // fuck you, no traits because you don't deserve them. (Aka safely clear the traits to prevent exploitation.)
+
+            if (validTraitProto)
             {
-                if(list.Contains(traitId))
+                foreach (var tag in traitProto!.Exclusive) // Check if the trait and the new trait are not mutually exclusive.
                 {
-                    list.Remove(traitId);
+                    if (exclusiveTags.Any(i => i == tag))
+                    {
+                        isTraitValid = false;
+                        break;
+                    }
                 }
+
+                foreach (var tag in traitProto.Allowed) // Check if the current species can have this trait.
+                {
+                    if (!speciesProto.AllowedTraits.Any(i => i == tag))
+                    {
+                        isTraitValid = false;
+                        break;
+                    }
+                }
+
+                if (traitProto.Cost != 0 && totalTraits >= speciesProto.MaxTraits)
+                    isTraitValid = false;
+
+                if (isTraitValid && totalCost + traitProto.Cost <= 0)
+                    newTraits.Add(traitId);
             }
-            return new(this, _jobPriorities, _antagPreferences, list);
+
+
+            return new(this, _jobPriorities, _antagPreferences, newTraits);
         }
+        # endregion Thanatophobia Edits end here.
 
         public string Summary =>
             Loc.GetString(
@@ -471,9 +559,64 @@ namespace Content.Shared.Preferences
                 .Where(prototypeManager.HasIndex<AntagPrototype>)
                 .ToList();
 
-            var traits = TraitPreferences
-                         .Where(prototypeManager.HasIndex<TraitPrototype>)
-                         .ToList();
+            #region Thanatophobia edits start here.
+
+            var traits = new List<string>();
+            var totalCost = 0;
+            var totalTraits = 0;
+            var exclusiveTags = new List<string>();
+
+            foreach (var ownedTrait in TraitPreferences)
+            {
+                if (traits.Any(x => x == ownedTrait)) // Prevent duplicates.
+                    continue;
+
+                if (!prototypeManager.TryIndex<TraitPrototype>(ownedTrait, out var traitProto)) // And then check if there's a valid prototype for that trait.
+                    continue;
+
+                if (traitProto.Cost != 0)
+                {
+                    if (totalTraits >= speciesPrototype!.MaxTraits)
+                        continue;
+
+                    totalTraits++;
+                }
+
+                var canUse = true;
+                foreach (var tag in traitProto.Allowed) // Check if the current species can have this trait.
+                {
+                    if (!speciesPrototype!.AllowedTraits.Any(i => i == tag))
+                    {
+                        canUse = false;
+                        break;
+                    }
+                }
+
+                foreach (var tag in traitProto.Exclusive) // Check if there already exists a trait that the trait trying to be added is mutually exclusive to.
+                {
+                    if (exclusiveTags.Any(i => i == tag))
+                    {
+                        canUse = false;
+                        break;
+                    }
+                }
+
+                if (!canUse)
+                    continue;
+                else
+                {
+                    foreach (var tag in traitProto.Exclusive)
+                        exclusiveTags.Add(tag);
+                }
+
+                totalCost += traitProto.Cost;
+                traits.Add(ownedTrait);
+            }
+
+            if (totalCost > 0)
+                traits = new List<string>(); // fuck you, no traits because you don't deserve them.
+
+            #endregion Thanatophobia edits end here.
 
             Name = name;
             FlavorText = flavortext;

@@ -1,0 +1,65 @@
+# Short
+- type: trait
+  id: Short
+  name: tp-trait-short-name
+  description: tp-trait-short-description
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 0.9
+
+- type: trait
+  id: ShortPlus
+  name: tp-trait-short-plus-name
+  description: tp-trait-short-plus-description
+  cost: 1
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 0.75
+
+- type: trait
+  id: ShortPlusPlus
+  name: tp-trait-short-plus-plus-name
+  description: tp-trait-short-plus-plus-description
+  cost: 2
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 0.5
+
+# Tall
+
+- type: trait
+  id: Tall
+  name: tp-trait-tall-name
+  description: tp-trait-tall-description
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 1.1
+
+- type: trait
+  id: TallPlus
+  name: tp-trait-tall-plus-name
+  description: tp-trait-tall-plus-description
+  exclusive:
+  - Size
+  components:
+    - type: SizeAdjustmentTrait
+      height: 1.25
+
+- type: trait
+  id: TallPlusPlus
+  name: tp-trait-tall-plus-plus-name
+  description: tp-trait-tall-plus-plus-description
+  cost: -1
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 1.5

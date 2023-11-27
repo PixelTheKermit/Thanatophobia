@@ -120,6 +120,16 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField("maxAge")]
     public int MaxAge = 120;
+
+    # region Thanatophobia edits start here.
+
+    [DataField]
+    public int MaxTraits = 4;
+
+    [DataField]
+    public List<string> AllowedTraits = new();
+
+    # endregion Thanatophobia edits end here.
 }
 
 public enum SpeciesNaming : byte
