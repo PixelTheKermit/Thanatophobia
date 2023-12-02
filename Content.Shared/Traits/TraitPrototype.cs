@@ -1,6 +1,9 @@
+using Content.Shared.Humanoid.Markings;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Utility;
 
 // don't worry about it
 
@@ -78,8 +81,29 @@ namespace Content.Shared.Traits
         [DataField]
         public List<string> Exclusive = new();
 
+        /// <summary>
+        /// For traits that have markings.
+        /// </summary>
+        /// <returns></returns>
+        [DataField]
+        public ProtoId<MarkingPrototype>? MarkingId;
+
+        /// <summary>
+        /// The color of the marking. Set to white by default.
+        /// </summary>
+        [DataField]
+        public List<Color> MarkingColours = new();
+
+        /// <summary>
+        /// The tags this trait adds.
+        /// </summary>
+        /// <returns></returns>
+        [DataField]
+        public List<ProtoId<TagPrototype>> Tags = new();
+
+        [DataField]
+        public SpriteSpecifier? Icon;
+
         # endregion Thanatophobia edits end here.
-
-
     }
 }

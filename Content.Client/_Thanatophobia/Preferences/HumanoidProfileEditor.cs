@@ -6,13 +6,17 @@ using Content.Client.Preferences;
 using Content.Client.Stylesheets;
 using Content.Client.Thanatophobia.Preferences.UI.CustomControls;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
+using Content.Shared.Traits;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Client.Thanatophobia.Preferences.UI;
 
@@ -22,6 +26,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
     private readonly IPrototypeManager _prototypeManager;
     private readonly IEntityManager _entityManager;
     private readonly IClientPreferencesManager _preferencesManager;
+    private readonly HumanoidAppearanceSystem _appearanceSystem;
 
     // Generic variables
     public HumanoidCharacterProfile? Humanoid;
@@ -47,6 +52,8 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         _preferencesManager = preferencesManager;
         _entityManager = entityManager;
 
+        _appearanceSystem = _entityManager.System<HumanoidAppearanceSystem>();
+
         _customisationControls = new()
         {
             new TPAppearanceCustomisation(this),
@@ -57,7 +64,31 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         {
             Scale = new Vector2(4f, 4f),
             Margin = new Thickness(15, 15, 15, 15),
-            OverrideDirection = Direction.South,
+            MinSize = new Vector2(175, 175),
+            MaxSize = new Vector2(175, 175),
+        };
+
+        var leftTurn = new Button()
+        {
+            Text = "◀",
+            HorizontalExpand = true,
+            StyleClasses = { StyleBase.ButtonOpenRight }
+        };
+
+        leftTurn.OnPressed += _ => _spriteView.WorldRotation = _spriteView.WorldRotation - Angle.FromDegrees(90); // USE COMPOUND ASSIGNMENT MY ASS.
+
+        var rightTurn = new Button()
+        {
+            Text = "▶",
+            HorizontalExpand = true,
+            StyleClasses = { StyleBase.ButtonOpenLeft }
+        };
+
+        rightTurn.OnPressed += _ => _spriteView.WorldRotation = _spriteView.WorldRotation + Angle.FromDegrees(90);
+
+        var turnBox = new BoxContainer()
+        {
+            XamlChildren = { leftTurn, rightTurn }
         };
 
         var spriteBack = new PanelContainer()
@@ -114,6 +145,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             XamlChildren =
             {
                 spriteBack,
+                turnBox,
                 clothingToggle,
                 randomizeButton,
                 saveButton
@@ -154,6 +186,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             profile = _preferencesManager.Preferences.SelectedCharacter;
 
         Humanoid = profile as HumanoidCharacterProfile ?? HumanoidCharacterProfile.DefaultWithSpecies();
+        Humanoid.EnsureValid();
 
         UpdateSpriteView(true);
 
@@ -170,6 +203,8 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         if (Humanoid == null)
             return;
 
+        var serializationManager = IoCManager.Resolve<ISerializationManager>();
+
         if (fullUpdate || _previewDummy == null)
         {
             var species = Humanoid.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
@@ -179,12 +214,48 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
                 _entityManager.DeleteEntity(_previewDummy!.Value);
 
             _previewDummy = _entityManager.SpawnEntity(dollProto, MapCoordinates.Nullspace);
-
-            if (_showClothes)
-                LobbyCharacterPreviewPanel.GiveDummyJobClothes(_previewDummy.Value, Humanoid);
         }
 
         _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, Humanoid);
+
+        if (_showClothes && fullUpdate)
+            LobbyCharacterPreviewPanel.GiveDummyJobClothes(_previewDummy.Value, Humanoid);
+
+        // Add all the traits.
+        foreach (var traitId in Humanoid.TraitPreferences)
+        {
+            if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
+                continue;
+
+            if (traitPrototype.MarkingId != null
+            && _prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
+            {
+                var colors = MarkingColoring.GetMarkingLayerColors(markingProto, Humanoid.Appearance.SkinColor, Humanoid.Appearance.EyeColor, new MarkingSet());
+                var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
+
+                for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
+                    dictColors[i] = traitPrototype.MarkingColours[i];
+
+                _appearanceSystem.AddMarking(_previewDummy.Value, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
+            }
+
+            if (!fullUpdate)
+                continue;
+
+            // Add all components required by the prototype
+            foreach (var entry in traitPrototype.Components.Values)
+            {
+                var comp = serializationManager.CreateCopy(entry.Component, notNullableOverride: true);
+                comp.Owner = _previewDummy.Value;
+                _entityManager.AddComponent(_previewDummy.Value, comp, true);
+            }
+        }
+
+        if (_entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
+        && _entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
+        {
+            _appearanceSystem.UpdateSprite(appearanceComp, spriteComp);
+        }
 
         _spriteView.SetEntity(_previewDummy);
     }

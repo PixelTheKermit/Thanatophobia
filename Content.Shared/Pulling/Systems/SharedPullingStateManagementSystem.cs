@@ -210,5 +210,14 @@ namespace Content.Shared.Pulling
                 RaiseLocalEvent(pullable.Owner, new PullableMoveMessage(), true);
             }
         }
+
+        # region Start Thanatophobia Edits
+
+        public void ChangeHandsRequirement(SharedPullerComponent comp, bool required)
+        {
+            comp.NeedsHands = required;
+        }
+
+        # endregion End Thanatophobia Edits
     }
 }

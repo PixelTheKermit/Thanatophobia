@@ -1,0 +1,18 @@
+- type: trait
+  id: LizardWings
+  name: tp-trait-lizard-wings-name
+  description: tp-trait-lizard-wings-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/lizard.rsi
+    state: wings
+  exclusive:
+  - Wings
+  allowed:
+  - Lizard
+  markingId: LizardWingsDefault
+  components:
+  - type: WingsTrait
+    weightlessModifier: .9
+    weightlessFriction: .8
+    weightlessAcceleration: 1.2

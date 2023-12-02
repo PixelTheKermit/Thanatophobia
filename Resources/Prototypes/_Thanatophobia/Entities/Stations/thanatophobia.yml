@@ -1,0 +1,9 @@
+- type: entity
+  id: TPStandardShuttle
+  parent:
+    - BaseStation
+    - BaseStationAllEventsEligible
+    - BaseStationJobsSpawning
+  noSpawn: true
+  components:
+    - type: Transform

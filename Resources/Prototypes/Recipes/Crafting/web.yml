@@ -9,6 +9,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   icon:
     sprite: Objects/Tiles/web.rsi
     state: icon
@@ -25,6 +27,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   icon:
     sprite: Clothing/OuterClothing/WinterCoats/coatweb.rsi
     state: icon
@@ -41,6 +45,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   icon:
     sprite: Clothing/Uniforms/Jumpsuit/web.rsi
     state: icon
@@ -57,6 +63,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   icon:
     sprite: Clothing/Uniforms/Jumpskirt/web.rsi
     state: icon
@@ -73,6 +81,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   icon:
     sprite: Objects/Materials/materials.rsi
     state: cloth_3
@@ -89,6 +99,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   icon:
     sprite: Objects/Weapons/Melee/web-shield.rsi
     state: icon

@@ -50,6 +50,20 @@ namespace Content.Shared.Movement.Systems
             move.Acceleration = acceleration;
             Dirty(uid, move);
         }
+
+        # region Start Thanatophobia Edits
+        public void ChangeWeightlessSpeed(EntityUid uid, float weightlessAcceleration, float weightlessFriction, float weightlessModifier, MovementSpeedModifierComponent? move = null)
+        {
+            if (!Resolve(uid, ref move, false))
+                return;
+
+            move.WeightlessAcceleration = weightlessAcceleration;
+            move.WeightlessFriction = weightlessFriction;
+            move.WeightlessModifier = weightlessModifier;
+
+            Dirty(uid, move);
+        }
+        # endregion End Thanatophobia Edits
     }
 
     /// <summary>

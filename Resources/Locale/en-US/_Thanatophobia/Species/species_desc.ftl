@@ -16,6 +16,10 @@ tp-species-description-Diona = [font size=14][bold][color=brown]Diona[/bold][/co
 
 tp-species-description-SlimePerson = [font size=14][bold][color=lime]Slime Person[/bold][/color][/font]
 
+                                     The first human-made vessel for a soul. A being formed from clear slime containing basic organs and a singular slime core which is where the actual soul resides. They share similar biology to the slime creatures, yet unlike slime creatures their base form is human-like, they have vocal chords and their behaviours are a lot less feral.
+
+                                     Slimes are able to injest more chemicals than other species currently known due to how their biology works, and their slimy bodies allow for way better healing of their structure. However, slime people should try and avoid contact with water as much as possible, as the slime they're made from will dissolve easily. But don't worry! In the worst case senario, you don't have to worry as you won't leave a stinky mess of a rotting corpse, just a really sticky and slimy one.
+
 tp-species-description-Reptilian = [font size=14][bold][color=green]Reptilian[/bold][/color][/font]
 
                                    A humanoid being with close resemblance to a lizard. They usually prefer working together to perform strength intensive work. They're also known to be picky eaters and prefer to eat meats and fruits. Their names traditionally used to be something like Verb the Noun, but some new-gen lizards go for something different entirely.

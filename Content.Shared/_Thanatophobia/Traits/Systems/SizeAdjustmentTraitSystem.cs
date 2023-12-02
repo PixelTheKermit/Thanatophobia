@@ -7,6 +7,7 @@ public sealed class SizeAdjustmentTraitSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public override void Initialize()
     {
@@ -17,7 +18,7 @@ public sealed class SizeAdjustmentTraitSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, SizeAdjustmentTraitComponent comp, ComponentStartup args)
     {
-        if (_netManager.IsClient && TryGetNetEntity(uid, out var _))
+        if (_netManager.IsClient && !_entityManager.IsClientSide(uid))
             return;
 
         EnsureComp<ScaleVisualsComponent>(uid);

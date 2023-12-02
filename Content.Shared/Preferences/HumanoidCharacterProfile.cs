@@ -14,6 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Serilog;
 
 namespace Content.Shared.Preferences
 {
@@ -307,8 +308,6 @@ namespace Content.Shared.Preferences
         # region Thanatophobia Edits
         public HumanoidCharacterProfile WithTraitPreference(string traitId, bool pref)
         {
-            // ! I just kinda wrote this today. This is likely insane.
-
             var protoManager = IoCManager.Resolve<IPrototypeManager>();
 
             var validTraitProto = protoManager.TryIndex<TraitPrototype>(traitId, out var traitProto);
@@ -369,9 +368,9 @@ namespace Content.Shared.Preferences
 
                 if (!canUse)
                     continue;
-                else if (validTraitProto)
+                else
                 {
-                    foreach (var tag in traitProto!.Exclusive)
+                    foreach (var tag in ownTraitProto!.Exclusive)
                         exclusiveTags.Add(tag);
                 }
 
@@ -382,7 +381,7 @@ namespace Content.Shared.Preferences
             if (totalCost > 0)
                 newTraits = new List<string>(); // fuck you, no traits because you don't deserve them. (Aka safely clear the traits to prevent exploitation.)
 
-            if (validTraitProto)
+            if (validTraitProto && isTraitValid)
             {
                 foreach (var tag in traitProto!.Exclusive) // Check if the trait and the new trait are not mutually exclusive.
                 {

@@ -1,10 +1,17 @@
+using System.Linq;
 using System.Numerics;
 using Content.Client.Humanoid;
 using Content.Client.Lobby.UI;
 using Content.Client.Preferences;
 using Content.Client.Stylesheets;
+using Content.Shared.Hands.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
+using Content.Shared.Traits;
+using FastAccessors;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -13,6 +20,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Thanatophobia.Preferences.UI;
@@ -207,6 +215,10 @@ public sealed partial class TPCharacterSetupGui : Control
             IPrototypeManager prototypeManager,
             ICharacterProfile profile)
         {
+            var serializationManager = IoCManager.Resolve<ISerializationManager>();
+            var markingManager = IoCManager.Resolve<MarkingManager>();
+            var humanoidAppearanceSystem = entityManager.System<HumanoidAppearanceSystem>();
+
             AddStyleClass(StyleNano.StyleClassChatChannelSelectorButton);
             ToggleMode = true;
             Margin = new Thickness(0, 0, 0, 0);
@@ -218,7 +230,7 @@ public sealed partial class TPCharacterSetupGui : Control
             var dummy = speciesProto.DollPrototype;
             _previewDummy = entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
 
-            entityManager.System<HumanoidAppearanceSystem>().LoadProfile(_previewDummy, (HumanoidCharacterProfile) profile);
+            humanoidAppearanceSystem.LoadProfile(_previewDummy, (HumanoidCharacterProfile) profile);
 
             var isSelectedCharacter = profile == preferencesManager.Preferences?.SelectedCharacter;
 
@@ -231,6 +243,39 @@ public sealed partial class TPCharacterSetupGui : Control
             };
 
             LobbyCharacterPreviewPanel.GiveDummyJobClothes(_previewDummy, humanoid);
+
+            // Add all the traits.
+            foreach (var traitId in humanoid.TraitPreferences)
+            {
+                if (!prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
+                    continue;
+
+                // Add all components required by the prototype
+                foreach (var entry in traitPrototype.Components.Values)
+                {
+                    var comp = serializationManager.CreateCopy(entry.Component, notNullableOverride: true);
+                    comp.Owner = _previewDummy;
+                    entityManager.AddComponent(_previewDummy, comp, true);
+                }
+
+                if (traitPrototype.MarkingId != null
+                && prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
+                {
+                    var colors = MarkingColoring.GetMarkingLayerColors(markingProto, humanoid.Appearance.SkinColor, humanoid.Appearance.EyeColor, new MarkingSet());
+                    var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
+
+                    for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
+                        dictColors[i] = traitPrototype.MarkingColours[i];
+
+                    humanoidAppearanceSystem.AddMarking(_previewDummy, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
+                }
+            }
+
+            if (entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
+            && entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
+            {
+                humanoidAppearanceSystem.UpdateSprite(appearanceComp, spriteComp);
+            }
 
             viewSprite.SetEntity(_previewDummy);
 

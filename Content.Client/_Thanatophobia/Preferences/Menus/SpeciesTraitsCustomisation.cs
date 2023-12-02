@@ -7,9 +7,12 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Traits;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.Utility;
+using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Thanatophobia.Preferences.UI.CustomControls;
@@ -18,6 +21,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
 {
     // Dependencies
     private readonly IPrototypeManager _protoManager;
+    private readonly SpriteSystem _spriteSystem;
 
     // Controls
     RichTextLabel _speciesDescription;
@@ -39,6 +43,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
     public TPSpeciesTraitsCustomisation(TPHumanoidProfileEditor profileEditor) : base(profileEditor)
     {
         _protoManager = IoCManager.Resolve<IPrototypeManager>();
+        _spriteSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<SpriteSystem>();
 
         TabName = Loc.GetString("tp-humanoid-profile-editor-species-traits-tab");
 
@@ -190,6 +195,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
         ProfileEditor.UpdateSpriteView(true);
         _speciesButton.Select(index);
         _speciesDescription.SetMarkup(Loc.GetString($"tp-species-description-{ProfileEditor.Humanoid.Species}"));
+        RefreshTraitControls();
     }
 
     private void ToggleTrait(string traitId, bool add = true)
@@ -199,6 +205,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
 
         ProfileEditor.Humanoid = ProfileEditor.Humanoid.WithTraitPreference(traitId, add);
         RefreshTraitControls();
+        ProfileEditor.UpdateSpriteView(true);
     }
 
     private void RefreshSkinColour()
@@ -244,7 +251,18 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
         var posPoints = 0;
         var negPoints = 0;
 
-        // And now we fill all the controls. I haven't even coded this yet but I know I have sinned.
+        List<string> exclusiveTags = new();
+
+        foreach (var traitId in ProfileEditor.Humanoid.TraitPreferences)
+        {
+            if (!_protoManager.TryIndex<TraitPrototype>(traitId, out var traitProto))
+                return;
+
+            foreach (var tag in traitProto.Exclusive)
+                exclusiveTags.Add(tag);
+        }
+
+        // And now we fill all the controls.
         foreach (var traitProto in traitProtos)
         {
             var isTraitValid = true;
@@ -257,12 +275,28 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 }
             }
 
+            // Above this comment is stuff that shouldn't be shown if the player can't have it.
+
             if (!isTraitValid)
                 continue;
+
+            // Below this comment is stuff that should be shown yet disabled if the player can't have it.
+
+            foreach (var tag in traitProto.Exclusive)
+            {
+                if (exclusiveTags.Any(i => i == tag))
+                {
+                    isTraitValid = false;
+                    break;
+                }
+            }
 
             var traitControl = new TraitButton(Loc.GetString(traitProto.Name), Loc.GetString(traitProto.Description ?? ""), traitProto.Cost.ToString());
             traitControl.TraitAdded += () => ToggleTrait(traitProto.ID, true);
             traitControl.TraitRemoved += () => ToggleTrait(traitProto.ID, false);
+
+            if (traitProto.Icon != null)
+                traitControl.TraitIcon.Texture = _spriteSystem.Frame0(traitProto.Icon);
 
             var used = ProfileEditor.Humanoid.TraitPreferences.Any(i => i == traitProto.ID);
             if (traitProto.Cost > 0)
@@ -276,6 +310,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 }
                 else
                 {
+                    traitControl.ToggleUsed(false, !isTraitValid);
                     _posUnusedTraitBox.XamlChildren.Add(traitControl);
                 }
             }
@@ -290,6 +325,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 }
                 else
                 {
+                    traitControl.ToggleUsed(false, !isTraitValid);
                     _negUnusedTraitBox.XamlChildren.Add(traitControl);
                 }
             }
@@ -302,6 +338,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 }
                 else
                 {
+                    traitControl.ToggleUsed(false, !isTraitValid);
                     _rpUnusedTraitBox.XamlChildren.Add(traitControl);
                 }
             }
@@ -321,7 +358,6 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
             species = _protoManager.Index<SpeciesPrototype>(HumanoidCharacterProfile.Random().Species);
 
         ChangeSpecies(_speciesList.IndexOf(species));
-        RefreshTraitControls();
     }
 
     private sealed class TraitBox : PanelContainer // Changing each individual one every time I want it updated sounds like complete aids I don't want to deal with.
@@ -352,12 +388,13 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
     private sealed class TraitButton : Control
     {
         public PanelContainer Background;
+        public PanelContainer DisabledForeground;
         private Button _addButton;
         private Button _removeButton;
+
+        public TextureRect TraitIcon;
         public Action? TraitAdded;
         public Action? TraitRemoved;
-
-
         public TraitButton(string traitName, string traitDesc, string cost)
         {
             Margin = new Thickness(2);
@@ -366,6 +403,11 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
             {
                 ModulateSelfOverride = Color.FromHex("#CCCCCC"),
                 PanelOverride = new StyleBoxFlat(StyleNano.ButtonColorDefault),
+            };
+
+            TraitIcon = new()
+            {
+                Margin = new Thickness(2),
             };
 
             var nameLabel = new Label()
@@ -452,7 +494,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
             {
                 Margin = new Thickness(5),
                 Orientation = BoxContainer.LayoutOrientation.Horizontal,
-                XamlChildren = { nameLabel, pointsLabel, showDesc, hideDesc, _addButton, _removeButton }
+                XamlChildren = {TraitIcon, nameLabel, pointsLabel, showDesc, hideDesc, _addButton, _removeButton }
             };
 
             var controlContainer = new BoxContainer
@@ -461,14 +503,22 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 XamlChildren = { buttonContainer, descriptionBackground },
             };
 
+            DisabledForeground = new()
+            {
+                PanelOverride = new StyleBoxFlat(Color.Red.WithAlpha(0.25f)),
+                Visible = false,
+            };
+
             AddChild(Background);
             AddChild(controlContainer);
+            AddChild(DisabledForeground);
         }
 
-        public void ToggleUsed(bool used)
+        public void ToggleUsed(bool used, bool disabled = false)
         {
             _addButton.Visible = !used;
             _removeButton.Visible = used;
+            DisabledForeground.Visible = !used && disabled;
         }
     }
 

@@ -16,6 +16,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   conditions:
     - !type:TileNotBlocked
 
@@ -37,6 +39,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   conditions:
     - !type:TileNotBlocked
 
@@ -58,6 +62,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   conditions:
     - !type:TileNotBlocked
 
@@ -78,6 +84,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
 
 - type: construction
   name: web crate
@@ -97,6 +105,8 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
 
 - type: construction
   name: web door
@@ -115,5 +125,7 @@
   entityWhitelist:
     tags:
     - SpiderCraft
+    components:
+    - SpiderCraftTrait
   conditions:
     - !type:TileNotBlocked
