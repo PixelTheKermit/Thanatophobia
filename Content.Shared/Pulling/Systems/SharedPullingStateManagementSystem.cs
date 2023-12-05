@@ -211,13 +211,17 @@ namespace Content.Shared.Pulling
             }
         }
 
-        # region Start Thanatophobia Edits
-
-        public void ChangeHandsRequirement(SharedPullerComponent comp, bool required)
+        /// <summary>
+        /// Changes if the entity needs a hand in order to be able to pull objects.
+        /// </summary>
+        public void ChangeHandRequirement(EntityUid uid, bool needsHands, SharedPullerComponent? comp)
         {
-            comp.NeedsHands = required;
-        }
+            if (!Resolve(uid, ref comp, false))
+                return;
 
-        # endregion End Thanatophobia Edits
+            comp.NeedsHands = needsHands;
+
+            Dirty(uid, comp);
+        }
     }
 }
