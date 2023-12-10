@@ -124,7 +124,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     # region Thanatophobia edits start here.
 
     [DataField]
-    public int MaxTraits = 4;
+    public int MaxTraits = 6;
 
     [DataField]
     public List<string> AllowedTraits = new();

@@ -243,7 +243,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
         _rpUsedTraitBox.XamlChildren.Clear();
 
         // Then we get every single trait that exists.
-        var traitProtos = _protoManager.EnumeratePrototypes<TraitPrototype>();
+        var traitProtos = _protoManager.EnumeratePrototypes<TraitPrototype>().OrderBy(x => Loc.GetString(x.Name));
 
         var usedCount = 0;
         var rpUsedCount = 0;
@@ -291,7 +291,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 }
             }
 
-            var traitControl = new TraitButton(Loc.GetString(traitProto.Name), Loc.GetString(traitProto.Description ?? ""), traitProto.Cost.ToString());
+            var traitControl = new TraitButton(Loc.GetString(traitProto.Name), Loc.GetString(traitProto.Description ?? ""), (-traitProto.Cost).ToString());
             traitControl.TraitAdded += () => ToggleTrait(traitProto.ID, true);
             traitControl.TraitRemoved += () => ToggleTrait(traitProto.ID, false);
 

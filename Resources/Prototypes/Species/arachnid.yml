@@ -15,6 +15,7 @@
   - Unsexed
   allowedTraits:
   - Organic
+  - Arachnid
 
 - type: speciesBaseSprites
   id: MobArachnidSprites

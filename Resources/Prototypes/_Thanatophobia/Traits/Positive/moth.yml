@@ -1,0 +1,17 @@
+- type: trait
+  id: MothTwoHands
+  name: tp-trait-two-hands-name
+  description: tp-trait-two-hands-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/mixed.rsi
+    state: hands
+  allowed:
+  - Moth
+  exclusive:
+  - Hands
+  components:
+  - type: ReplaceBodyPartTrait
+    replace:
+    - "body_part_slot_second left hand": SecondLeftHandMoth
+    - "body_part_slot_second right hand": SecondRightHandMoth

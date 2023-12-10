@@ -9,6 +9,9 @@
   "states": [
     {
       "name": "wings"
+    },
+    {
+      "name": "claws"
     }
   ]
 }

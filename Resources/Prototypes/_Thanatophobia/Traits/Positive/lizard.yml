@@ -16,3 +16,20 @@
     weightlessModifier: .9
     weightlessFriction: .8
     weightlessAcceleration: 1.2
+
+- type: trait
+  id: LizardClaws
+  name: tp-trait-lizard-claws-name
+  description: tp-trait-lizard-claws-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/lizard.rsi
+    state: claws
+  allowed:
+  - Lizard
+  components:
+  - type: Prying
+    pryPowered: true
+    force: true
+    useSound:
+      path: /Audio/Items/crowbar.ogg

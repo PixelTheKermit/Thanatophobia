@@ -73,6 +73,8 @@
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
   cost: -3
+  exclusive:
+  - BreaksWheelchair
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: wheelchair

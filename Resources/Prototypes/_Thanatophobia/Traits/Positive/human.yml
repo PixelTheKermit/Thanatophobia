@@ -58,3 +58,43 @@
     productionLength: 2.5
     entityProduced: MaterialWebSilk1
     hungerCost: 6
+  - type: AddTagTrait
+    add:
+    - SpiderCraft
+
+- type: trait
+  id: HumanBloom
+  name: tp-trait-human-bloom-name
+  description: tp-trait-human-bloom-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: bloom
+  markingId: DionaSproutHeadSide
+  markingColours:
+  - "#eeee00"
+  exclusive:
+  - Stomach
+  allowed:
+  - Human
+  components:
+  - type: ReplaceOrganTrait
+    replace:
+    - body_organ_slot_stomach: OrganHumanBloomStomach
+
+- type: trait
+  id: HumanSlimeLungs
+  name: tp-trait-human-slime-lungs-name
+  description: tp-trait-human-slime-lungs-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: slime-lungs
+  exclusive:
+  - Lungs
+  allowed:
+  - Human
+  components:
+  - type: ReplaceOrganTrait
+    replace:
+    - body_organ_slot_lungs: OrganHumanSlimeLungs

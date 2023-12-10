@@ -25,6 +25,6 @@ public sealed partial class SharedTailDraggingTraitSystem : EntitySystem
     private void OnStartup(EntityUid uid, TailDraggingTraitComponent comp, ComponentStartup args)
     {
         if (TryComp<SharedPullerComponent>(uid, out var pullerComp))
-            _pullingSystem.ChangeHandsRequirement(pullerComp, false);
+            _pullingSystem.ChangeHandRequirement(uid, false, pullerComp);
     }
 }

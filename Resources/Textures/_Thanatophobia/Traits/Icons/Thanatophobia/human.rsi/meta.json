@@ -15,6 +15,12 @@
     },
     {
       "name": "tail"
+    },
+    {
+      "name": "bloom"
+    },
+    {
+      "name": "slime-lungs"
     }
   ]
 }

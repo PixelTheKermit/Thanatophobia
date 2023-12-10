@@ -10,6 +10,7 @@
   skinColoration: Hues
   allowedTraits:
   - Organic
+  - Slime
 
 - type: speciesBaseSprites
   id: MobSlimeSprites

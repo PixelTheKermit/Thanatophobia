@@ -13,6 +13,7 @@
   lastNames: names_moth_last
   allowedTraits:
   - Organic
+  - Moth
 
 - type: speciesBaseSprites
   id: MobMothSprites

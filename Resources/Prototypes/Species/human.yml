@@ -7,7 +7,7 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
-  maxTraits: 6
+  maxTraits: 8
   allowedTraits:
   - Organic
   - Human

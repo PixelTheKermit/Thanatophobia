@@ -1,0 +1,22 @@
+- type: entity
+  id: SecondLeftHandMoth
+  name: "second left moth hand"
+  parent: [PartMoth, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+    state: "l-hand-2"
+
+- type: entity
+  id: SecondRightHandMoth
+  name: "second right moth hand"
+  parent: [PartMoth, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+    state: "r-hand-2"
+
+- type: entity
+  id: StubMoth
+  name: "moth stub"
+  parent: PartMoth

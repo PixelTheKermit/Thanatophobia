@@ -18,3 +18,14 @@
     soundHit:
       collection: Punch
     animation: WeaponArcFist
+
+- type: trait
+  id: Lootbox
+  name: tp-trait-lootbox-name
+  description: tp-trait-lootbox-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/mixed.rsi
+    state: box
+  traitGear: LootboxTraitLoot
+  components: []

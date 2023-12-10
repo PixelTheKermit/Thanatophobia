@@ -1,0 +1,18 @@
+- type: trait
+  id: SlimeNoBreathingRequired
+  name: tp-trait-slime-no-breathing-name
+  description: tp-trait-slime-no-breathing-description
+  cost: 4
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/slime.rsi
+    state: air
+  allowed:
+  - Slime
+  components:
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0
+    damageRecovery:
+      types:
+        Asphyxiation: -2.0

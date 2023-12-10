@@ -8,16 +8,12 @@
   "copyright": "Made by PixelTheKermit (github) for Thanatophobia, a fork of SS14.",
   "states": [
     {
-      "name": "hands"
+      "name": "l-hand-2",
+      "directions": 4
     },
     {
-      "name": "northstar"
-    },
-    {
-      "name": "box"
-    },
-    {
-      "name": "arm-missing"
+      "name": "r-hand-2",
+      "directions": 4
     }
   ]
 }

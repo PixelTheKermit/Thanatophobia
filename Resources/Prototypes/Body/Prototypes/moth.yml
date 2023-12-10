@@ -23,6 +23,8 @@
       - right arm
       - left leg
       - right leg
+      - second left hand
+      - second right hand
     right arm:
       part: RightArmMoth
       connections:
@@ -35,6 +37,10 @@
       part: RightHandMoth
     left hand:
       part: LeftHandMoth
+    second right hand:
+      part: StubMoth
+    second left hand:
+      part: StubMoth
     right leg:
       part: RightLegMoth
       connections:

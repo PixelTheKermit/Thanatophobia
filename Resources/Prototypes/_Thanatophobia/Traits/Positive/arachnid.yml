@@ -1,0 +1,34 @@
+- type: trait
+  id: ArachnidTwoHands
+  name: tp-trait-two-hands-name
+  description: tp-trait-two-hands-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/mixed.rsi
+    state: hands
+  allowed:
+  - Arachnid
+  exclusive:
+  - Hands
+  components:
+  - type: ReplaceBodyPartTrait
+    replace:
+    - "body_part_slot_second left hand": SecondLeftHandArachnid
+    - "body_part_slot_second right hand": SecondRightHandArachnid
+
+# TODO: make this work later.
+# - type: trait
+  # id: ArachnidPockets
+  # name: tp-trait-arachnid-pockets-name
+  # description: tp-trait-arachnid-pockets-description
+  # icon:
+    # sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/arachnid.rsi
+    # state: pockets
+  # exclusive:
+  # - Inventory
+  # allowed:
+  # - Arachnid
+  # cost: 2
+  # components:
+  # - type: Inventory
+    # templateId: arachnid
