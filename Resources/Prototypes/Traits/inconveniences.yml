@@ -2,6 +2,9 @@
   id: LightweightDrunk
   name: trait-lightweight-name
   description: trait-lightweight-desc
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: lightweight
   components:
     - type: LightweightDrunk
       boozeStrengthMultiplier: 2
@@ -10,6 +13,9 @@
   id: SocialAnxiety
   name: trait-socialanxiety-name
   description: trait-socialanxiety-desc
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: anxiety
   components:
     - type: StutteringAccent
       matchRandomProb: 0.1

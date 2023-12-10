@@ -16,7 +16,7 @@
     shoes: ClothingShoesColorBlack
     pocket1: FlashlightSeclite
     pocket2: CombatKnife
-  innerclothingskirt: ClothingUniformJumpskirtTacticool
+  innerClothingSkirt: ClothingUniformJumpskirtTacticool
   satchel: ClothingBackpackSatchelSalvage
   duffelbag: ClothingBackpackDuffelSalvage
 

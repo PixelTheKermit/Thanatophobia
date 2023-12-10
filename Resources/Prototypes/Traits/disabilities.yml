@@ -3,6 +3,10 @@
   name: trait-blindness-name
   description: trait-blindness-desc
   traitGear: WhiteCane
+  cost: -2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: blind
   whitelist:
     components:
       - Blindable
@@ -13,6 +17,10 @@
   id: Narcolepsy
   name: trait-narcolepsy-name
   description: trait-narcolepsy-decs
+  cost: -2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: eepy
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -21,6 +29,10 @@
 - type: trait
   id: Pacifist
   name: trait-pacifist-name
+  cost: -3
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: peace
   components:
     - type: Pacified
 
@@ -28,6 +40,9 @@
   id: Paracusia
   name: trait-paracusia-name
   description: trait-paracusia-desc
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: fake-sound
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -40,20 +55,29 @@
   id: Muted
   name: trait-muted-name
   description: trait-muted-desc
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: mute
   components:
     - type: Muted
 
-- type: trait
-  id: Uncloneable
-  name: trait-uncloneable-name
-  description: trait-uncloneable-desc
-  components:
-    - type: Uncloneable
+# - type: trait
+  # id: Uncloneable
+  # name: trait-uncloneable-name
+  # description: trait-uncloneable-desc
+  # components:
+    # - type: Uncloneable
 
 - type: trait
   id: WheelchairBound
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
+  cost: -3
+  exclusive:
+  - BreaksWheelchair
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: wheelchair
   components:
     - type: WheelchairBound
     - type: LegsParalyzed
@@ -62,5 +86,8 @@
   id: FrontalLisp
   name: trait-frontal-lisp-name
   description: trait-frontal-lisp-desc
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
+    state: lisp
   components:
     - type: FrontalLisp

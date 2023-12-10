@@ -1,0 +1,80 @@
+# Short
+- type: trait
+  id: Short
+  name: tp-trait-short-name
+  description: tp-trait-short-description
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/size.rsi
+    state: short
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 0.9
+
+- type: trait
+  id: ShortPlus
+  name: tp-trait-short-plus-name
+  description: tp-trait-short-plus-description
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/size.rsi
+    state: shortplus
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 0.8
+
+- type: trait
+  id: ShortPlusPlus
+  name: tp-trait-short-plus-plus-name
+  description: tp-trait-short-plus-plus-description
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/size.rsi
+    state: shortplusplus
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 0.7
+
+# Tall
+
+- type: trait
+  id: Tall
+  name: tp-trait-tall-name
+  description: tp-trait-tall-description
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/size.rsi
+    state: tall
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 1.1
+
+- type: trait
+  id: TallPlus
+  name: tp-trait-tall-plus-name
+  description: tp-trait-tall-plus-description
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/size.rsi
+    state: tallplus
+  exclusive:
+  - Size
+  components:
+    - type: SizeAdjustmentTrait
+      height: 1.25
+
+- type: trait
+  id: TallPlusPlus
+  name: tp-trait-tall-plus-plus-name
+  description: tp-trait-tall-plus-plus-description
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/size.rsi
+    state: tallplusplus
+  exclusive:
+  - Size
+  components:
+  - type: SizeAdjustmentTrait
+    height: 1.5

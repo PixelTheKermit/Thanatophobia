@@ -5,6 +5,7 @@ using Content.Client.Message;
 using Content.Client.Preferences;
 using Content.Client.Preferences.UI;
 using Content.Client.Thanatophobia.LateJoin;
+using Content.Client.Thanatophobia.Preferences.UI;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Robust.Client;
@@ -32,7 +33,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
-        [ViewVariables] private CharacterSetupGui? _characterSetup;
+        [ViewVariables] private TPCharacterSetupGui? _characterSetup; // Thanatophobia Edit
 
         private ClientGameTicker _gameTicker = default!;
 
@@ -50,8 +51,10 @@ namespace Content.Client.Lobby
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
-            _characterSetup = new CharacterSetupGui(_entityManager, _resourceCache, _preferencesManager,
+            // Thanatophobia Edit
+            _characterSetup = new TPCharacterSetupGui(_entityManager, _resourceCache, _preferencesManager,
                 _prototypeManager, _configurationManager);
+            // End Thanatophobia Edit
             LayoutContainer.SetAnchorPreset(_characterSetup, LayoutContainer.LayoutPreset.Wide);
 
             _lobby.CharacterSetupState.AddChild(_characterSetup);

@@ -7,6 +7,10 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
+  maxTraits: 8
+  allowedTraits:
+  - Organic
+  - Human
 
 # The lack of a layer means that
 # this person cannot have round-start anything
@@ -20,6 +24,8 @@
     Head: MobHumanHead
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
     Chest: MobHumanTorso
     Eyes: MobHumanoidEyes
     LArm: MobHumanLArm

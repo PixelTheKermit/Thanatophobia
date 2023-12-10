@@ -7,7 +7,7 @@
   fallback: true
   stations:
     Star:
-      stationProto: StandardNanotrasenStation
+      stationProto: TPStandardShuttle
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Star'

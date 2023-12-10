@@ -11,6 +11,9 @@
   maleFirstNames: names_reptilian_male
   femaleFirstNames: names_reptilian_female
   naming: FirstDashFirst
+  allowedTraits:
+  - Organic
+  - Lizard
 
 - type: speciesBaseSprites
   id: MobReptilianSprites

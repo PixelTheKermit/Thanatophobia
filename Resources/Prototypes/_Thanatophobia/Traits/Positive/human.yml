@@ -1,0 +1,100 @@
+- type: trait
+  id: HumanTail
+  name: tp-trait-human-tail-name
+  description: tp-trait-human-tail-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: tail
+  exclusive:
+  - Tail
+  allowed:
+  - Human
+  markingId: LizardTailSmooth
+  markingColours:
+  - "green"
+  components:
+  - type: TailDraggingTrait
+
+- type: trait
+  id: HumanWings
+  name: tp-trait-human-wings-name
+  description: tp-trait-human-wings-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: wings
+  exclusive:
+  - Wings
+  allowed:
+  - Human
+  markingId: HumanWingsDefault
+  markingColours:
+  - "white"
+  components:
+  - type: WingsTrait
+    weightlessModifier: .9
+    weightlessFriction: .8
+    weightlessAcceleration: 1.2
+
+- type: trait
+  id: HumanWebs
+  name: tp-trait-human-webs-name
+  description: tp-trait-human-webs-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: spider
+  exclusive:
+  - Webs
+  allowed:
+  - Human
+  markingId: ArachnidCheliceraeDownwards
+  markingColours:
+  - "#e3dac9"
+  components:
+  - type: Sericulture
+    action: ActionSericulture
+    productionLength: 2.5
+    entityProduced: MaterialWebSilk1
+    hungerCost: 6
+  - type: AddTagTrait
+    add:
+    - SpiderCraft
+
+- type: trait
+  id: HumanBloom
+  name: tp-trait-human-bloom-name
+  description: tp-trait-human-bloom-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: bloom
+  markingId: DionaSproutHeadSide
+  markingColours:
+  - "#eeee00"
+  exclusive:
+  - Stomach
+  allowed:
+  - Human
+  components:
+  - type: ReplaceOrganTrait
+    replace:
+    - body_organ_slot_stomach: OrganHumanBloomStomach
+
+- type: trait
+  id: HumanSlimeLungs
+  name: tp-trait-human-slime-lungs-name
+  description: tp-trait-human-slime-lungs-description
+  cost: 2
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
+    state: slime-lungs
+  exclusive:
+  - Lungs
+  allowed:
+  - Human
+  components:
+  - type: ReplaceOrganTrait
+    replace:
+    - body_organ_slot_lungs: OrganHumanSlimeLungs

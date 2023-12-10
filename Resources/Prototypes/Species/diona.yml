@@ -12,6 +12,8 @@
   femaleFirstNames: DionaFirst
   lastNames: DionaLast
   naming: TheFirstofLast
+  allowedTraits:
+  - Organic
 
 - type: speciesBaseSprites
   id: MobDionaSprites

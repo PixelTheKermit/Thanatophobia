@@ -1,0 +1,19 @@
+- type: entity
+  id: LootboxTraitLoot
+  parent: MarkerBase
+  noSpawn: true
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ClothingHeadHatCatEars
+    - WeaponRevolverDeckard
+    - SheetUranium
+    - SheetPlasma
+    - WelderIndustrialAdvanced
+    - MedkitCombatFilled
+    - ClothingEyesGlassesMeson
+    - CigCartonMixed
+    - ClothingEyesGlassesChemical
+    - HydroponicsTrayMachineCircuitboard
+    - ClothingOuterArmorRiot
+    - WeaponLaserCarbine

@@ -7,7 +7,7 @@
   fallback: true
   stations:
     Piracy:
-      stationProto: StandardNanotrasenStation
+      stationProto: TPStandardShuttle
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Piracy'

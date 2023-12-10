@@ -1,0 +1,18 @@
+- type: trait
+  id: Armless
+  name: tp-trait-armless-name
+  description: tp-trait-armless-description
+  cost: -2
+  exclusive:
+  - Hands
+  - BreaksWheelchair # You may ask: Pixel, how does this break the wheelchair trait? Well uhhh.... I'll let you find out on your own if you decide to mess with this.
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/mixed.rsi
+    state: arm-missing
+  components:
+  - type: ReplaceBodyPartTrait
+    replace: # I fucking hate containers and their stupid fucking names.
+    - "body_part_slot_left hand": null
+    - "body_part_slot_left arm": null
+    - "body_part_slot_left_hand": null
+    - "body_part_slot_left_arm": null

@@ -25,7 +25,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         UpdateSprite(component, Comp<SpriteComponent>(uid));
     }
 
-    private void UpdateSprite(HumanoidAppearanceComponent component, SpriteComponent sprite)
+    public void UpdateSprite(HumanoidAppearanceComponent component, SpriteComponent sprite) // Set to public for Thanatophobia.
     {
         UpdateLayers(component, sprite);
         ApplyMarkingSet(component, sprite);

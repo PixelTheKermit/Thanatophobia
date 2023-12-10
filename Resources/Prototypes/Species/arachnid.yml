@@ -13,6 +13,9 @@
   lastNames: names_arachnid_last
   sexes:
   - Unsexed
+  allowedTraits:
+  - Organic
+  - Arachnid
 
 - type: speciesBaseSprites
   id: MobArachnidSprites
