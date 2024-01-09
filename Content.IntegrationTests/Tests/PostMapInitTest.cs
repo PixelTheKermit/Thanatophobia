@@ -63,7 +63,10 @@ namespace Content.IntegrationTests.Tests
             "Kettle",
             "Gemini",
             "MeteorArena",
-            "Atlas"
+            "Atlas",
+            "Star",
+            "Spade",
+            "Piracy"
         };
 
         /// <summary>
