@@ -6,3 +6,5 @@ tp-trait-lootbox-description = Get a random item.
 
 tp-trait-two-hands-name = King of Frauds
 tp-trait-two-hands-description = Gain an additional two hands.
+
+tp-trait-bffs-name = BFFs!

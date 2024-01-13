@@ -203,6 +203,12 @@
   parent: MobSpaceBasic
   description: It's so glowing, it looks dangerous.
   components:
+  # Thanatophobia edits start
+  - type: FactionException
+  - type: NeutralFactions
+    neutral:
+    - SpiderBFF
+  # Thanatophobia edits end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Animals/spacespider.rsi

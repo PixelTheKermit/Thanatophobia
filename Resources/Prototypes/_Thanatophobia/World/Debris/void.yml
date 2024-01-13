@@ -1,0 +1,8 @@
+- type: spaceBiome
+  id: TPTheVoid
+  priority: -500
+  noiseRanges: {}
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+    randomCancelChance: 1 # To stop the screaming.

@@ -1,0 +1,98 @@
+# Pistols
+- type: latheRecipe
+  id: TPWeaponPistolViper
+  result: WeaponPistolViper
+  completetime: 4
+  materials:
+    Steel: 1000
+    Plastic: 250
+
+- type: latheRecipe
+  id: TPWeaponPistolCobra
+  result: WeaponPistolCobra
+  completetime: 4
+  materials:
+    Steel: 1000
+    Plastic: 250
+
+- type: latheRecipe
+  id: TPWeaponPistolMk58
+  result: WeaponPistolMk58
+  completetime: 4
+  materials:
+    Steel: 1000
+    Plastic: 250
+
+# Revolvers
+- type: latheRecipe
+  id: TPWeaponRevolverDeckard
+  result: WeaponRevolverDeckard
+  completetime: 5
+  materials:
+    Steel: 1250
+    Plastic: 500
+
+- type: latheRecipe
+  id: TPWeaponRevolverPython
+  result: WeaponRevolverPython
+  completetime: 5
+  materials:
+    Steel: 1250
+    Plastic: 500
+
+- type: latheRecipe
+  id: TPWeaponRevolverInspector
+  result: WeaponRevolverInspector
+  completetime: 5
+  materials:
+    Steel: 1250
+    Plastic: 250
+
+- type: latheRecipe
+  id: TPWeaponRevolverMateba
+  result: WeaponRevolverMateba
+  completetime: 5
+  materials:
+    Steel: 1250
+    Plastic: 250
+
+# Sub-machine Guns
+- type: latheRecipe
+  id: TPWeaponSubMachineGunVector
+  result: WeaponSubMachineGunVector
+  completetime: 8
+  materials:
+    Steel: 1750
+    Plastic: 750
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunAtreides
+  result: WeaponSubMachineGunAtreides
+  completetime: 8
+  materials:
+    Steel: 1500
+    Plastic: 500
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunC20r
+  result: WeaponSubMachineGunC20r
+  completetime: 8
+  materials:
+    Steel: 1500
+    Plastic: 500
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunDrozd
+  result: WeaponSubMachineGunDrozd
+  completetime: 8
+  materials:
+    Steel: 1500
+    Plastic: 500
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunWt550
+  result: WeaponSubMachineGunWt550
+  completetime: 8
+  materials:
+    Steel: 1500
+    Plastic: 500

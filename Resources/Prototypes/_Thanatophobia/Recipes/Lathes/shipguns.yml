@@ -1,0 +1,25 @@
+# Machine Boards
+
+# Ammo
+- type: latheRecipe
+  id: TPShipCannonBall
+  result: ShipCannonBall
+  completetime: 1
+  materials:
+    Steel: 20
+
+# Magazines
+- type: latheRecipe
+  id: TPMagazineShipAntiShip
+  result: MagazineShipAntiShip
+  completetime: 8
+  materials:
+    Steel: 750
+    Plastic: 250
+
+- type: latheRecipe
+  id: TPMagazineShipShotgun
+  result: MagazineShipShotgun
+  completetime: 8
+  materials:
+    Steel: 1000

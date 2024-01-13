@@ -213,7 +213,7 @@
       deleteItems: true
     - type: Explosive
       explosionType: MicroBomb
-      totalIntensity: 120
+      totalIntensity: 300
       intensitySlope: 5
       maxIntensity: 30
       canCreateVacuum: false

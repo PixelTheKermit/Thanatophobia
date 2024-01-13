@@ -32,3 +32,18 @@
   # components:
   # - type: Inventory
     # templateId: arachnid
+
+- type: trait
+  id: SpiderBFFs
+  name: tp-trait-bffs-name
+  description: tp-trait-arachnid-bffs-description
+  cost: 1
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/arachnid.rsi
+    state: friend
+  allowed:
+  - Arachnid
+  components:
+  - type: ChangeFactionsTrait
+    add:
+    - SpiderBFF

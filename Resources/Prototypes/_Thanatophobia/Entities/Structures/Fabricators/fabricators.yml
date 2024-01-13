@@ -1,0 +1,303 @@
+- type: entity
+  parent: BaseLathe
+  id: TPBasicFabricator # Should include basic recipes required for survival.
+  name: fabricator
+  description: A basic fabricator for basic needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/autolathe.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: TPCircuitboardBasicFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - AppraisalTool
+    - Beaker
+    - Bucket
+    - CableHVStack
+    - CableMVStack
+    - CableStack
+    - CapacitorStockPart
+    - CheapRollerBedSpawnFolded
+    - Crowbar
+    - EmergencyRollerBedSpawnFolded
+    - ExteriorLightTube
+    - FlashlightLantern
+    - FoodPlate
+    - FoodPlatePlastic
+    - FoodPlateSmall
+    - FoodPlateSmallPlastic
+    - GasAnalyzer
+    - HandheldGPSBasic
+    - LightBulb
+    - LightTube
+    - MatterBinStockPart
+    - MicroManipulatorStockPart
+    - ModularReceiver
+    - Multitool
+    - NetworkConfigurator
+    - Pickaxe
+    - PowerCellSmall
+    - Screwdriver
+    - SheetRGlass
+    - SodiumLightTube
+    - SprayBottle
+    - SprayPainter
+    - Syringe
+    - TRayScanner
+    - UtilityBelt
+    - Welder
+    - Wirecutter
+    - Wrench
+    - TargetClown
+    - TargetHuman
+    - TargetSyndicate
+
+- type: entity
+  parent: BaseLathe
+  id: TPMedicalFabricator # Should include recipes for medical stuff. Should I add surgery stuff here aswell even though we don't have it yet?
+  name: medical fabricator
+  description: A medical fabricator for medical needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: med
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: TPCircuitboardMedicalFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    - Beaker
+    - BodyBag
+    - Brutepack
+    - CheapRollerBedSpawnFolded
+    - ChemistryEmptyBottle01
+    - ClothingHandsGlovesLatex
+    - ClothingMaskSterile
+    - Defibrillator
+    - DiseaseSwab
+    - EmergencyRollerBedSpawnFolded
+    - HandLabeler
+    - HandheldHealthAnalyzer
+    - Implanter
+    - Medkit
+    - MedkitAdvanced
+    - MedkitBrute
+    - MedkitBurn
+    - MedkitCombat
+    - MedkitO2
+    - MedkitRadiation
+    - MedkitToxin
+    - Ointment
+    - PillCanister
+    - RollerBedSpawnFolded
+    - Syringe
+    - VehicleWheelchairFolded
+
+- type: entity
+  parent: BaseLathe
+  id: TPWeaponFabricator # Should include blah blah blah, you get the gist.
+  name: weapon fabricator
+  description: A weapon fabricator for harmful needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sec
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: TPCircuitboardWeaponFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    - CartridgeLightRifleIncendiary
+    - CartridgeLightRifleRubber
+    - CartridgeMagnumIncendiary
+    - CartridgeMagnumRubber
+    - CartridgePistolIncendiary
+    - CartridgePistolRubber
+    - CartridgeRifleIncendiary
+    - CartridgeRifleRubber
+    - ExplosivePayload
+    - Flash
+    - FlashPayload
+    - MagazineBoxLightRifle
+    - MagazineBoxLightRifleIncendiary
+    - MagazineBoxLightRiflePractice
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnum
+    - MagazineBoxMagnumIncendiary
+    - MagazineBoxMagnumPractice
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistol
+    - MagazineBoxPistolIncendiary
+    - MagazineBoxPistolPractice
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifle
+    - MagazineBoxRifleIncendiary
+    - MagazineBoxRiflePractice
+    - MagazineBoxRifleRubber
+    - MagazineLightRifle
+    - MagazinePistol
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGunTopMounted
+    - MagazineRifle
+    - RiotShield
+    - ShellShotgun
+    - ShellShotgunBeanbag
+    - ShellShotgunFlare
+    - ShellShotgunIncendiary
+    - ShellShotgunPractice
+    - ShellTranquilizer
+    - SpeedLoaderMagnum
+    - Stunbaton
+    - TPWeaponPistolCobra
+    - TPWeaponPistolMk58
+    - TPWeaponPistolViper
+    - TPWeaponRevolverInspector
+    - TPWeaponRevolverMateba
+    - TPWeaponSubMachineGunAtreides
+    - TPWeaponSubMachineGunC20r
+    - TPWeaponSubMachineGunDrozd
+    - TPWeaponSubMachineGunWt550
+    - WeaponLaserCarbine
+
+- type: entity
+  parent: BaseLathe
+  id: TPShipWeaponFabricator
+  name: ship weapon fabricator
+  description: A weapon fabricator for ship needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: ammo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: TPCircuitboardShipWeaponFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    - TPMagazineShipAntiShip
+    - TPMagazineShipShotgun
+    - TPShipCannonBall
+
+- type: entity
+  parent: BaseLathe
+  id: TPMachineFabricator
+  name: machine fabricator
+  description: A circuitboard fabricator for basic machine needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: cargo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: TPCircuitboardMachineFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    - BiomassReclaimerMachineCircuitboard
+    - CellRechargerCircuitboard
+    - ElectricGrillMachineCircuitboard
+    - FatExtractorMachineCircuitboard
+    - GasRecyclerMachineCircuitboard
+    - GyroscopeMachineCircuitboard
+    - HotplateMachineCircuitboard
+    - HydroponicsTrayMachineCircuitboard
+    - MicrowaveMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - OreProcessorMachineCircuitboard
+    - PortableGeneratorPacmanMachineCircuitboard
+    - PortableGeneratorSuperPacmanMachineCircuitboard
+    - PortableScrubberMachineCircuitBoard
+    - PowerComputerCircuitboard
+    - ReagentGrinderMachineCircuitboard
+    - SheetifierMachineCircuitboard
+    - ShuttleConsoleCircuitboard
+    - SolarTrackerElectronics
+    - StasisBedMachineCircuitboard
+    - ThermomachineFreezerMachineCircuitBoard
+    - ThrusterMachineCircuitboard
+    - UniformPrinterMachineCircuitboard

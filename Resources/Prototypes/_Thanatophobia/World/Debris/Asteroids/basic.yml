@@ -50,7 +50,7 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 16
+      floorPlacements: 32
 
 - type: entity
   id: TPAsteroidDebrisMedium
@@ -60,7 +60,7 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 32
+      floorPlacements: 64
 
 - type: entity
   id: TPAsteroidDebrisLarge
@@ -70,7 +70,7 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 48
+      floorPlacements: 96
 
 - type: entity
   id: TPAsteroidDebrisLarger
@@ -81,52 +81,4 @@
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       radius: 24
-      floorPlacements: 74
-
-- type: entity
-  id: TPAsteroidSalvageSmall
-  parent: TPBaseAsteroidDebris
-  name: Salvage Asteroid Small
-  noSpawn: true
-  components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      blobDrawProb: 0.66
-      radius: 30
-      floorPlacements: 200
-
-- type: entity
-  id: TPAsteroidSalvageMedium
-  parent: TPBaseAsteroidDebris
-  name: Salvage Asteroid Medium
-  noSpawn: true
-  components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      blobDrawProb: 0.66
-      radius: 34
-      floorPlacements: 300
-
-- type: entity
-  id: TPAsteroidSalvageLarge
-  parent: TPBaseAsteroidDebris
-  name: Salvage Asteroid Large
-  noSpawn: true
-  components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      blobDrawProb: 0.66
-      radius: 40
-      floorPlacements: 400
-
-- type: entity
-  id: TPAsteroidSalvageHuge
-  parent: TPBaseAsteroidDebris
-  name: Salvage Asteroid Huge
-  noSpawn: true
-  components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      blobDrawProb: 0.66
-      radius: 46
-      floorPlacements: 500
+      floorPlacements: 128

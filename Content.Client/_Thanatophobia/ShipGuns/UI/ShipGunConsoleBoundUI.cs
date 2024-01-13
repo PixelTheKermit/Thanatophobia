@@ -3,7 +3,6 @@ using System.Numerics;
 using Content.Client.Shuttles.UI;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Thanatophobia.ShipGuns;
-using FastAccessors;
 using Robust.Client.GameObjects;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;

@@ -1,0 +1,86 @@
+- type: entity
+  name: spider queen
+  id: TPMobQueenSpider # Gonna prefix with TP, just in case.
+  parent: MobSpaceBasic
+  description: Can't pay your way out of this encounter.
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+  - type: FactionException
+  - type: NeutralFactions
+    neutral:
+    - SpiderBFF
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Thanatophobia/Mobs/Animals/spider_queen.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Critical
+      650: Dead
+  - type: Stamina
+    critThreshold: 450
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: icon
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 8
+    - id: EggSpider
+      amount: 1
+      prob: 1
+  - type: Bloodstream
+    bloodMaxVolume: 500
+    bloodReagent: CopperBlood
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.425
+        density: 120
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 15
+        Poison: 5
+  - type: ReplacementAccent
+    accent: xeno
+  - type: InteractionPopup
+    successChance: 0.05
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: Speech
+    speechVerb: Arachnid
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      300: 0.7
+      400: 0.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1600
+      behaviors:
+      - !type:GibBehavior { }

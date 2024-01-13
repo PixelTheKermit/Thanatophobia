@@ -1,0 +1,92 @@
+- type: entity
+  id: TPCircuitboardBasicFabricator
+  parent: BaseMachineCircuitboard
+  name: basic fabricator machine board
+  description: A machine printed circuit board for a basic fabricator.
+  components:
+  - type: MachineBoard
+    prototype: TPBasicFabricator
+    requirements:
+      MatterBin: 2
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        Amount: 2
+        DefaultPrototype: Beaker
+        ExamineName: Glass Beaker
+
+- type: entity
+  id: TPCircuitboardMedicalFabricator
+  parent: BaseMachineCircuitboard
+  name: medical fabricator machine board
+  description: A machine printed circuit board for a medical fabricator.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: TPMedicalFabricator
+    requirements:
+      MatterBin: 2
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        Amount: 2
+        DefaultPrototype: Beaker
+        ExamineName: Glass Beaker
+
+- type: entity
+  id: TPCircuitboardWeaponFabricator
+  parent: BaseMachineCircuitboard
+  name: weapon fabricator machine board
+  description: A machine printed circuit board for a weapon fabricator.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: TPWeaponFabricator
+    requirements:
+      MatterBin: 2
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        Amount: 2
+        DefaultPrototype: Beaker
+        ExamineName: Glass Beaker
+
+- type: entity
+  id: TPCircuitboardShipWeaponFabricator
+  parent: BaseMachineCircuitboard
+  name: ship weapon fabricator machine board
+  description: A machine printed circuit board for a ship weapon fabricator.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: TPShipWeaponFabricator
+    requirements:
+      MatterBin: 2
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        Amount: 2
+        DefaultPrototype: Beaker
+        ExamineName: Glass Beaker
+
+- type: entity
+  id: TPCircuitboardMachineFabricator
+  parent: BaseMachineCircuitboard
+  name: machine fabricator machine board
+  description: A machine printed circuit board for a machine fabricator.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: TPMachineFabricator
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+    tagRequirements:
+      GlassBeaker:
+        Amount: 2
+        DefaultPrototype: Beaker
+        ExamineName: Glass Beaker

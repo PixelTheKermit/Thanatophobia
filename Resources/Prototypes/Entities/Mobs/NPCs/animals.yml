@@ -1915,6 +1915,12 @@
     - type: NpcFactionMember
       factions:
         - Xeno
+    # Thanatophobia edits start
+    - type: FactionException
+    - type: NeutralFactions
+      neutral:
+      - SpiderBFF
+    # Thanatophobia edits end
     - type: InputMover
     - type: MobMover
     - type: HTN

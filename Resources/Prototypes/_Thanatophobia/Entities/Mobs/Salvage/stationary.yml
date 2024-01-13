@@ -1,0 +1,23 @@
+- type: entity
+  id: TPMobCarpSalvage
+  parent: MobCarp
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+
+- type: entity
+  id: TPMobTickSalvage
+  parent: MobTickSalvage
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+
+- type: entity
+  id: TPMobShark
+  parent: MobShark
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound

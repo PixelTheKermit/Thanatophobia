@@ -37,7 +37,10 @@ public sealed partial class SharedReplaceOrganTraitSystem : EntitySystem
             var container = bodyParts.Find(part => part.ID == containerID)!;
 
             if (container.ContainedEntities.Count > 0)
-                Del(container.ContainedEntities[0]);
+            {
+                QueueDel(container.ContainedEntities[0]);
+                _containerSystem.Remove(container.ContainedEntities[0], container);
+            }
 
             if (proto != null)
                 _containerSystem.Insert(Spawn(proto), container);
