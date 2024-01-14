@@ -61,13 +61,6 @@
   components:
     - type: Muted
 
-# - type: trait
-  # id: Uncloneable
-  # name: trait-uncloneable-name
-  # description: trait-uncloneable-desc
-  # components:
-    # - type: Uncloneable
-
 - type: trait
   id: WheelchairBound
   name: trait-wheelchair-bound-name
