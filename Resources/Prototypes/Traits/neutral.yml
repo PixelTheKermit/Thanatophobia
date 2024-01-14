@@ -9,16 +9,6 @@
     - type: PirateAccent
 
 - type: trait
-  id: ArchaicAccent
-  name: trait-archaic-accent-name
-  description: trait-archaic-accent-desc
-  icon:
-    sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
-    state: old
-  components:
-    - type: ArchaicAccent
-
-- type: trait
   id: Accentless
   name: trait-accentless-name
   description: trait-accentless-desc
