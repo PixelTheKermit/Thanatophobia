@@ -1,3 +1,8 @@
+- type: gameMapPool
+  id: TPMapPool
+  maps:
+  - Star
+
 - type: shipSpawnPool
   id: Default
   ships:
