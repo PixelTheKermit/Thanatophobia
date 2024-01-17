@@ -13,7 +13,6 @@ using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Thanatophobia.ShipGuns;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using FastAccessors;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 

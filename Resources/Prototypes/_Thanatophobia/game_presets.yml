@@ -1,0 +1,9 @@
+- type: gamePreset
+  id: TPStandard
+  alias:
+  - tp-extended
+  - tp-standard
+  name: tp-standard-title
+  showInVote: true
+  description: standard-description
+  supportedMaps: TPMapPool
