@@ -1,0 +1,70 @@
+- type: entity
+  id: TPBaseScrapDebris
+  parent: BaseDebris
+  name: Scrap Debris
+  abstract: true
+  components:
+  - type: MapGrid
+  - type: BlobFloorPlanBuilder
+    floorTileset:
+    - Plating
+    - Plating
+    - Plating
+    - FloorSteel
+    - FloorSteel
+    - Lattice
+    blobDrawProb: .75
+    radius: 20
+  - type: SimpleFloorPlanPopulator
+    entries:
+      Plating:
+      - id: WallSolid
+        prob: 2
+      - id: Window
+        prob: 0.5
+      Lattice:
+      - id: null # Intentional blank.
+        prob: 1
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 0.3
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      FloorSteel:
+      - id: null # Intentional blank.
+        prob: 1
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 1
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      - id: SalvageMobSpawner
+        prob: 0.7
+  - type: IFF
+    flags: HideLabel
+    color: "#FFFFFF"
+
+- type: entity
+  id: TPScrapDebrisSmall
+  parent: TPBaseScrapDebris
+  name: Scrap Debris Small
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 32
+
+- type: entity
+  id: TPScrapDebrisMedium
+  parent: TPBaseScrapDebris
+  name: Scrap Debris Medium
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 48
+
+- type: entity
+  id: TPScrapDebrisLarge
+  parent: TPBaseScrapDebris
+  name: Scrap Debris Large
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 64

@@ -16,3 +16,18 @@
     damageRecovery:
       types:
         Asphyxiation: -2.0
+
+- type: trait
+  id: SlimeBFFs
+  name: tp-trait-bffs-name
+  description: tp-trait-slime-bffs-description
+  cost: 1
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/slime.rsi
+    state: friend
+  allowed:
+  - Slime
+  components:
+  - type: ChangeFactionsTrait
+    add:
+    - SlimeBFF

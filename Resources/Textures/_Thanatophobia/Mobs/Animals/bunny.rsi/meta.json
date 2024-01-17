@@ -8,10 +8,12 @@
   "copyright": "Made by PixelTheKermit (github) for Thanatophobia, a fork of SS14.",
   "states": [
     {
-      "name": "air"
+      "name": "killer",
+      "directions": 4
     },
     {
-      "name": "friend"
+      "name": "killer-dead",
+      "directions": 4
     }
   ]
 }

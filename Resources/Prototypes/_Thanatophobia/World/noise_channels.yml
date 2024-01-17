@@ -1,0 +1,9 @@
+# Note for any future coders: I don't know either.
+# This shit is hella confusing.
+
+- type: noiseChannel
+  id: TPTemperature
+  noiseType: OpenSimplex2
+  fractalType: PingPong
+  inputMultiplier: 0.25
+  remapTo0Through1: true

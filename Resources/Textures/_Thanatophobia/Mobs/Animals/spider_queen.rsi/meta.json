@@ -1,17 +1,19 @@
 {
   "version": 1,
   "size": {
-    "x": 32,
-    "y": 32
+    "x": 64,
+    "y": 64
   },
   "license": "CC-BY-SA-3.0",
   "copyright": "Made by PixelTheKermit (github) for Thanatophobia, a fork of SS14.",
   "states": [
     {
-      "name": "air"
+      "name": "icon",
+      "directions": 4
     },
     {
-      "name": "friend"
+      "name": "dead",
+      "directions": 4
     }
   ]
 }

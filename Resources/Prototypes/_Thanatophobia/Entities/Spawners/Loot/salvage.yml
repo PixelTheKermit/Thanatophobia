@@ -9,21 +9,22 @@
         - sprite: Structures/Storage/Crates/generic.rsi
           state: icon
     - type: RandomSpawner
-      rarePrototypes:
-        - TPCrateSalvageEquipment
-        - TPCrateServiceJanitorialSupplies
-        - TPCrateHydroponicsSeedsMedicinal
-        - TPCrateEmergencyInternals
-        - TPCrateFoodMRE
-        - TPCrateMaterialTextiles
-        - TPCrateMedicalSupplies
-        - TPCrateEngineeringCable
-        - TPCrateServiceBooks
-        - TPCrateServiceSmokeables
-        - TPClosetMaintenanceFilledRandomRare
-        - TPClosetEmergencyFilledRandomRare
-      rareChance: 0.4
-      prototypes:
-        - TPCrateSalvageAssortedGoodies
       chance: 0.9
+      prototypes:
+      - TPCrateSalvageEquipment
+      - TPCrateServiceJanitorialSupplies
+      - TPCrateHydroponicsSeeds
+      - TPCrateEmergencyInternals
+      - TPCrateFoodMRE
+      - TPCrateMaterialTextiles
+      - TPCrateMedicalSupplies
+      - TPCrateEngineeringCable
+      - TPCrateServiceBooks
+      - TPCrateServiceSmokeables
+      - TPClosetMaintenanceFilledRandomRare
+      - TPClosetEmergencyFilledRandomRare
+      - TPCrateSalvageMachines
+      rareChance: 0.001
+      rarePrototypes:
+      - TPCrateSalvageRevolvers
       offset: 0.1
