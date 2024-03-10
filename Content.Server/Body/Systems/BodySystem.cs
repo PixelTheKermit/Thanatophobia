@@ -79,7 +79,7 @@ public sealed class BodySystem : SharedBodySystem
             var layer = component.ToHumanoidLayers();
             if (layer != null)
             {
-                var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
+                var layers = HumanoidVisualLayersExtension.Sublayers(layer);
                 _humanoidSystem.SetLayersVisibility(bodyUid, layers, true, true, humanoid);
             }
         }
@@ -102,7 +102,7 @@ public sealed class BodySystem : SharedBodySystem
         if (layer == null)
             return;
 
-        var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
+        var layers = HumanoidVisualLayersExtension.Sublayers(layer);
         _humanoidSystem.SetLayersVisibility(bodyUid, layers, false, true, humanoid);
     }
 

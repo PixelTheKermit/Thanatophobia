@@ -79,13 +79,13 @@ public sealed class TraitSystem : EntitySystem
             && TryComp<HumanoidAppearanceComponent>(args.Mob, out var appearanceComp)
             && _prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
             {
-                var colors = MarkingColoring.GetMarkingLayerColors(markingProto, appearanceComp.SkinColor, appearanceComp.EyeColor, new MarkingSet());
-                var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
+                // var colors = MarkingColoring.GetMarkingLayerColors(markingProto, appearanceComp.SkinColor, appearanceComp.EyeColor, new MarkingSet());
+                // var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
 
-                for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
-                    dictColors[i] = traitPrototype.MarkingColours[i];
+                // for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
+                //     dictColors[i] = traitPrototype.MarkingColours[i];
 
-                _humanoidAppearanceSystem.AddMarking(args.Mob, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true, appearanceComp);
+                // _humanoidAppearanceSystem.AddMarking(args.Mob, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true, appearanceComp);
             }
 
             # endregion End Thanatophobia Edits

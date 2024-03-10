@@ -218,7 +218,7 @@ public sealed partial class TPAppearanceCustomisation : TPBaseCustomisationContr
 
         _hairPicker = new()
         {
-            Category = MarkingCategories.Hair,
+            Category = "Hair",
             MinWidth = 220,
             Margin = new Thickness(5),
         };
@@ -230,7 +230,7 @@ public sealed partial class TPAppearanceCustomisation : TPBaseCustomisationContr
 
         _facialHairPicker = new()
         {
-            Category = MarkingCategories.FacialHair,
+            Category = "FacialHair",
             MinWidth = 220,
             Margin = new Thickness(5),
         };
@@ -445,7 +445,7 @@ public sealed partial class TPAppearanceCustomisation : TPBaseCustomisationContr
         if (ProfileEditor.Humanoid == null)
             return;
 
-        var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, ProfileEditor.Humanoid.Species).Keys.ToList().FirstOrDefault();
+        var hair = _markingManager.MarkingsByCategoryAndSpecies("Hair", ProfileEditor.Humanoid.Species).Keys.ToList().FirstOrDefault();
 
         if (string.IsNullOrEmpty(hair))
             return;
@@ -513,7 +513,7 @@ public sealed partial class TPAppearanceCustomisation : TPBaseCustomisationContr
         if (ProfileEditor.Humanoid == null)
             return;
 
-        var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, ProfileEditor.Humanoid.Species).Keys.ToList().FirstOrDefault();
+        var hair = _markingManager.MarkingsByCategoryAndSpecies("FacialHair", ProfileEditor.Humanoid.Species).Keys.ToList().FirstOrDefault();
 
         if (string.IsNullOrEmpty(hair))
             return;

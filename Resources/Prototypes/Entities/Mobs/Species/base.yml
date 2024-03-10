@@ -9,48 +9,46 @@
   components:
   - type: Sprite
     layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "chest" ]
+    - map: [ "head" ]
+    - map: [ "snout" ]
+    - map: [ "eyes" ]
+    - map: [ "r-arm" ]
+    - map: [ "l-arm" ]
+    - map: [ "r-leg" ]
+    - map: [ "l-leg" ]
     - shader: StencilClear
       sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
       # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
       # sprite refactor when
       state: l_leg
     - shader: StencilMask
-      map: ["enum.HumanoidVisualLayers.StencilMask"]
+      map: ["stencilMask"]
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
     - map: ["jumpsuit"]
-    - map: ["enum.HumanoidVisualLayers.LFoot"]
-    - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: ["l-foot"]
+    - map: ["r-foot"]
+    - map: ["l-hand"]
+    - map: ["r-hand"]
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "outerClothing" ]
-    - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "neck" ]
     - map: [ "back" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "facialHair" ]
+    - map: [ "hair" ]
+    - map: [ "headSide" ]
+    - map: [ "headTop" ]
+    - map: [ "tail" ]
     - map: [ "mask" ]
-    - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
-    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+    - map: ["handcuffs"]
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
@@ -59,15 +57,15 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  - type: DamageVisuals
-    thresholds: [ 20, 40, 100 ]
-    targetLayers:
-    - "enum.HumanoidVisualLayers.Chest"
-    - "enum.HumanoidVisualLayers.Head"
-    - "enum.HumanoidVisualLayers.LArm"
-    - "enum.HumanoidVisualLayers.LLeg"
-    - "enum.HumanoidVisualLayers.RArm"
-    - "enum.HumanoidVisualLayers.RLeg"
+  # - type: DamageVisuals
+    # thresholds: [ 20, 40, 100 ]
+    # targetLayers:
+    # - "chest"
+    # - "head"
+    # - "l-arm"
+    # - "l-leg"
+    # - "r-arm"
+    # - "r-leg"
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
@@ -317,28 +315,28 @@
     noRot: true
     # TODO BODY Turn these into individual body parts?
     layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "chest" ]
+    - map: [ "head" ]
+    - map: [ "snout" ]
+    - map: [ "eyes" ]
+    - map: [ "r-arm" ]
+    - map: [ "l-arm" ]
+    - map: [ "r-leg" ]
+    - map: [ "l-leg" ]
     - shader: StencilClear
       sprite: Mobs/Species/Human/parts.rsi
       state: l_leg
     - shader: StencilMask
-      map: ["enum.HumanoidVisualLayers.StencilMask"]
+      map: ["stencilMask"]
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
     - map: ["jumpsuit"]
-    - map: ["enum.HumanoidVisualLayers.LFoot"]
-    - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
-    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+    - map: ["l-foot"]
+    - map: ["r-foot"]
+    - map: ["l-hand"]
+    - map: ["r-hand"]
+    - map: ["handcuffs"]
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
@@ -347,18 +345,16 @@
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "outerClothing" ]
-    - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "neck" ]
     - map: [ "back" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "facialHair" ]
+    - map: [ "hair" ]
+    - map: [ "headSide" ]
+    - map: [ "headTop" ]
+    - map: [ "tail" ]
     - map: [ "mask" ]
-    - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
   - type: Appearance

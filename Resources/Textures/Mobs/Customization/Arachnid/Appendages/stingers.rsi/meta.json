@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by PixelTheKermit (github) for SS14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "left_lower_primary_back",
+      "directions": 4
+    },
+    {
+      "name": "left_lower_secondary_back",
+      "directions": 4
+    },
+    {
+      "name": "left_lower_primary_front",
+      "directions": 4
+    },
+    {
+      "name": "left_lower_secondary_front",
+      "directions": 4
+    },
+    {
+      "name": "right_lower_primary_back",
+      "directions": 4
+    },
+    {
+      "name": "right_lower_secondary_back",
+      "directions": 4
+    },
+    {
+      "name": "right_lower_primary_front",
+      "directions": 4
+    },
+    {
+      "name": "right_lower_secondary_front",
+      "directions": 4
+    },
+    {
+      "name": "left_upper_primary_back",
+      "directions": 4
+    },
+    {
+      "name": "left_upper_secondary_back",
+      "directions": 4
+    },
+    {
+      "name": "left_upper_primary_front",
+      "directions": 4
+    },
+    {
+      "name": "left_upper_secondary_front",
+      "directions": 4
+    },
+    {
+      "name": "right_upper_primary_back",
+      "directions": 4
+    },
+    {
+      "name": "right_upper_secondary_back",
+      "directions": 4
+    },
+    {
+      "name": "right_upper_primary_front",
+      "directions": 4
+    },
+    {
+      "name": "right_upper_secondary_front",
+      "directions": 4
+    }
+  ]
+}

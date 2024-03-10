@@ -131,8 +131,8 @@ namespace Content.Shared.Humanoid
         {
             var random = IoCManager.Resolve<IRobustRandom>();
             var markingManager = IoCManager.Resolve<MarkingManager>();
-            var hairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, species).Keys.ToList();
-            var facialHairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, species).Keys.ToList();
+            var hairStyles = markingManager.MarkingsByCategoryAndSpecies("Hair", species).Keys.ToList();
+            var facialHairStyles = markingManager.MarkingsByCategoryAndSpecies("FacialHair", species).Keys.ToList();
 
             var newHairStyle = hairStyles.Count > 0
                 ? random.Pick(hairStyles)
@@ -200,12 +200,12 @@ namespace Content.Shared.Humanoid
             var proto = IoCManager.Resolve<IPrototypeManager>();
             var markingManager = IoCManager.Resolve<MarkingManager>();
 
-            if (!markingManager.MarkingsByCategory(MarkingCategories.Hair).ContainsKey(hairStyleId))
+            if (!markingManager.MarkingsByCategory("Hair").ContainsKey(hairStyleId))
             {
                 hairStyleId = HairStyles.DefaultHairStyle;
             }
 
-            if (!markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(facialHairStyleId))
+            if (!markingManager.MarkingsByCategory("FacialHair").ContainsKey(facialHairStyleId))
             {
                 facialHairStyleId = HairStyles.DefaultFacialHairStyle;
             }

@@ -3,7 +3,7 @@ namespace Content.Shared.Humanoid.Markings
     [RegisterComponent]
     public sealed partial class MarkingsComponent : Component
     {
-        public Dictionary<HumanoidVisualLayers, List<Marking>> ActiveMarkings = new();
+        public Dictionary<string, List<Marking>> ActiveMarkings = new();
 
         // Layer points for the attached mob. This is verified client side (but should be verified server side, eventually as well),
         // but upon render for the given entity with this component, it will start subtracting
@@ -19,7 +19,7 @@ namespace Content.Shared.Humanoid.Markings
         // the first instance of a marking in that category will be added to a character
         // upon round start.
         [DataField("layerPoints")]
-        public Dictionary<MarkingCategories, MarkingPoints> LayerPoints = new();
+        public Dictionary<string, MarkingPoints> LayerPoints = new();
     }
 
 

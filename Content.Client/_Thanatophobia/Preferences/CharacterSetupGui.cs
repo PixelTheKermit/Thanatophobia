@@ -217,6 +217,7 @@ public sealed partial class TPCharacterSetupGui : Control
             var serializationManager = IoCManager.Resolve<ISerializationManager>();
             var markingManager = IoCManager.Resolve<MarkingManager>();
             var humanoidAppearanceSystem = entityManager.System<HumanoidAppearanceSystem>();
+            var sharedHumanAppearanceSys = entityManager.System<SharedHumanoidAppearanceSystem>();
 
             AddStyleClass(StyleNano.StyleClassChatChannelSelectorButton);
             ToggleMode = true;
@@ -229,7 +230,7 @@ public sealed partial class TPCharacterSetupGui : Control
             var dummy = speciesProto.DollPrototype;
             _previewDummy = entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
 
-            humanoidAppearanceSystem.LoadProfile(_previewDummy, (HumanoidCharacterProfile) profile);
+            sharedHumanAppearanceSys.LoadProfile(_previewDummy, (HumanoidCharacterProfile) profile);
 
             var isSelectedCharacter = profile == preferencesManager.Preferences?.SelectedCharacter;
 
@@ -273,7 +274,8 @@ public sealed partial class TPCharacterSetupGui : Control
             if (entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
             && entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
             {
-                humanoidAppearanceSystem.UpdateSprite(appearanceComp, spriteComp);
+                sharedHumanAppearanceSys.UpdatePartVisuals(_previewDummy, appearanceComp, true);
+                humanoidAppearanceSystem.UpdateSprite(_previewDummy, appearanceComp, spriteComp);
             }
 
             viewSprite.SetEntity(_previewDummy);

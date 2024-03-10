@@ -23,8 +23,10 @@
       - left arm
       - right leg
       - left leg
-      - second left hand
-      - second right hand
+      - left upper appendage
+      - right upper appendage
+      - left lower appendage
+      - right lower appendage
     right arm:
       part: RightArmArachnid
       connections:
@@ -35,10 +37,14 @@
       - left hand
     right hand:
       part: RightHandArachnid
-    second right hand:
-      part: StubArachnid
-    second left hand:
-      part: StubArachnid
+    left upper appendage:
+      part: AppendageArachnidLeftUpper
+    right upper appendage:
+      part: AppendageArachnidRightUpper
+    left lower appendage:
+      part: AppendageArachnidLeftLower
+    right lower appendage:
+      part: AppendageArachnidRightLower
     left hand:
       part: LeftHandArachnid
     right leg:

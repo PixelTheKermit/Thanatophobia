@@ -1,12 +1,12 @@
-# Wings
-- type: marking
-  id: LizardWingsDefault
-  bodyPart: Tail
-  markingCategory: Tail
-  sprites:
-  - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Lizard/wings.rsi
-    state: wings
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
+# # Wings
+# - type: marking
+  # id: LizardWingsDefault
+  # bodyPart: Tail
+  # markingCategory: Tail
+  # sprites:
+  # - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Lizard/wings.rsi
+    # state: wings
+  # coloring:
+    # default:
+      # type:
+        # !type:SkinColoring

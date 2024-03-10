@@ -8,17 +8,22 @@ namespace Content.Shared.Humanoid.Markings;
 [Serializable, NetSerializable]
 public sealed partial class MarkingPoints
 {
-    [DataField("points", required: true)]
+    [DataField(required: true)]
     public int Points = 0;
-    [DataField("required", required: true)]
+    [DataField(required: true)]
     public bool Required = false;
     // Default markings for this layer.
-    [DataField("defaultMarkings", customTypeSerializer:typeof(PrototypeIdListSerializer<MarkingPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<MarkingPrototype>))]
     public List<string> DefaultMarkings = new();
 
-    public static Dictionary<MarkingCategories, MarkingPoints> CloneMarkingPointDictionary(Dictionary<MarkingCategories, MarkingPoints> self)
+    [DataField]
+    public bool UsesSkinColour = false;
+
+    [DataField]
+    public float SkinColourAlpha = 1f;
+    public static Dictionary<string, MarkingPoints> CloneMarkingPointDictionary(Dictionary<string, MarkingPoints> self)
     {
-        var clone = new Dictionary<MarkingCategories, MarkingPoints>();
+        var clone = new Dictionary<string, MarkingPoints>();
 
         foreach (var (category, points) in self)
         {
@@ -47,5 +52,5 @@ public sealed partial class MarkingPointsPrototype : IPrototype
     [DataField("onlyWhitelisted")] public bool OnlyWhitelisted;
 
     [DataField("points", required: true)]
-    public Dictionary<MarkingCategories, MarkingPoints> Points { get; private set; } = default!;
+    public Dictionary<string, MarkingPoints> Points { get; private set; } = default!;
 }

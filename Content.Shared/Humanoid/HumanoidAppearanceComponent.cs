@@ -1,3 +1,4 @@
+using Content.Shared.Body.Part;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Enums;
@@ -11,16 +12,16 @@ namespace Content.Shared.Humanoid;
 [NetworkedComponent, RegisterComponent, AutoGenerateComponentState(true)]
 public sealed partial class HumanoidAppearanceComponent : Component
 {
-    public MarkingSet ClientOldMarkings = new();
 
     [DataField, AutoNetworkedField]
     public MarkingSet MarkingSet = new();
 
-    [DataField]
-    public Dictionary<HumanoidVisualLayers, HumanoidSpeciesSpriteLayer> BaseLayers = new();
+    [DataField, AutoNetworkedField]
+    public List<(string, List<BodyPartVisualiserSprite>)> Parts = new();
+    public List<string> PartLayers = new();
 
     [DataField, AutoNetworkedField]
-    public HashSet<HumanoidVisualLayers> PermanentlyHidden = new();
+    public HashSet<string> PermanentlyHidden = new();
 
     // Couldn't these be somewhere else?
 
@@ -29,15 +30,6 @@ public sealed partial class HumanoidAppearanceComponent : Component
 
     [DataField, AutoNetworkedField]
     public int Age = 18;
-
-    /// <summary>
-    ///     Any custom base layers this humanoid might have. See:
-    ///     limb transplants (potentially), robotic arms, etc.
-    ///     Stored on the server, this is merged in the client into
-    ///     all layer settings.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> CustomBaseLayers = new();
 
     /// <summary>
     ///     Current species. Dictates things like base body sprites,
@@ -63,7 +55,7 @@ public sealed partial class HumanoidAppearanceComponent : Component
     ///     on this humanoid layer, and any markings that sit above it.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HashSet<HumanoidVisualLayers> HiddenLayers = new();
+    public HashSet<string> HiddenLayers = new();
 
     [DataField, AutoNetworkedField]
     public Sex Sex = Sex.Male;
@@ -82,28 +74,4 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedFacialHairColor;
-}
-
-[DataDefinition]
-[Serializable, NetSerializable]
-public readonly partial struct CustomBaseLayerInfo
-{
-    public CustomBaseLayerInfo(string? id, Color? color = null)
-    {
-        DebugTools.Assert(id == null || IoCManager.Resolve<IPrototypeManager>().HasIndex<HumanoidSpeciesSpriteLayer>(id));
-        Id = id;
-        Color = color;
-    }
-
-    /// <summary>
-    ///     ID of this custom base layer. Must be a <see cref="HumanoidSpeciesSpriteLayer"/>.
-    /// </summary>
-    [DataField]
-    public ProtoId<HumanoidSpeciesSpriteLayer>? Id { get; init; }
-
-    /// <summary>
-    ///     Color of this custom base layer. Null implies skin colour if the corresponding <see cref="HumanoidSpeciesSpriteLayer"/> is set to match skin.
-    /// </summary>
-    [DataField]
-    public Color? Color { get; init; }
 }

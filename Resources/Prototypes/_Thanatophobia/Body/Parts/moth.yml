@@ -6,6 +6,11 @@
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
     state: "l-hand-2"
+  # - type: BodyPartVisualiser
+    # sprites:
+      # - sprite:
+          # sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+          # state: "l-hand-2"
 
 - type: entity
   id: SecondRightHandMoth
@@ -15,6 +20,11 @@
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
     state: "r-hand-2"
+  # - type: BodyPartVisualiser
+    # sprites:
+      # - sprite:
+          # sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+          # state: "r-hand-2"
 
 - type: entity
   id: StubMoth

@@ -1,8 +1,8 @@
-# Wings
-- type: marking
-  id: HumanWingsDefault
-  bodyPart: Tail
-  markingCategory: Tail
-  sprites:
-  - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Human/wings.rsi
-    state: wings
+# # Wings
+# - type: marking
+  # id: HumanWingsDefault
+  # bodyPart: Tail
+  # markingCategory: Tail
+  # sprites:
+  # - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Human/wings.rsi
+    # state: wings

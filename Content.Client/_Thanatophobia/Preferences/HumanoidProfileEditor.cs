@@ -216,7 +216,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             _previewDummy = _entityManager.SpawnEntity(dollProto, MapCoordinates.Nullspace);
         }
 
-        _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, Humanoid);
+        _entityManager.System<SharedHumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, Humanoid);
 
         if (_showClothes && fullUpdate)
             LobbyCharacterPreviewPanel.GiveDummyJobClothes(_previewDummy.Value, Humanoid);
@@ -230,13 +230,13 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             if (traitPrototype.MarkingId != null
             && _prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
             {
-                var colors = MarkingColoring.GetMarkingLayerColors(markingProto, Humanoid.Appearance.SkinColor, Humanoid.Appearance.EyeColor, new MarkingSet());
-                var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
+                // var colors = MarkingColoring.GetMarkingLayerColors(markingProto, Humanoid.Appearance.SkinColor, Humanoid.Appearance.EyeColor, new MarkingSet());
+                // var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
 
-                for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
-                    dictColors[i] = traitPrototype.MarkingColours[i];
+                // for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
+                //     dictColors[i] = traitPrototype.MarkingColours[i];
 
-                _appearanceSystem.AddMarking(_previewDummy.Value, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
+                // _appearanceSystem.AddMarking(_previewDummy.Value, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
             }
 
             if (!fullUpdate)
@@ -254,7 +254,8 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         if (_entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
         && _entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
         {
-            _appearanceSystem.UpdateSprite(appearanceComp, spriteComp);
+            _entityManager.System<SharedHumanoidAppearanceSystem>().UpdatePartVisuals(_previewDummy.Value, appearanceComp, true);
+            _appearanceSystem.UpdateSprite(_previewDummy.Value, appearanceComp, spriteComp);
         }
 
         _spriteView.SetEntity(_previewDummy);

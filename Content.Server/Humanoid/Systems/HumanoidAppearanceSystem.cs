@@ -55,7 +55,6 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         targetHumanoid.EyeColor = sourceHumanoid.EyeColor;
         targetHumanoid.Age = sourceHumanoid.Age;
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
-        targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
@@ -95,7 +94,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
     /// <param name="category">Category of the marking</param>
     /// <param name="index">Index of the marking</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void RemoveMarking(EntityUid uid, MarkingCategories category, int index, HumanoidAppearanceComponent? humanoid = null)
+    public void RemoveMarking(EntityUid uid, string category, int index, HumanoidAppearanceComponent? humanoid = null)
     {
         if (index < 0
             || !Resolve(uid, ref humanoid)
@@ -117,7 +116,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
     /// <param name="index">Index of the marking</param>
     /// <param name="markingId">The marking ID to use</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetMarkingId(EntityUid uid, MarkingCategories category, int index, string markingId, HumanoidAppearanceComponent? humanoid = null)
+    public void SetMarkingId(EntityUid uid, string category, int index, string markingId, HumanoidAppearanceComponent? humanoid = null)
     {
         if (index < 0
             || !_markingManager.MarkingsByCategory(category).TryGetValue(markingId, out var markingPrototype)
@@ -146,23 +145,9 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
     /// <param name="index">Index of the marking</param>
     /// <param name="colors">The marking colors to use</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetMarkingColor(EntityUid uid, MarkingCategories category, int index, List<Color> colors,
+    public void SetMarkingColor(EntityUid uid, string category, int index, List<Color> colors,
         HumanoidAppearanceComponent? humanoid = null)
     {
-        if (index < 0
-            || !Resolve(uid, ref humanoid)
-            || !humanoid.MarkingSet.TryGetCategory(category, out var markings)
-            || index >= markings.Count)
-        {
-            return;
-        }
-
-        for (var i = 0; i < markings[index].MarkingColors.Count && i < colors.Count; i++)
-        {
-            markings[index].SetColor(i, colors[i]);
-        }
-
-        Dirty(humanoid);
     }
 
     /// <summary>

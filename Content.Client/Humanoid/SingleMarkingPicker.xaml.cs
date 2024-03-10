@@ -78,8 +78,8 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
     private bool _ignoreItemSelected;
 
-    private MarkingCategories _category;
-    public MarkingCategories Category
+    private string _category = "";
+    public string Category
     {
         get => _category;
         set
@@ -188,7 +188,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         foreach (var (id, marking) in sortedMarkings)
         {
-            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), marking.Sprites[0].Frame0());
+            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), marking.Icon.Frame0());
             item.Metadata = marking.ID;
 
             if (_markings[Slot].MarkingId == id)
@@ -214,9 +214,9 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         ColorSelectorContainer.DisposeAllChildren();
         ColorSelectorContainer.RemoveAllChildren();
 
-        if (marking.MarkingColors.Count != proto.Sprites.Count)
+        if (marking.MarkingColors.Count != proto.GetLayerCount())
         {
-            marking = new Marking(marking.MarkingId, proto.Sprites.Count);
+            marking = new Marking(marking.MarkingId, proto.GetLayerCount());
         }
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
