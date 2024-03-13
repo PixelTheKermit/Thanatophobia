@@ -91,7 +91,7 @@ namespace Content.Shared.Humanoid
             Color.Black,
             Color.Black,
             Humanoid.SkinColor.ValidHumanSkinTone,
-            new ()
+            new()
         )
         {
         }
@@ -114,11 +114,11 @@ namespace Content.Shared.Humanoid
                 Color.Black,
                 Color.Black,
                 skinColor,
-                new ()
+                new()
             );
         }
 
-        private static IReadOnlyList<Color> RealisticEyeColors = new List<Color>
+        private static readonly IReadOnlyList<Color> RealisticEyeColors = new List<Color>
         {
             Color.Brown,
             Color.Gray,
@@ -175,7 +175,7 @@ namespace Content.Shared.Humanoid
                 newSkinColor = Humanoid.SkinColor.ValidTintedHuesSkinTone(newSkinColor);
             }
 
-            return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new ());
+            return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new());
 
             float RandomizeColor(float channel)
             {

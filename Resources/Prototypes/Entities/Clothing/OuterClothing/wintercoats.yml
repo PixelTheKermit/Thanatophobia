@@ -39,7 +39,7 @@
   components:
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterDefault
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

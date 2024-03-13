@@ -30,11 +30,11 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
-  # - type: DamageVisuals
-    # damageOverlayGroups:
-      # Brute:
-        # sprite: Mobs/Effects/brute_damage.rsi
-        # color: "#2cf274"
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#2cf274"
   - type: Bloodstream
     bloodReagent: Slime # TODO Color slime blood based on their slime color or smth
   - type: Barotrauma
@@ -82,5 +82,7 @@
   id: MobSlimePersonDummy
   noSpawn: true
   components:
-    - type: HumanoidAppearance
-      species: SlimePerson
+  - type: HumanoidAppearance
+    species: SlimePerson
+  - type: Body
+    prototype: Slime

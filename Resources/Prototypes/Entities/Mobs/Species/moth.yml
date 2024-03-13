@@ -35,11 +35,11 @@
       amount: 5
   - type: Bloodstream
     bloodReagent: InsectBlood
-  # - type: DamageVisuals
-    # damageOverlayGroups:
-      # Brute:
-        # sprite: Mobs/Effects/brute_damage.rsi
-        # color: "#808A51"
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#808A51"
   - type: MothAccent
   - type: Vocal
     sounds:
@@ -119,6 +119,7 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_moth"
         visible: false
+      - map: [ "hat" ]
 
 - type: entity
   parent: BaseSpeciesDummy

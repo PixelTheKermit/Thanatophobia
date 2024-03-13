@@ -254,7 +254,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         if (_entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
         && _entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
         {
-            _entityManager.System<SharedHumanoidAppearanceSystem>().UpdatePartVisuals(_previewDummy.Value, appearanceComp, true);
+            _entityManager.System<SharedHumanoidAppearanceSystem>().UpdatePartVisuals(_previewDummy.Value, appearanceComp, overrideColours: true);
             _appearanceSystem.UpdateSprite(_previewDummy.Value, appearanceComp, spriteComp);
         }
 

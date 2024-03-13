@@ -6,7 +6,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackFilled
-    head: ClothingHeadBandSkull
+    hat: ClothingHeadBandSkull
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: ClothingOuterCoatGentle
     gloves: ClothingHandsGlovesFingerless
@@ -27,7 +27,7 @@
     # belt holds katana so satchel has the tools for sabotaging things
     back: ClothingBackpackSatchelTools
     mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinja
+    hat: ClothingHeadHelmetSpaceNinja
     eyes: ClothingEyesVisorNinja
     gloves: ClothingHandsGlovesSpaceNinja
     outerClothing: ClothingOuterSuitSpaceNinja
@@ -64,7 +64,7 @@
 - type: startingGear
   id: SyndicateOperativeGearMonkey
   equipment:
-    head: ClothingHeadHatOutlawHat
+    hat: ClothingHeadHatOutlawHat
     jumpsuit: ClothingUniformJumpsuitOperative
     mask: CigaretteSyndicate
   innerClothingSkirt: ClothingUniformJumpsuitOperative
@@ -163,7 +163,7 @@
   id: SyndicateFootsoldierGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
+    hat: ClothingHeadHelmetSwatSyndicate
     mask: ClothingMaskGas
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetAltSyndicate
@@ -180,7 +180,7 @@
   id: SyndicateFootsoldierGearKnife
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
+    hat: ClothingHeadHelmetSwatSyndicate
     mask: ClothingMaskGas
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetAltSyndicate
@@ -198,7 +198,7 @@
   id: SyndicateFootsoldierGearESword
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
+    hat: ClothingHeadHelmetSwatSyndicate
     mask: ClothingMaskGas
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetAltSyndicate
@@ -217,7 +217,7 @@
   id: SyndicateFootsoldierGearPistol
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
+    hat: ClothingHeadHelmetSwatSyndicate
     mask: ClothingMaskGas
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetAltSyndicate
@@ -238,7 +238,7 @@
     back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHelmetSwat
+    hat: ClothingHeadHelmetSwat
     mask: ClothingMaskGasSwat
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetSecurity
@@ -276,7 +276,7 @@
 - type: startingGear
   id: MobMonkeyGear
   equipment:
-    head: ClothingHeadHatTophat
+    hat: ClothingHeadHatTophat
     ears: ClothingHeadsetService
     jumpsuit: ClothingUniformJumpsuitJacketMonkey
     id: PunPunIDCard
@@ -314,7 +314,7 @@
     shoes: ClothingShoesColorRed
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
-    head: ClothingHeadHatBeretBrigmedic
+    hat: ClothingHeadHatBeretBrigmedic
     id: BrigmedicPDA
     ears: ClothingHeadsetBrigmedic
     mask: ClothingMaskBreathMedicalSecurity
@@ -335,7 +335,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitGladiator
     back: SpearBone
-    head: ClothingHeadHatGladiator
+    hat: ClothingHeadHatGladiator
     shoes: ClothingShoesCult
 
 #Ash Walker
@@ -345,7 +345,7 @@
     jumpsuit: ClothingUniformJumpsuitGladiator
     outerClothing: ClothingOuterArmorBone
     back: SpearBone
-    head: ClothingHeadHelmetBone
+    hat: ClothingHeadHelmetBone
     shoes: ClothingShoesCult
 
 #Banana Clown

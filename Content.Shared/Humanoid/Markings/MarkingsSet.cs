@@ -52,7 +52,8 @@ public sealed partial class MarkingSet
     public Dictionary<string, MarkingPoints> Points = new();
 
     public MarkingSet()
-    {}
+    {
+    }
 
     /// <summary>
     ///     Construct a MarkingSet using a list of markings, and a points
@@ -190,7 +191,7 @@ public sealed partial class MarkingSet
                 foreach (var marking in list)
                 {
                     if (markingManager.TryGetMarking(marking, out var prototype) &&
-                        markingManager.MustMatchSkin(species, "FIX ME!", out var alpha, prototypeManager))
+                        markingManager.MustMatchSkin(species, prototype.MarkingCategory, out var alpha, prototypeManager))
                     {
                         marking.SetColor(skinColor.Value.WithAlpha(alpha));
                     }
@@ -252,7 +253,7 @@ public sealed partial class MarkingSet
                     continue;
                 }
 
-                if (marking.Sprites.Count != list[i].MarkingColors.Count)
+                if (marking.GetLayerCount() != list[i].MarkingColors.Count)
                 {
                     list[i] = new Marking(marking.ID, marking.Sprites.Count);
                 }
@@ -486,6 +487,15 @@ public sealed partial class MarkingSet
 
         Markings.Remove(category);
         return true;
+    }
+
+    public void Clear()
+    {
+        // Create a seperate independent list so we don't run into issues later.
+        var categories = Markings.Keys.ToList();
+
+        foreach (var category in categories)
+            RemoveCategory(category);
     }
 
     /// <summary>
@@ -769,7 +779,7 @@ public sealed class MarkingsEnumerator : IEnumerator<Marking>
     private List<Marking> _markings;
     private bool _reverse;
 
-    int position;
+    private int _position;
 
     public MarkingsEnumerator(List<Marking> markings, bool reverse)
     {
@@ -778,11 +788,11 @@ public sealed class MarkingsEnumerator : IEnumerator<Marking>
 
         if (_reverse)
         {
-            position = _markings.Count;
+            _position = _markings.Count;
         }
         else
         {
-            position = -1;
+            _position = -1;
         }
     }
 
@@ -790,13 +800,13 @@ public sealed class MarkingsEnumerator : IEnumerator<Marking>
     {
         if (_reverse)
         {
-            position--;
-            return (position >= 0);
+            _position--;
+            return (_position >= 0);
         }
         else
         {
-            position++;
-            return (position < _markings.Count);
+            _position++;
+            return (_position < _markings.Count);
         }
     }
 
@@ -804,24 +814,25 @@ public sealed class MarkingsEnumerator : IEnumerator<Marking>
     {
         if (_reverse)
         {
-            position = _markings.Count;
+            _position = _markings.Count;
         }
         else
         {
-            position = -1;
+            _position = -1;
         }
     }
 
     public void Dispose()
-    {}
+    {
+    }
 
     object IEnumerator.Current
     {
-        get => _markings[position];
+        get => _markings[_position];
     }
 
     public Marking Current
     {
-        get => _markings[position];
+        get => _markings[_position];
     }
 }

@@ -42,7 +42,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void UpdatePartVisuals(EntityUid uid, HumanoidAppearanceComponent component, SpriteComponent spriteComp)
     {
-
         foreach (var layer in component.Parts)
         {
             if (spriteComp.LayerMapTryGet(layer, out var index))

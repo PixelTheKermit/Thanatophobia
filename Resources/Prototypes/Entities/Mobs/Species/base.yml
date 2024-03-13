@@ -9,6 +9,7 @@
   components:
   - type: Sprite
     layers:
+    - map: [ "tail-back" ]
     - map: [ "chest" ]
     - map: [ "head" ]
     - map: [ "snout" ]
@@ -44,7 +45,7 @@
     - map: [ "hair" ]
     - map: [ "headSide" ]
     - map: [ "headTop" ]
-    - map: [ "tail" ]
+    - map: [ "tail-front" ]
     - map: [ "mask" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
@@ -57,15 +58,16 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  # - type: DamageVisuals
-    # thresholds: [ 20, 40, 100 ]
-    # targetLayers:
-    # - "chest"
-    # - "head"
-    # - "l-arm"
-    # - "l-leg"
-    # - "r-arm"
-    # - "r-leg"
+    - map: [ "hat" ]
+  - type: DamageVisuals
+    thresholds: [ 20, 40, 100 ]
+    targetLayers:
+    - "chest"
+    - "head"
+    - "l-arm"
+    - "l-leg"
+    - "r-arm"
+    - "r-leg"
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
@@ -315,6 +317,7 @@
     noRot: true
     # TODO BODY Turn these into individual body parts?
     layers:
+    - map: [ "tail-back" ]
     - map: [ "chest" ]
     - map: [ "head" ]
     - map: [ "snout" ]
@@ -324,7 +327,9 @@
     - map: [ "r-leg" ]
     - map: [ "l-leg" ]
     - shader: StencilClear
-      sprite: Mobs/Species/Human/parts.rsi
+      sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
+      # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
+      # sprite refactor when
       state: l_leg
     - shader: StencilMask
       map: ["stencilMask"]
@@ -336,11 +341,6 @@
     - map: ["r-foot"]
     - map: ["l-hand"]
     - map: ["r-hand"]
-    - map: ["handcuffs"]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
@@ -353,10 +353,20 @@
     - map: [ "hair" ]
     - map: [ "headSide" ]
     - map: [ "headTop" ]
-    - map: [ "tail" ]
+    - map: [ "tail-front" ]
     - map: [ "mask" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
+    - map: ["handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+    - map: [ "hat" ]
   - type: Appearance
   - type: HumanoidAppearance
     species: Human

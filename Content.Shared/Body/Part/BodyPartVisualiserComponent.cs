@@ -1,5 +1,6 @@
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
@@ -23,7 +24,7 @@ public sealed partial class BodyPartVisualiserComponent : Component
     /// This is for stuff like gradients, tattoos, or hair.
     /// </summary>
     [DataField]
-    public List<Dictionary<string, List<BodyPartVisualiserSprite>>> Markings = new();
+    public MarkingSet Markings = new();
 }
 
 [DataDefinition, Serializable, NetSerializable]

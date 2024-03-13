@@ -17,9 +17,13 @@
     Hair:
       points: 1
       required: false
+      usesSkinColour: true
+      skinColourAlpha: .75
     FacialHair:
       points: 1
       required: false
+      usesSkinColour: true
+      skinColourAlpha: .75
     Chest:
       points: 1
       required: false

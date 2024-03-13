@@ -274,7 +274,7 @@ public sealed partial class TPCharacterSetupGui : Control
             if (entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
             && entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
             {
-                sharedHumanAppearanceSys.UpdatePartVisuals(_previewDummy, appearanceComp, true);
+                sharedHumanAppearanceSys.UpdatePartVisuals(_previewDummy, appearanceComp, overrideColours: true);
                 humanoidAppearanceSystem.UpdateSprite(_previewDummy, appearanceComp, spriteComp);
             }
 

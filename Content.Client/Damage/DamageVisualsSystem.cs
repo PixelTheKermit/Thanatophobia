@@ -54,14 +54,14 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
     {
         if (damageVisComp.Thresholds.Count < 1)
         {
-            Logger.ErrorS(SawmillName, $"ThresholdsLookup were invalid for entity {entity}. ThresholdsLookup: {damageVisComp.Thresholds}");
+            Log.Error(SawmillName, $"ThresholdsLookup were invalid for entity {entity}. ThresholdsLookup: {damageVisComp.Thresholds}");
             damageVisComp.Valid = false;
             return;
         }
 
         if (damageVisComp.Divisor == 0)
         {
-            Logger.ErrorS(SawmillName, $"Divisor for {entity} is set to zero.");
+            Log.Error(SawmillName, $"Divisor for {entity} is set to zero.");
             damageVisComp.Valid = false;
             return;
         }
@@ -70,21 +70,21 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         {
             if (damageVisComp.DamageOverlayGroups == null && damageVisComp.DamageOverlay == null)
             {
-                Logger.ErrorS(SawmillName, $"Enabled overlay without defined damage overlay sprites on {entity}.");
+                Log.Error(SawmillName, $"Enabled overlay without defined damage overlay sprites on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
 
             if (damageVisComp.TrackAllDamage && damageVisComp.DamageOverlay == null)
             {
-                Logger.ErrorS(SawmillName, $"Enabled all damage tracking without a damage overlay sprite on {entity}.");
+                Log.Error(SawmillName, $"Enabled all damage tracking without a damage overlay sprite on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
 
             if (!damageVisComp.TrackAllDamage && damageVisComp.DamageOverlay != null)
             {
-                Logger.WarningS(SawmillName, $"Disabled all damage tracking with a damage overlay sprite on {entity}.");
+                Log.Warning(SawmillName, $"Disabled all damage tracking with a damage overlay sprite on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
@@ -92,7 +92,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
 
             if (damageVisComp.TrackAllDamage && damageVisComp.DamageOverlayGroups != null)
             {
-                Logger.WarningS(SawmillName, $"Enabled all damage tracking with damage overlay groups on {entity}.");
+                Log.Warning(SawmillName, $"Enabled all damage tracking with damage overlay groups on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
@@ -101,21 +101,21 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         {
             if (damageVisComp.TargetLayers == null)
             {
-                Logger.ErrorS(SawmillName, $"Disabled overlay without target layers on {entity}.");
+                Log.Error(SawmillName, $"Disabled overlay without target layers on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
 
             if (damageVisComp.DamageOverlayGroups != null || damageVisComp.DamageOverlay != null)
             {
-                Logger.ErrorS(SawmillName, $"Disabled overlay with defined damage overlay sprites on {entity}.");
+                Log.Error(SawmillName, $"Disabled overlay with defined damage overlay sprites on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
 
             if (damageVisComp.DamageGroup == null)
             {
-                Logger.ErrorS(SawmillName, $"Disabled overlay without defined damage group on {entity}.");
+                Log.Error(SawmillName, $"Disabled overlay without defined damage group on {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
@@ -123,12 +123,12 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
 
         if (damageVisComp.DamageOverlayGroups != null && damageVisComp.DamageGroup != null)
         {
-            Logger.WarningS(SawmillName, $"Damage overlay sprites and damage group are both defined on {entity}.");
+            Log.Warning(SawmillName, $"Damage overlay sprites and damage group are both defined on {entity}.");
         }
 
         if (damageVisComp.DamageOverlay != null && damageVisComp.DamageGroup != null)
         {
-            Logger.WarningS(SawmillName, $"Damage overlay sprites and damage group are both defined on {entity}.");
+            Log.Warning(SawmillName, $"Damage overlay sprites and damage group are both defined on {entity}.");
         }
     }
 
@@ -144,7 +144,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
 
         if (damageVisComp.Thresholds[0] != 0)
         {
-            Logger.ErrorS(SawmillName, $"ThresholdsLookup were invalid for entity {entity}. ThresholdsLookup: {damageVisComp.Thresholds}");
+            Log.Error(SawmillName, $"ThresholdsLookup were invalid for entity {entity}. ThresholdsLookup: {damageVisComp.Thresholds}");
             damageVisComp.Valid = false;
             return;
         }
@@ -163,7 +163,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 {
                     if (!damageContainer.SupportedGroups.Contains(damageType))
                     {
-                        Logger.ErrorS(SawmillName, $"Damage key {damageType} was invalid for entity {entity}.");
+                        Log.Error(SawmillName, $"Damage key {damageType} was invalid for entity {entity}.");
                         damageVisComp.Valid = false;
                         return;
                     }
@@ -177,7 +177,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             {
                 if (!damageContainer.SupportedGroups.Contains(damageVisComp.DamageGroup))
                 {
-                    Logger.ErrorS(SawmillName, $"Damage keys were invalid for entity {entity}.");
+                    Log.Error(SawmillName, $"Damage keys were invalid for entity {entity}.");
                     damageVisComp.Valid = false;
                     return;
                 }
@@ -197,7 +197,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 {
                     if (!damagePrototypeIdList.Contains(damageType))
                     {
-                        Logger.ErrorS(SawmillName, $"Damage keys were invalid for entity {entity}.");
+                        Log.Error(SawmillName, $"Damage keys were invalid for entity {entity}.");
                         damageVisComp.Valid = false;
                         return;
                     }
@@ -208,7 +208,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             {
                 if (!damagePrototypeIdList.Contains(damageVisComp.DamageGroup))
                 {
-                    Logger.ErrorS(SawmillName, $"Damage keys were invalid for entity {entity}.");
+                    Log.Error(SawmillName, $"Damage keys were invalid for entity {entity}.");
                     damageVisComp.Valid = false;
                     return;
                 }
@@ -221,7 +221,8 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         // layers is greater than zero, we start reserving
         // all the layers needed to track damage groups
         // on the entity.
-        if (damageVisComp.TargetLayers is { Count: > 0 })
+        if (damageVisComp.TargetLayers != null &&
+            damageVisComp.TargetLayers.Count > 0)
         {
             // This should ensure that the layers we're targeting
             // are valid for the visualizer's use.
@@ -232,7 +233,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             {
                 if (!spriteComponent.LayerMapTryGet(key, out var index))
                 {
-                    Logger.WarningS(SawmillName, $"Layer at key {key} was invalid for entity {entity}.");
+                    Log.Warning(SawmillName, $"Layer at key {key} was invalid for entity {entity}.");
                     continue;
                 }
 
@@ -240,11 +241,11 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             }
 
             // Similar to damage overlay groups, if none of the targeted
-            // sprite layers could be used, we display an error and
+            // sprite layers could be used, we display an Error and
             // invalidate the visualizer without crashing.
             if (damageVisComp.TargetLayerMapKeys.Count == 0)
             {
-                Logger.ErrorS(SawmillName, $"Target layers were invalid for entity {entity}.");
+                Log.Error(SawmillName, $"Target layers were invalid for entity {entity}.");
                 damageVisComp.Valid = false;
                 return;
             }
@@ -328,7 +329,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
     {
         var newLayer = spriteComponent.AddLayer(
             new SpriteSpecifier.Rsi(
-                new (sprite.Sprite), state
+                new(sprite.Sprite), state
             ), index);
         spriteComponent.LayerMapSet(mapKey, newLayer);
         if (sprite.Color != null)
@@ -396,30 +397,24 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
     /// </summary>
     private void UpdateDisabledLayers(EntityUid uid, SpriteComponent spriteComponent, AppearanceComponent component, DamageVisualsComponent damageVisComp)
     {
-        foreach (var layer in damageVisComp.TargetLayerMapKeys)
-        {
-            // I assume this gets set by something like body system if limbs are missing???
-            // TODO is this actually used by anything anywhere?
-            AppearanceSystem.TryGetData(uid, layer, out bool disabled, component);
+        // TODO: This will probably be replaced later with a better, more limb-friendly solution.
 
-            if (damageVisComp.DisabledLayers[layer] == disabled)
-                continue;
+        // foreach (var layer in damageVisComp.TargetLayerMapKeys)
+        // {
+        //     if (damageVisComp.TrackAllDamage)
+        //     {
+        //         spriteComponent.LayerSetVisible($"{layer}trackDamage", !disabled);
+        //         continue;
+        //     }
 
-            damageVisComp.DisabledLayers[layer] = disabled;
-            if (damageVisComp.TrackAllDamage)
-            {
-                spriteComponent.LayerSetVisible($"{layer}trackDamage", !disabled);
-                continue;
-            }
+        //     if (damageVisComp.DamageOverlayGroups == null)
+        //         continue;
 
-            if (damageVisComp.DamageOverlayGroups == null)
-                continue;
-
-            foreach (var damageGroup in damageVisComp.DamageOverlayGroups.Keys)
-            {
-                spriteComponent.LayerSetVisible($"{layer}{damageGroup}", !disabled);
-            }
-        }
+        //     foreach (var damageGroup in damageVisComp.DamageOverlayGroups.Keys)
+        //     {
+        //         spriteComponent.LayerSetVisible($"{layer}{damageGroup}", !disabled);
+        //     }
+        // }
     }
 
     /// <summary>
@@ -467,7 +462,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             threshold = damageVisComp.Thresholds[1];
         spriteLayer = spriteComponent.AddLayer(
             new SpriteSpecifier.Rsi(
-                new (sprite.Sprite),
+                new(sprite.Sprite),
                 $"{statePrefix}_{threshold}"
             ),
             spriteLayer);
@@ -577,7 +572,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         }
         else if (damageVisComp.DamageGroup != null)
         {
-            UpdateDamageVisuals(new List<string>(){ damageVisComp.DamageGroup }, damageComponent, spriteComponent, damageVisComp);
+            UpdateDamageVisuals(new List<string>() { damageVisComp.DamageGroup }, damageComponent, spriteComponent, damageVisComp);
         }
         else if (damageVisComp.DamageOverlay != null)
         {

@@ -39,7 +39,7 @@
 - type: startingGear
   id: ChiefEngineerGear
   equipment:
-    head: ClothingHeadHatHardhatWhite
+    hat: ClothingHeadHatHardhatWhite
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
     back: ClothingBackpackChiefEngineerFilled
     shoes: ClothingShoesColorBrown

@@ -64,48 +64,6 @@ public sealed class BodySystem : SharedBodySystem
         }
     }
 
-    protected override void AddPart(
-        EntityUid bodyUid,
-        EntityUid partUid,
-        string slotId,
-        BodyPartComponent component,
-        BodyComponent? bodyComp = null)
-    {
-        // TODO: Predict this probably.
-        base.AddPart(bodyUid, partUid, slotId, component, bodyComp);
-
-        if (TryComp<HumanoidAppearanceComponent>(bodyUid, out var humanoid))
-        {
-            var layer = component.ToHumanoidLayers();
-            if (layer != null)
-            {
-                var layers = HumanoidVisualLayersExtension.Sublayers(layer);
-                _humanoidSystem.SetLayersVisibility(bodyUid, layers, true, true, humanoid);
-            }
-        }
-    }
-
-    protected override void RemovePart(
-        EntityUid bodyUid,
-        EntityUid partUid,
-        string slotId,
-        BodyPartComponent component,
-        BodyComponent? bodyComp = null)
-    {
-        base.RemovePart(bodyUid, partUid, slotId, component, bodyComp);
-
-        if (!TryComp<HumanoidAppearanceComponent>(bodyUid, out var humanoid))
-            return;
-
-        var layer = component.ToHumanoidLayers();
-
-        if (layer == null)
-            return;
-
-        var layers = HumanoidVisualLayersExtension.Sublayers(layer);
-        _humanoidSystem.SetLayersVisibility(bodyUid, layers, false, true, humanoid);
-    }
-
     public override HashSet<EntityUid> GibBody(EntityUid bodyId, bool gibOrgans = false, BodyComponent? body = null, bool deleteItems = false, bool deleteBrain = false)
     {
         if (!Resolve(bodyId, ref body, false))

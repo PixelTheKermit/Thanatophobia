@@ -46,11 +46,11 @@
       types:
         Pierce: 5
   # Visual & Audio
-  # - type: DamageVisuals
-    # damageOverlayGroups:
-      # Brute:
-        # sprite: Mobs/Effects/brute_damage.rsi
-        # color: "#162581"
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#162581"
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -104,6 +104,7 @@
     - map: [ "back" ]
     - map: [ "facialHair" ]
     - map: [ "hair" ] # Do these need to be here? (arachnid hair arachnid hair)
+    - map: [ "hat" ]
     - map: [ "headSide" ]
     - map: [ "chelicerae" ]
     - map: [ "headTop" ]
@@ -186,6 +187,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_arachnid"
       visible: false
+    - map: [ "hat" ]
 
 
 #88w88

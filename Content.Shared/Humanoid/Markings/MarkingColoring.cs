@@ -99,7 +99,9 @@ public sealed partial class LayerColoringDefinition
             foreach (var type in FallbackTypes)
             {
                 color = type.GetColor(skin, eyes, markingSet);
-                if (color != null) break;
+
+                if (color != null)
+                    break;
             }
         }
         return color ?? FallbackColor;
@@ -125,9 +127,9 @@ public abstract partial class LayerColoringType
         if (color != null && Negative)
         {
             var rcolor = color.Value;
-            rcolor.R = 1f-rcolor.R;
-            rcolor.G = 1f-rcolor.G;
-            rcolor.B = 1f-rcolor.B;
+            rcolor.R = 1f - rcolor.R;
+            rcolor.G = 1f - rcolor.G;
+            rcolor.B = 1f - rcolor.B;
             return rcolor;
         }
         return color;

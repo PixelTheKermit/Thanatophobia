@@ -59,7 +59,6 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
-  - type: Wagging
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -69,5 +68,7 @@
   components:
   - type: HumanoidAppearance
     species: Reptilian
+  - type: Body
+    prototype: Reptilian
 
 #Weh

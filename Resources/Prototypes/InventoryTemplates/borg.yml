@@ -1,7 +1,7 @@
 - type: inventoryTemplate
   id: borg
   slots:
-  - name: head
+  - name: hat
     slotTexture: head
     slotFlags: HEAD
     uiWindowPos: 1,0

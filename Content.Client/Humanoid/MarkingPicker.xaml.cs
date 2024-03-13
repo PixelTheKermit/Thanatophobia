@@ -45,7 +45,7 @@ public sealed partial class MarkingPicker : Control
 
     public string IgnoreCategories
     {
-        get => string.Join(',',  _ignoreCategories);
+        get => string.Join(',', _ignoreCategories);
         set
         {
             _ignoreCategories.Clear();
@@ -120,7 +120,7 @@ public sealed partial class MarkingPicker : Control
         IoCManager.InjectDependencies(this);
 
         SetupCategoryButtons();
-        CMarkingCategoryButton.OnItemSelected +=  OnCategoryChange;
+        CMarkingCategoryButton.OnItemSelected += OnCategoryChange;
         CMarkingsUnused.OnItemSelected += item =>
             _selectedUnusedMarking = CMarkingsUnused[item.ItemIndex];
 
@@ -373,7 +373,6 @@ public sealed partial class MarkingPicker : Control
         }
 
         var stateNames = GetMarkingStateNames(prototype);
-        Logger.Debug(stateNames.Count.ToString());
         _currentMarkingColors.Clear();
         CMarkingColors.DisposeAllChildren();
         List<ColorSelectorSliders> colorSliders = new();
@@ -439,26 +438,23 @@ public sealed partial class MarkingPicker : Control
 
     private void MarkingAdd()
     {
-        if (_selectedUnusedMarking is null) return;
-
-        if (_currentMarkings.PointsLeft(_selectedMarkingCategory) == 0 && !Forced)
-        {
+        if (_selectedUnusedMarking is null)
             return;
-        }
+
+        if (_currentMarkings.PointsLeft(_selectedMarkingCategory) <= 0 && !Forced)
+            return;
 
         var marking = (MarkingPrototype) _selectedUnusedMarking.Metadata!;
         var markingObject = marking.AsMarking();
 
         // We need add hair markings in cloned set manually because _currentMarkings doesn't have it
         var markingSet = new MarkingSet(_currentMarkings);
+
         if (HairMarking != null)
-        {
             markingSet.AddBack("Hair", HairMarking);
-        }
+
         if (FacialHairMarking != null)
-        {
             markingSet.AddBack("FacialHair", FacialHairMarking);
-        }
 
         if (!_markingManager.MustMatchSkin(_currentSpecies, _selectedMarkingCategory, out var _, _prototypeManager))
         {
@@ -469,7 +465,7 @@ public sealed partial class MarkingPicker : Control
                 CurrentEyeColor,
                 markingSet
             );
-            for (var i = 0; i < colors.Count; i++)
+            for (var i = 0; i < marking.GetLayerCount(); i++)
             {
                 markingObject.SetColor(i, colors[i]);
             }

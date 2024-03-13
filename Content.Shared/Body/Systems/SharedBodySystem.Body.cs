@@ -96,6 +96,9 @@ public partial class SharedBodySystem
         // Obviously can't run in Init to avoid double-spawns on save / load.
         var prototype = Prototypes.Index(body.Prototype.Value);
         MapInitBody(bodyId, prototype);
+
+        // Broadcast a message to say that the body has finished initialising.
+        RaiseLocalEvent(bodyId, new OnBodyFinishInit());
     }
 
     private void MapInitBody(EntityUid bodyEntity, BodyPrototype prototype)
@@ -299,5 +302,12 @@ public partial class SharedBodySystem
             }
         }
         return gibs;
+    }
+}
+
+public sealed partial class OnBodyFinishInit : EntityEventArgs
+{
+    public OnBodyFinishInit()
+    {
     }
 }

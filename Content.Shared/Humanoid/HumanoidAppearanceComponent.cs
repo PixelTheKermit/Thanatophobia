@@ -12,10 +12,6 @@ namespace Content.Shared.Humanoid;
 [NetworkedComponent, RegisterComponent, AutoGenerateComponentState(true)]
 public sealed partial class HumanoidAppearanceComponent : Component
 {
-
-    [DataField, AutoNetworkedField]
-    public MarkingSet MarkingSet = new();
-
     [DataField, AutoNetworkedField]
     public List<(string, List<BodyPartVisualiserSprite>)> Parts = new();
     public List<string> PartLayers = new();

@@ -47,3 +47,19 @@ public sealed partial class RemoveMarkingByIDEvent : EntityEventArgs
         ID = markingID;
     }
 }
+
+public sealed partial class ClearPartMarkingsEvent : EntityEventArgs
+{
+    public ClearPartMarkingsEvent()
+    {
+    }
+}
+
+[ByRefEvent]
+public sealed partial class GetPartMarkingsEvent : EntityEventArgs
+{
+    public MarkingSet Markings = new();
+    public GetPartMarkingsEvent()
+    {
+    }
+}

@@ -26,7 +26,7 @@
     FacialHair:
       points: 0
       required: false
-    Tail:
+    Appendages:
       points: 1
       required: true
       defaultMarkings: [ ArachnidAppendagesDefault ]

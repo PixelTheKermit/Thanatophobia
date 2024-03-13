@@ -1,7 +1,7 @@
 - type: inventoryTemplate
   id: monkey
   slots:
-  - name: head
+  - name: hat
     slotTexture: head
     slotFlags: HEAD
     uiWindowPos: 1,2

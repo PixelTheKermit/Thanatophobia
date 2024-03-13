@@ -5,11 +5,13 @@ using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid;
 
@@ -35,12 +37,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<HumanoidAppearanceComponent, ComponentStartup>(OnInit);
+        SubscribeLocalEvent<HumanoidAppearanceComponent, OnBodyFinishInit>(OnInit);
         SubscribeLocalEvent<HumanoidAppearanceComponent, BodyPartAddedEvent>(EvUpdateLayers);
         SubscribeLocalEvent<HumanoidAppearanceComponent, BodyPartRemovedEvent>(EvUpdateLayers);
 
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetBodyPartVisualEvent>(OnGetPartVisual);
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetMarkingVisualEvent>(OnGetMarkingVisual);
+        SubscribeLocalEvent<BodyPartVisualiserComponent, ClearPartMarkingsEvent>(OnClearMarkings);
+        SubscribeLocalEvent<BodyPartVisualiserComponent, GetPartMarkingsEvent>(OnGetPartMarkings);
     }
 
     private void EvUpdateLayers<TEvent>(EntityUid uid, HumanoidAppearanceComponent comp, TEvent args)
@@ -48,7 +52,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         UpdatePartVisuals(uid, comp);
     }
 
-    private void OnInit(EntityUid uid, HumanoidAppearanceComponent humanoid, ComponentStartup args)
+    private void OnInit(EntityUid uid, HumanoidAppearanceComponent humanoid, OnBodyFinishInit args)
     {
         if (string.IsNullOrEmpty(humanoid.Species) || _netManager.IsClient && !IsClientSide(uid))
         {
@@ -65,7 +69,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         LoadProfile(uid, startingSet.Profile, humanoid);
     }
 
-    public void OnGetPartVisual(EntityUid uid, BodyPartVisualiserComponent comp, ref GetBodyPartVisualEvent args)
+    private void OnGetPartVisual(EntityUid uid, BodyPartVisualiserComponent comp, ref GetBodyPartVisualEvent args)
     {
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
@@ -84,42 +88,70 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
     }
 
-    public void OnGetMarkingVisual(EntityUid uid, BodyPartVisualiserComponent comp, ref GetMarkingVisualEvent args)
+    private void OnGetMarkingVisual(EntityUid uid, BodyPartVisualiserComponent comp, ref GetMarkingVisualEvent args)
     {
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
-        foreach (var marking in comp.Markings)
+        foreach (var markings in comp.Markings.Markings.Values.ToList())
         {
-            foreach (var (bodyPart, visual) in marking)
+            foreach (var marking in markings)
             {
-                args.Sprites.Add((bodyPart, visual));
+                if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var markingProto))
+                    continue;
 
-                foreach (var sprite in visual)
+                foreach (var visualisers in markingProto.Sprites.Values)
                 {
-                    if (sprite.ColouringType != null && (args.OverrideColours || sprite.Colour == null))
-                        sprite.Colour = sprite.ColouringType.GetColour(args.SkinColour, args.EyeColour);
+                    foreach (var (layer, visual) in visualisers)
+                    {
+                        for (var i = 0; i < visual.Count; i++)
+                            visual[i].Colour = marking.MarkingColors[i];
 
-                    sprite.Colour ??= Color.White;
+                        args.Sprites.Add((layer, visual));
+
+                        // If you like suffering, count how many for statements I used here.
+                    }
                 }
             }
         }
     }
-    public void UpdatePartVisuals(EntityUid uid, HumanoidAppearanceComponent component, bool overrideColours = false)
+
+    private void OnGetPartMarkings(EntityUid uid, BodyPartVisualiserComponent comp, GetPartMarkingsEvent args)
+    {
+        foreach (var (category, markings) in comp.Markings.Markings)
+        {
+            foreach (var marking in markings)
+            {
+                args.Markings.AddBack(category, marking);
+            }
+        }
+    }
+
+    private void OnClearMarkings(EntityUid uid, BodyPartVisualiserComponent comp, ClearPartMarkingsEvent args)
+    {
+        comp.Markings.Clear();
+    }
+
+    private List<EntityUid> QuickGetAllParts(EntityUid uid)
+    {
+        if (!TryComp<BodyComponent>(uid, out var bodyComp))
+            return new();
+
+        if (bodyComp.RootContainer == null)
+            return new();
+
+        // Holy fuck this looks ugly. At least it works I guess.
+        return _bodySystem.GetBodyChildren(uid, bodyComp).ToDictionary().Keys.ToList().Concat(_bodySystem.GetBodyOrgans(uid, bodyComp).ToDictionary().Keys.ToList()).ToList();
+    }
+
+    public void UpdatePartVisuals(EntityUid uid, HumanoidAppearanceComponent component, List<EntityUid>? bodyParts = null, bool overrideColours = false)
     {
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
         component.Parts = new();
 
-        if (!TryComp<BodyComponent>(uid, out var bodyComp))
-            return;
-
-        if (bodyComp.RootContainer == null)
-            return;
-
-        // Holy fuck this looks ugly. At least it works I guess.
-        var bodyParts = _bodySystem.GetBodyChildren(uid, bodyComp).ToDictionary().Keys.ToList().Concat(_bodySystem.GetBodyOrgans(uid, bodyComp).ToDictionary().Keys.ToList());
+        bodyParts ??= QuickGetAllParts(uid);
 
         var ev = new GetBodyPartVisualEvent(component.SkinColor, component.EyeColor, overrideColours)
         {
@@ -159,6 +191,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         var dirty = false;
         SetLayerVisibility(uid, humanoid, layer, visible, permanent, ref dirty);
+
         if (dirty)
             Dirty(uid, humanoid);
     }
@@ -185,7 +218,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         if (dirty)
-            Dirty(humanoid);
+            Dirty(uid, humanoid);
     }
 
     protected virtual void SetLayerVisibility(
@@ -228,7 +261,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Species = species;
 
         if (sync)
-            Dirty(humanoid);
+            Dirty(uid, humanoid);
     }
 
     /// <summary>
@@ -245,7 +278,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (!Resolve(uid, ref humanoid))
             return;
 
-        if (!_prototypeManager.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
+        if (!_prototypeManager.TryIndex(humanoid.Species, out var species))
         {
             return;
         }
@@ -258,7 +291,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.SkinColor = skinColor;
 
         if (sync)
-            Dirty(humanoid);
+            Dirty(uid, humanoid);
     }
 
     /// <summary>
@@ -294,6 +327,30 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             Dirty(uid, humanoid);
     }
 
+    public void ClearMarkings(EntityUid uid, HumanoidAppearanceComponent humanoid, List<EntityUid>? bodyParts = null, bool dirty = true)
+    {
+        bodyParts ??= _bodySystem.GetBodyChildren(uid).ToDictionary().Keys.ToList();
+
+        foreach (var part in bodyParts)
+            RaiseLocalEvent(part, new ClearPartMarkingsEvent());
+
+        if (dirty)
+            Dirty(uid, humanoid);
+    }
+
+    public MarkingSet GetMarkings(EntityUid uid, List<EntityUid>? bodyParts = null)
+    {
+        bodyParts ??= _bodySystem.GetBodyChildren(uid).ToDictionary().Keys.ToList();
+
+        var ev = new GetPartMarkingsEvent();
+
+        foreach (var part in bodyParts)
+            RaiseLocalEvent(part, ref ev);
+
+
+        return ev.Markings;
+    }
+
     /// <summary>
     ///     Loads a humanoid character profile directly onto this humanoid mob.
     /// </summary>
@@ -304,6 +361,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     {
         if (!Resolve(uid, ref humanoid))
             return;
+
+        var bodyParts = QuickGetAllParts(uid);
+
+        ClearMarkings(uid, humanoid, bodyParts, false);
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
@@ -330,10 +391,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         // Hair/facial hair - this may eventually be deprecated.
         // We need to ensure hair before applying it or coloring can try depend on markings that can be invalid
-        var hairColor = _markingManager.MustMatchSkin(profile.Species, "hair", out var hairAlpha, _prototypeManager) // Hardcoded... AUGH!
-            ? profile.Appearance.SkinColor.WithAlpha(hairAlpha) : profile.Appearance.HairColor;
-        var facialHairColor = _markingManager.MustMatchSkin(profile.Species, "facialHair", out var facialHairAlpha, _prototypeManager)
-            ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha) : profile.Appearance.FacialHairColor;
+        var hairColor = _markingManager.MustMatchSkin(profile.Species, "Hair", out var hairAlpha, _prototypeManager) // Hardcoded... AUGH!
+            ? profile.Appearance.SkinColor.WithAlpha(hairAlpha)
+            : profile.Appearance.HairColor;
+
+        var facialHairColor = _markingManager.MustMatchSkin(profile.Species, "FacialHair", out var facialHairAlpha, _prototypeManager)
+            ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha)
+            : profile.Appearance.FacialHairColor;
 
         if (_markingManager.Markings.TryGetValue(profile.Appearance.HairStyleId, out var hairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, hairPrototype, _prototypeManager))
@@ -354,13 +418,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 prototype,
                 profile.Appearance.SkinColor,
                 profile.Appearance.EyeColor,
-                humanoid.MarkingSet
+                GetMarkings(uid)
             );
             AddMarking(uid, marking.MarkingId, markingColors, false);
         }
 
         // And then add default markings.
-        EnsureDefaultMarkings(uid, humanoid);
+        EnsureDefaultMarkings(uid, bodyParts, humanoid);
 
         humanoid.Gender = profile.Gender;
         if (TryComp<GrammarComponent>(uid, out var grammar))
@@ -370,12 +434,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Age = profile.Age;
 
-        UpdatePartVisuals(uid, humanoid, true);
+        UpdatePartVisuals(uid, humanoid, bodyParts, true);
 
-        Dirty(humanoid);
+        Dirty(uid, humanoid);
     }
 
-    private void ReplacePartWithMarking(EntityUid uid, MarkingPrototype prototype, Marking markingObject, bool ensureDefault)
+    private void ReplacePartWithMarking(EntityUid uid, MarkingPrototype prototype, Marking markingObject)
     {
         var parts = _bodySystem.GetBodyContainers(uid);
 
@@ -396,9 +460,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             if (!TryComp<BodyPartVisualiserComponent>(part, out var bodyPartVisual) || bodyPartVisual.IsReplaceable == false)
                 continue;
 
-            if (ensureDefault && bodyPartVisual.Sprites.Count != 0)
-                continue;
-
             bodyPartVisual.Sprites = protoSprites;
 
             foreach (var (_, sprites) in bodyPartVisual.Sprites)
@@ -414,46 +475,31 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
     }
 
-    private void AddMarkingToPart(EntityUid uid, MarkingPrototype prototype, Marking markingObject, bool ensureDefault)
+    private void AddMarkingToPart(EntityUid uid, MarkingPrototype prototype, Marking markingObject)
     {
         var parts = _bodySystem.GetBodyContainers(uid);
 
-        foreach (var (slotName, protoSprites) in prototype.Sprites)
-        {
-            var slotID = $"body_part_slot_{slotName}";
+        // Uhhh... shh!!!!!!!!!
+        // But yeah, we're using the first part in the dictionary, because I don't want to mess with the fuckery that is the same marking on multiple body parts.
+        var slotName = prototype.Sprites.Keys.ToList()[0];
 
-            if (!parts.Any(x => slotID == x.ID))
-                continue;
+        var slotID = $"body_part_slot_{slotName}";
 
-            var slot = parts.First(x => x.ID == slotID);
+        if (!parts.Any(x => slotID == x.ID))
+            return;
 
-            if (slot.ContainedEntities.Count == 0)
-                continue;
+        var slot = parts.First(x => x.ID == slotID);
 
-            var part = slot.ContainedEntities[0];
+        if (slot.ContainedEntities.Count == 0)
+            return;
 
-            if (!TryComp<BodyPartVisualiserComponent>(part, out var bodyPartVisual))
-                continue;
+        var part = slot.ContainedEntities[0];
 
-            if (ensureDefault && bodyPartVisual.Markings.Count != 0)
-                continue;
+        if (!TryComp<BodyPartVisualiserComponent>(part, out var bodyPartVisual))
+            return;
 
-            // Create a new dictionary with the sprites.
-            var markingSprites = protoSprites.ToDictionary();
-
-            foreach (var (_, sprites) in markingSprites)
-            {
-                for (var i = 0; i < sprites.Count; i++)
-                {
-                    sprites[i].ColouringType = new PartUseBasicColour()
-                    {
-                        Colour = markingObject.MarkingColors[i]
-                    };
-                }
-            }
-
-            bodyPartVisual.Markings.Add(markingSprites);
-        }
+        markingObject.OwnerPart = GetNetEntity(part);
+        bodyPartVisual.Markings.AddBack(prototype.MarkingCategory, markingObject);
     }
 
     /// <summary>
@@ -471,18 +517,16 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         Color? color = null,
         bool sync = true,
         bool forced = false,
-        bool ensureDefault = false,
         HumanoidAppearanceComponent? humanoid = null)
     {
-        if (!Resolve(uid, ref humanoid)
-            || !_markingManager.Markings.TryGetValue(marking, out var prototype))
+        if (!Resolve(uid, ref humanoid) ||
+            !_markingManager.Markings.TryGetValue(marking, out var prototype))
         {
             return;
         }
 
         var markingObject = prototype.AsMarking();
         markingObject.Forced = forced;
-        humanoid.MarkingSet.AddBack(prototype.MarkingCategory, markingObject);
 
         if (color != null)
         {
@@ -494,19 +538,39 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         // This can be a bit optimised but eh later.
         if (prototype.ReplacesBodyParts)
-        {
-            ReplacePartWithMarking(uid, prototype, markingObject, ensureDefault);
-        }
+            ReplacePartWithMarking(uid, prototype, markingObject);
         else
-        {
-            AddMarkingToPart(uid, prototype, markingObject, ensureDefault);
-        }
+            AddMarkingToPart(uid, prototype, markingObject);
 
         if (sync)
             Dirty(uid, humanoid);
     }
 
-    private void EnsureDefaultMarkings(EntityUid uid, HumanoidAppearanceComponent? humanoid)
+    public void ReplaceMarkings(EntityUid uid, MarkingSet markingSet, bool dirty = true, HumanoidAppearanceComponent? component = null, List<EntityUid>? bodyParts = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        bodyParts ??= QuickGetAllParts(uid);
+
+        ClearMarkings(uid, component, bodyParts, false);
+
+        foreach (var markings in markingSet.Markings.Values)
+        {
+            foreach (var marking in markings)
+            {
+                AddMarking(uid, marking.MarkingId, marking.MarkingColors, false, marking.Forced, component);
+            }
+        }
+
+        if (dirty)
+        {
+            Dirty(uid, component);
+            UpdatePartVisuals(uid, component);
+        }
+    }
+
+    private void EnsureDefaultMarkings(EntityUid uid, List<EntityUid> bodyParts, HumanoidAppearanceComponent? humanoid)
     {
         if (!Resolve(uid, ref humanoid))
         {
@@ -517,9 +581,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             !_prototypeManager.TryIndex<MarkingPointsPrototype>(speciesProto.MarkingPoints, out var markingPoints))
             return;
 
-        foreach (var (_, points) in markingPoints.Points)
+        var markingSet = GetMarkings(uid, bodyParts);
+
+        foreach (var (category, points) in markingPoints.Points)
         {
             if (points.DefaultMarkings.Count == 0)
+                continue;
+
+            if (markingSet.TryGetCategory(category, out var currentMarkings) &&
+                currentMarkings.Count != 0)
                 continue;
 
             foreach (var marking in points.DefaultMarkings)
@@ -531,10 +601,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                     markingProto,
                     humanoid.SkinColor,
                     humanoid.EyeColor,
-                    humanoid.MarkingSet
+                    markingSet
                 );
 
-                AddMarking(uid, marking, sync: false, ensureDefault: true);
+                AddMarking(uid, marking, colors, sync: false);
             }
         }
     }
@@ -554,7 +624,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         IReadOnlyList<Color> colors,
         bool sync = true,
         bool forced = false,
-        bool ensureDefault = false,
         HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid)
@@ -565,16 +634,11 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
-        humanoid.MarkingSet.AddBack(prototype.MarkingCategory, markingObject);
 
         if (prototype.ReplacesBodyParts)
-        {
-            ReplacePartWithMarking(uid, prototype, markingObject, ensureDefault);
-        }
+            ReplacePartWithMarking(uid, prototype, markingObject);
         else
-        {
-            AddMarkingToPart(uid, prototype, markingObject, ensureDefault);
-        }
+            AddMarkingToPart(uid, prototype, markingObject);
 
         if (sync)
             Dirty(uid, humanoid);

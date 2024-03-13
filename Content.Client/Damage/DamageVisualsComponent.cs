@@ -45,7 +45,7 @@ public sealed partial class DamageVisualsComponent : Component
     ///     Setting the layer as disabled will make it
     ///     completely invisible.
     /// </remarks>
-    [DataField("targetLayers")] public List<Enum>? TargetLayers;
+    [DataField("targetLayers")] public List<string>? TargetLayers;
 
     /// <summary>
     ///     The actual sprites for every damage group
@@ -55,7 +55,7 @@ public sealed partial class DamageVisualsComponent : Component
     ///     (for example, Brute), and has a value
     ///     of a DamageVisualizerSprite (see below)
     /// </summary>
-    [DataField("damageOverlayGroups")] public  Dictionary<string, DamageVisualizerSprite>? DamageOverlayGroups;
+    [DataField("damageOverlayGroups")] public Dictionary<string, DamageVisualizerSprite>? DamageOverlayGroups;
 
     /// <summary>
     ///     Sets if you want sprites to overlay the
@@ -68,7 +68,7 @@ public sealed partial class DamageVisualsComponent : Component
     ///     - There are no target layers
     ///     - There is no damage group
     /// </summary>
-    [DataField("overlay")] public  bool Overlay = true;
+    [DataField("overlay")] public bool Overlay = true;
 
     /// <summary>
     ///     A single damage group to target.
@@ -115,7 +115,7 @@ public sealed partial class DamageVisualsComponent : Component
     /// </summary>
     [DataField("damageOverlay")] public  DamageVisualizerSprite? DamageOverlay;
 
-    public readonly List<Enum> TargetLayerMapKeys = new();
+    public readonly List<string> TargetLayerMapKeys = new();
     public bool Disabled = false;
     public bool Valid = true;
     public FixedPoint2 LastDamageThreshold = FixedPoint2.Zero;

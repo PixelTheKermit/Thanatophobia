@@ -23,6 +23,7 @@
       - left arm
       - right leg
       - left leg
+      - tail
     right arm:
       part: RightArmReptilian
       connections:
@@ -47,3 +48,5 @@
       part: RightFootReptilian
     left foot:
       part: LeftFootReptilian
+    tail:
+      part: TailReptilian

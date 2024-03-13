@@ -35,7 +35,7 @@
   icon:
     sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
     state: "icon"
-  markingCategory: Tail
+  markingCategory: Appendages
   speciesRestrictions: [Arachnid]
   replacesBodyParts: true
   sprites:
@@ -147,7 +147,7 @@
   icon:
     sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
     state: "icon"
-  markingCategory: Tail
+  markingCategory: Appendages
   speciesRestrictions: [Arachnid]
   replacesBodyParts: true
   sprites:

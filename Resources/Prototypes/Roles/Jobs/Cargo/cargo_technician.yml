@@ -15,7 +15,7 @@
 - type: startingGear
   id: CargoTechGear
   equipment:
-    head: ClothingHeadHatCargosoft
+    hat: ClothingHeadHatCargosoft
     jumpsuit: ClothingUniformJumpsuitCargo
     back: ClothingBackpackCargoFilled
     shoes: ClothingShoesColorBlack

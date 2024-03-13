@@ -61,7 +61,7 @@
     jumpsuit: ClothingUniformJumpsuitHoP
     back: ClothingBackpackHOPFilled
     shoes: ClothingShoesColorBrown
-    head: ClothingHeadHatHopcap
+    hat: ClothingHeadHatHopcap
     id: HoPPDA
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand

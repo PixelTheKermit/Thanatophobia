@@ -1039,7 +1039,7 @@ namespace Content.Client.Preferences.UI
             {
                 if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
                 {
-                    if (_markingManager.MustMatchSkin(Profile.Species, "hair", out var _, _prototypeManager))
+                    if (_markingManager.MustMatchSkin(Profile.Species, "FacialHair", out var _, _prototypeManager))
                     {
                         facialHairColor = Profile.Appearance.SkinColor;
                     }
