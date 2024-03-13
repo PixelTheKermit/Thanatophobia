@@ -63,3 +63,11 @@ public sealed partial class GetPartMarkingsEvent : EntityEventArgs
     {
     }
 }
+public sealed partial class UpdateGenderedBodyPartEvent : EntityEventArgs
+{
+    public Sex Sex;
+    public UpdateGenderedBodyPartEvent(Sex sex)
+    {
+        Sex = sex;
+    }
+}

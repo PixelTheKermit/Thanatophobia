@@ -36,6 +36,20 @@
           sprite: Mobs/Species/Reptilian/parts.rsi
           state: "torso_m"
         colouringType: !type:PartUseSkin
+  - type: GenderedBodyPart
+    sprites:
+      Male:
+        chest:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "torso_m"
+          colouringType: !type:PartUseSkin
+      Female:
+        chest:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "torso_f"
+          colouringType: !type:PartUseSkin
 
 - type: entity
   id: HeadReptilian
@@ -59,6 +73,20 @@
           sprite: Mobs/Species/Reptilian/parts.rsi
           state: "head_m"
         colouringType: !type:PartUseSkin
+  - type: GenderedBodyPart
+    sprites:
+      Male:
+        head:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "head_m"
+          colouringType: !type:PartUseSkin
+      Female:
+        head:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "head_f"
+          colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftArmReptilian

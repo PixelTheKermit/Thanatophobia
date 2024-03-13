@@ -45,6 +45,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetMarkingVisualEvent>(OnGetMarkingVisual);
         SubscribeLocalEvent<BodyPartVisualiserComponent, ClearPartMarkingsEvent>(OnClearMarkings);
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetPartMarkingsEvent>(OnGetPartMarkings);
+
+        SubscribeLocalEvent<GenderedBodyPartComponent, UpdateGenderedBodyPartEvent>(OnGenderUpdate);
     }
 
     private void EvUpdateLayers<TEvent>(EntityUid uid, HumanoidAppearanceComponent comp, TEvent args)
@@ -67,6 +69,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         LoadProfile(uid, startingSet.Profile, humanoid);
+    }
+
+    private void OnGenderUpdate(EntityUid uid, GenderedBodyPartComponent comp, UpdateGenderedBodyPartEvent args)
+    {
+        if (TryComp<BodyPartVisualiserComponent>(uid, out var partVisualiser) &&
+            comp.Sprites.Any(x => x.Key == args.Sex))
+        {
+            partVisualiser.Sprites = comp.Sprites[args.Sex];
+        }
     }
 
     private void OnGetPartVisual(EntityUid uid, BodyPartVisualiserComponent comp, ref GetBodyPartVisualEvent args)
@@ -363,6 +374,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             return;
 
         var bodyParts = QuickGetAllParts(uid);
+
+        // be mature, be mature, be mature, be mature...
+        var sexEv = new UpdateGenderedBodyPartEvent(profile.Sex);
+
+        foreach (var part in bodyParts)
+            RaiseLocalEvent(part, sexEv);
 
         ClearMarkings(uid, humanoid, bodyParts, false);
 
