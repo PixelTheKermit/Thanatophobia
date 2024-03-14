@@ -55,6 +55,13 @@ public sealed partial class ClearPartMarkingsEvent : EntityEventArgs
     }
 }
 
+public sealed partial class ClearCustomPartsEvent : EntityEventArgs
+{
+    public ClearCustomPartsEvent()
+    {
+    }
+}
+
 [ByRefEvent]
 public sealed partial class GetPartMarkingsEvent : EntityEventArgs
 {

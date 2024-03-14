@@ -29,7 +29,6 @@
     Appendages:
       points: 1
       required: true
-      defaultMarkings: [ ArachnidAppendagesDefault ]
     HeadTop:
       points: 1
       required: false

@@ -43,6 +43,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetBodyPartVisualEvent>(OnGetPartVisual);
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetMarkingVisualEvent>(OnGetMarkingVisual);
+        SubscribeLocalEvent<BodyPartVisualiserComponent, ClearCustomPartsEvent>(OnClearCustomParts);
         SubscribeLocalEvent<BodyPartVisualiserComponent, ClearPartMarkingsEvent>(OnClearMarkings);
         SubscribeLocalEvent<BodyPartVisualiserComponent, GetPartMarkingsEvent>(OnGetPartMarkings);
 
@@ -85,7 +86,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
-        foreach (var (bodyPart, visual) in comp.Sprites)
+        var sprites = comp.Sprites;
+
+        if (comp.CustomSprites.Count > 0)
+            sprites = comp.CustomSprites;
+
+        foreach (var (bodyPart, visual) in sprites)
         {
             args.Sprites.Add((bodyPart, visual));
 
@@ -136,6 +142,11 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 args.Markings.AddBack(category, marking);
             }
         }
+    }
+
+    private void OnClearCustomParts(EntityUid uid, BodyPartVisualiserComponent comp, ClearCustomPartsEvent args)
+    {
+        comp.CustomSprites.Clear();
     }
 
     private void OnClearMarkings(EntityUid uid, BodyPartVisualiserComponent comp, ClearPartMarkingsEvent args)
@@ -379,7 +390,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var sexEv = new UpdateGenderedBodyPartEvent(profile.Sex);
 
         foreach (var part in bodyParts)
+        {
+            RaiseLocalEvent(part, new ClearCustomPartsEvent());
             RaiseLocalEvent(part, sexEv);
+        }
 
         ClearMarkings(uid, humanoid, bodyParts, false);
 
@@ -477,16 +491,21 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             if (!TryComp<BodyPartVisualiserComponent>(part, out var bodyPartVisual) || bodyPartVisual.IsReplaceable == false)
                 continue;
 
-            bodyPartVisual.Sprites = protoSprites;
-
-            foreach (var (_, sprites) in bodyPartVisual.Sprites)
+            bodyPartVisual.CustomSprites.Clear();
+            foreach (var (markingLayer, sprites) in protoSprites)
             {
+                bodyPartVisual.CustomSprites[markingLayer] = new();
                 for (var i = 0; i < sprites.Count; i++)
                 {
-                    sprites[i].ColouringType = new PartUseBasicColour()
+                    var visual = new BodyPartVisualiserSprite()
                     {
-                        Colour = markingObject.MarkingColors[i]
+                        Sprite = sprites[i].Sprite,
+                        ColouringType = new PartUseBasicColour()
+                        {
+                            Colour = markingObject.MarkingColors[i]
+                        },
                     };
+                    bodyPartVisual.CustomSprites[markingLayer].Add(visual);
                 }
             }
         }

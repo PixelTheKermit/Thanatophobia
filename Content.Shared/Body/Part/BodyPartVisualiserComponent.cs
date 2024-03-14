@@ -20,6 +20,12 @@ public sealed partial class BodyPartVisualiserComponent : Component
     public Dictionary<string, List<BodyPartVisualiserSprite>> Sprites = new();
 
     /// <summary>
+    /// A dictionary for custom sprites. Used by markings that may replace the base body parts.
+    /// </summary>
+    [DataField]
+    public Dictionary<string, List<BodyPartVisualiserSprite>> CustomSprites = new();
+
+    /// <summary>
     /// A list of markings. Wow.
     /// This is for stuff like gradients, tattoos, or hair.
     /// </summary>
