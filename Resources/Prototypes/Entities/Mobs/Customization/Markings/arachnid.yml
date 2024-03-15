@@ -131,16 +131,95 @@
   # - sprite: Mobs/Customization/Arachnid/appendages.rsi
     # state: sharp_secondary
 
-# - type: marking
-  # id: ArachnidAppendagesStingers
-  # bodyPart: tail
-  # markingCategory: tail
-  # speciesRestriction: [Arachnid]
-  # sprites:
-  # - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    # state: stingers_primary
-  # - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    # state: stingers_secondary
+- type: marking
+  id: ArachnidAppendagesStingers
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  replacesBodyParts: true
+  sprites:
+    # Left upper
+    left upper appendage:
+      left-appendage-upper-front:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_primary_front"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_secondary_front"
+        colouringType: !type:PartUseSkin
+      left-appendage-upper-back:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_primary_back"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_secondary_back"
+        colouringType: !type:PartUseSkin
+    # Right upper
+    right upper appendage:
+      right-appendage-upper-front:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_primary_front"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_secondary_front"
+        colouringType: !type:PartUseSkin
+      right-appendage-upper-back:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_primary_back"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_secondary_back"
+        colouringType: !type:PartUseSkin
+    # Left lower
+    left lower appendage:
+      left-appendage-lower-front:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_primary_front"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_secondary_front"
+        colouringType: !type:PartUseSkin
+      left-appendage-lower-back:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_primary_back"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_secondary_back"
+        colouringType: !type:PartUseSkin
+    # Right lower
+    right lower appendage:
+      right-appendage-lower-front:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_primary_front"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_secondary_front"
+        colouringType: !type:PartUseSkin
+      right-appendage-lower-back:
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_primary_back"
+        colouringType: !type:PartUseSkin
+      - sprite:
+          sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_secondary_back"
+        colouringType: !type:PartUseSkin
 
 - type: marking
   id: ArachnidAppendagesZigZag
@@ -510,6 +589,9 @@
     # default:
       # type:
         # !type:EyeColoring
+
+# IMPORTANT: Uhh overlays may not work... uhoh.
+# Someone else can fix this lol.
 
 # # Overlay
 # - type: marking

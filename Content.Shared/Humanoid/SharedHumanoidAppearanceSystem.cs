@@ -476,12 +476,17 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         foreach (var (slotName, protoSprites) in prototype.Sprites)
         {
-            var slotID = $"body_part_slot_{slotName}";
+            var slotPartID = $"body_part_slot_{slotName}";
+            var slotOrganID = $"body_organ_slot_{slotName}";
 
-            if (!parts.Any(x => slotID == x.ID))
+            BaseContainer? slot;
+
+            if (parts.Any(x => slotPartID == x.ID))
+                slot = parts.First(x => x.ID == slotPartID);
+            else if (parts.Any(x => slotOrganID == x.ID))
+                slot = parts.First(x => x.ID == slotOrganID);
+            else
                 continue;
-
-            var slot = parts.First(x => x.ID == slotID);
 
             if (slot.ContainedEntities.Count == 0)
                 continue;
@@ -519,12 +524,17 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         // But yeah, we're using the first part in the dictionary, because I don't want to mess with the fuckery that is the same marking on multiple body parts.
         var slotName = prototype.Sprites.Keys.ToList()[0];
 
-        var slotID = $"body_part_slot_{slotName}";
+        var slotPartID = $"body_part_slot_{slotName}";
+        var slotOrganID = $"body_organ_slot_{slotName}";
 
-        if (!parts.Any(x => slotID == x.ID))
+        BaseContainer? slot;
+
+        if (parts.Any(x => slotPartID == x.ID))
+            slot = parts.First(x => x.ID == slotPartID);
+        else if (parts.Any(x => slotOrganID == x.ID))
+            slot = parts.First(x => x.ID == slotOrganID);
+        else
             return;
-
-        var slot = parts.First(x => x.ID == slotID);
 
         if (slot.ContainedEntities.Count == 0)
             return;
