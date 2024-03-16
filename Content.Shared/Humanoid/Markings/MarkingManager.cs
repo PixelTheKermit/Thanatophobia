@@ -180,7 +180,7 @@ namespace Content.Shared.Humanoid.Markings
                 return false;
             }
 
-            if (marking.MarkingColors.Count != proto.GetLayerCount())
+            if (marking.MarkingColors.Count != proto.Function.GetSpriteCount())
             {
                 return false;
             }

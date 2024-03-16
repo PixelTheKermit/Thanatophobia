@@ -170,7 +170,7 @@ public sealed partial class MarkingPicker : Control
     {
         List<string> result = new();
 
-        for (var i = 0; i < marking.GetLayerCount(); i++)
+        for (var i = 0; i < marking.Function.GetSpriteCount(); i++)
             result.Add(Loc.GetString($"marking-{marking.ID}-{i}"));
 
 
@@ -465,7 +465,7 @@ public sealed partial class MarkingPicker : Control
                 CurrentEyeColor,
                 markingSet
             );
-            for (var i = 0; i < marking.GetLayerCount(); i++)
+            for (var i = 0; i < marking.Function.GetSpriteCount(); i++)
             {
                 markingObject.SetColor(i, colors[i]);
             }
@@ -473,7 +473,7 @@ public sealed partial class MarkingPicker : Control
         else
         {
             // Color everything in skin color
-            for (var i = 0; i < marking.GetLayerCount(); i++)
+            for (var i = 0; i < marking.Function.GetSpriteCount(); i++)
             {
                 markingObject.SetColor(i, CurrentSkinColor);
             }

@@ -117,17 +117,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var markingProto))
                     continue;
 
-                foreach (var visualisers in markingProto.Sprites.Values)
+                foreach (var (layer, visual) in markingProto.Function.GetSprites())
                 {
-                    foreach (var (layer, visual) in visualisers)
-                    {
-                        for (var i = 0; i < visual.Count; i++)
-                            visual[i].Colour = marking.MarkingColors[i];
+                    for (var i = 0; i < visual.Count; i++)
+                        visual[i].Colour = marking.MarkingColors[i];
 
-                        args.Sprites.Add((layer, visual));
+                    args.Sprites.Add((layer, visual));
 
-                        // If you like suffering, count how many for statements I used here.
-                    }
                 }
             }
         }
@@ -470,84 +466,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         Dirty(uid, humanoid);
     }
 
-    private void ReplacePartWithMarking(EntityUid uid, MarkingPrototype prototype, Marking markingObject)
-    {
-        var parts = _bodySystem.GetBodyContainers(uid);
-
-        foreach (var (slotName, protoSprites) in prototype.Sprites)
-        {
-            var slotPartID = $"body_part_slot_{slotName}";
-            var slotOrganID = $"body_organ_slot_{slotName}";
-
-            BaseContainer? slot;
-
-            if (parts.Any(x => slotPartID == x.ID))
-                slot = parts.First(x => x.ID == slotPartID);
-            else if (parts.Any(x => slotOrganID == x.ID))
-                slot = parts.First(x => x.ID == slotOrganID);
-            else
-                continue;
-
-            if (slot.ContainedEntities.Count == 0)
-                continue;
-
-            var part = slot.ContainedEntities[0];
-
-            if (!TryComp<BodyPartVisualiserComponent>(part, out var bodyPartVisual) || bodyPartVisual.IsReplaceable == false)
-                continue;
-
-            bodyPartVisual.CustomSprites.Clear();
-            foreach (var (markingLayer, sprites) in protoSprites)
-            {
-                bodyPartVisual.CustomSprites[markingLayer] = new();
-                for (var i = 0; i < sprites.Count; i++)
-                {
-                    var visual = new BodyPartVisualiserSprite()
-                    {
-                        Sprite = sprites[i].Sprite,
-                        ColouringType = new PartUseBasicColour()
-                        {
-                            Colour = markingObject.MarkingColors[i]
-                        },
-                    };
-                    bodyPartVisual.CustomSprites[markingLayer].Add(visual);
-                }
-            }
-        }
-    }
-
-    private void AddMarkingToPart(EntityUid uid, MarkingPrototype prototype, Marking markingObject)
-    {
-        var parts = _bodySystem.GetBodyContainers(uid);
-
-        // Uhhh... shh!!!!!!!!!
-        // But yeah, we're using the first part in the dictionary, because I don't want to mess with the fuckery that is the same marking on multiple body parts.
-        var slotName = prototype.Sprites.Keys.ToList()[0];
-
-        var slotPartID = $"body_part_slot_{slotName}";
-        var slotOrganID = $"body_organ_slot_{slotName}";
-
-        BaseContainer? slot;
-
-        if (parts.Any(x => slotPartID == x.ID))
-            slot = parts.First(x => x.ID == slotPartID);
-        else if (parts.Any(x => slotOrganID == x.ID))
-            slot = parts.First(x => x.ID == slotOrganID);
-        else
-            return;
-
-        if (slot.ContainedEntities.Count == 0)
-            return;
-
-        var part = slot.ContainedEntities[0];
-
-        if (!TryComp<BodyPartVisualiserComponent>(part, out var bodyPartVisual))
-            return;
-
-        markingObject.OwnerPart = GetNetEntity(part);
-        bodyPartVisual.Markings.AddBack(prototype.MarkingCategory, markingObject);
-    }
-
     /// <summary>
     ///     Adds a marking to this humanoid with a single color.
     /// </summary>
@@ -576,17 +494,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         if (color != null)
         {
-            for (var i = 0; i < prototype.GetLayerCount(); i++)
+            for (var i = 0; i < prototype.Function.GetSpriteCount(); i++)
             {
                 markingObject.SetColor(i, color.Value);
             }
         }
 
-        // This can be a bit optimised but eh later.
-        if (prototype.ReplacesBodyParts)
-            ReplacePartWithMarking(uid, prototype, markingObject);
-        else
-            AddMarkingToPart(uid, prototype, markingObject);
+        var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
+
+        prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
 
         if (sync)
             Dirty(uid, humanoid);
@@ -681,10 +597,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
 
-        if (prototype.ReplacesBodyParts)
-            ReplacePartWithMarking(uid, prototype, markingObject);
-        else
-            AddMarkingToPart(uid, prototype, markingObject);
+        var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
+
+        prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
 
         if (sync)
             Dirty(uid, humanoid);

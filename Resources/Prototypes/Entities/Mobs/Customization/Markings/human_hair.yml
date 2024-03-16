@@ -4,8 +4,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: afro
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -17,8 +18,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: afro2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -30,8 +32,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bigafro
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -43,8 +46,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: antenna
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -56,8 +60,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: e
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -69,8 +74,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bedhead
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -82,8 +88,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bedheadv2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -95,8 +102,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bedheadv3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -108,8 +116,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: long_bedhead
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -121,8 +130,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: floorlength_bedhead
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -134,8 +144,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: beehive
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -147,8 +158,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: beehivev2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -160,8 +172,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bob
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -173,8 +186,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bob2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -186,8 +200,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bobcut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -199,8 +214,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bob4
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -212,8 +228,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bobcurl
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -225,8 +242,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: boddicker
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -238,8 +256,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bowlcut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -251,8 +270,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bowlcut2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -264,8 +284,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: braid
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -277,8 +298,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: braided
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -290,8 +312,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: braidfront
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -303,8 +326,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: braid2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -316,8 +340,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: hbraid
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -329,8 +354,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shortbraid
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -342,8 +368,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: braidtail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -355,8 +382,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bun
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -368,8 +396,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bunhead2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -381,8 +410,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bun3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -394,8 +424,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: largebun
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -407,8 +438,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: manbun
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -420,8 +452,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: tightbun
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -433,8 +466,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: business
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -446,8 +480,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: business2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -459,8 +494,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: business3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -472,8 +508,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: business4
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -485,8 +522,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: buzzcut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -498,8 +536,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: cia
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -511,8 +550,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicafro
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -524,8 +564,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicbigafro
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -537,8 +578,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicbusiness
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -550,8 +592,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classiccia
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -563,8 +606,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classiccornrows2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -576,8 +620,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicfloorlength_bedhead
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -589,8 +634,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicmodern
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -602,8 +648,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicmulder
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -615,8 +662,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: classicwisp
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -628,8 +676,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: coffeehouse
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -641,8 +690,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: combover
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -654,8 +704,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: cornrows
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -667,8 +718,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: cornrows2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -680,8 +732,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: cornrowbun
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -693,8 +746,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: cornrowbraid
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -706,8 +760,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: cornrowtail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -719,8 +774,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: crewcut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -732,8 +788,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: curls
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -745,8 +802,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: c
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -758,8 +816,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: dandypompadour
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -771,8 +830,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: devilock
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -784,8 +844,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: doublebun
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -797,8 +858,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: dreads
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -810,8 +872,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: drillruru
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -823,8 +886,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: drillhairextended
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -836,8 +900,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: emo
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -849,8 +914,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: emofringe
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -862,8 +928,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: nofade
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -875,8 +942,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: highfade
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -888,8 +956,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: medfade
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -901,8 +970,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: lowfade
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -914,8 +984,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: baldfade
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -927,8 +998,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: feather
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -940,8 +1012,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: father
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -953,8 +1026,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: sargeant
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -966,8 +1040,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: flair
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -979,8 +1054,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bigflattop
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -992,8 +1068,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: f
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1005,8 +1082,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: gelled
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1018,8 +1096,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: gentle
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1031,8 +1110,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: halfbang
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1044,8 +1124,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: halfbang2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1057,8 +1138,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: halfshaved
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1070,8 +1152,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: hedgehog
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1083,8 +1166,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: himecut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1096,8 +1180,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: himecut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1109,8 +1194,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shorthime
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1122,8 +1208,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: himeup
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1135,8 +1222,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: hitop
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1148,8 +1236,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: jade
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1161,8 +1250,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: jensen
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1174,8 +1264,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: joestar
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1187,8 +1278,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: keanu
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1200,8 +1292,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: kusanagi
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1213,8 +1306,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: long
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1226,8 +1320,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: long2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1239,8 +1334,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: long3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1252,8 +1348,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longovereye
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1265,8 +1362,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: lbangs
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1278,8 +1376,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longemo
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1291,8 +1390,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longfringe
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1304,8 +1404,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longsidepart
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1317,8 +1418,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: megaeyebrows
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1330,8 +1432,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: messy
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1343,8 +1446,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: modern
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1356,8 +1460,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: mohawk
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1369,8 +1474,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: nitori
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1382,8 +1488,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: reversemohawk
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1395,8 +1502,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: unshaven_mohawk
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1408,8 +1516,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: mulder
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1421,8 +1530,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: odango
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1434,8 +1544,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ombre
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1447,8 +1558,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: oneshoulder
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1460,8 +1572,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shortovereye
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1473,8 +1586,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: oxton
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1486,8 +1600,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: parted
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1499,8 +1614,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: part
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1512,8 +1628,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: kagami
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1525,8 +1642,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state:
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1538,8 +1656,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: pigtails2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1551,8 +1670,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: pixie
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1564,8 +1684,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: pompadour
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1577,8 +1698,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: bigpompadour
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1590,8 +1712,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ponytail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1603,8 +1726,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ponytail2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1616,8 +1740,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ponytail3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1629,8 +1754,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ponytail4
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1642,8 +1768,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state:
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1655,8 +1782,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ponytail6
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1668,8 +1796,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ponytail7
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1681,8 +1810,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: highponytail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1694,8 +1824,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: stail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1707,8 +1838,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longstraightponytail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1720,8 +1852,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: country
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1733,8 +1866,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: fringetail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1746,8 +1880,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: sidetail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1759,8 +1894,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: sidetail2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1772,8 +1908,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: sidetail3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1785,8 +1922,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: sidetail4
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1798,8 +1936,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: spikyponytail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1811,8 +1950,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: poofy
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1824,8 +1964,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: quiff
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1837,8 +1978,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: ronin
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1850,8 +1992,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shaved
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1863,8 +2006,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shavedpart
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1876,8 +2020,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shortbangs
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1889,8 +2034,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: a
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1902,8 +2048,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shorthair2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1915,8 +2062,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shorthair3
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1928,8 +2076,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: d
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1941,8 +2090,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: e
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1954,8 +2104,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: f
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1967,8 +2118,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shorthairg
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1980,8 +2132,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: 80s
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -1993,8 +2146,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: rosa
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2006,8 +2160,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: b
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2019,8 +2174,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: sidecut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2032,8 +2188,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: skinhead
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2045,8 +2202,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: protagonist
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2058,8 +2216,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: spikey
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2071,8 +2230,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: spiky
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2084,8 +2244,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: spiky2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2097,8 +2258,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: swept
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2110,8 +2272,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: swept2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2123,8 +2286,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: shoulderlengthovereye
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2136,8 +2300,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: thinning
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2149,8 +2314,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: thinningfront
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2162,8 +2328,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: thinningrear
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2175,8 +2342,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: topknot
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2188,8 +2356,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: tressshoulder
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2201,8 +2370,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: trimmed
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2214,8 +2384,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: trimflat
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2227,8 +2398,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: twintail
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2240,8 +2412,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: twostrands
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2253,8 +2426,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: undercut
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2266,8 +2440,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: undercutleft
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2279,8 +2454,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: undercutright
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2292,8 +2468,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: unkept
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2305,8 +2482,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: updo
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2318,8 +2496,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: vlong
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2331,8 +2510,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longest
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2344,8 +2524,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: longest2
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2357,8 +2538,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: veryshortovereyealternate
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2370,8 +2552,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: vlongfringe
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2383,8 +2566,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: volaju
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2396,8 +2580,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: wisp
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi
@@ -2409,8 +2594,9 @@
     sprite: Mobs/Customization/human_hair.rsi
     state: uneven
   markingCategory: Hair
-  sprites:
-    head:
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
       hair:
       - sprite:
           sprite: Mobs/Customization/human_hair.rsi

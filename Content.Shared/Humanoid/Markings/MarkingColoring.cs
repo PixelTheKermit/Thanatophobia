@@ -42,7 +42,7 @@ public static class MarkingColoring
         if (prototype.Coloring.Layers == null)
         {
             // If layers is not specified, then every layer must be default
-            for (var i = 0; i < prototype.GetLayerCount(); i++)
+            for (var i = 0; i < prototype.Function.GetSpriteCount(); i++)
             {
                 colors.Add(defaultColor);
             }
@@ -52,7 +52,7 @@ public static class MarkingColoring
         else
         {
             // If some layers are specified.
-            for (var i = 0; i < prototype.GetLayerCount(); i++)
+            for (var i = 0; i < prototype.Function.GetSpriteCount(); i++)
             {
                 // All specified layers must be colored separately, all unspecified must depend on default coloring
                 if (prototype.Coloring.Layers.Count >= i)

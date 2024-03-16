@@ -253,9 +253,9 @@ public sealed partial class MarkingSet
                     continue;
                 }
 
-                if (marking.GetLayerCount() != list[i].MarkingColors.Count)
+                if (marking.Function.GetSpriteCount() != list[i].MarkingColors.Count)
                 {
-                    list[i] = new Marking(marking.ID, marking.Sprites.Count);
+                    list[i] = new Marking(marking.ID, marking.Function.GetSpriteCount());
                 }
             }
 
