@@ -11,15 +11,20 @@
       # fallbackTypes:
         # - !type:SkinColoring
     # layers:
-      # ears_cat_inner:
-        # type:
-          # !type:SimpleColoring
-            # color: "#FFFFFF"
+    # - type:
+        # !type:CategoryColoring
+          # category: Hair
+    # - type:
+        # !type:SimpleColoring
+          # color: "#FFFFFF"
+
   # sprites:
   # - sprite: Mobs/Customization/cat_parts.rsi
     # state: ears_cat_outer
   # - sprite: Mobs/Customization/cat_parts.rsi
     # state: ears_cat_inner
+
+# # TODO: This should, in the future, change trait markings, but that's wyci.
 
 # - type: marking
   # id: CatTail
