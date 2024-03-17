@@ -2,6 +2,7 @@ using Content.Shared.Body.Part;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings;
 
@@ -18,7 +19,7 @@ public abstract partial class BaseMarkingFunction
     );
 
     public abstract int GetSpriteCount();
-    public virtual Dictionary<string, List<BodyPartVisualiserSprite>> GetSprites()
+    public virtual Dictionary<string, List<SpriteSpecifier>> GetSprites()
     {
         return new();
     }

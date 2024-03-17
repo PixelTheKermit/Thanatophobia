@@ -8,8 +8,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: abe
 
 - type: marking
@@ -22,8 +21,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: brokenman
 
 - type: marking
@@ -36,8 +34,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: chin
 
 - type: marking
@@ -50,8 +47,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: dwarf
 
 - type: marking
@@ -64,8 +60,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: fullbeard
 
 - type: marking
@@ -78,8 +73,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: croppedfullbeard
 
 - type: marking
@@ -92,8 +86,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: gt
 
 - type: marking
@@ -106,8 +99,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: hip
 
 - type: marking
@@ -120,8 +112,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: jensen
 
 - type: marking
@@ -134,8 +125,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: neckbeard
 
 - type: marking
@@ -148,8 +138,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: wise
 
 - type: marking
@@ -162,8 +151,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: muttonmus
 
 - type: marking
@@ -176,8 +164,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: martialartist
 
 - type: marking
@@ -190,8 +177,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: chinlessbeard
 
 - type: marking
@@ -204,8 +190,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: moonshiner
 
 - type: marking
@@ -218,8 +203,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: longbeard
 
 - type: marking
@@ -232,8 +216,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: volaju
 
 - type: marking
@@ -246,8 +229,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: 3oclock
 
 - type: marking
@@ -260,8 +242,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: fiveoclock
 
 - type: marking
@@ -274,8 +255,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: 5oclockmoustache
 
 - type: marking
@@ -288,8 +268,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: 7oclock
 
 - type: marking
@@ -302,8 +281,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: 7oclockmoustache
 
 - type: marking
@@ -316,8 +294,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: moustache
 
 - type: marking
@@ -330,8 +307,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: pencilstache
 
 - type: marking
@@ -344,8 +320,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: smallstache
 
 - type: marking
@@ -358,8 +333,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: walrus
 
 - type: marking
@@ -372,8 +346,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: fumanchu
 
 - type: marking
@@ -386,8 +359,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: hogan
 
 - type: marking
@@ -400,8 +372,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: selleck
 
 - type: marking
@@ -414,8 +385,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: chaplin
 
 - type: marking
@@ -428,8 +398,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: vandyke
 
 - type: marking
@@ -442,8 +411,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: watson
 
 - type: marking
@@ -456,8 +424,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: elvis
 
 - type: marking
@@ -470,8 +437,7 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: mutton
 
 - type: marking
@@ -484,6 +450,5 @@
     bodyPart: head
     sprites:
       facialHair:
-      - sprite:
-          sprite: Mobs/Customization/human_facial_hair.rsi
+        - sprite: Mobs/Customization/human_facial_hair.rsi
           state: sideburn

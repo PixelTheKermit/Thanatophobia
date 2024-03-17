@@ -215,3 +215,20 @@
             sprite: Mobs/Species/Moth/parts.rsi
             state: "r_foot"
           colouringType: !type:PartUseSkin
+
+- type: entity
+  id: WingsMoth
+  name: "moth wings"
+  parent: [PartReptilian]
+  description: The coolest looking part of a moth. Can probably be used as an improvised glider.
+  components:
+  - type: Sprite
+    sprite: Mobs/Customization/Moth/moth_wings.rsi
+    state: default
+  - type: BodyPartVisualiser
+    sprites:
+      tail:
+      - sprite:
+          sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: default
+        colouringType: !type:PartUseSkin

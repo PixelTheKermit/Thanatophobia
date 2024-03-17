@@ -117,12 +117,21 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var markingProto))
                     continue;
 
-                foreach (var (layer, visual) in markingProto.Function.GetSprites())
+                foreach (var (layer, sprites) in markingProto.Function.GetSprites())
                 {
-                    for (var i = 0; i < visual.Count; i++)
-                        visual[i].Colour = marking.MarkingColors[i];
+                    var visuals = new List<BodyPartVisualiserSprite>();
 
-                    args.Sprites.Add((layer, visual));
+                    for (var i = 0; i < sprites.Count; i++)
+                    {
+                        var visualiser = new BodyPartVisualiserSprite()
+                        {
+                            Sprite = sprites[i],
+                            Colour = marking.MarkingColors[i]
+                        };
+                        visuals.Add(visualiser);
+                    }
+
+                    args.Sprites.Add((layer, visuals));
 
                 }
             }

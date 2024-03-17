@@ -3,6 +3,7 @@ using Content.Shared.Body.Part;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings;
 
@@ -10,7 +11,7 @@ namespace Content.Shared.Humanoid.Markings;
 public sealed partial class ReplaceBodyPartsMarkingFunction : BaseMarkingFunction
 {
     [DataField]
-    public Dictionary<string, Dictionary<string, List<BodyPartVisualiserSprite>>> Sprites { get; private set; } = default!;
+    public Dictionary<string, Dictionary<string, List<SpriteSpecifier>>> Sprites { get; private set; } = default!;
 
     public override void AddMarking(
         EntityUid uid,
@@ -59,7 +60,7 @@ public sealed partial class ReplaceBodyPartsMarkingFunction : BaseMarkingFunctio
 
                     var visual = new BodyPartVisualiserSprite()
                     {
-                        Sprite = sprites[i].Sprite,
+                        Sprite = sprites[i],
                         ColouringType = new PartUseBasicColour()
                         {
                             Colour = colour
