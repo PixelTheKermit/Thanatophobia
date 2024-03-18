@@ -89,6 +89,7 @@ public sealed partial class MarkingPicker : Control
         CurrentSkinColor = skinColor;
         CurrentEyeColor = eyeColor;
 
+        SetupCategoryButtons();
         Populate(CMarkingSearch.Text);
         PopulateUsed();
     }
@@ -107,6 +108,7 @@ public sealed partial class MarkingPicker : Control
         CurrentSkinColor = skinColor;
         CurrentEyeColor = eyeColor;
 
+        SetupCategoryButtons();
         Populate(CMarkingSearch.Text);
         PopulateUsed();
     }
@@ -142,25 +144,36 @@ public sealed partial class MarkingPicker : Control
     {
         CMarkingCategoryButton.Clear();
 
-        _markingCategories.Clear();
+        List<string> unsortedCategories = new();
 
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<MarkingPrototype>())
         {
-            if (!_markingCategories.Any(x => x == prototype.MarkingCategory))
-                _markingCategories.Add(prototype.MarkingCategory);
+            if (!unsortedCategories.Any(x => x == prototype.MarkingCategory))
+                unsortedCategories.Add(prototype.MarkingCategory);
         }
+
+        _markingCategories = unsortedCategories.OrderBy(x => Loc.GetString($"markings-category-{x}")).ToList();
+
+        List<string> usedCategories = new();
 
         for (var i = 0; i < _markingCategories.Count; i++)
         {
             if (_ignoreCategories.Contains(_markingCategories[i]))
+                continue;
+
+            if (_prototypeManager.TryIndex<SpeciesPrototype>(_currentSpecies, out var speciesProto) &&
+                _prototypeManager.TryIndex<MarkingPointsPrototype>(speciesProto.MarkingPoints, out var markingPointsProto) &&
+                !markingPointsProto.Points.Any(x => x.Key == _markingCategories[i]))
             {
                 continue;
             }
 
             CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{_markingCategories[i]}"), i);
+            usedCategories.Add(_markingCategories[i]);
         }
-        if (_markingCategories.IndexOf(_selectedMarkingCategory) != -1)
-            CMarkingCategoryButton.SelectId(_markingCategories.IndexOf(_selectedMarkingCategory));
+
+        if (usedCategories.Count != 0)
+            CMarkingCategoryButton.TrySelectId(usedCategories.IndexOf(_selectedMarkingCategory));
 
     }
 
