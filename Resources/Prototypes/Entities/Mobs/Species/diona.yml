@@ -107,3 +107,5 @@
     templateId: diona
   - type: HumanoidAppearance
     species: Diona
+  - type: Body
+    prototype: Diona
