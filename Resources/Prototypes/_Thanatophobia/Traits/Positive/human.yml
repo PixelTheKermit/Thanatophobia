@@ -10,7 +10,7 @@
   - Tail
   allowed:
   - Human
-  markingId: LizardTailSmooth
+  markingId: HumanTailSmooth
   markingColours:
   - "green"
   components:

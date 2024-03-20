@@ -87,11 +87,11 @@
         sprite: Mobs/Customization/masking_helpers.rsi
         state: unisex_full
         visible: false
+      - map: [ "l-foot" ]
+      - map: [ "r-foot" ]
       - map: [ "jumpsuit" ]
       - map: [ "l-hand" ]
       - map: [ "r-hand" ]
-      - map: [ "l-foot" ]
-      - map: [ "r-foot" ]
       - map: [ "handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
@@ -134,6 +134,8 @@
     noRot: true
     drawdepth: Mobs
     layers:
+      - map: [ "l-hand2-back" ]
+      - map: [ "r-hand2-back" ]
       - map: [ "chest" ]
       - map: [ "head" ]
       - map: [ "snout" ]
@@ -152,11 +154,11 @@
         sprite: Mobs/Customization/masking_helpers.rsi
         state: unisex_full
         visible: false
+      - map: [ "l-foot" ]
+      - map: [ "r-foot" ]
       - map: [ "jumpsuit" ]
       - map: [ "l-hand" ]
       - map: [ "r-hand" ]
-      - map: [ "l-foot" ]
-      - map: [ "r-foot" ]
       - map: [ "handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
@@ -168,9 +170,9 @@
       - map: [ "shoes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "l-hand2" ]
-      - map: [ "r-hand2" ]
       - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "l-hand2-front" ]
+      - map: [ "r-hand2-front" ]
       - map: [ "neck" ]
       - map: [ "back" ]
       - map: [ "facialHair" ]

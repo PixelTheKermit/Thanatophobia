@@ -85,9 +85,9 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    - map: [ "jumpsuit" ]
     - map: [ "l-foot" ]
     - map: [ "r-foot" ]
+    - map: [ "jumpsuit" ]
     - map: [ "l-hand" ]
     - map: [ "r-hand" ]
     - map: [ "ears" ]
@@ -153,9 +153,9 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    - map: [ "jumpsuit" ]
     - map: [ "l-foot" ]
     - map: [ "r-foot" ]
+    - map: [ "jumpsuit" ]
     - map: [ "l-hand" ]
     - map: [ "r-hand" ]
     - map: [ "ears" ]

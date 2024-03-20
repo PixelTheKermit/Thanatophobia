@@ -1,7 +1,6 @@
 # Chelicerae
 - type: marking
   id: ArachnidCheliceraeDownwards
-  bodyPart: headSide
   icon:
     sprite: Mobs/Customization/Arachnid/chelicerae.rsi
     state: downwards
@@ -10,7 +9,7 @@
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:
-      chelicerae:
+      headSide:
         - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
           state: downwards
 
@@ -19,13 +18,12 @@
   icon:
     sprite: Mobs/Customization/Arachnid/chelicerae.rsi
     state: downwards
-  bodyPart: headSide
   markingCategory: HeadSide
   speciesRestrictions: [Arachnid]
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:
-      chelicerae:
+      headSide:
         - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
           state: inwards
 

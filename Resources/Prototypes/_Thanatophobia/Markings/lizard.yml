@@ -1,12 +1,17 @@
-# # Wings
-# - type: marking
-  # id: LizardWingsDefault
-  # bodyPart: Tail
-  # markingCategory: Tail
-  # sprites:
-  # - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Lizard/wings.rsi
-    # state: wings
-  # coloring:
-    # default:
-      # type:
-        # !type:SkinColoring
+# Wings
+- type: marking
+  id: LizardWingsDefault
+  markingCategory: Wings
+  icon:
+    sprite: Mobs/Customization/tattoos.rsi
+    state: tattoo_hive_chest
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      tail-front:
+      - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Lizard/wings.rsi
+        state: wings
+  coloring:
+    default:
+      type:
+        !type:SkinColoring

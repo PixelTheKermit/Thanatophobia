@@ -1,49 +1,67 @@
-# - type: marking
-  # id: ScarEyeRight
-  # bodyPart: Head
-  # markingCategory: Head
-  # speciesRestriction: [Human, Dwarf]
-  # coloring:
-    # default:
-      # type:
-        # !type:TattooColoring
-      # fallbackColor: "#FFFFFF"
-  # sprites:
-  # - sprite: Mobs/Customization/scars.rsi
-    # state: scar_eye_right
+- type: marking
+  id: ScarEyeRight
+  speciesRestrictions: [Human, Dwarf]
+  coloring:
+    default:
+      type:
+        !type:TattooColoring
+      fallbackColor: "#FFFFFF"
+  icon:
+    sprite: Mobs/Customization/scars.rsi
+    state: scar_eye_right
+  markingCategory: Head
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      head:
+      - sprite: Mobs/Customization/scars.rsi
+        state: scar_eye_right
 
-# - type: marking
-  # id: ScarEyeLeft
-  # bodyPart: Head
-  # markingCategory: Head
-  # speciesRestriction: [Human, Dwarf]
-  # coloring:
-    # default:
-      # type:
-        # !type:TattooColoring
-      # fallbackColor: "#FFFFFF"
-  # sprites:
-  # - sprite: Mobs/Customization/scars.rsi
-    # state: scar_eye_left
+- type: marking
+  id: ScarEyeLeft
+  speciesRestrictions: [Human, Dwarf]
+  icon:
+    sprite: Mobs/Customization/scars.rsi
+    state: scar_eye_left
+  markingCategory: Head
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      head:
+      - sprite: Mobs/Customization/scars.rsi
+        state: scar_eye_left
+  coloring:
+    default:
+      type:
+        !type:TattooColoring
+      fallbackColor: "#FFFFFF"
 
-# - type: marking
-  # id: ScarTopSurgeryShort
-  # bodyPart: Chest
-  # markingCategory: Chest
-  # speciesRestriction: [Human]
-  # sexRestriction: [Male]
-  # followSkinColor: true
-  # sprites:
-  # - sprite: Mobs/Customization/scars.rsi
-    # state: scar_top_surgery_short
+- type: marking
+  id: ScarTopSurgeryShort
+  speciesRestrictions: [Human]
+  sexRestriction: [Male]
+  icon:
+    sprite: Mobs/Customization/scars.rsi
+    state: scar_top_surgery_short
+  markingCategory: Chest
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/scars.rsi
+        state: scar_top_surgery_short
 
-# - type: marking
-  # id: ScarTopSurgeryLong
-  # bodyPart: Chest
-  # markingCategory: Chest
-  # speciesRestriction: [Human]
-  # sexRestriction: [Male]
-  # followSkinColor: true
-  # sprites:
-  # - sprite: Mobs/Customization/scars.rsi
-    # state: scar_top_surgery_long
+- type: marking
+  id: ScarTopSurgeryLong
+  speciesRestrictions: [Human]
+  sexRestriction: [Male]
+  icon:
+    sprite: Mobs/Customization/scars.rsi
+    state: scar_top_surgery_long
+  markingCategory: Chest
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/scars.rsi
+        state: scar_top_surgery_long

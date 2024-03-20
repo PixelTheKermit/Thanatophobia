@@ -230,13 +230,13 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             if (traitPrototype.MarkingId != null
             && _prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
             {
-                // var colors = MarkingColoring.GetMarkingLayerColors(markingProto, Humanoid.Appearance.SkinColor, Humanoid.Appearance.EyeColor, new MarkingSet());
-                // var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
+                var colors = MarkingColoring.GetMarkingLayerColors(markingProto, Humanoid.Appearance.SkinColor, Humanoid.Appearance.EyeColor, new MarkingSet());
+                var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
 
-                // for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
-                //     dictColors[i] = traitPrototype.MarkingColours[i];
+                for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
+                    dictColors[i] = traitPrototype.MarkingColours[i];
 
-                // _appearanceSystem.AddMarking(_previewDummy.Value, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
+                _appearanceSystem.AddMarking(_previewDummy.Value, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
             }
 
             if (!fullUpdate)
