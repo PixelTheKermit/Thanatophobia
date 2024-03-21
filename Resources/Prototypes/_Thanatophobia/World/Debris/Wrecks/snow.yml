@@ -34,7 +34,7 @@
       - id: TPSalvageSnowMobSpawner
         prob: 0.7
   - type: IFF
-    color: "#dadaff"
+    color: "#ccccff"
 
 - type: entity
   id: TPScrapSnowDebrisSmall

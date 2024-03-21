@@ -1,0 +1,35 @@
+- type: entity
+  id: TPMobFleshJaredSalvage
+  parent: MobFleshJaredSalvage
+  noSpawn: true
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+
+- type: entity
+  id: TPMobFleshGolemSalvage
+  parent: MobFleshGolemSalvage
+  noSpawn: true
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+
+- type: entity
+  id: TPMobFleshClampSalvage
+  parent: MobFleshClampSalvage
+  noSpawn: true
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+
+- type: entity
+  id: TPMobFleshLoverSalvage
+  parent: MobFleshLoverSalvage
+  noSpawn: true
+  components:
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound

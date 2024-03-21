@@ -1,9 +1,27 @@
-# Note for any future coders: I don't know either.
-# This shit is hella confusing.
+- type: noiseChannel
+  id: TPDensity
+  remapTo0Through1: true
+  inputMultiplier: 0
+  outputMultiplier: 0
+  minimum: 10
+
+- type: noiseChannel
+  id: TPDefaultNoise
+  noiseType: Perlin
+  remapTo0Through1: true
+  fractalType: FBm
+  inputMultiplier: 1
 
 - type: noiseChannel
   id: TPTemperature
-  noiseType: OpenSimplex2
-  fractalType: PingPong
-  inputMultiplier: 0.25
+  noiseType: Perlin
   remapTo0Through1: true
+  fractalType: PingPong
+  inputMultiplier: 0.01
+
+- type: noiseChannel
+  id: TPWetness
+  noiseType: Perlin
+  remapTo0Through1: true
+  fractalType: PingPong
+  inputMultiplier: 0.01

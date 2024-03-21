@@ -1,0 +1,59 @@
+- type: hotfixBiome
+  id: Standard
+  noiseRanges:
+    TPTemperature:
+    - 0, 1
+    TPWetness:
+    - 0, 1
+  debris:
+  - id: TPAsteroidDebrisSmall
+  - id: TPAsteroidDebrisMedium
+  - id: TPAsteroidDebrisLarge
+    prob: 0.7
+  - id: TPAsteroidDebrisLarger
+    prob: 0.4
+
+- type: hotfixBiome
+  id: Sand
+  noiseRanges:
+    TPTemperature:
+    - .4, 1
+    TPWetness:
+    - 0, .4
+  debris:
+  - id: TPAsteroidSandDebrisSmall
+  - id: TPAsteroidSandDebrisMedium
+  - id: TPAsteroidSandDebrisLarge
+    prob: 0.7
+  - id: TPAsteroidSandDebrisLarger
+    prob: 0.4
+
+- type: hotfixBiome
+  id: Ice
+  noiseRanges:
+    TPTemperature:
+    - 0, .4
+    TPWetness:
+    - .4, 1
+  debris:
+  - id: TPAsteroidSnowDebrisSmall
+  - id: TPAsteroidSnowDebrisMedium
+  - id: TPAsteroidSnowDebrisLarge
+    prob: 0.7
+  - id: TPAsteroidSnowDebrisLarger
+    prob: 0.4
+
+- type: hotfixBiome
+  id: Meat
+  noiseRanges:
+    TPTemperature:
+    - .7, 1
+    TPWetness:
+    - .6, 1
+  debris:
+  - id: TPAsteroidFleshDebrisSmall
+  - id: TPAsteroidFleshDebrisMedium
+  - id: TPAsteroidFleshDebrisLarge
+    prob: 0.7
+  - id: TPAsteroidFleshDebrisLarger
+    prob: 0.4

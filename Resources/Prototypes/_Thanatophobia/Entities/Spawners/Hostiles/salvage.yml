@@ -1,5 +1,4 @@
 - type: entity
-  name: Salvage Mob Spawner
   id: TPSalvageBasicMobSpawner
   parent: MarkerBase
   noSpawn: true
@@ -21,7 +20,6 @@
 
 
 - type: entity
-  name: Salvage Mob Spawner
   id: TPSalvageSnowMobSpawner
   parent: MarkerBase
   noSpawn: true
@@ -38,7 +36,6 @@
     offset: 0.2
 
 - type: entity
-  name: Salvage Mob Spawner
   id: TPSalvageSandMobSpawner
   parent: MarkerBase
   noSpawn: true
@@ -55,4 +52,21 @@
     - MobSpiderSpace
     - MobKangarooSpace
     chance: 0.3
+    offset: 0.2
+
+- type: entity
+  id: TPSalvageFleshSpawner
+  parent: MarkerBase
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - TPMobFleshJaredSalvage
+    - TPMobFleshGolemSalvage
+    - TPMobFleshClampSalvage
+    - TPMobFleshLoverSalvage
+    chance: 0.4
     offset: 0.2

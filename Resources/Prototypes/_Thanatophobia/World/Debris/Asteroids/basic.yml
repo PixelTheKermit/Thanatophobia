@@ -35,6 +35,9 @@
           - id: WallRockUranium
             prob: 0.1
             orGroup: rock
+          - id: WallRockCoal
+            prob: 0.15
+            orGroup: rock
           - id: WallRockArtifactFragment
             prob: 0.025
             orGroup: rock

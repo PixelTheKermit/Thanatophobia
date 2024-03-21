@@ -1,0 +1,45 @@
+- type: entity
+  id: TPWallRockSnowIce
+  parent: WallRockSnow
+  description: An ore vein rich with ice.
+  suffix: Ice
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: TPIceCube
+    - type: Sprite
+      layers:
+      - state: rock_snow
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_snow_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_snow_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_snow_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_snow_west
+      - state: rock_quartz # THAT'S RIGHT IT'S ACTUALLY QUARTZ BUT BLUE! GET TROLLED!
+        color: "#AACCFF"
+
+- type: entity
+  id: TPWallRockSnowIceAmmonia
+  parent: WallRockSnow
+  description: An ore vein rich with ice.
+  suffix: Ice, Ammonia
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: TPIceCubeAmmonia
+    - type: Sprite
+      layers:
+      - state: rock_snow
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_snow_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_snow_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_snow_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_snow_west
+      - state: rock_quartz
+        color: "#AAEEDD"

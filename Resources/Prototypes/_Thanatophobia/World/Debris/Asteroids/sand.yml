@@ -32,6 +32,9 @@
           - id: WallRockSandPlasma
             prob: 0.125
             orGroup: rock
+          - id: WallRockSandCoal
+            prob: 0.2
+            orGroup: rock
           - id: WallRockSandUranium
             prob: 0.1
             orGroup: rock

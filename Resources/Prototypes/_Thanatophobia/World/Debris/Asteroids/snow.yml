@@ -15,7 +15,13 @@
       entries:
         FloorSnow:
           - id: WallRockSnow
-            prob: 0.5
+            prob: 0.2
+            orGroup: rock
+          - id: TPWallRockSnowIce
+            prob: 0.2
+            orGroup: rock
+          - id: TPWallRockSnowIceAmmonia
+            prob: 0.2
             orGroup: rock
           - id: WallRockSnowTin
             prob: 0.125
@@ -28,6 +34,9 @@
             orGroup: rock
           - id: WallRockSnowSilver
             prob: 0.125
+            orGroup: rock
+          - id: WallRockSnowCoal
+            prob: 0.1
             orGroup: rock
           - id: WallRockSnowPlasma
             prob: 0.125

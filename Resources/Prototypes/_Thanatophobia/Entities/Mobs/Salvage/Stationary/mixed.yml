@@ -1,6 +1,7 @@
 - type: entity
   id: TPMobCarpSalvage
   parent: MobCarp
+  noSpawn: true
   components:
   - type: HTN
     rootTask:
@@ -9,6 +10,7 @@
 - type: entity
   id: TPMobTickSalvage
   parent: MobTickSalvage
+  noSpawn: true
   components:
   - type: HTN
     rootTask:
@@ -17,6 +19,7 @@
 - type: entity
   id: TPMobShark
   parent: MobShark
+  noSpawn: true
   components:
   - type: HTN
     rootTask:

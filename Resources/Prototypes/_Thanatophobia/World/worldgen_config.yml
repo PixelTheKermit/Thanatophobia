@@ -5,7 +5,5 @@
   - type: BiomeSelection
     biomes:
     - TPTheVoid # The void consumes.
-    - TPAsteroidsSand
-    - TPAsteroidsSnow
     - TPAsteroidsStandard
   - type: WorldShipSpawner
