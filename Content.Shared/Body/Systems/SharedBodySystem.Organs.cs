@@ -196,34 +196,4 @@ public partial class SharedBodySystem
         comps = null;
         return false;
     }
-
-    /// <summary>
-    /// Gets all BaseContainers for body parts on this entity and its child entities.
-    /// </summary>
-    public IEnumerable<BaseContainer> GetOrganContainers(EntityUid id, BodyPartComponent? part = null)
-    {
-        if (!Resolve(id, ref part, false) ||
-            part.Children.Count == 0)
-        {
-            yield break;
-        }
-
-        foreach (var slotId in part.Children.Keys)
-        {
-            var containerSlotId = GetOrganContainerId(slotId);
-
-            if (!Containers.TryGetContainer(id, containerSlotId, out var container))
-                continue;
-
-            yield return container;
-
-            foreach (var ent in container.ContainedEntities)
-            {
-                foreach (var childContainer in GetOrganContainers(ent))
-                {
-                    yield return childContainer;
-                }
-            }
-        }
-    }
 }

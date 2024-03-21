@@ -196,6 +196,49 @@ public partial class SharedBodySystem
         }
     }
 
+    private IEnumerable<BaseContainer> GetOrganContainers(EntityUid id, BodyPartComponent? part = null)
+    {
+        if (!Resolve(id, ref part, false) ||
+            part.Organs.Count == 0)
+        {
+            yield break;
+        }
+
+        foreach (var slotId in part.Organs.Keys)
+        {
+            var containerSlotId = GetOrganContainerId(slotId);
+
+            if (!Containers.TryGetContainer(id, containerSlotId, out var container))
+                continue;
+
+            yield return container;
+        }
+    }
+
+    public IEnumerable<BaseContainer> GetBodyWithOrganContainers(EntityUid id, BodyComponent? body = null,
+        BodyPartComponent? rootPart = null)
+    {
+        if (!Resolve(id, ref body, false) ||
+            body.RootContainer.ContainedEntity == null ||
+            !Resolve(body.RootContainer.ContainedEntity.Value, ref rootPart))
+        {
+            yield break;
+        }
+
+        yield return body.RootContainer;
+
+        foreach (var childContainer in GetPartContainers(body.RootContainer.ContainedEntity.Value, rootPart))
+        {
+            if (childContainer.ContainedEntities.Count > 0)
+            {
+                foreach (var organContainer in GetOrganContainers(childContainer.ContainedEntities[0]))
+                    yield return organContainer;
+            }
+
+            yield return childContainer;
+        }
+    }
+
     /// <summary>
     /// Gets all body containers on this entity including the root one.
     /// </summary>
