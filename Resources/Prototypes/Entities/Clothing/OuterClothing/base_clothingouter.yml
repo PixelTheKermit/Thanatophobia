@@ -50,7 +50,7 @@
   components:
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterDefault
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -83,7 +83,7 @@
         Heat: 0.90
         Radiation: 0.25
   - type: ToggleableClothing
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -119,7 +119,7 @@
   components:
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterDefault
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

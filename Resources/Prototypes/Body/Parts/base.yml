@@ -23,6 +23,7 @@
   id: BaseTorso
   name: "torso"
   parent: BasePart
+  description: It's where the other vital but less important organs are. You should probably keep this chest shut.
   abstract: true
   components:
   - type: BodyPart
@@ -32,6 +33,7 @@
   id: BaseHead
   name: "head"
   parent: BasePart
+  description: Don't get ahead of yourself.
   abstract: true
   components:
   - type: BodyPart
@@ -47,6 +49,7 @@
   id: BaseLeftArm
   name: "left arm"
   parent: BasePart
+  description: You should arm yourself.
   abstract: true
   components:
   - type: BodyPart
@@ -57,6 +60,7 @@
   id: BaseRightArm
   name: "right arm"
   parent: BasePart
+  description: You should arm yourself.
   abstract: true
   components:
   - type: BodyPart
@@ -67,6 +71,7 @@
   id: BaseLeftHand
   name: "left hand"
   parent: BasePart
+  description: Need a hand?
   abstract: true
   components:
   - type: BodyPart
@@ -77,6 +82,7 @@
   id: BaseRightHand
   name: "right hand"
   parent: BasePart
+  description: Need a hand?
   abstract: true
   components:
   - type: BodyPart
@@ -87,6 +93,7 @@
   id: BaseLeftLeg
   name: "left leg"
   parent: BasePart
+  description: An arm for your feet.
   abstract: true
   components:
   - type: BodyPart
@@ -98,6 +105,7 @@
   id: BaseRightLeg
   name: "right leg"
   parent: BasePart
+  description: An arm for your feet.
   abstract: true
   components:
   - type: BodyPart
@@ -109,6 +117,7 @@
   id: BaseLeftFoot
   name: "left foot"
   parent: BasePart
+  description: Could you imagine these being just another pair of hands?
   abstract: true
   components:
   - type: BodyPart
@@ -119,6 +128,7 @@
   id: BaseRightFoot
   name: "right foot"
   parent: BasePart
+  description: Could you imagine these being just another pair of hands?
   abstract: true
   components:
   - type: BodyPart

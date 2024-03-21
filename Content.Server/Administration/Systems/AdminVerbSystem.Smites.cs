@@ -518,8 +518,8 @@ public sealed partial class AdminVerbSystem
                 {
                     var ears = Spawn("ClothingHeadHatCatEars", Transform(args.Target).Coordinates);
                     EnsureComp<UnremoveableComponent>(ears);
-                    _inventorySystem.TryUnequip(args.Target, "head", true, true, false, inventory);
-                    _inventorySystem.TryEquip(args.Target, ears, "head", true, true, false, inventory);
+                    _inventorySystem.TryUnequip(args.Target, "hat", true, true, false, inventory);
+                    _inventorySystem.TryEquip(args.Target, ears, "hat", true, true, false, inventory);
                 },
                 Impact = LogImpact.Extreme,
                 Message = Loc.GetString("admin-smite-nyanify-description")

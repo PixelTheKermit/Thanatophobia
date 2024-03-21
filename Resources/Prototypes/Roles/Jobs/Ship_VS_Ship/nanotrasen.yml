@@ -21,7 +21,7 @@
 - type: startingGear
   id: RepairmanNTGear
   equipment:
-    head: ClothingHeadHatHardhatYellow
+    hat: ClothingHeadHatHardhatYellow
     jumpsuit: ClothingUniformJumpsuitRepairmanNT
     back: ClothingBackpackEngineeringFilled
     shoes: ClothingShoesBootsWork
@@ -55,7 +55,7 @@
 - type: startingGear
   id: ChiefEngineerNTGear
   equipment:
-    head: ClothingHeadHatHardhatArmored
+    hat: ClothingHeadHatHardhatArmored
     jumpsuit: ClothingUniformJumpsuitChiefEngineerNT
     back: ClothingBackpackFilled #Again, the regular sprite here looks way worse than the regular backpack.
     shoes: ClothingShoesBootsJack

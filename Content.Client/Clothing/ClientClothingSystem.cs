@@ -28,7 +28,7 @@ public sealed class ClientClothingSystem : ClothingSystem
     /// </summary>
     private static readonly Dictionary<string, string> TemporarySlotMap = new()
     {
-        {"head", "HELMET"},
+        {"hat", "HELMET"},
         {"eyes", "EYES"},
         {"ears", "EARS"},
         {"mask", "MASK"},
@@ -73,7 +73,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         }
 
         // No clothing equipped -> make sure the layer is hidden, though this should already be handled by on-unequip.
-        if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.StencilMask, out var layer))
+        if (args.Sprite.LayerMapTryGet("stencilMask", out var layer))
         {
             DebugTools.Assert(!args.Sprite[layer].Visible);
             args.Sprite.LayerSetVisible(layer, false);
@@ -182,7 +182,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         // Hide jumpsuit mask layer.
         if (args.Slot == Jumpsuit
             && TryComp(uid, out SpriteComponent? sprite)
-            && sprite.LayerMapTryGet(HumanoidVisualLayers.StencilMask, out var maskLayer))
+            && sprite.LayerMapTryGet("stencilMask", out var maskLayer))
         {
                 sprite.LayerSetVisible(maskLayer, false);
         }
@@ -319,7 +319,7 @@ public sealed class ClientClothingSystem : ClothingSystem
     /// <param name="clothing">Clothing component, to get mask sprite type</param>
     private void SetGenderedMask(EntityUid uid, SpriteComponent sprite, ClothingComponent clothing)
     {
-        if (!sprite.LayerMapTryGet(HumanoidVisualLayers.StencilMask, out var layer))
+        if (!sprite.LayerMapTryGet("stencilMask", out var layer))
             return;
 
         ClothingMask mask;

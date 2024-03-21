@@ -22,7 +22,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMime
     back: ClothingBackpackMimeFilled
-    head: ClothingHeadHatBeret
+    hat: ClothingHeadHatBeret
     belt: ClothingBeltSuspenders
     gloves: ClothingHandsGlovesLatex
     shoes: ClothingShoesColorWhite

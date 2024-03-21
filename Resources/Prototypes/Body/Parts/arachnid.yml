@@ -29,6 +29,13 @@
         Quantity: 10
       - ReagentId: CopperBlood
         Quantity: 20
+  - type: BodyPartVisualiser
+    sprites:
+      chest:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "torso_m"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: HeadArachnid
@@ -45,6 +52,13 @@
         Quantity: 5
       - ReagentId: CopperBlood
         Quantity: 10
+  - type: BodyPartVisualiser
+    sprites:
+      head:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: head_m
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftArmArachnid
@@ -54,6 +68,13 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "l_arm"
+  - type: BodyPartVisualiser
+    sprites:
+      l-arm:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "l_arm"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightArmArachnid
@@ -63,6 +84,13 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "r_arm"
+  - type: BodyPartVisualiser
+    sprites:
+      r-arm:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "r_arm"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftHandArachnid
@@ -70,8 +98,15 @@
   parent: [PartArachnid, BaseLeftHand]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Objects/Body/Parts/Species/arachnid.rsi
     state: "l_hand"
+  - type: BodyPartVisualiser
+    sprites:
+      l-hand:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "l_hand"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightHandArachnid
@@ -79,8 +114,15 @@
   parent: [PartArachnid, BaseRightHand]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Objects/Body/Parts/Species/arachnid.rsi
     state: "r_hand"
+  - type: BodyPartVisualiser
+    sprites:
+      r-hand:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "r_hand"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftLegArachnid
@@ -91,6 +133,13 @@
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "l_leg"
   - type: MovementBodyPart
+  - type: BodyPartVisualiser
+    sprites:
+      l-leg:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "l_leg"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightLegArachnid
@@ -101,6 +150,13 @@
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "r_leg"
   - type: MovementBodyPart
+  - type: BodyPartVisualiser
+    sprites:
+      r-leg:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "r_leg"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftFootArachnid
@@ -110,6 +166,13 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "l_foot"
+  - type: BodyPartVisualiser
+    sprites:
+      l-foot:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "l_foot"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightFootArachnid
@@ -119,3 +182,10 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "r_foot"
+  - type: BodyPartVisualiser
+    sprites:
+      r-foot:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "r_foot"
+        colouringType: !type:PartUseSkin

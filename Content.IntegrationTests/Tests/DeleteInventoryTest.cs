@@ -36,7 +36,7 @@ namespace Content.IntegrationTests.Tests
                 sysManager.GetEntitySystem<ClothingSystem>().SetSlots(child, SlotFlags.HEAD, item);
 
                 // Equip item.
-                Assert.That(invSystem.TryEquip(container, child, "head"), Is.True);
+                Assert.That(invSystem.TryEquip(container, child, "hat"), Is.True);
 
                 // Delete parent.
                 entMgr.DeleteEntity(container);

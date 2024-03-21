@@ -23,3 +23,20 @@
     groups:
       - id: Food
       - id: Drink
+
+- type: entity
+  id: OrganMothEyes
+  parent: OrganHumanEyes
+  noSpawn: true # noSpawn until moths get their own eyeball sprites.
+  components:
+  - type: Sprite
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: BodyPartVisualiser
+    sprites:
+      eyes:
+      - sprite:
+          sprite: Mobs/Species/Moth/parts.rsi
+          state: "eyes"
+        colouringType: !type:PartUseEyes

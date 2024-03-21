@@ -216,7 +216,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             _previewDummy = _entityManager.SpawnEntity(dollProto, MapCoordinates.Nullspace);
         }
 
-        _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, Humanoid);
+        _entityManager.System<SharedHumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, Humanoid);
 
         if (_showClothes && fullUpdate)
             LobbyCharacterPreviewPanel.GiveDummyJobClothes(_previewDummy.Value, Humanoid);
@@ -254,7 +254,8 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         if (_entityManager.TryGetComponent<SpriteComponent>(_previewDummy, out var spriteComp)
         && _entityManager.TryGetComponent<HumanoidAppearanceComponent>(_previewDummy, out var appearanceComp))
         {
-            _appearanceSystem.UpdateSprite(appearanceComp, spriteComp);
+            _entityManager.System<SharedHumanoidAppearanceSystem>().UpdatePartVisuals(_previewDummy.Value, appearanceComp, overrideColours: true);
+            _appearanceSystem.UpdateSprite(_previewDummy.Value, appearanceComp, spriteComp);
         }
 
         _spriteView.SetEntity(_previewDummy);

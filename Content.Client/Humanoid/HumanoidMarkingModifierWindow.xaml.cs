@@ -18,24 +18,14 @@ public sealed partial class HumanoidMarkingModifierWindow : DefaultWindow
     public Action<MarkingSet>? OnMarkingRemoved;
     public Action<MarkingSet>? OnMarkingColorChange;
     public Action<MarkingSet>? OnMarkingRankChange;
-    public Action<HumanoidVisualLayers, CustomBaseLayerInfo?>? OnLayerInfoModified;
     private readonly IPrototypeManager _protoMan = default!;
 
-    private readonly Dictionary<HumanoidVisualLayers, HumanoidBaseLayerModifier> _modifiers = new();
+    private readonly Dictionary<string, HumanoidBaseLayerModifier> _modifiers = new();
 
     public HumanoidMarkingModifierWindow()
     {
         RobustXamlLoader.Load(this);
         _protoMan = IoCManager.Resolve<IPrototypeManager>();
-
-        foreach (var layer in Enum.GetValues<HumanoidVisualLayers>())
-        {
-            var modifier = new HumanoidBaseLayerModifier(layer);
-            BaseLayersContainer.AddChild(modifier);
-            _modifiers.Add(layer, modifier);
-
-            modifier.OnStateChanged += () => OnStateChanged(layer, modifier);
-        }
 
         MarkingPickerWidget.OnMarkingAdded += set => OnMarkingAdded!(set);
         MarkingPickerWidget.OnMarkingRemoved += set => OnMarkingRemoved!(set);
@@ -47,43 +37,14 @@ public sealed partial class HumanoidMarkingModifierWindow : DefaultWindow
         MarkingPickerWidget.Forced = MarkingForced.Pressed;
         MarkingPickerWidget.IgnoreSpecies = MarkingForced.Pressed;
     }
-
-    private void OnStateChanged(HumanoidVisualLayers layer, HumanoidBaseLayerModifier modifier)
-    {
-        if (!modifier.Enabled)
-        {
-            OnLayerInfoModified?.Invoke(layer, null);
-            return;
-        }
-
-        string? state = _protoMan.HasIndex<HumanoidSpeciesSpriteLayer>(modifier.Text) ? modifier.Text : null;
-        OnLayerInfoModified?.Invoke(layer, new CustomBaseLayerInfo(state, modifier.Color));
-    }
     public void SetState(
         MarkingSet markings,
         string species,
         Sex sex,
         Color skinColor,
-        Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> info
+        Color eyesColor
     )
     {
-        foreach (var (layer, modifier) in _modifiers)
-        {
-            if (!info.TryGetValue(layer, out var layerInfo))
-            {
-                modifier.SetState(false, string.Empty, Color.White);
-                continue;
-            }
-
-            modifier.SetState(true, layerInfo.Id ?? string.Empty, layerInfo.Color ?? Color.White);
-        }
-
-        var eyesColor = Color.White;
-        if (info.TryGetValue(HumanoidVisualLayers.Eyes, out var eyes) && eyes.Color != null)
-        {
-            eyesColor = eyes.Color.Value;
-        }
-
         MarkingPickerWidget.SetData(markings, species, sex, skinColor, eyesColor);
     }
 
@@ -100,7 +61,7 @@ public sealed partial class HumanoidMarkingModifierWindow : DefaultWindow
 
         public Action? OnStateChanged;
 
-        public HumanoidBaseLayerModifier(HumanoidVisualLayers layer)
+        public HumanoidBaseLayerModifier(string layer)
         {
             HorizontalExpand = true;
             Orientation = LayoutOrientation.Vertical;

@@ -28,11 +28,11 @@ public sealed partial class MarkingPicker : Control
 
     private ItemList.Item? _selectedMarking;
     private ItemList.Item? _selectedUnusedMarking;
-    private MarkingCategories _selectedMarkingCategory = MarkingCategories.Chest;
+    private string _selectedMarkingCategory = "Chest";
 
     private MarkingSet _currentMarkings = new();
 
-    private List<MarkingCategories> _markingCategories = Enum.GetValues<MarkingCategories>().ToList();
+    private List<string> _markingCategories = new();
 
     private string _currentSpecies = SharedHumanoidAppearanceSystem.DefaultSpecies;
     private Sex _currentSex = Sex.Unsexed;
@@ -41,23 +41,18 @@ public sealed partial class MarkingPicker : Control
     public Marking? HairMarking;
     public Marking? FacialHairMarking;
 
-    private readonly HashSet<MarkingCategories> _ignoreCategories = new();
+    private readonly HashSet<string> _ignoreCategories = new();
 
     public string IgnoreCategories
     {
-        get => string.Join(',',  _ignoreCategories);
+        get => string.Join(',', _ignoreCategories);
         set
         {
             _ignoreCategories.Clear();
             var split = value.Split(',');
             foreach (var category in split)
             {
-                if (!Enum.TryParse(category, out MarkingCategories categoryParse))
-                {
-                    continue;
-                }
-
-                _ignoreCategories.Add(categoryParse);
+                _ignoreCategories.Add(category);
             }
 
             SetupCategoryButtons();
@@ -94,6 +89,7 @@ public sealed partial class MarkingPicker : Control
         CurrentSkinColor = skinColor;
         CurrentEyeColor = eyeColor;
 
+        SetupCategoryButtons();
         Populate(CMarkingSearch.Text);
         PopulateUsed();
     }
@@ -112,6 +108,7 @@ public sealed partial class MarkingPicker : Control
         CurrentSkinColor = skinColor;
         CurrentEyeColor = eyeColor;
 
+        SetupCategoryButtons();
         Populate(CMarkingSearch.Text);
         PopulateUsed();
     }
@@ -125,7 +122,7 @@ public sealed partial class MarkingPicker : Control
         IoCManager.InjectDependencies(this);
 
         SetupCategoryButtons();
-        CMarkingCategoryButton.OnItemSelected +=  OnCategoryChange;
+        CMarkingCategoryButton.OnItemSelected += OnCategoryChange;
         CMarkingsUnused.OnItemSelected += item =>
             _selectedUnusedMarking = CMarkingsUnused[item.ItemIndex];
 
@@ -146,16 +143,38 @@ public sealed partial class MarkingPicker : Control
     private void SetupCategoryButtons()
     {
         CMarkingCategoryButton.Clear();
+
+        List<string> unsortedCategories = new();
+
+        foreach (var prototype in _prototypeManager.EnumeratePrototypes<MarkingPrototype>())
+        {
+            if (!unsortedCategories.Any(x => x == prototype.MarkingCategory))
+                unsortedCategories.Add(prototype.MarkingCategory);
+        }
+
+        _markingCategories = unsortedCategories.OrderBy(x => Loc.GetString($"markings-category-{x}")).ToList();
+
+        List<string> usedCategories = new();
+
         for (var i = 0; i < _markingCategories.Count; i++)
         {
             if (_ignoreCategories.Contains(_markingCategories[i]))
+                continue;
+
+            if (_prototypeManager.TryIndex<SpeciesPrototype>(_currentSpecies, out var speciesProto) &&
+                _prototypeManager.TryIndex<MarkingPointsPrototype>(speciesProto.MarkingPoints, out var markingPointsProto) &&
+                !markingPointsProto.Points.Any(x => x.Key == _markingCategories[i]))
             {
                 continue;
             }
 
-            CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{_markingCategories[i].ToString()}"), i);
+            CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{_markingCategories[i]}"), i);
+            usedCategories.Add(_markingCategories[i]);
         }
-        CMarkingCategoryButton.SelectId(_markingCategories.IndexOf(_selectedMarkingCategory));
+
+        if (usedCategories.Count != 0)
+            CMarkingCategoryButton.TrySelectId(usedCategories.IndexOf(_selectedMarkingCategory));
+
     }
 
     private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
@@ -163,18 +182,10 @@ public sealed partial class MarkingPicker : Control
     private List<string> GetMarkingStateNames(MarkingPrototype marking)
     {
         List<string> result = new();
-        foreach (var markingState in marking.Sprites)
-        {
-            switch (markingState)
-            {
-                case SpriteSpecifier.Rsi rsi:
-                    result.Add(Loc.GetString($"marking-{marking.ID}-{rsi.RsiState}"));
-                    break;
-                case SpriteSpecifier.Texture texture:
-                    result.Add(Loc.GetString($"marking-{marking.ID}-{texture.TexturePath.Filename}"));
-                    break;
-            }
-        }
+
+        for (var i = 0; i < marking.Function.GetSpriteCount(); i++)
+            result.Add(Loc.GetString($"marking-{marking.ID}-{i}"));
+
 
         return result;
     }
@@ -200,7 +211,7 @@ public sealed partial class MarkingPicker : Control
                 continue;
             }
 
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", marking.Sprites[0].Frame0());
+            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", marking.Icon.Frame0());
             item.Metadata = marking;
         }
 
@@ -234,7 +245,7 @@ public sealed partial class MarkingPicker : Control
             var _item = new ItemList.Item(CMarkingsUsed)
             {
                 Text = text,
-                Icon = newMarking.Sprites[0].Frame0(),
+                Icon = newMarking.Icon.Frame0(),
                 Selectable = true,
                 Metadata = newMarking,
                 IconModulate = marking.MarkingColors[0]
@@ -378,7 +389,8 @@ public sealed partial class MarkingPicker : Control
         _currentMarkingColors.Clear();
         CMarkingColors.DisposeAllChildren();
         List<ColorSelectorSliders> colorSliders = new();
-        for (int i = 0; i < prototype.Sprites.Count; i++)
+
+        for (int i = 0; i < stateNames.Count; i++)
         {
             var colorContainer = new BoxContainer
             {
@@ -419,11 +431,14 @@ public sealed partial class MarkingPicker : Control
 
     private void ColorChanged(int colorIndex)
     {
-        if (_selectedMarking is null) return;
+        if (_selectedMarking is null)
+            return;
+
         var markingPrototype = (MarkingPrototype) _selectedMarking.Metadata!;
         int markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
 
-        if (markingIndex < 0) return;
+        if (markingIndex < 0)
+            return;
 
         _selectedMarking.IconModulate = _currentMarkingColors[colorIndex];
 
@@ -436,28 +451,25 @@ public sealed partial class MarkingPicker : Control
 
     private void MarkingAdd()
     {
-        if (_selectedUnusedMarking is null) return;
-
-        if (_currentMarkings.PointsLeft(_selectedMarkingCategory) == 0 && !Forced)
-        {
+        if (_selectedUnusedMarking is null)
             return;
-        }
+
+        if (_currentMarkings.PointsLeft(_selectedMarkingCategory) <= 0 && !Forced)
+            return;
 
         var marking = (MarkingPrototype) _selectedUnusedMarking.Metadata!;
         var markingObject = marking.AsMarking();
 
         // We need add hair markings in cloned set manually because _currentMarkings doesn't have it
         var markingSet = new MarkingSet(_currentMarkings);
-        if (HairMarking != null)
-        {
-            markingSet.AddBack(MarkingCategories.Hair, HairMarking);
-        }
-        if (FacialHairMarking != null)
-        {
-            markingSet.AddBack(MarkingCategories.FacialHair, FacialHairMarking);
-        }
 
-        if (!_markingManager.MustMatchSkin(_currentSpecies, marking.BodyPart, out var _, _prototypeManager))
+        if (HairMarking != null)
+            markingSet.AddBack("Hair", HairMarking);
+
+        if (FacialHairMarking != null)
+            markingSet.AddBack("FacialHair", FacialHairMarking);
+
+        if (!_markingManager.MustMatchSkin(_currentSpecies, _selectedMarkingCategory, out var _, _prototypeManager))
         {
             // Do default coloring
             var colors = MarkingColoring.GetMarkingLayerColors(
@@ -466,7 +478,7 @@ public sealed partial class MarkingPicker : Control
                 CurrentEyeColor,
                 markingSet
             );
-            for (var i = 0; i < colors.Count; i++)
+            for (var i = 0; i < marking.Function.GetSpriteCount(); i++)
             {
                 markingObject.SetColor(i, colors[i]);
             }
@@ -474,7 +486,7 @@ public sealed partial class MarkingPicker : Control
         else
         {
             // Color everything in skin color
-            for (var i = 0; i < marking.Sprites.Count; i++)
+            for (var i = 0; i < marking.Function.GetSpriteCount(); i++)
             {
                 markingObject.SetColor(i, CurrentSkinColor);
             }
@@ -490,7 +502,7 @@ public sealed partial class MarkingPicker : Control
         var item = new ItemList.Item(CMarkingsUsed)
         {
             Text = Loc.GetString("marking-used", ("marking-name", $"{GetMarkingName(marking)}"), ("marking-category", Loc.GetString($"markings-category-{marking.MarkingCategory}"))),
-            Icon = marking.Sprites[0].Frame0(),
+            Icon = marking.Icon.Frame0(),
             Selectable = true,
             Metadata = marking,
         };
@@ -514,7 +526,7 @@ public sealed partial class MarkingPicker : Control
 
         if (marking.MarkingCategory == _selectedMarkingCategory)
         {
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", marking.Sprites[0].Frame0());
+            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", marking.Icon.Frame0());
             item.Metadata = marking;
         }
         _selectedMarking = null;

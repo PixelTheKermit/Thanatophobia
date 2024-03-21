@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by PixelTheKermit (github) for Thanatophobia, a fork of SS14.",
+  "states": [
+    {
+      "name": "r_hand"
+    },
+    {
+      "name": "l_hand"
+    },
+    {
+      "name": "r_hand_small"
+    },
+    {
+      "name": "l_hand_small"
+    }
+  ]
+}

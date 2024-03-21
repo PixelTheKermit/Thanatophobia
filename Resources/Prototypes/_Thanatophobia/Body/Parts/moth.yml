@@ -5,7 +5,19 @@
   components:
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
-    state: "l-hand-2"
+    state: "l_hand_front_2"
+  - type: BodyPartVisualiser
+    sprites:
+      l-hand2-front:
+      - sprite:
+          sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+          state: "l_hand_front_2"
+        colouringType: !type:PartUseSkin
+      l-hand2-back:
+      - sprite:
+          sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+          state: "l_hand_back_2"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: SecondRightHandMoth
@@ -14,7 +26,19 @@
   components:
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
-    state: "r-hand-2"
+    state: "r_hand_front_2"
+  - type: BodyPartVisualiser
+    sprites:
+      r-hand2-front:
+      - sprite:
+          sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+          state: "r_hand_front_2"
+        colouringType: !type:PartUseSkin
+      r-hand2-back:
+      - sprite:
+          sprite: /Textures/_Thanatophobia/Mobs/Species/Moth/parts.rsi
+          state: "r_hand_back_2"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: StubMoth

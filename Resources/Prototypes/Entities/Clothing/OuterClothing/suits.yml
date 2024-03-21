@@ -116,7 +116,7 @@
   - type: GroupExamine
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodRad
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

@@ -1107,7 +1107,7 @@
       state: monkey
       sprite: Mobs/Animals/monkey.rsi
     - map: [ "jumpsuit" ]
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+    - map: [ "handcuffs" ]
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
@@ -1121,6 +1121,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
+    - map: [ "hat" ]
   - type: Hands
   - type: GenericVisualizer
     visuals:
@@ -1224,7 +1225,7 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SyndicateOperativeGearMonkey]
-  
+
 - type: entity
   id: MobMonkeySyndicateAgent
   parent: MobBaseSyndicateMonkey
@@ -1303,7 +1304,7 @@
     - map: [ "horns" ]
       sprite: Mobs/Customization/reptilian_parts.rsi
       state: horns_short
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+    - map: [ "handcuffs" ]
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
@@ -1316,6 +1317,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
+    - map: [ "hat" ]
   - type: RandomSprite
     getAllGroups: true
     available:

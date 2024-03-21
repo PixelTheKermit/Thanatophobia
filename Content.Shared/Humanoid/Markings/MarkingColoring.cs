@@ -12,13 +12,13 @@ public sealed partial class MarkingColors
     /// Coloring properties that will be used on any unspecified layer
     /// </summary>
     [DataField("default", true)]
-    public LayerColoringDefinition Default = new LayerColoringDefinition();
+    public LayerColoringDefinition Default = new();
 
     /// <summary>
     ///     Layers with their own coloring type and properties
     /// </summary>
     [DataField("layers", true)]
-    public Dictionary<string, LayerColoringDefinition>? Layers;
+    public List<LayerColoringDefinition>? Layers;
 }
 
 public static class MarkingColoring
@@ -42,34 +42,22 @@ public static class MarkingColoring
         if (prototype.Coloring.Layers == null)
         {
             // If layers is not specified, then every layer must be default
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            for (var i = 0; i < prototype.Function.GetSpriteCount(); i++)
             {
                 colors.Add(defaultColor);
             }
+
             return colors;
         }
         else
         {
             // If some layers are specified.
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            for (var i = 0; i < prototype.Function.GetSpriteCount(); i++)
             {
-                // Getting layer name
-                string? name = prototype.Sprites[i] switch
-                {
-                    SpriteSpecifier.Rsi rsi => rsi.RsiState,
-                    SpriteSpecifier.Texture texture => texture.TexturePath.Filename,
-                    _ => null
-                };
-                if (name == null)
-                {
-                    colors.Add(defaultColor);
-                    continue;
-                }
-
                 // All specified layers must be colored separately, all unspecified must depend on default coloring
-                if (prototype.Coloring.Layers.TryGetValue(name, out var layerColoring))
+                if (prototype.Coloring.Layers.Count >= i)
                 {
-                    var marking_color = layerColoring.GetColor(skinColor, eyeColor, markingSet);
+                    var marking_color = prototype.Coloring.Layers[i].GetColor(skinColor, eyeColor, markingSet);
                     colors.Add(marking_color);
                 }
                 else
@@ -111,7 +99,9 @@ public sealed partial class LayerColoringDefinition
             foreach (var type in FallbackTypes)
             {
                 color = type.GetColor(skin, eyes, markingSet);
-                if (color != null) break;
+
+                if (color != null)
+                    break;
             }
         }
         return color ?? FallbackColor;
@@ -137,9 +127,9 @@ public abstract partial class LayerColoringType
         if (color != null && Negative)
         {
             var rcolor = color.Value;
-            rcolor.R = 1f-rcolor.R;
-            rcolor.G = 1f-rcolor.G;
-            rcolor.B = 1f-rcolor.B;
+            rcolor.R = 1f - rcolor.R;
+            rcolor.G = 1f - rcolor.G;
+            rcolor.B = 1f - rcolor.B;
             return rcolor;
         }
         return color;

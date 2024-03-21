@@ -68,12 +68,6 @@ public sealed partial class ZombieComponent : Component
     public string BeforeZombifiedEntityName = string.Empty;
 
     /// <summary>
-    /// The CustomBaseLayers of the humanoid to restore in case of cloning
-    /// </summary>
-    [DataField("beforeZombifiedCustomBaseLayers")]
-    public Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> BeforeZombifiedCustomBaseLayers = new ();
-
-    /// <summary>
     /// The skin color of the humanoid to restore in case of cloning
     /// </summary>
     [DataField("beforeZombifiedSkinColor")]

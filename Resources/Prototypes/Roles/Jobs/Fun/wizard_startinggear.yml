@@ -4,7 +4,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorDarkBlue
     back: ClothingBackpackFilled
-    head: ClothingHeadHatWizard
+    hat: ClothingHeadHatWizard
     outerClothing: ClothingOuterWizard
     shoes: ClothingShoesWizard
     id: PassengerPDA
@@ -18,7 +18,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
     back: ClothingBackpackFilled
-    head: ClothingHeadHatRedwizard
+    hat: ClothingHeadHatRedwizard
     outerClothing: ClothingOuterWizardRed
     shoes: ClothingShoesWizard
     id: PassengerPDA
@@ -32,7 +32,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorPurple
     back: ClothingBackpackFilled
-    head: ClothingHeadHatVioletwizard
+    hat: ClothingHeadHatVioletwizard
     outerClothing: ClothingOuterWizardViolet
     shoes: ClothingShoesWizard
     id: PassengerPDA

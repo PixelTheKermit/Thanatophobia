@@ -36,7 +36,7 @@ public sealed partial class ToggleableClothingComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]
-    public string Slot = "head";
+    public string Slot = "hat";
 
     /// <summary>
     ///     The inventory slot flags required for this component to function.

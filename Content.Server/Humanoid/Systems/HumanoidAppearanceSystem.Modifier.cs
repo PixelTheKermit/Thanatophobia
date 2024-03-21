@@ -12,6 +12,7 @@ public sealed partial class HumanoidAppearanceSystem
 {
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidSystem = default!;
 
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<Verb> args)
     {
@@ -36,10 +37,11 @@ public sealed partial class HumanoidAppearanceSystem
                 _uiSystem.TrySetUiState(
                     uid,
                     HumanoidMarkingModifierKey.Key,
-                    new HumanoidMarkingModifierState(component.MarkingSet, component.Species,
+                    new HumanoidMarkingModifierState(
+                        _humanoidSystem.GetMarkings(uid),
+                        component.Species,
                         component.Sex,
-                        component.SkinColor,
-                        component.CustomBaseLayers
+                        component.SkinColor
                     ));
             }
         });
@@ -54,15 +56,6 @@ public sealed partial class HumanoidAppearanceSystem
             return;
         }
 
-        if (message.Info == null)
-        {
-            component.CustomBaseLayers.Remove(message.Layer);
-        }
-        else
-        {
-            component.CustomBaseLayers[message.Layer] = message.Info.Value;
-        }
-
         Dirty(component);
 
         if (message.ResendState)
@@ -70,11 +63,13 @@ public sealed partial class HumanoidAppearanceSystem
             _uiSystem.TrySetUiState(
                 uid,
                 HumanoidMarkingModifierKey.Key,
-                new HumanoidMarkingModifierState(component.MarkingSet, component.Species,
-                        component.Sex,
-                        component.SkinColor,
-                        component.CustomBaseLayers
-                    ));
+                new HumanoidMarkingModifierState(
+                    _humanoidSystem.GetMarkings(uid),
+                    component.Species,
+                    component.Sex,
+                    component.SkinColor
+                )
+            );
         }
     }
 
@@ -87,18 +82,16 @@ public sealed partial class HumanoidAppearanceSystem
             return;
         }
 
-        component.MarkingSet = message.MarkingSet;
-        Dirty(component);
+        _humanoidSystem.ReplaceMarkings(uid, message.MarkingSet, component: component);
 
         if (message.ResendState)
         {
             _uiSystem.TrySetUiState(
                 uid,
                 HumanoidMarkingModifierKey.Key,
-                new HumanoidMarkingModifierState(component.MarkingSet, component.Species,
+                new HumanoidMarkingModifierState(_humanoidSystem.GetMarkings(uid), component.Species,
                         component.Sex,
-                        component.SkinColor,
-                        component.CustomBaseLayers
+                        component.SkinColor
                     ));
         }
 

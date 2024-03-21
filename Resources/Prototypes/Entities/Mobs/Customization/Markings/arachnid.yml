@@ -1,131 +1,569 @@
 # Chelicerae
 - type: marking
   id: ArachnidCheliceraeDownwards
-  bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+  icon:
+    sprite: Mobs/Customization/Arachnid/chelicerae.rsi
     state: downwards
+  markingCategory: HeadSide
+  speciesRestrictions: [Arachnid]
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      headSide:
+        - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+          state: downwards
 
 - type: marking
   id: ArachnidCheliceraeInwards
-  bodyPart: HeadSide
+  icon:
+    sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+    state: downwards
   markingCategory: HeadSide
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
-    state: inwards
+  speciesRestrictions: [Arachnid]
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      headSide:
+        - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+          state: inwards
 
 # Appendages
 - type: marking
   id: ArachnidAppendagesDefault
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: long_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: long_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesSharp
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: sharp_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: sharp_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/sharp.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesStingers
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: stingers_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: stingers_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/stingers.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesZigZag
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: zigzag_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: zigzag_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/zigzag.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesCurled
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: curled_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: curled_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/curled.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesChipped
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: chipped_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: chipped_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/chipped.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesHarvest
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: harvest_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: harvest_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/harvest.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesShort
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: short_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: short_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/short.rsi
+          state: "right_lower_secondary_back"
 
 - type: marking
   id: ArachnidAppendagesFreaky
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: freaky_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: freaky_secondary
+  icon:
+    sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+    state: "icon"
+  markingCategory: Appendages
+  speciesRestrictions: [Arachnid]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      # Left upper
+      left upper appendage:
+        left-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_upper_secondary_front"
+        left-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_upper_secondary_back"
+      # Right upper
+      right upper appendage:
+        right-appendage-upper-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_upper_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_upper_secondary_front"
+        right-appendage-upper-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_upper_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_upper_secondary_back"
+      # Left lower
+      left lower appendage:
+        left-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_lower_secondary_front"
+        left-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "left_lower_secondary_back"
+      # Right lower
+      right lower appendage:
+        right-appendage-lower-front:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_lower_primary_front"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_lower_secondary_front"
+        right-appendage-lower-back:
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_lower_primary_back"
+        - sprite: Mobs/Customization/Arachnid/Appendages/freaky.rsi
+          state: "right_lower_secondary_back"
 
 # Chest
 - type: marking
   id: ArachnidTorsoStripes
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: stripes
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: stripes
   coloring:
     default:
       type:
@@ -133,12 +571,17 @@
 
 - type: marking
   id: ArachnidTorsoSlashes
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: slashes
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: slashes
   coloring:
     default:
       type:
@@ -146,12 +589,17 @@
 
 - type: marking
   id: ArachnidTorsoX
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: x
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: x
   coloring:
     default:
       type:
@@ -159,12 +607,17 @@
 
 - type: marking
   id: ArachnidTorsoCross
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: cross
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: cross
   coloring:
     default:
       type:
@@ -172,12 +625,17 @@
 
 - type: marking
   id: ArachnidTorsoHeart
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: heart
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: heart
   coloring:
     default:
       type:
@@ -185,12 +643,17 @@
 
 - type: marking
   id: ArachnidTorsoHourglass
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: hourglass
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: hourglass
   coloring:
     default:
       type:
@@ -198,12 +661,17 @@
 
 - type: marking
   id: ArachnidTorsoNailAndHammer
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: nail-and-hammer
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: nail-and-hammer
   coloring:
     default:
       type:
@@ -211,12 +679,17 @@
 
 - type: marking
   id: ArachnidTorsoStar
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: star
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: star
   coloring:
     default:
       type:
@@ -224,12 +697,17 @@
 
 - type: marking
   id: ArachnidTorsoArrows
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: arrows
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: arrows
   coloring:
     default:
       type:
@@ -237,12 +715,17 @@
 
 - type: marking
   id: ArachnidTorsoCore
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: core
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: core
   coloring:
     default:
       type:
@@ -250,12 +733,17 @@
 
 - type: marking
   id: ArachnidTorsoFiddleback
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: fiddleback
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: fiddleback
   coloring:
     default:
       type:
@@ -263,12 +751,17 @@
 
 - type: marking
   id: ArachnidTorsoSkull
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: skull
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: skull
   coloring:
     default:
       type:
@@ -276,12 +769,17 @@
 
 - type: marking
   id: ArachnidTorsoTarget
-  bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/chest.rsi
     state: target
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: target
   coloring:
     default:
       type:
@@ -290,12 +788,17 @@
 # Arms
 - type: marking
   id: ArachnidRArmStripes
-  bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/arms.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/arms.rsi
     state: stripes_right
+  function: !type:AddMarkingFunction
+    bodyPart: right arm
+    sprites:
+      r-arm:
+      - sprite: Mobs/Customization/Arachnid/arms.rsi
+        state: stripes_right
   coloring:
     default:
       type:
@@ -303,12 +806,17 @@
 
 - type: marking
   id: ArachnidLArmStripes
-  bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/arms.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/arms.rsi
     state: stripes_left
+  function: !type:AddMarkingFunction
+    bodyPart: left arm
+    sprites:
+      l-arm:
+      - sprite: Mobs/Customization/Arachnid/arms.rsi
+        state: stripes_left
   coloring:
     default:
       type:
@@ -317,12 +825,17 @@
 # Legs
 - type: marking
   id: ArachnidRLegStripes
-  bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/legs.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/legs.rsi
     state: stripes_right
+  function: !type:AddMarkingFunction
+    bodyPart: right leg
+    sprites:
+      r-leg:
+      - sprite: Mobs/Customization/Arachnid/legs.rsi
+        state: stripes_right
   coloring:
     default:
       type:
@@ -330,25 +843,33 @@
 
 - type: marking
   id: ArachnidLLegStripes
-  bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/legs.rsi
+  speciesRestrictions: [Arachnid]
+  icon:
+    sprite: Mobs/Customization/Arachnid/legs.rsi
     state: stripes_left
+  function: !type:AddMarkingFunction
+    bodyPart: left leg
+    sprites:
+      l-leg:
+      - sprite: Mobs/Customization/Arachnid/legs.rsi
+        state: stripes_left
   coloring:
     default:
       type:
         !type:EyeColoring
 
-# Overlay
-- type: marking
-  id: ArachnidOverlayFuzzy
-  bodyPart: Chest
-  markingCategory: Overlay
-  forcedColoring: true
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/overlay.rsi
-    state: fuzzy
+# IMPORTANT: Uhh overlays may not work... uhoh.
+# Someone else can fix this lol.
+
+# # Overlay
+# - type: marking
+  # id: ArachnidOverlayFuzzy
+  # bodyPart: chest
+  # markingCategory: Overlay
+  # forcedColoring: true
+  # speciesRestriction: [Arachnid]
+  # sprites:
+  # - sprite: Mobs/Customization/Arachnid/overlay.rsi
+    # state: fuzzy
 

@@ -156,7 +156,7 @@
     clothingPrototype: ClothingHeadHatHoodGoliathCloak
     requiredSlot:
     - neck
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -182,7 +182,7 @@
     clothingPrototype: ClothingHeadHatHoodMoth
     requiredSlot:
     - neck
-    slot: head
+    slot: hat
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

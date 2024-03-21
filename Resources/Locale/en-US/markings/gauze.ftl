@@ -37,26 +37,26 @@ marking-GauzeBoxerWrapRight = Gauze Handwrap (Right)
 marking-GauzeUpperLegLeft-gauze_upperleg_l = Gauze Thigh Wrap (Left)
 marking-GauzeUpperLegLeft = Gauze Thigh Wrap (Left)
 
-marking-GauzeLowerLegRight-gauze_lowerleg_r = Gauze Ankle Wrap (Right)
+marking-GauzeLowerLegRight-0 = Gauze Ankle Wrap (Right)
 marking-GauzeLowerLegRight = Gauze Ankle Wrap (Right)
 
-marking-GauzeUpperLegRight-gauze_upperleg_r = Gauze Thigh Wrap (Right)
+marking-GauzeUpperLegRight-0 = Gauze Thigh Wrap (Right)
 marking-GauzeUpperLegRight = Gauze Thigh Wrap (Right)
 
-marking-GauzeBlindfold-gauze_blindfold = Gauze Blindfold
+marking-GauzeBlindfold-0 = Gauze Blindfold
 marking-GauzeBlindfold = Gauze Blindfold
 
-marking-GauzeLizardBlindfold-gauze_lizardblindfold = Gauze Blindfold
+marking-GauzeLizardBlindfold-0 = Gauze Blindfold
 marking-GauzeLizardBlindfold = Gauze Blindfold
 
-marking-GauzeLizardFootRight-gauze_lizardfoot_r = Gauze Foot Wrap (Right)
+marking-GauzeLizardFootRight-0 = Gauze Foot Wrap (Right)
 marking-GauzeLizardFootRight = Gauze Foot Wrap (Right)
 
-marking-GauzeLizardFootLeft-gauze_lizardfoot_l = Gauze Foot Wrap (Left)
+marking-GauzeLizardFootLeft-0 = Gauze Foot Wrap (Left)
 marking-GauzeLizardFootLeft = Gauze Foot Wrap (Left)
 
-marking-GauzeLizardLefteyePatch-gauze_lizardlefteye = Adjusted Gauze eyepatch (Left)
+marking-GauzeLizardLefteyePatch-0 = Adjusted Gauze eyepatch (Left)
 marking-GauzeLizardLefteyePatch = Adjusted Gauze eyepatch (Left)
 
-marking-GauzeLizardRighteyePatch-gauze_lizardrighteye = Adjusted Gauze eyepatch (Right)
+marking-GauzeLizardRighteyePatch-0 = Adjusted Gauze eyepatch (Right)
 marking-GauzeLizardRighteyePatch = Adjusted Gauze Eyepatch (Right)
