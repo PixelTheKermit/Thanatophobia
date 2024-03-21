@@ -1640,7 +1640,7 @@
   id: HumanHairPonytail5
   icon:
     sprite: Mobs/Customization/human_hair.rsi
-    state:
+    state: ponytail5
   markingCategory: Hair
   function: !type:AddMarkingFunction
     bodyPart: head
