@@ -276,7 +276,7 @@ namespace Content.Client.Preferences.UI
                 if (Profile is null)
                     return;
 
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, Profile.Species).Keys
+                var hair = _markingManager.MarkingsByCategoryAndSpecies("Hair", Profile.Species).Keys
                     .FirstOrDefault();
 
                 if (string.IsNullOrEmpty(hair))
@@ -296,7 +296,7 @@ namespace Content.Client.Preferences.UI
                 if (Profile is null)
                     return;
 
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, Profile.Species).Keys
+                var hair = _markingManager.MarkingsByCategoryAndSpecies("FacialHair", Profile.Species).Keys
                     .FirstOrDefault();
 
                 if (string.IsNullOrEmpty(hair))
@@ -1004,7 +1004,7 @@ namespace Content.Client.Preferences.UI
             {
                 if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, hairProto, _prototypeManager))
                 {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
+                    if (_markingManager.MustMatchSkin(Profile.Species, "Hair", out var _, _prototypeManager))
                     {
                         hairColor = Profile.Appearance.SkinColor;
                     }
@@ -1039,7 +1039,7 @@ namespace Content.Client.Preferences.UI
             {
                 if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
                 {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
+                    if (_markingManager.MustMatchSkin(Profile.Species, "FacialHair", out var _, _prototypeManager))
                     {
                         facialHairColor = Profile.Appearance.SkinColor;
                     }
@@ -1051,7 +1051,7 @@ namespace Content.Client.Preferences.UI
             }
             if (facialHairColor != null)
             {
-                CMarkings.FacialHairMarking = new (Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
+                CMarkings.FacialHairMarking = new(Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
             }
             else
             {

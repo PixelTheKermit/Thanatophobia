@@ -474,7 +474,7 @@ public sealed class FoodSystem : EntitySystem
             return;
         }
 
-        if (_inventory.TryGetSlotEntity(entity.Owner, "head", out var headUid) &&
+        if (_inventory.TryGetSlotEntity(entity.Owner, "hat", out var headUid) &&
             TryComp(headUid, out blocker) &&
             blocker.Enabled)
         {

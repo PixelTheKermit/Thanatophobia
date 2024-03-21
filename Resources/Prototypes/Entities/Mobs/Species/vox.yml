@@ -10,26 +10,26 @@
     state: vox_m
   - type: Sprite
     layers:
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "chest" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: torso_m
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "head" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: head_m
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "eyes" ]
         color: "#008800"
         sprite: Mobs/Customization/eyes.rsi
         state: vox_eyes_s
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "r-arm" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: r_arm
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "l-arm" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: l_arm
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "r-leg" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: r_leg
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "l-leg" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: l_leg
       # Vox don't have female clothing masks.
@@ -43,42 +43,41 @@
       #  visible: false
       #- map: [ "jumpsuit" ]
       #  shader: StencilDraw
-      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "l-hand" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: l_hand
-      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      - map: [ "r-hand" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: r_hand
-      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      - map: [ "l-foot" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: l_foot
-      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      - map: [ "r-foot" ]
         sprite: Mobs/Species/Vox/parts.rsi
         state: r_foot
-      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      - map: [ "handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
         visible: false
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
       - map: [ "ears" ]
       - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
       - map: [ "neck" ]
       - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "facialHair" ]
         state: shaved
         sprite: Mobs/Customization/human_facial_hair.rsi
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "hair" ]
         state: bald
         sprite: Mobs/Customization/human_hair.rsi
       - map: [ "mask" ]
-      - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+      - map: [ "hat" ]
   - type: Body
     prototype: Vox
     requiredLegs: 2

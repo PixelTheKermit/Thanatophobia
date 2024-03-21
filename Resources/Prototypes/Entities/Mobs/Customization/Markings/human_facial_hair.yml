@@ -1,245 +1,454 @@
 - type: marking
   id: HumanFacialHairAbe
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: abe
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: abe
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: abe
+
 - type: marking
   id: HumanFacialHairBrokenman
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: brokenman
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: brokenman
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: brokenman
+
 - type: marking
   id: HumanFacialHairChin
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: chin
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: chin
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: chin
+
 - type: marking
   id: HumanFacialHairDwarf
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: dwarf
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: dwarf
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: dwarf
+
 - type: marking
   id: HumanFacialHairFullbeard
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: fullbeard
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: fullbeard
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: fullbeard
+
 - type: marking
   id: HumanFacialHairCroppedfullbeard
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: croppedfullbeard
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: croppedfullbeard
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: croppedfullbeard
+
 - type: marking
   id: HumanFacialHairGt
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: gt
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: gt
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: gt
+
 - type: marking
   id: HumanFacialHairHip
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: hip
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: hip
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: hip
+
 - type: marking
   id: HumanFacialHairJensen
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: jensen
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: jensen
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: jensen
+
 - type: marking
   id: HumanFacialHairNeckbeard
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: neckbeard
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: neckbeard
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: neckbeard
+
 - type: marking
   id: HumanFacialHairWise
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: wise
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: wise
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: wise
+
 - type: marking
   id: HumanFacialHairMuttonmus
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: muttonmus
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: muttonmus
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: muttonmus
+
 - type: marking
   id: HumanFacialHairMartialartist
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: martialartist
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: martialartist
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: martialartist
+
 - type: marking
   id: HumanFacialHairChinlessbeard
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: chinlessbeard
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: chinlessbeard
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: chinlessbeard
+
 - type: marking
   id: HumanFacialHairMoonshiner
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: moonshiner
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: moonshiner
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: moonshiner
+
 - type: marking
   id: HumanFacialHairLongbeard
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: longbeard
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: longbeard
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: longbeard
+
 - type: marking
   id: HumanFacialHairVolaju
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: volaju
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: volaju
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: volaju
+
 - type: marking
   id: HumanFacialHair3oclock
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: 3oclock
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 3oclock
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 3oclock
+
 - type: marking
   id: HumanFacialHairFiveoclock
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: fiveoclock
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: fiveoclock
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: fiveoclock
+
 - type: marking
   id: HumanFacialHair5oclockmoustache
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: 5oclockmoustache
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 5oclockmoustache
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 5oclockmoustache
+
 - type: marking
   id: HumanFacialHair7oclock
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: 7oclock
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 7oclock
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 7oclock
+
 - type: marking
   id: HumanFacialHair7oclockmoustache
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: 7oclockmoustache
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 7oclockmoustache
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 7oclockmoustache
+
 - type: marking
   id: HumanFacialHairMoustache
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: moustache
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: moustache
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: moustache
+
 - type: marking
   id: HumanFacialHairPencilstache
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: pencilstache
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: pencilstache
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: pencilstache
+
 - type: marking
   id: HumanFacialHairSmallstache
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: smallstache
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: smallstache
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: smallstache
+
 - type: marking
   id: HumanFacialHairWalrus
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: walrus
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: walrus
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: walrus
+
 - type: marking
   id: HumanFacialHairFumanchu
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: fumanchu
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: fumanchu
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: fumanchu
+
 - type: marking
   id: HumanFacialHairHogan
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: hogan
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: hogan
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: hogan
+
 - type: marking
   id: HumanFacialHairSelleck
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: selleck
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: selleck
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: selleck
+
 - type: marking
   id: HumanFacialHairChaplin
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: chaplin
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: chaplin
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: chaplin
+
 - type: marking
   id: HumanFacialHairVandyke
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: vandyke
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: vandyke
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: vandyke
+
 - type: marking
   id: HumanFacialHairWatson
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: watson
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: watson
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: watson
+
 - type: marking
   id: HumanFacialHairElvis
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: elvis
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: elvis
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: elvis
+
 - type: marking
   id: HumanFacialHairMutton
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: mutton
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: mutton
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: mutton
+
 - type: marking
   id: HumanFacialHairSideburn
-  bodyPart: FacialHair
+  icon:
+    sprite: Mobs/Customization/human_facial_hair.rsi
+    state: sideburn
   markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: sideburn
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      facialHair:
+        - sprite: Mobs/Customization/human_facial_hair.rsi
+          state: sideburn

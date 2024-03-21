@@ -29,6 +29,27 @@
         Quantity: 10
       - ReagentId: Blood
         Quantity: 20
+  - type: BodyPartVisualiser
+    sprites:
+      chest:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "torso_m"
+        colouringType: !type:PartUseSkin
+  - type: GenderedBodyPart
+    sprites:
+      Male:
+        chest:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "torso_m"
+          colouringType: !type:PartUseSkin
+      Female:
+        chest:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "torso_f"
+          colouringType: !type:PartUseSkin
 
 - type: entity
   id: HeadReptilian
@@ -45,6 +66,27 @@
         Quantity: 5
       - ReagentId: Blood
         Quantity: 10
+  - type: BodyPartVisualiser
+    sprites:
+      head:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "head_m"
+        colouringType: !type:PartUseSkin
+  - type: GenderedBodyPart
+    sprites:
+      Male:
+        head:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "head_m"
+          colouringType: !type:PartUseSkin
+      Female:
+        head:
+        - sprite:
+            sprite: Mobs/Species/Reptilian/parts.rsi
+            state: "head_f"
+          colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftArmReptilian
@@ -54,6 +96,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "l_arm"
+  - type: BodyPartVisualiser
+    sprites:
+      l-arm:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "l_arm"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightArmReptilian
@@ -63,6 +112,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "r_arm"
+  - type: BodyPartVisualiser
+    sprites:
+      r-arm:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "r_arm"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftHandReptilian
@@ -72,6 +128,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "l_hand"
+  - type: BodyPartVisualiser
+    sprites:
+      l-hand:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "l_hand"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightHandReptilian
@@ -81,6 +144,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "r_hand"
+  - type: BodyPartVisualiser
+    sprites:
+      r-hand:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "r_hand"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftLegReptilian
@@ -90,6 +160,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "l_leg"
+  - type: BodyPartVisualiser
+    sprites:
+      l-leg:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "l_leg"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightLegReptilian
@@ -99,6 +176,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "r_leg"
+  - type: BodyPartVisualiser
+    sprites:
+      r-leg:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "r_leg"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftFootReptilian
@@ -108,6 +192,13 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "l_foot"
+  - type: BodyPartVisualiser
+    sprites:
+      l-foot:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "l_foot"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightFootReptilian
@@ -117,3 +208,32 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: "r_foot"
+  - type: BodyPartVisualiser
+    sprites:
+      r-foot:
+      - sprite:
+          sprite: Mobs/Species/Reptilian/parts.rsi
+          state: "r_foot"
+        colouringType: !type:PartUseSkin
+
+- type: entity
+  id: TailReptilian
+  name: "reptilian tail"
+  parent: [PartReptilian]
+  description: It's long, scaly, flakey, and rough. Useful for dragging things around, or maybe as an improvised blunt weapon.
+  components:
+  - type: Sprite
+    sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_smooth
+  - type: BodyPartVisualiser
+    sprites:
+      tail-back:
+      - sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: "tail_smooth_behind"
+        colouringType: !type:PartUseSkin
+      tail-front:
+      - sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: "tail_smooth_front"
+        colouringType: !type:PartUseSkin

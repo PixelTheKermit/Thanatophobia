@@ -9,8 +9,11 @@ namespace Content.Shared.Humanoid.Markings
     [Serializable, NetSerializable]
     public sealed partial class Marking : IEquatable<Marking>, IComparable<Marking>, IComparable<string>
     {
-        [DataField("markingColor")]
-        private List<Color> _markingColors = new();
+        [DataField]
+        public List<Color> MarkingColors = new();
+
+        [DataField]
+        public NetEntity? OwnerPart = null;
 
         private Marking()
         {
@@ -20,7 +23,7 @@ namespace Content.Shared.Humanoid.Markings
             List<Color> markingColors)
         {
             MarkingId = markingId;
-            _markingColors = markingColors;
+            MarkingColors = markingColors;
         }
 
         public Marking(string markingId,
@@ -33,15 +36,17 @@ namespace Content.Shared.Humanoid.Markings
         {
             MarkingId = markingId;
             List<Color> colors = new();
-            for (int i = 0; i < colorCount; i++)
+
+            for (var i = 0; i < colorCount; i++)
                 colors.Add(Color.White);
-            _markingColors = colors;
+
+            MarkingColors = colors;
         }
 
         public Marking(Marking other)
         {
             MarkingId = other.MarkingId;
-            _markingColors = new(other.MarkingColors);
+            MarkingColors = new(other.MarkingColors);
             Visible = other.Visible;
             Forced = other.Forced;
         }
@@ -51,12 +56,6 @@ namespace Content.Shared.Humanoid.Markings
         /// </summary>
         [DataField("markingId", required: true)]
         public string MarkingId { get; private set; } = default!;
-
-        /// <summary>
-        ///     All colors currently on this marking.
-        /// </summary>
-        [ViewVariables]
-        public IReadOnlyList<Color> MarkingColors => _markingColors;
 
         /// <summary>
         ///     If this marking is currently visible.
@@ -70,14 +69,16 @@ namespace Content.Shared.Humanoid.Markings
         [ViewVariables]
         public bool Forced;
 
-        public void SetColor(int colorIndex, Color color) =>
-            _markingColors[colorIndex] = color;
+        public void SetColor(int colorIndex, Color color)
+        {
+            MarkingColors[colorIndex] = color;
+        }
 
         public void SetColor(Color color)
         {
-            for (int i = 0; i < _markingColors.Count; i++)
+            for (var i = 0; i < MarkingColors.Count; i++)
             {
-                _markingColors[i] = color;
+                MarkingColors[i] = color;
             }
         }
 
@@ -106,7 +107,7 @@ namespace Content.Shared.Humanoid.Markings
                 return false;
             }
             return MarkingId.Equals(other.MarkingId)
-                && _markingColors.SequenceEqual(other._markingColors)
+                && MarkingColors.SequenceEqual(other.MarkingColors)
                 && Visible.Equals(other.Visible)
                 && Forced.Equals(other.Forced);
         }
@@ -122,24 +123,31 @@ namespace Content.Shared.Humanoid.Markings
         // doesn't seem to have compatible interfaces? this 'works'
         // for now but should eventually be improved so that this can,
         // in fact just be serialized through a convenient interface
-        new public string ToString()
+        public new string ToString()
         {
             // reserved character
-            string sanitizedName = this.MarkingId.Replace('@', '_');
+            string sanitizedName = MarkingId.Replace('@', '_');
             List<string> colorStringList = new();
-            foreach (Color color in _markingColors)
+
+            foreach (var color in MarkingColors)
                 colorStringList.Add(color.ToHex());
 
-            return $"{sanitizedName}@{String.Join(',', colorStringList)}";
+            return $"{sanitizedName}@{string.Join(',', colorStringList)}";
         }
 
         public static Marking? ParseFromDbString(string input)
         {
-            if (input.Length == 0) return null;
+            if (input.Length == 0)
+                return null;
+
             var split = input.Split('@');
-            if (split.Length != 2) return null;
+
+            if (split.Length != 2)
+                return null;
+
             List<Color> colorList = new();
-            foreach (string color in split[1].Split(','))
+
+            foreach (var color in split[1].Split(','))
                 colorList.Add(Color.FromHex(color));
 
             return new Marking(split[0], colorList);

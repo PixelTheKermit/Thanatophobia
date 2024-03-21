@@ -179,7 +179,7 @@ namespace Content.Server.Flash
 
         private void OnInventoryFlashAttempt(EntityUid uid, InventoryComponent component, FlashAttemptEvent args)
         {
-            foreach (var slot in new[] { "head", "eyes", "mask" })
+            foreach (var slot in new[] { "hat", "eyes", "mask" })
             {
                 if (args.Cancelled)
                     break;

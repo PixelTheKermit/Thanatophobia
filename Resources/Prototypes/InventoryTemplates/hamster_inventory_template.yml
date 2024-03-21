@@ -41,7 +41,7 @@
     whitelist:
       components:
         - GasTank
-  - name: head
+  - name: hat
     slotTexture: head
     slotFlags: HEAD
     uiWindowPos: 1,2

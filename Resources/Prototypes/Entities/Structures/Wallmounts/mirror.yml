@@ -11,10 +11,10 @@
   - type: Clickable
   - type: Transform
     anchored: true
-  - type: MagicMirror
-  - type: ActivatableUI
-    key: enum.MagicMirrorUiKey.Key
-  - type: UserInterface
-    interfaces:
-    - key: enum.MagicMirrorUiKey.Key
-      type: MagicMirrorBoundUserInterface
+  # - type: MagicMirror
+  # - type: ActivatableUI
+    # key: enum.MagicMirrorUiKey.Key
+  # - type: UserInterface
+    # interfaces:
+    # - key: enum.MagicMirrorUiKey.Key
+      # type: MagicMirrorBoundUserInterface

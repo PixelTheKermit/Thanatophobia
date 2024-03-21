@@ -8,7 +8,7 @@ namespace Content.Shared.Humanoid.Markings;
 public sealed partial class CategoryColoring : LayerColoringType
 {
     [DataField("category", required: true)]
-    public MarkingCategories Category;
+    public string Category;
 
     public override Color? GetCleanColor(Color? skin, Color? eyes, MarkingSet markingSet)
     {

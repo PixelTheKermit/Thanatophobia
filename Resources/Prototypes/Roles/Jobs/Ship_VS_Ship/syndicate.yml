@@ -20,7 +20,7 @@
 - type: startingGear
   id: RepairmanSyndieGear
   equipment:
-    head: ClothingHeadHatHardhatYellow
+    hat: ClothingHeadHatHardhatYellow
     jumpsuit: ClothingUniformJumpsuitRepairmanSyndie
     back: ClothingBackpackFilled #The regular industrial backpack looks really weird here, so I've opted for this instead for now. If a new one is never made, then make sure to make a prototype that has this with extended internals!
     shoes: ClothingShoesBootsWork
@@ -54,7 +54,7 @@
 - type: startingGear
   id: ChiefEngineerSyndieGear
   equipment:
-    head: ClothingHeadHatHardhatArmored
+    hat: ClothingHeadHatHardhatArmored
     jumpsuit: ClothingUniformJumpsuitChiefEngineerSyndie
     back: ClothingBackpackFilled #In a running theme, the default station job backpack still continues to look strange in comparison to the regular one. It's not as bad as on the syndicate engineer here, though.
     shoes: ClothingShoesBootsJack

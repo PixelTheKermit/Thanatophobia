@@ -4,7 +4,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackFilled
-    head: ClothingHeadHelmetCult
+    hat: ClothingHeadHelmetCult
     neck: BedsheetCult
     outerClothing: ClothingOuterArmorCult
     shoes: ClothingShoesCult
@@ -19,7 +19,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackFilled
-    head: ClothingHeadHatHoodCulthood
+    hat: ClothingHeadHatHoodCulthood
     outerClothing: ClothingOuterRobesCult
     shoes: ClothingShoesColorRed
     id: PassengerPDA

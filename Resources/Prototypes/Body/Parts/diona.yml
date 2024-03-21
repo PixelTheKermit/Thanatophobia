@@ -14,6 +14,13 @@
   components:
   - type: Sprite
     state: "torso_m"
+  - type: BodyPartVisualiser
+    sprites:
+      chest:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "torso_m"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: HeadDiona
@@ -22,6 +29,13 @@
   components:
   - type: Sprite
     state: "head_m"
+  - type: BodyPartVisualiser
+    sprites:
+      head:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "head_m"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftArmDiona
@@ -30,6 +44,13 @@
   components:
   - type: Sprite
     state: "l_arm"
+  - type: BodyPartVisualiser
+    sprites:
+      l-arm:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "l_arm"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightArmDiona
@@ -38,6 +59,13 @@
   components:
   - type: Sprite
     state: "r_arm"
+  - type: BodyPartVisualiser
+    sprites:
+      r-arm:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "r_arm"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftHandDiona
@@ -46,6 +74,13 @@
   components:
   - type: Sprite
     state: "l_hand"
+  - type: BodyPartVisualiser
+    sprites:
+      l-hand:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "l_hand"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightHandDiona
@@ -54,6 +89,13 @@
   components:
   - type: Sprite
     state: "r_hand"
+  - type: BodyPartVisualiser
+    sprites:
+      r-hand:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "r_hand"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftLegDiona
@@ -62,6 +104,13 @@
   components:
   - type: Sprite
     state: "l_leg"
+  - type: BodyPartVisualiser
+    sprites:
+      l-leg:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "l_leg"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightLegDiona
@@ -73,6 +122,13 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
+  - type: BodyPartVisualiser
+    sprites:
+      r-leg:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "r_leg"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftFootDiona
@@ -84,6 +140,13 @@
   - type: BodyPart
     partType: Foot
     symmetry: Left
+  - type: BodyPartVisualiser
+    sprites:
+      l-foot:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "l_foot"
+        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightFootDiona
@@ -95,3 +158,10 @@
   - type: BodyPart
     partType: Foot
     symmetry: Right
+  - type: BodyPartVisualiser
+    sprites:
+      r-foot:
+      - sprite:
+          sprite: Mobs/Species/Diona/parts.rsi
+          state: "r_foot"
+        colouringType: !type:PartUseSkin

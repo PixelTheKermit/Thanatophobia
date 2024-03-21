@@ -55,8 +55,15 @@
   components:
   - type: Sprite
     layers:
-      - state: eyeball-l
-      - state: eyeball-r
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: BodyPartVisualiser
+    sprites:
+      eyes:
+      - sprite:
+          sprite: Mobs/Customization/eyes.rsi
+          state: "eyes"
+        colouringType: !type:PartUseEyes
 
 - type: entity
   id: OrganHumanTongue

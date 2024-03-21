@@ -145,6 +145,13 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: BodyPartVisualiser
+    sprites:
+      eyes:
+      - sprite:
+          sprite: Mobs/Species/Arachnid/parts.rsi
+          state: "eyes"
+        colouringType: !type:PartUseEyes
 
 - type: entity
   id: OrganArachnidTongue

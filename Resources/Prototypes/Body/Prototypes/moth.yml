@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganMothEyes
     torso:
       part: TorsoMoth
       organs:
@@ -25,6 +25,7 @@
       - left leg
       - second left hand
       - second right hand
+      - wings
     right arm:
       part: RightArmMoth
       connections:
@@ -53,3 +54,5 @@
       part: RightFootMoth
     left foot:
       part: LeftFootMoth
+    wings:
+      part: WingsMoth

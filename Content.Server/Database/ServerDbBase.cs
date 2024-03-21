@@ -200,7 +200,8 @@ namespace Content.Server.Database
                 {
                     var parsed = Marking.ParseFromDbString(marking);
 
-                    if (parsed is null) continue;
+                    if (parsed == null)
+                        continue;
 
                     markings.Add(parsed);
                 }

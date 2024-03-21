@@ -13,8 +13,8 @@
   components:
   - type: ReplaceBodyPartTrait
     replace:
-    - "body_part_slot_second left hand": SecondLeftHandArachnid
-    - "body_part_slot_second right hand": SecondRightHandArachnid
+    - "body_part_slot_left lower appendage": SecondLeftHandArachnid
+    - "body_part_slot_right lower appendage": SecondRightHandArachnid
 
 # TODO: make this work later.
 # - type: trait

@@ -22,7 +22,7 @@
   id: ChefGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
-    head: ClothingHeadHatChef
+    hat: ClothingHeadHatChef
     back: ClothingBackpackFilled
     mask: ClothingMaskItalianMoustache
     shoes: ClothingShoesColorBlack

@@ -5,6 +5,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.DragDrop;
+using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
@@ -23,6 +24,7 @@ public partial class SharedBodySystem
      */
 
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearanceSystem = default!;
 
     private void InitializeBody()
     {
@@ -94,6 +96,9 @@ public partial class SharedBodySystem
         // Obviously can't run in Init to avoid double-spawns on save / load.
         var prototype = Prototypes.Index(body.Prototype.Value);
         MapInitBody(bodyId, prototype);
+
+        // Broadcast a message to say that the body has finished initialising.
+        RaiseLocalEvent(bodyId, new OnBodyFinishInit());
     }
 
     private void MapInitBody(EntityUid bodyEntity, BodyPrototype prototype)
@@ -188,6 +193,49 @@ public partial class SharedBodySystem
             {
                 Log.Error($"Could not create organ for slot {organSlotId} in {ToPrettyString(partId)}");
             }
+        }
+    }
+
+    private IEnumerable<BaseContainer> GetOrganContainers(EntityUid id, BodyPartComponent? part = null)
+    {
+        if (!Resolve(id, ref part, false) ||
+            part.Organs.Count == 0)
+        {
+            yield break;
+        }
+
+        foreach (var slotId in part.Organs.Keys)
+        {
+            var containerSlotId = GetOrganContainerId(slotId);
+
+            if (!Containers.TryGetContainer(id, containerSlotId, out var container))
+                continue;
+
+            yield return container;
+        }
+    }
+
+    public IEnumerable<BaseContainer> GetBodyWithOrganContainers(EntityUid id, BodyComponent? body = null,
+        BodyPartComponent? rootPart = null)
+    {
+        if (!Resolve(id, ref body, false) ||
+            body.RootContainer.ContainedEntity == null ||
+            !Resolve(body.RootContainer.ContainedEntity.Value, ref rootPart))
+        {
+            yield break;
+        }
+
+        yield return body.RootContainer;
+
+        foreach (var childContainer in GetPartContainers(body.RootContainer.ContainedEntity.Value, rootPart))
+        {
+            if (childContainer.ContainedEntities.Count > 0)
+            {
+                foreach (var organContainer in GetOrganContainers(childContainer.ContainedEntities[0]))
+                    yield return organContainer;
+            }
+
+            yield return childContainer;
         }
     }
 
@@ -297,5 +345,12 @@ public partial class SharedBodySystem
             }
         }
         return gibs;
+    }
+}
+
+public sealed partial class OnBodyFinishInit : EntityEventArgs
+{
+    public OnBodyFinishInit()
+    {
     }
 }
