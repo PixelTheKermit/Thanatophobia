@@ -24,3 +24,5 @@ markings-category-Arms = Arms
 markings-category-Legs = Legs
 markings-category-Tail = Tail
 markings-category-Overlay = Overlay
+markings-category-Wings = Wings
+markings-category-Appendages = Appendages
