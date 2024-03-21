@@ -171,7 +171,6 @@
 
 - type: marking
   id: TattooEyeLeft
-  bodyPart: Eyes
   markingCategory: Head
   speciesRestrictions: [Human, SlimePerson, Reptilian, Dwarf]
   coloring:

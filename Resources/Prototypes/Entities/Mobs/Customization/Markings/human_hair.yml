@@ -1354,14 +1354,14 @@
   id: HumanHairMohawk
   icon:
     sprite: Mobs/Customization/human_hair.rsi
-    state: mohawk
+    state: shavedmohawk
   markingCategory: Hair
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:
       hair:
         - sprite: Mobs/Customization/human_hair.rsi
-          state: mohawk
+          state: shavedmohawk
 
 - type: marking
   id: HumanHairNitori
@@ -1523,7 +1523,7 @@
   id: HumanHairPigtails
   icon:
     sprite: Mobs/Customization/human_hair.rsi
-    state:
+    state: pigtails
   markingCategory: Hair
   function: !type:AddMarkingFunction
     bodyPart: head

@@ -270,7 +270,7 @@
 - type: marking
   id: GauzeBoxerWrapRight
   markingCategory: Arms
-  speciesRestriction: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:
@@ -289,7 +289,7 @@
 - type: marking
   id: GauzeBoxerWrapLeft
   markingCategory: Arms
-  speciesRestriction: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:

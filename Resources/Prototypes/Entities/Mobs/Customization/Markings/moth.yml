@@ -1613,7 +1613,6 @@
 
 - type: marking
   id: MothRArmWhitefly
-  bodyPart: RArm
   markingCategory: Arms
   speciesRestrictions: [Moth]
   icon:
