@@ -606,11 +606,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
 
-        var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
+        var bodyPartContainers = _bodySystem.GetBodyContainers(uid).Concat(_bodySystem.GetOrganContainers(uid));
 
         prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
 
         if (sync)
+        {
+            UpdatePartVisuals(uid, humanoid);
             Dirty(uid, humanoid);
+        }
     }
 }

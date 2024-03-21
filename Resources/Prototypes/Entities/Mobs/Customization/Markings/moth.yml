@@ -277,7 +277,7 @@
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
-      tail:
+      wings:
         tail:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
           state: default
