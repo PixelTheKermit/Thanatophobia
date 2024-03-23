@@ -301,3 +301,24 @@
     - ThermomachineFreezerMachineCircuitBoard
     - ThrusterMachineCircuitboard
     - UniformPrinterMachineCircuitboard
+
+- type: entity
+  parent: BaseLathe
+  id: TPFleshFabricator
+  name: flesh fabricator
+  description: A gross fabricator. Ew.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Machines/fabricators.rsi
+    layers:
+    - state: meat
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Machine
+    board: TPCircuitboardMachineFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Raw
+  - type: Lathe
+    idleState: meat
+    runningState: meat
