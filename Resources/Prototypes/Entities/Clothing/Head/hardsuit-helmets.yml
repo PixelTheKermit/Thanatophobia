@@ -41,12 +41,12 @@
   - type: ToggleableLightVisuals
     spriteLayer: light
     clothingVisuals:
-      head:
+      hat:
       - state: equipped-head-light
         shader: unshaded
   - type: Clothing
     clothingVisuals:
-      head:
+      hat:
       - state: equipped-head
       - state: equipped-head-unshaded
         shader: unshaded
@@ -98,12 +98,12 @@
     addPrefix: false
   - type: ToggleableLightVisuals
     clothingVisuals:
-      head:
+      hat:
       - state: equipped-head-light
         shader: unshaded
   - type: Clothing
     clothingVisuals:
-      head:
+      hat:
       - state: equipped-head
       - state: equipped-head-unshaded
         shader: unshaded
