@@ -48,7 +48,7 @@
       right:
       - state: on-inhand-right
     clothingVisuals:
-      head:
+      hat:
       - state: on-equipped-HELMET
   - type: PowerCellSlot
     cellSlotId: cell_slot
