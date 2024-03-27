@@ -1,34 +1,34 @@
 - type: font
   id: Default
-  path: /Fonts/NotoSans/NotoSans-Regular.ttf
+  path: /Fonts/Exo2/Exo2-Medium.ttf
 
 - type: font
   id: DefaultItalic
-  path: /Fonts/NotoSans/NotoSans-Italic.ttf
+  path: /Fonts/Exo2/Exo2-Italic.ttf
 
 - type: font
   id: DefaultBold
-  path: /Fonts/NotoSans/NotoSans-Bold.ttf
+  path: /Fonts/Exo2/Exo2-Bold.ttf
 
 - type: font
   id: DefaultBoldItalic
-  path: /Fonts/NotoSans/NotoSans-BoldItalic.ttf
+  path: /Fonts/Exo2/Exo2-BoldItalic.ttf
 
 - type: font
-  id: NotoSansDisplay
-  path: /Fonts/NotoSansDisplay/NotoSansDisplay-Regular.ttf
+  id: DefaultDisplay
+  path: /Fonts/Exo2/Exo2-Medium.ttf
 
 - type: font
-  id: NotoSansDisplayItalic
-  path: /Fonts/NotoSansDisplay/NotoSansDisplay-Italic.ttf
+  id: DefaultDisplayItalic
+  path: /Fonts/Exo2/Exo2-Italic.ttf
 
 - type: font
-  id: NotoSansDisplayBold
-  path: /Fonts/NotoSansDisplay/NotoSansDisplay-Bold.ttf
+  id: DefaultDisplayBold
+  path: /Fonts/Exo2/Exo2-Bold.ttf
 
 - type: font
-  id: NotoSansDisplayBoldItalic
-  path: /Fonts/NotoSansDisplay/NotoSansDisplay-BoldItalic.ttf
+  id: DefaultDisplayBoldItalic
+  path: /Fonts/Exo2/Exo2-BoldItalic.ttf
 
 - type: font
   id: BoxRound

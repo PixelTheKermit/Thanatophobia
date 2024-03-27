@@ -4,9 +4,11 @@ using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Administration.UI.SpawnExplosion;
 
@@ -15,6 +17,7 @@ public sealed class ExplosionDebugOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public Dictionary<int, List<Vector2i>>? SpaceTiles;
     public Dictionary<EntityUid, Dictionary<int, List<Vector2i>>> Tiles = new();
@@ -35,7 +38,9 @@ public sealed class ExplosionDebugOverlay : Overlay
         IoCManager.InjectDependencies(this);
 
         var cache = IoCManager.Resolve<IResourceCache>();
-        _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 8);
+
+        var normalFont = _protoManager.Index<FontPrototype>("Default");
+        _font = new VectorFont(cache.GetResource<FontResource>(normalFont.Path), 8);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

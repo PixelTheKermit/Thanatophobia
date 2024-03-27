@@ -6,9 +6,11 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -134,6 +136,7 @@ namespace Content.Client.NPC
 
     public sealed class PathfindingOverlay : Overlay
     {
+        [Dependency] private readonly IPrototypeManager _protoManager = default!;
         private readonly IEntityManager _entManager;
         private readonly IEyeManager _eyeManager;
         private readonly IInputManager _inputManager;
@@ -155,13 +158,17 @@ namespace Content.Client.NPC
             PathfindingSystem system,
             MapSystem mapSystem)
         {
+            IoCManager.InjectDependencies(this);
+
             _entManager = entManager;
             _eyeManager = eyeManager;
             _inputManager = inputManager;
             _mapManager = mapManager;
             _system = system;
             _mapSystem = mapSystem;
-            _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 10);
+
+            var normalFont = _protoManager.Index<FontPrototype>("Default");
+            _font = new VectorFont(cache.GetResource<FontResource>(normalFont.Path), 10);
         }
 
         protected override void Draw(in OverlayDrawArgs args)
