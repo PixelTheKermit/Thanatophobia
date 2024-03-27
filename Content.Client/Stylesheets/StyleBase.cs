@@ -5,12 +5,15 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Stylesheets
 {
     public abstract class StyleBase
     {
+        [Dependency] private readonly IPrototypeManager _protoManager = default!;
         public const string ClassHighDivider = "HighDivider";
         public const string ClassLowDivider = "LowDivider";
         public const string StyleClassLabelHeading = "LabelHeading";
@@ -43,11 +46,16 @@ namespace Content.Client.Stylesheets
 
         protected StyleBase(IResourceCache resCache)
         {
+            IoCManager.InjectDependencies(this);
+
+            var normalFont = _protoManager.Index<FontPrototype>("Default");
+            var italicFont = _protoManager.Index<FontPrototype>("DefaultItalic");
+
             var notoSans12 = resCache.GetFont
             (
                 new []
                 {
-                    "/Fonts/NotoSans/NotoSans-Regular.ttf",
+                    normalFont.Path.CanonPath,
                     "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"
                 },
@@ -57,7 +65,7 @@ namespace Content.Client.Stylesheets
             (
                 new []
                 {
-                    "/Fonts/NotoSans/NotoSans-Italic.ttf",
+                    italicFont.Path.CanonPath,
                     "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"
                 },

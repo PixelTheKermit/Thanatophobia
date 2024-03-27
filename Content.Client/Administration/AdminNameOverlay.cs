@@ -2,15 +2,19 @@ using System.Numerics;
 using Content.Client.Administration.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Administration
 {
     internal sealed class AdminNameOverlay : Overlay
     {
+        [Dependency] private readonly IPrototypeManager _protoManager = default!;
+
         private readonly AdminSystem _system;
         private readonly IEntityManager _entityManager;
         private readonly IEyeManager _eyeManager;
@@ -19,12 +23,16 @@ namespace Content.Client.Administration
 
         public AdminNameOverlay(AdminSystem system, IEntityManager entityManager, IEyeManager eyeManager, IResourceCache resourceCache, EntityLookupSystem entityLookup)
         {
+            IoCManager.InjectDependencies(this);
+
             _system = system;
             _entityManager = entityManager;
             _eyeManager = eyeManager;
             _entityLookup = entityLookup;
             ZIndex = 200;
-            _font = new VectorFont(resourceCache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 10);
+
+            var normalFont = _protoManager.Index<FontPrototype>("Default");
+            _font = new VectorFont(resourceCache.GetResource<FontResource>(normalFont.Path), 10);
         }
 
         public override OverlaySpace Space => OverlaySpace.ScreenSpace;

@@ -13,7 +13,9 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Graphics;
+using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets
@@ -22,14 +24,21 @@ namespace Content.Client.Stylesheets
     {
         public static Font NotoStack(this IResourceCache resCache, string variation = "Regular", int size = 10, bool display = false)
         {
+            var protoManager = IoCManager.Resolve<IPrototypeManager>();
+
             var ds = display ? "Display" : "";
             var sv = variation.StartsWith("Bold", StringComparison.Ordinal) ? "Bold" : "Regular";
+
+            var svForProto = variation.StartsWith("Bold", StringComparison.Ordinal) ? "Bold" : "";
+
+            var normalFont = protoManager.Index<FontPrototype>($"Default{ds}{svForProto}");
+
             return resCache.GetFont
             (
                 // Ew, but ok
                 new[]
                 {
-                    $"/Fonts/NotoSans{ds}/NotoSans{ds}-{variation}.ttf",
+                    normalFont.Path.CanonPath,
                     $"/Fonts/NotoSans/NotoSansSymbols-{sv}.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf",
                 },

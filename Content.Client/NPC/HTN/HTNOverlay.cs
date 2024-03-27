@@ -1,12 +1,15 @@
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.NPC.HTN;
 
 public sealed class HTNOverlay : Overlay
 {
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     private readonly IEntityManager _entManager = default!;
     private readonly Font _font = default!;
 
@@ -14,8 +17,13 @@ public sealed class HTNOverlay : Overlay
 
     public HTNOverlay(IEntityManager entManager, IResourceCache resourceCache)
     {
+        IoCManager.InjectDependencies(this);
+
         _entManager = entManager;
-        _font = new VectorFont(resourceCache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 10);
+
+        var normalFont = _protoManager.Index<FontPrototype>("Default");
+
+        _font = new VectorFont(resourceCache.GetResource<FontResource>(normalFont.Path), 10);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

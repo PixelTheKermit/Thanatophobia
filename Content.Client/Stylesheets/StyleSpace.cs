@@ -4,12 +4,16 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface.RichText;
+using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets
 {
     public sealed class StyleSpace : StyleBase
     {
+        [Dependency] private readonly IPrototypeManager _protoManager = default!;
+
         public static readonly Color SpaceRed = Color.FromHex("#9b2236");
 
         public static readonly Color ButtonColorDefault = Color.FromHex("#464966");
@@ -26,11 +30,16 @@ namespace Content.Client.Stylesheets
 
         public StyleSpace(IResourceCache resCache) : base(resCache)
         {
+            IoCManager.InjectDependencies(this);
+
+            var normalFont = _protoManager.Index<FontPrototype>("Default");
+            var boldFont = _protoManager.Index<FontPrototype>("DefaultBold");
+
             var notoSans10 = resCache.GetFont
             (
                 new []
                 {
-                    "/Fonts/NotoSans/NotoSans-Regular.ttf",
+                    normalFont.Path.CanonPath,
                     "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"
                 },
@@ -40,7 +49,7 @@ namespace Content.Client.Stylesheets
             (
                 new []
                 {
-                    "/Fonts/NotoSans/NotoSans-Bold.ttf",
+                    boldFont.Path.CanonPath,
                     "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
                     "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"
                 },

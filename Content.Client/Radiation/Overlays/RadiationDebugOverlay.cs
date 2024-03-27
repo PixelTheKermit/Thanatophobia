@@ -3,8 +3,10 @@ using System.Numerics;
 using Content.Client.Radiation.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Radiation.Overlays;
 
@@ -12,6 +14,7 @@ public sealed class RadiationDebugOverlay : Overlay
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     private readonly RadiationSystem _radiation;
 
     private readonly Font _font;
@@ -23,8 +26,10 @@ public sealed class RadiationDebugOverlay : Overlay
         IoCManager.InjectDependencies(this);
         _radiation = _entityManager.System<RadiationSystem>();
 
+        var font = _protoManager.Index<FontPrototype>("Default");
+
         var cache = IoCManager.Resolve<IResourceCache>();
-        _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 8);
+        _font = new VectorFont(cache.GetResource<FontResource>(font.Path), 8);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

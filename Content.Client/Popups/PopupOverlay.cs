@@ -8,6 +8,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -21,6 +22,7 @@ namespace Content.Client.Popups;
 /// </summary>
 public sealed class PopupOverlay : Overlay
 {
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     private readonly IConfigurationManager _configManager;
     private readonly IEntityManager _entManager;
     private readonly IPlayerManager _playerMgr;
@@ -43,6 +45,11 @@ public sealed class PopupOverlay : Overlay
         IUserInterfaceManager uiManager,
         PopupSystem popup)
     {
+        IoCManager.InjectDependencies(this);
+
+        var italicFont = _protoManager.Index<FontPrototype>("DefaultItalic");
+        var boldItalicFont = _protoManager.Index<FontPrototype>("DefaultBoldItalic");
+
         _configManager = configManager;
         _entManager = entManager;
         _playerMgr = playerMgr;
@@ -50,9 +57,9 @@ public sealed class PopupOverlay : Overlay
         _popup = popup;
 
         _shader = protoManager.Index<ShaderPrototype>("unshaded").Instance();
-        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 10);
-        _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 12);
-        _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-BoldItalic.ttf"), 14);
+        _smallFont = new VectorFont(cache.GetResource<FontResource>(italicFont.Path), 10);
+        _mediumFont = new VectorFont(cache.GetResource<FontResource>(italicFont.Path), 12);
+        _largeFont = new VectorFont(cache.GetResource<FontResource>(boldItalicFont.Path), 14);
     }
 
     protected override void Draw(in OverlayDrawArgs args)
