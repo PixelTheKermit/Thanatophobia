@@ -4,9 +4,11 @@ using Content.Client.Resources;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Content.Shared.NodeContainer.NodeVis;
@@ -15,6 +17,7 @@ namespace Content.Client.NodeContainer
 {
     public sealed class NodeVisualizationOverlay : Overlay
     {
+        [Dependency] private readonly IPrototypeManager _protoManager = default!;
         private readonly NodeGroupSystem _system;
         private readonly EntityLookupSystem _lookup;
         private readonly IMapManager _mapManager;
@@ -41,13 +44,16 @@ namespace Content.Client.NodeContainer
             IResourceCache cache,
             IEntityManager entityManager)
         {
+            IoCManager.InjectDependencies(this);
+
             _system = system;
             _lookup = lookup;
             _mapManager = mapManager;
             _inputManager = inputManager;
             _entityManager = entityManager;
 
-            _font = cache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 12);
+            var normalFont = _protoManager.Index<FontPrototype>("Default");
+            _font = cache.GetFont(normalFont.Path, 12);
         }
 
         protected override void Draw(in OverlayDrawArgs args)

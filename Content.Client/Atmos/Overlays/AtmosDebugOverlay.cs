@@ -8,9 +8,11 @@ using Robust.Client.Input;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using AtmosDebugOverlayData = Content.Shared.Atmos.EntitySystems.SharedAtmosDebugOverlaySystem.AtmosDebugOverlayData;
 using DebugMessage = Content.Shared.Atmos.EntitySystems.SharedAtmosDebugOverlaySystem.AtmosDebugOverlayMessage;
 
@@ -24,6 +26,7 @@ public sealed class AtmosDebugOverlay : Overlay
     [Dependency] private readonly IInputManager _input = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
     [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     private readonly SharedTransformSystem _transform;
     private readonly AtmosDebugOverlaySystem _system;
     private readonly SharedMapSystem _map;
@@ -39,7 +42,9 @@ public sealed class AtmosDebugOverlay : Overlay
         _system = system;
         _transform = _entManager.System<SharedTransformSystem>();
         _map = _entManager.System<SharedMapSystem>();
-        _font = _cache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 12);
+
+        var normalFont = _protoManager.Index<FontPrototype>("Default");
+        _font = _cache.GetFont(normalFont.Path, 12);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

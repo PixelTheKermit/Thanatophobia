@@ -3,12 +3,16 @@ using Content.Client.Resources;
 using Content.Shared.Access.Components;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Enums;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Access;
 
 public sealed class AccessOverlay : Overlay
 {
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+
     private readonly IEntityManager _entityManager;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedTransformSystem _xform;
@@ -22,7 +26,8 @@ public sealed class AccessOverlay : Overlay
         _lookup = lookup;
         _xform = xform;
 
-        _font = cache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 12);
+        var normalFont = _protoManager.Index<FontPrototype>("Default");
+        _font = cache.GetFont(normalFont.Path, 12);
     }
 
     protected override void Draw(in OverlayDrawArgs args)
