@@ -140,7 +140,7 @@
     layers:
     - state: icon
   - type: Gun
-    fireRate: 1
+    fireRate: 1.5
   - type: LinkedAmmoProvider
     port: ShipAmmoOutput
     whitelist:

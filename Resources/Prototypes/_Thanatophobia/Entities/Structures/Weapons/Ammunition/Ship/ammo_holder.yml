@@ -139,7 +139,7 @@
       ballistic-ammo: !type:Container
   - type: BallisticAmmoProvider
     proto: ShipCannonBall
-    capacity: 15
+    capacity: 30
     whitelist:
       tags:
       - ShipCannonBall
