@@ -6,18 +6,14 @@
   components:
   - type: StorageFill
     contents:
-      - id: CrowbarRed
-      - id: ClothingMaskBreath
-        amount: 2
-      - id: FoodSnackChocolate
-      - id: FlashlightLantern
-      - id: FlashlightLantern
-        prob: 0.5
-      - id: HarmonicaInstrument
-        prob: 0.15
-        orGroup: HarmonicaOrChocolate
-      - id: FoodSnackChocolate
-        orGroup: HarmonicaOrChocolate
+    - id: CrowbarRed
+    - id: Wrench
+    - id: DrinkWaterBottleFull
+    - id: HarmonicaInstrument
+    - id: FlashlightLantern
+    - id: FlashlightLantern
+    - id: FoodSnackChocolate
+    - id: FoodTinMRE
 
 - type: entity
   id: ToolboxElectricalFilled
@@ -78,7 +74,7 @@
     - id: MysteryFigureBox
       prob: 0.5
     - id: BookRandom
-      amount: 2 
+      amount: 2
     - id: CrayonMime
     - id: CrayonRainbow
 

@@ -1032,6 +1032,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,5.5
       parent: 1
+- proto: ClothingHeadHatWelding
+  entities:
+  - uid: 261
+    components:
+    - type: Transform
+      pos: 4.3727407,-0.1875
+      parent: 1
 - proto: ComputerBroken
   entities:
   - uid: 88
@@ -1563,13 +1570,6 @@ entities:
     - type: Transform
       pos: 6.5,4.5
       parent: 1
-- proto: HarmonicaInstrument
-  entities:
-  - uid: 69
-    components:
-    - type: Transform
-      pos: -1.4722536,6.575521
-      parent: 1
 - proto: MachineFrameDestroyed
   entities:
   - uid: 404
@@ -1836,6 +1836,18 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-1.5
+      parent: 1
+- proto: SheetPlasma
+  entities:
+  - uid: 262
+    components:
+    - type: Transform
+      pos: -1.5393782,-0.734375
+      parent: 1
+  - uid: 263
+    components:
+    - type: Transform
+      pos: -1.2268782,-1.171875
       parent: 1
 - proto: ShipGunAmmoProviderBattery
   entities:
@@ -2125,6 +2137,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,5.5
       parent: 1
+    - type: Thruster
+      enabled: False
   - uid: 113
     components:
     - type: Transform
@@ -2963,4 +2977,18 @@ entities:
         - ShipAmmoOutput: ShipAmmoInput
         250:
         - ShipAmmoOutput: ShipAmmoInput
+- proto: Welder
+  entities:
+  - uid: 405
+    components:
+    - type: Transform
+      pos: 4.6071157,-0.453125
+      parent: 1
+- proto: Wrench
+  entities:
+  - uid: 69
+    components:
+    - type: Transform
+      pos: -1.4495544,6.3690686
+      parent: 1
 ...
