@@ -6,11 +6,10 @@
     TPWetness:
     - 0, 1
   debris:
-  - id: TPAsteroidDebrisSmall
-  - id: TPAsteroidDebrisMedium
-  - id: TPAsteroidDebrisLarge
+  - id: TPBasicDebrisSmall
+  - id: TPBasicDebrisMedium
     prob: 0.7
-  - id: TPAsteroidDebrisLarger
+  - id: TPBasicDebrisLarge
     prob: 0.4
 
 - type: hotfixBiome
@@ -21,11 +20,10 @@
     TPWetness:
     - 0, .4
   debris:
-  - id: TPAsteroidSandDebrisSmall
-  - id: TPAsteroidSandDebrisMedium
-  - id: TPAsteroidSandDebrisLarge
+  - id: TPSandDebrisSmall
+  - id: TPSandDebrisMedium
     prob: 0.7
-  - id: TPAsteroidSandDebrisLarger
+  - id: TPSandDebrisLarge
     prob: 0.4
 
 - type: hotfixBiome
@@ -36,11 +34,10 @@
     TPWetness:
     - .4, 1
   debris:
-  - id: TPAsteroidSnowDebrisSmall
-  - id: TPAsteroidSnowDebrisMedium
-  - id: TPAsteroidSnowDebrisLarge
+  - id: TPSnowDebrisSmall
+  - id: TPSnowDebrisMedium
     prob: 0.7
-  - id: TPAsteroidSnowDebrisLarger
+  - id: TPSnowDebrisLarge
     prob: 0.4
 
 - type: hotfixBiome
@@ -51,9 +48,8 @@
     TPWetness:
     - .6, 1
   debris:
-  - id: TPAsteroidFleshDebrisSmall
-  - id: TPAsteroidFleshDebrisMedium
-  - id: TPAsteroidFleshDebrisLarge
+  - id: TPFleshDebrisSmall
+  - id: TPFleshDebrisMedium
     prob: 0.7
-  - id: TPAsteroidFleshDebrisLarger
+  - id: TPFleshDebrisLarge
     prob: 0.4

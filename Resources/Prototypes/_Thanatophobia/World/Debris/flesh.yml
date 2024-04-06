@@ -1,31 +1,43 @@
 - type: entity
-  id: TPBaseScrapFleshDebris
-  parent: BaseDebris
+  id: TPBaseFleshDebris
+  parent: TPBaseBasicDebris
   name: Flesh Debris
   abstract: true
   components:
-  - type: MapGrid
   - type: BlobFloorPlanBuilder
     floorTileset:
     - FloorFlesh
-    blobDrawProb: .75
-    radius: 20
+    - FloorFlesh
+    - FloorFlesh
+    - FloorAsteroidTile
+    - FloorAsteroidTile
+    - Lattice
   - type: SimpleFloorPlanPopulator
     entries:
       FloorFlesh:
+      - id: TPWallRockFlesh
+        prob: 0.5
+        orGroup: rock
+      - id: TPWallRockFleshBones
+        prob: 0.125
+        orGroup: rock
+      FloorAsteroidTile:
       - id: null # Intentional blank.
-        prob: 1
-      - id: WallMeat
-        prob: 1
+        prob: 2
       - id: SalvageFleshSpawner
         prob: 0.25
+      Lattice:
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 0.3
+      - id: SalvageCanisterSpawner
+        prob: 0.2
   - type: IFF
     flags: HideLabel
     color: "#FFAAAA"
 
 - type: entity
-  id: TPScrapFleshDebrisSmall
-  parent: TPBaseScrapFleshDebris
+  id: TPFleshDebrisSmall
+  parent: TPBaseFleshDebris
   name: Scrap Debris Small
   noSpawn: true
   components:
@@ -33,8 +45,8 @@
     floorPlacements: 32
 
 - type: entity
-  id: TPScrapFleshDebrisMedium
-  parent: TPBaseScrapFleshDebris
+  id: TPFleshDebrisMedium
+  parent: TPBaseFleshDebris
   name: Scrap Debris Medium
   noSpawn: true
   components:
@@ -42,8 +54,8 @@
     floorPlacements: 48
 
 - type: entity
-  id: TPScrapFleshDebrisLarge
-  parent: TPBaseScrapFleshDebris
+  id: TPFleshDebrisLarge
+  parent: TPBaseFleshDebris
   name: Scrap Debris Large
   noSpawn: true
   components:

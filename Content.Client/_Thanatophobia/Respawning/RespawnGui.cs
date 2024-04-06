@@ -4,11 +4,13 @@ using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Ghost;
+using Content.Shared.Thanatophobia.CCVar;
 using Content.Shared.Thanatophobia.Respawning;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Thanatophobia.Respawning;
@@ -19,6 +21,7 @@ public sealed partial class TPRespawnGui : DefaultWindow
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
     private readonly BoxContainer _respawnContainer;
     private readonly Button _menuRespawnButton;
@@ -80,14 +83,16 @@ public sealed partial class TPRespawnGui : DefaultWindow
 
     public void UpdateMenuRespawnButton()
     {
+        var respawnSecs = _cfgManager.GetCVar(TPCCVars.SecondsToRespawn);
+
         if (!_entityManager.TryGetComponent<GhostComponent>(_playerManager.LocalEntity, out var ghostComp))
         {
             _menuRespawnButton.Disabled = true;
         }
-        else if (_gameTiming.CurTime - ghostComp.TimeOfDeath <= TimeSpan.FromMinutes(5)) // Hardcoded for now. In the future should be a CVAR.
+        else if (_gameTiming.CurTime - ghostComp.TimeOfDeath <= TimeSpan.FromSeconds(respawnSecs)) // Hardcoded for now. In the future should be a CVAR.
         {
             _menuRespawnButton.Disabled = true;
-            _menuRespawnButton.Text = Loc.GetString("tp-respawn-ui-respawn-button-cooldown", ("cooldown", (int) Math.Ceiling((TimeSpan.FromMinutes(5) - (_gameTiming.CurTime - ghostComp.TimeOfDeath)).TotalSeconds)));
+            _menuRespawnButton.Text = Loc.GetString("tp-respawn-ui-respawn-button-cooldown", ("cooldown", (int) Math.Ceiling((TimeSpan.FromSeconds(respawnSecs) - (_gameTiming.CurTime - ghostComp.TimeOfDeath)).TotalSeconds)));
         }
         else
         {
@@ -138,5 +143,7 @@ public sealed partial class TPRespawnGui : DefaultWindow
         menuRespawn.XamlChildren.Add(menuRespawnTitle);
         menuRespawn.XamlChildren.Add(menuRespawnDescription);
         menuRespawn.XamlChildren.Add(shiftMenuRespawnButtonRight);
+
+        // Here we would add all the other respawn buttons, but the code isn't there yet so you get this comment for now.
     }
 }

@@ -19,8 +19,6 @@
     castShadows: false
     netsync: false
   - type: Clickable
-  - type: AccessReader
-    access: [["Engineering"]]
   - type: InteractionOutline
   - type: Transform
     anchored: true
@@ -91,10 +89,10 @@
     graph: APC
     node: apc
   - type: PowerNetworkBattery
-    maxSupply: 10000
-    maxChargeRate: 5000
-    supplyRampTolerance: 1000
-    supplyRampRate: 500
+    maxSupply: 20000
+    maxChargeRate: 10000
+    supplyRampTolerance: 2000
+    supplyRampRate: 1000
   - type: WallMount
   - type: WiresPanel
   - type: Wires

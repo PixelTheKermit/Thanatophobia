@@ -1,5 +1,7 @@
 using Content.Shared.Ghost;
+using Content.Shared.Thanatophobia.CCVar;
 using Content.Shared.Thanatophobia.Respawning;
+using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -11,7 +13,7 @@ public sealed partial class SimpleRespawningSystem : EntitySystem
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-
+    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -26,10 +28,12 @@ public sealed partial class SimpleRespawningSystem : EntitySystem
 
         var uid = args.SenderSession.AttachedEntity.Value;
 
+        var respawnSecs = _cfgManager.GetCVar(TPCCVars.SecondsToRespawn);
+
         if (!TryComp<GhostComponent>(uid, out var ghostComp))
             return;
 
-        if (_gameTiming.CurTime - ghostComp.TimeOfDeath <= TimeSpan.FromMinutes(5)) // Hardcoded for now. In the future should be a CVAR.
+        if (_gameTiming.CurTime - ghostComp.TimeOfDeath <= TimeSpan.FromSeconds(respawnSecs)) // Hardcoded for now. In the future should be a CVAR.
             return;
 
         _consoleHost.ExecuteCommand($"respawn \"{args.SenderSession.Name}\"");

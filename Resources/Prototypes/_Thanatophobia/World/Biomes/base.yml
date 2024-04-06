@@ -9,13 +9,9 @@
     densityNoiseChannel: Density
   - type: HotfixBiome
     biomes:
-    - MeatScrap
     - Meat
-    - SandScrap
     - Sand
-    - IceScrap
     - Ice
-    - StandardScrap
     - Standard
   - type: NoiseRangeCarver
     ranges:

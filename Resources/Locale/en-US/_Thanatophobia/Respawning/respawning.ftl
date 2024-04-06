@@ -1,3 +1,5 @@
+tp-ghost-gui-respawn-button = Respawn
+
 tp-respawn-gui-title = Respawn
 tp-respawn-ui-respawn-button = Respawn
 tp-respawn-ui-respawn-button-cooldown = Respawn ({$cooldown}s left)
