@@ -20,4 +20,4 @@ tp-ui-ship-desc-Piracy = [font size=14][bold][color=yellow]Piracy[/bold][/color]
 tp-ui-ship-name-BoxShuttle = Box
 tp-ui-ship-desc-BoxShuttle = [font size=14][bold][color=yellow]Box[/bold][/color][/font]
 
-                         A repurposed medical ship refitted to have access to some useable guns. The medical supplies on-board will be useful in times where kicking the bucket isn't an option just yet.
+                             A repurposed medical ship refitted to have access to some useable guns. The medical supplies on-board will be useful in times where kicking the bucket isn't an option just yet.
