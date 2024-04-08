@@ -39,7 +39,7 @@
 - type: entity
   parent: MagazineShipBase
   id: MagazineShipAntiShip
-  name: ammo box (.30 anti-ship)
+  name: ammo box (material penetration)
   components:
   - type: Tag
     tags:

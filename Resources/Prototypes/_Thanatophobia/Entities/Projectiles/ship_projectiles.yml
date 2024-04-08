@@ -64,7 +64,7 @@
 - type: entity
   parent: BaseBullet
   id: ShipBulletAntiShip
-  name: bullet (.30 anti-ship)
+  name: bullet (material penetration)
   noSpawn: true
   components:
   - type: Reflective
