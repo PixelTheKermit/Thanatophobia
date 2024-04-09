@@ -2,7 +2,7 @@
   id: ShipGunAmmoProviderBase
   parent: BaseMachinePowered
   name: ship ammo provider
-  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one appears to be non-functional.
+  description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun. This one appears to be non-functional.
   abstract: true
   components:
   - type: Sprite
@@ -47,11 +47,13 @@
     ports:
       - ShipAmmoInput
 
+# Empty versions.
+
 - type: entity
   id: ShipGunAmmoProviderBattery
   parent: ShipGunAmmoProviderBase
   name: laser ship ammo provider
-  description: Turns medium voltage power into cheap yet reliable ship-destroying projectiles.
+  description: Turns medium voltage power into simple yet reliable ship-destroying projectiles.
   components:
   - type: Tag
     tags:
@@ -71,7 +73,7 @@
     fireCost: 25
   - type: Battery
     maxCharge: 2500
-    startingCharge: 2500
+    startingCharge: 0
   - type: MagazineVisuals
     magState: laser-mag
     steps: 4
@@ -95,7 +97,7 @@
   id: ShipGunAmmoProviderShotgun
   parent: ShipGunAmmoProviderBase
   name: shotgun ship ammo provider
-  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for grapeshot ammunition.
+  description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun. This one is used for grapeshot ammunition.
   components:
   - type: Tag
     tags:
@@ -125,7 +127,7 @@
   id: ShipGunAmmoProviderCannon
   parent: ShipGunAmmoProviderBase
   name: cannon ship ammo provider
-  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for cannon ammunition.
+  description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun. This one is used for cannon ammunition.
   components:
   - type: Tag
     tags:
@@ -148,7 +150,7 @@
   id: ShipGunAmmoProviderBallistic
   parent: ShipGunAmmoProviderBase
   name: ballistic ship ammo provider
-  description: An ammo loading machine using WARP technology to transfer bullets from itself to a ship's gun. This one is used for ballistic ammunition.
+  description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun. This one is used for ballistic ammunition.
   components:
   - type: Tag
     tags:
@@ -165,7 +167,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineShipAntiShip
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -173,3 +174,55 @@
           tags:
             - MagazineShipAntiShip
   - type: MagazineAmmoProvider
+
+# Filled versions
+
+- type: entity
+  id: ShipGunAmmoProviderBatteryFilled
+  parent: ShipGunAmmoProviderBattery
+  suffix: Filled
+  components:
+  - type: Battery
+    startingCharge: 2500
+
+- type: entity
+  id: ShipGunAmmoProviderShotgunFilled
+  parent: ShipGunAmmoProviderShotgun
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShipShotgun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineShipShotgun
+
+- type: entity
+  id: ShipGunAmmoProviderCannonFilled
+  parent: ShipGunAmmoProviderCannon
+  suffix: Filled
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShipCannonBall
+
+- type: entity
+  id: ShipGunAmmoProviderBallisticFilled
+  parent: ShipGunAmmoProviderBallistic
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShipAntiShip
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineShipAntiShip
