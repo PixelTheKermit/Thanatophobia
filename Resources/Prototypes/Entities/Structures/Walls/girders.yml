@@ -16,10 +16,10 @@
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 60
-        mask:
-        - MachineMask
         layer:
-        - GlassAirlockLayer
+        - LowImpassable
+        - HighImpassable
+        - MidImpassable
   - type: InteractionOutline
   - type: Construction
     graph: Girder
