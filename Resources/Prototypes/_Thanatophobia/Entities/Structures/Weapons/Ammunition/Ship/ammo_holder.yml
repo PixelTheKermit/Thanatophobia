@@ -1,6 +1,6 @@
 - type: entity
   id: ShipGunAmmoProviderBase
-  parent: BaseMachinePowered
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: ship ammo provider
   description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun. This one appears to be non-functional.
   abstract: true
@@ -92,6 +92,8 @@
     maxChargeRate: 10
     supplyRampTolerance: 10
     supplyRampRate: 5
+  - type: Machine
+    board: TPCircuitboardShipGunAmmoProviderBattery
 
 - type: entity
   id: ShipGunAmmoProviderShotgun
@@ -114,7 +116,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineShipShotgun
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -122,6 +123,8 @@
           tags:
             - MagazineShipShotgun
   - type: MagazineAmmoProvider
+  - type: Machine
+    board: TPCircuitboardShipGunAmmoProviderShotgun
 
 - type: entity
   id: ShipGunAmmoProviderCannon
@@ -140,11 +143,12 @@
     containers:
       ballistic-ammo: !type:Container
   - type: BallisticAmmoProvider
-    proto: ShipCannonBall
     capacity: 30
     whitelist:
       tags:
       - ShipCannonBall
+  - type: Machine
+    board: TPCircuitboardShipGunAmmoProviderCannon
 
 - type: entity
   id: ShipGunAmmoProviderBallistic
@@ -174,6 +178,8 @@
           tags:
             - MagazineShipAntiShip
   - type: MagazineAmmoProvider
+  - type: Machine
+    board: TPCircuitboardShipGunAmmoProviderBallistic
 
 # Filled versions
 

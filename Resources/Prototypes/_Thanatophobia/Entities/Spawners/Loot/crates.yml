@@ -75,13 +75,13 @@
     contents:
     - id: CableHVStack
       amount: 1
-      prob: 0.25
+      prob: 0.5
     - id: CableMVStack
       amount: 1
-      prob: 0.25
+      prob: 0.5
     - id: CableApcStack
       amount: 1
-      prob: 0.25
+      prob: 0.5
 
 - type: entity
   id: TPCrateMedicalSupplies
@@ -95,19 +95,19 @@
     - id: MedkitFilled
       prob: 0.25
     - id: Gauze
-      prob: 0.25
+      prob: 0.3
     - id: Gauze
-      prob: 0.25
+      prob: 0.3
     - id: Bloodpack
-      prob: 0.25
+      prob: 0.35
     - id: Bloodpack
-      prob: 0.25
+      prob: 0.35
     - id: BoxLatexGloves
-      prob: 0.25
+      prob: 0.15
     - id: BoxSterileMask
-      prob: 0.25
+      prob: 0.15
     - id: BoxMouthSwab
-      prob: 0.25
+      prob: 0.15
 
 - type: entity
   id: TPCrateMaterialTextiles
@@ -117,11 +117,11 @@
   - type: StorageFill
     contents:
     - id: MaterialCloth
-      prob: 0.25
+      prob: 0.35
     - id: MaterialCloth
-      prob: 0.25
+      prob: 0.35
     - id: MaterialDurathread
-      prob: 0.025
+      prob: 0.125
 
 - type: entity
   id: TPCrateFoodMRE
@@ -131,11 +131,11 @@
   - type: StorageFill
     contents:
     - id: TPBoxMRESalvage
-      prob: 0.34
+      prob: 0.70
     - id: TPBoxMRESalvage
-      prob: 0.33
+      prob: 0.45
     - id: TPBoxMRESalvage
-      prob: 0.33
+      prob: 0.15
 
 - type: entity
   id: TPCrateEmergencyInternals
@@ -168,77 +168,77 @@
   - type: StorageFill
     contents: # WALL OF TEXT, AUUUGHHHHHHH!!!
     - id: AloeSeeds
-      prob: 0.33
+      prob: 0.15
     - id: AmbrosiaVulgarisSeeds
-      prob: 0.33
+      prob: 0.15
     - id: GalaxythistleSeeds
-      prob: 0.33
+      prob: 0.15
     - id: LingzhiSeeds
-      prob: 0.33
+      prob: 0.15
     - id: PoppySeeds
-      prob: 0.33
+      prob: 0.15
     - id: BananaSeeds
-      prob: 0.33
+      prob: 0.15
     - id: EggySeeds
-      prob: 0.33
+      prob: 0.15
     - id: TowercapSeeds
-      prob: 0.33
+      prob: 0.15
     - id: TobaccoSeeds
-      prob: 0.33
+      prob: 0.15
     - id: CannabisSeeds
-      prob: 0.33
+      prob: 0.15
     - id: NettleSeeds
-      prob: 0.33
+      prob: 0.15
     - id: FlyAmanitaSeeds
-      prob: 0.33
+      prob: 0.15
     - id: PineappleSeeds
-      prob: 0.33
+      prob: 0.15
     - id: BungoSeeds
-      prob: 0.33
+      prob: 0.15
     - id: ChiliSeeds
-      prob: 0.33
+      prob: 0.15
     - id: CornSeeds
-      prob: 0.33
+      prob: 0.15
     - id: EggplantSeeds
-      prob: 0.33
+      prob: 0.15
     - id: TomatoSeeds
-      prob: 0.33
+      prob: 0.15
     - id: WheatSeeds
-      prob: 0.33
+      prob: 0.15
     - id: CarrotSeeds
-      prob: 0.33
+      prob: 0.15
     - id: CabbageSeeds
-      prob: 0.33
+      prob: 0.15
     - id: GarlicSeeds
-      prob: 0.33
+      prob: 0.15
     - id: ChanterelleSeeds
-      prob: 0.33
+      prob: 0.15
     - id: PotatoSeeds
-      prob: 0.33
+      prob: 0.15
     - id: SugarcaneSeeds
-      prob: 0.33
+      prob: 0.15
     - id: LemonSeeds
-      prob: 0.33
+      prob: 0.15
     - id: LimeSeeds
-      prob: 0.33
+      prob: 0.15
     - id: OrangeSeeds
-      prob: 0.33
+      prob: 0.15
     - id: OatSeeds
-      prob: 0.33
+      prob: 0.15
     - id: OnionSeeds
-      prob: 0.33
+      prob: 0.15
     - id: OnionRedSeeds
-      prob: 0.33
+      prob: 0.15
     - id: RiceSeeds
-      prob: 0.33
+      prob: 0.15
     - id: SoybeanSeeds
-      prob: 0.33
+      prob: 0.15
     - id: GrapeSeeds
-      prob: 0.33
+      prob: 0.15
     - id: WatermelonSeeds
-      prob: 0.33
+      prob: 0.15
     - id: PeaSeeds
-      prob: 0.33
+      prob: 0.15
 
 - type: entity
   id: TPCrateServiceJanitorialSupplies
@@ -248,21 +248,21 @@
   - type: StorageFill
     contents:
     - id: MopItem
-      prob: 0.3
+      prob: 0.5
     - id: MopBucket
-      prob: 0.2
+      prob: 0.1
     - id: Bucket
-      prob: 0.2
+      prob: 0.1
     - id: WetFloorSign
-      prob: 0.4
+      prob: 0.2
     - id: Soap
-      prob: 0.2
+      prob: 0.1
     - id: SprayBottleSpaceCleaner
-      prob: 0.2
+      prob: 0.1
     - id: TrashBag
-      prob: 0.3
+      prob: 0.2
     - id: Plunger
-      prob: 0.4
+      prob: 0.2
 
 - type: entity
   id: TPCrateSalvageEquipment
@@ -302,7 +302,7 @@
     - id: ClothingBeltUtility
       prob: 0.15
     - id: OreBag
-      prob: 0.2
+      prob: 0.35
     - id: ClothingBeltSalvageWebbing
       prob: 0.15
     - id: ClothingHeadHatCatEars # An important part of salvage equipment.
@@ -336,18 +336,30 @@
   - type: StorageFill
     contents:
     - id: CapacitorStockPart
+      prob: 0.75
+    - id: MicroManipulatorStockPart
+      prob: 0.75
+    - id: MatterBinStockPart
+      prob: 0.75
+    - id: CapacitorStockPart
       prob: 0.5
     - id: MicroManipulatorStockPart
       prob: 0.5
     - id: MatterBinStockPart
       prob: 0.5
+    - id: CapacitorStockPart
+      prob: 0.25
+    - id: MicroManipulatorStockPart
+      prob: 0.25
+    - id: MatterBinStockPart
+      prob: 0.25
     - id: TPCircuitboardBasicFabricator
-      prob: 0.1
+      prob: 0.25
     - id: TPCircuitboardShipWeaponFabricator
-      prob: 0.1
+      prob: 0.25
     - id: TPCircuitboardWeaponFabricator
-      prob: 0.1
+      prob: 0.25
     - id: TPCircuitboardMedicalFabricator
-      prob: 0.1
+      prob: 0.25
     - id: TPCircuitboardMachineFabricator
-      prob: 0.1
+      prob: 0.25

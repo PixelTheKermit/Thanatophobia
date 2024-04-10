@@ -1324,7 +1324,7 @@ entities:
     - type: Transform
       pos: 4.684862,-10.394375
       parent: 1
-- proto: ShipGunAmmoProviderCannon
+- proto: ShipGunAmmoProviderCannonFilled
   entities:
   - uid: 78
     components:

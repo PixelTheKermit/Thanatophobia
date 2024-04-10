@@ -243,9 +243,17 @@
     idleState: icon
     runningState: icon
     staticRecipes:
-    - TPMagazineShipAntiShip
-    - TPMagazineShipShotgun
-    - TPShipCannonBall
+    - MagazineShipAntiShip
+    - MagazineShipShotgun
+    - ShipCannonBall
+    - TPCircuitboardShipGunAmmoProviderBallistic
+    - TPCircuitboardShipGunAmmoProviderBattery
+    - TPCircuitboardShipGunAmmoProviderShotgun
+    - TPCircuitboardShipGunAmmoProviderCannon
+    - TPCircuitboardWeaponShipGunBallistic
+    - TPCircuitboardWeaponShipGunLaser
+    - TPCircuitboardWeaponShipGunShotgun
+    - TPCircuitboardWeaponShipGunCannon
 
 - type: entity
   parent: BaseLathe
