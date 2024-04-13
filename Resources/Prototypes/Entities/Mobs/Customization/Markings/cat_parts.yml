@@ -2,6 +2,7 @@
   id: CatEars
   bodyPart: headTop
   markingCategory: HeadTop
+  speciesRestrictions: [ Human, SlimePerson, Moth, Arachnid, Reptilian, Diona ]
   icon:
     sprite: Mobs/Customization/cat_parts.rsi
     state: ears_cat_outer
@@ -19,7 +20,6 @@
     - type:
         !type:SimpleColoring
           color: "#FFFFFF"
-
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:

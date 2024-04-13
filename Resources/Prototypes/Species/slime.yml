@@ -24,6 +24,9 @@
       required: false
       usesSkinColour: true
       skinColourAlpha: .75
+    HeadTop:
+      points: 1
+      required: false
     Chest:
       points: 1
       required: false
