@@ -1,0 +1,29 @@
+- type: entity
+  name: ancient bandages
+  description: Some old rags covered in sand. Putting this on your wounds is probably not a good idea, but it can act as a last resort when you're at your worst..
+  parent: BaseHealingItem
+  id: AncientBandages
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Gauze
+  - type: Sprite
+    state: gauze
+    color: "#FFFF99"
+  - type: Construction
+    graph: Gauze
+    node: gauze
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -20
+        Piercing: -20
+        Poison: 10
+    bloodlossModifier: -10
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
