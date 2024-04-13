@@ -2,7 +2,6 @@
   id: CatEars
   bodyPart: headTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
   icon:
     sprite: Mobs/Customization/cat_parts.rsi
     state: ears_cat_outer
