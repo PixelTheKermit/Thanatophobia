@@ -25,6 +25,8 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: BlueprintModuleTaker
+    insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg # shhhhhh 🤫🧏
   - type: Lathe
     idleState: icon
     runningState: building
@@ -47,6 +49,7 @@
     - FoodPlateSmallPlastic
     - GasAnalyzer
     - HandheldGPSBasic
+    - ThanatoClothingHeadHatWelding
     - LightBulb
     - LightTube
     - MatterBinStockPart
@@ -67,22 +70,15 @@
     - Welder
     - Wirecutter
     - Wrench
-    - TargetClown
-    - TargetHuman
-    - TargetSyndicate
     - Beaker
-    - BodyBag
     - Brutepack
     - CheapRollerBedSpawnFolded
     - ChemistryEmptyBottle01
     - ClothingHandsGlovesLatex
     - ClothingMaskSterile
-    - Defibrillator
     - DiseaseSwab
     - EmergencyRollerBedSpawnFolded
     - HandLabeler
-    - HandheldHealthAnalyzer
-    - Implanter
     - Medkit
     - MedkitAdvanced
     - MedkitBrute
@@ -134,9 +130,7 @@
     - ShellShotgunFlare
     - ShellShotgunIncendiary
     - ShellShotgunPractice
-    - ShellTranquilizer
     - SpeedLoaderMagnum
-    - Stunbaton
     - TPWeaponPistolCobra
     - TPWeaponPistolMk58
     - TPWeaponPistolViper
@@ -148,15 +142,12 @@
     - TPWeaponSubMachineGunWt550
     - WeaponLaserCarbine
     - MagazineShipAntiShip
-    - MagazineShipShotgun
     - ShipCannonBall
     - TPCircuitboardShipGunAmmoProviderBallistic
     - TPCircuitboardShipGunAmmoProviderBattery
-    - TPCircuitboardShipGunAmmoProviderShotgun
     - TPCircuitboardShipGunAmmoProviderCannon
     - TPCircuitboardWeaponShipGunBallistic
     - TPCircuitboardWeaponShipGunLaser
-    - TPCircuitboardWeaponShipGunShotgun
     - TPCircuitboardWeaponShipGunCannon
     - BiomassReclaimerMachineCircuitboard
     - CellRechargerCircuitboard
@@ -164,20 +155,13 @@
     - FatExtractorMachineCircuitboard
     - GasRecyclerMachineCircuitboard
     - GyroscopeMachineCircuitboard
-    - HotplateMachineCircuitboard
     - HydroponicsTrayMachineCircuitboard
-    - MicrowaveMachineCircuitboard
     - MiniGravityGeneratorCircuitboard
     - OreProcessorMachineCircuitboard
     - PortableGeneratorPacmanMachineCircuitboard
-    - PortableGeneratorSuperPacmanMachineCircuitboard
     - PortableScrubberMachineCircuitBoard
     - PowerComputerCircuitboard
-    - ReagentGrinderMachineCircuitboard
-    - SheetifierMachineCircuitboard
     - ShuttleConsoleCircuitboard
     - SolarTrackerElectronics
-    - StasisBedMachineCircuitboard
     - ThermomachineFreezerMachineCircuitBoard
     - ThrusterMachineCircuitboard
-    - UniformPrinterMachineCircuitboard

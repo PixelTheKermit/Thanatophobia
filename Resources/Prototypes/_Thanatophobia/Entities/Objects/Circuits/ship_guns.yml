@@ -34,7 +34,7 @@
 - type: entity
   id: TPCircuitboardWeaponShipGunShotgun
   parent: BaseMachineCircuitboard
-  name: BLG-4 machine board
+  name: XSW-45 machine board
   description: A machine printed circuit board for a shotgun that tears through armour.
   components:
   - type: Sprite

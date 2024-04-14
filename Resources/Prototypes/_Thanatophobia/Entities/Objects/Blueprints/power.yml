@@ -1,0 +1,9 @@
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleSUPERPACMAN
+  name: "Blueprint: S.U.P.E.R.P.A.C.M.A.N."
+  description: A blueprint module for a S.U.P.E.R.P.A.C.M.A.N-type portable generator.
+  components:
+  - type: BlueprintModule
+    recipes:
+    - PortableGeneratorPacmanMachineCircuitboard

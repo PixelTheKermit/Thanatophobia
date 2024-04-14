@@ -67,7 +67,7 @@
       tags:
       - ShipGunAmmoProviderBallistic
   - type: Machine
-    board: TPCircuitboardWeaponShipGunLaser
+    board: TPCircuitboardWeaponShipGunBallistic
 
 - type: entity
   parent: WeaponShipGunBase

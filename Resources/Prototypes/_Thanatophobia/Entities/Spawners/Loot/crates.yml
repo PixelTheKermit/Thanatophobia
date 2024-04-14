@@ -321,22 +321,7 @@
 
     # Fabricator Circutboards
     - id: TPCircuitboardBasicFabricator
-      prob: 0.15
-      orGroup: FabricatorBoard
-    - id: TPCircuitboardShipWeaponFabricator
-      prob: 0.15
-      orGroup: FabricatorBoard
-    - id: TPCircuitboardWeaponFabricator
-      prob: 0.15
-      orGroup: FabricatorBoard
-    - id: TPCircuitboardMedicalFabricator
-      prob: 0.15
-      orGroup: FabricatorBoard
-    - id: TPCircuitboardMachineFabricator
-      prob: 0.15
-      orGroup: FabricatorBoard
-    - id: null
-      orGroup: FabricatorBoard
+      prob: 0.05 # It's rare that you may lose your own fabricator, but just in case I guess.
 
     # Guns
     - id: MagazineBoxMagnum
