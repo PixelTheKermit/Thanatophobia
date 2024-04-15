@@ -33,7 +33,7 @@ public sealed partial class SimpleRespawningSystem : EntitySystem
         if (!TryComp<GhostComponent>(uid, out var ghostComp))
             return;
 
-        if (_gameTiming.CurTime - ghostComp.TimeOfDeath <= TimeSpan.FromSeconds(respawnSecs)) // Hardcoded for now. In the future should be a CVAR.
+        if (_gameTiming.CurTime - ghostComp.TimeOfDeath <= TimeSpan.FromSeconds(respawnSecs))
             return;
 
         _consoleHost.ExecuteCommand($"respawn \"{args.SenderSession.Name}\"");
