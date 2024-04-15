@@ -64,9 +64,9 @@
     - state: red
   - type: RandomSpawner
     prototypes:
-    - TPMobFleshJaredSalvage
-    - TPMobFleshGolemSalvage
-    - TPMobFleshClampSalvage
-    - TPMobFleshLoverSalvage
+    - MobFleshJaredSalvage
+    - MobFleshGolemSalvage
+    - MobFleshClampSalvage
+    - MobFleshLoverSalvage
     chance: 0.4
     offset: 0.2

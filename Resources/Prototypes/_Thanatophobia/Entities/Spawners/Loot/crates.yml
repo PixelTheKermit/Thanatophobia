@@ -1,26 +1,6 @@
 - type: entity
-  id: TPExplosiveCrate
-  parent: CrateSecure
-  name: crate
-  abstract: true
-  description: A standard crate with loot. Getting it damaged may cause it to explode.
-  components:
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:ExplodeBehavior
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 300
-    intensitySlope: 1
-    maxIntensity: 300
-
-- type: entity
   id: TPSimpleLootCrate
-  parent: TPExplosiveCrate
+  parent: CrateSecure
   suffix: Filled, Random, Simple
   components:
   - type: StorageFill
@@ -344,8 +324,9 @@
 
 - type: entity
   id: TPSandLootCrate
-  parent: TPExplosiveCrate
+  parent: CrateSecure
   suffix: Filled, Random, Simple
   components:
   - type: StorageFill
     contents:
+    - id: null
