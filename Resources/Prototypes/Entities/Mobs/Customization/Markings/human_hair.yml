@@ -792,6 +792,19 @@
           state: doublebun
 
 - type: marking
+  id: HumanHairDoublebunLong
+  icon:
+    sprite: Mobs/Customization/human_hair.rsi
+    state: doublebun_long
+  markingCategory: Hair
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      hair:
+      - sprite: Mobs/Customization/human_hair.rsi
+        state: doublebun_long
+
+- type: marking
   id: HumanHairDreads
   icon:
     sprite: Mobs/Customization/human_hair.rsi
