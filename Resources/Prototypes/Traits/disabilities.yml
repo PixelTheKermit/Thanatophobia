@@ -73,7 +73,8 @@
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: wheelchair
   components:
-    - type: WheelchairBound
+    - type: BuckleOnMapInit
+      prototype: VehicleWheelchair
     - type: LegsParalyzed
 
 - type: trait
