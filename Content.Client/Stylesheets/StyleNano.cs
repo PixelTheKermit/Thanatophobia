@@ -40,7 +40,7 @@ namespace Content.Client.Stylesheets
                 {
                     normalFont.Path.CanonPath,
                     $"/Fonts/NotoSans/NotoSansSymbols-{sv}.ttf",
-                    "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf",
+                    "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"
                 },
                 size
             );
