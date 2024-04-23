@@ -2433,7 +2433,7 @@
   id: HumanHairTailed
   icon:
     sprite: Mobs/Customization/human_hair.rsi
-    state: uneven
+    state: tailed
   markingCategory: Hair
   function: !type:AddMarkingFunction
     bodyPart: head
