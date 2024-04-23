@@ -1,6 +1,6 @@
 - type: species
   id: Vox
-  name: Vox
+  name: species-name-vox
   roundStart: false # sad...
   prototype: MobVox
   markingLimits: MobVoxMarkingLimits
