@@ -90,7 +90,6 @@ public sealed class BodySystem : SharedBodySystem
         EntityUid bodyId,
         bool gibOrgans = false,
         BodyComponent? body = null ,
-        bool deleteItems = false,
         bool launchGibs = true,
         Vector2? splatDirection = null,
         float splatModifier = 1,
@@ -108,7 +107,7 @@ public sealed class BodySystem : SharedBodySystem
         if (xform.MapUid == null)
             return new HashSet<EntityUid>();
 
-        var gibs = base.GibBody(bodyId, gibOrgans, body, deleteItems, launchGibs: launchGibs,
+        var gibs = base.GibBody(bodyId, gibOrgans, body, launchGibs: launchGibs,
             splatDirection: splatDirection, splatModifier: splatModifier, splatCone:splatCone);
         RaiseLocalEvent(bodyId, new BeingGibbedEvent(gibs));
         QueueDel(bodyId);
