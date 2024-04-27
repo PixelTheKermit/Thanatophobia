@@ -22,6 +22,8 @@
       required: false
     Tail:
       points: 1
+    Snout:
+      points: 1
       required: false
     Head:
       points: 2
