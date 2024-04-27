@@ -1,68 +1,4 @@
 ﻿Entries:
-- author: Bhijn and Myr
-  changes:
-  - message: Kobolds now come in a wide variety of colors, and now have random horns!
-    type: Add
-  id: 5539
-  time: '2024-01-04T00:39:00.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23393
-- author: IlyaElDunaev
-  changes:
-  - message: Tarantula can pry doors.
-    type: Add
-  - message: Added regeneration for tarantula.
-    type: Add
-  id: 5540
-  time: '2024-01-04T00:39:23.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23449
-- author: Alekshhh
-  changes:
-  - message: Changed green-red jester outfit visually
-    type: Tweak
-  id: 5541
-  time: '2024-01-04T00:40:23.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23454
-- author: themias
-  changes:
-  - message: Zombies now take longer to pry open bolted doors.
-    type: Tweak
-  id: 5542
-  time: '2024-01-04T00:41:39.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23383
-- author: Blazeror
-  changes:
-  - message: Vials now work in dispensers.
-    type: Fix
-  id: 5543
-  time: '2024-01-04T02:18:37.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23473
-- author: FairlySadPanda
-  changes:
-  - message: Switching songs when playing a MIDI instrument no longer inconsistently
-      requires stopping the old song first.
-    type: Fix
-  - message: Clicking the [bold]Play MIDI[/bold] button repeatedly in the Instrument
-      menu no longer queues up more file windows to open.
-    type: Fix
-  id: 5544
-  time: '2024-01-04T02:19:22.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23339
-- author: metalgearsloth
-  changes:
-  - message: Salvage magnet now has an interface to choose what you want to do.
-    type: Add
-  - message: Magnet asteroids now come in more varieties.
-    type: Tweak
-  id: 5545
-  time: '2024-01-04T03:25:32.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23119
-- author: themias
-  changes:
-  - message: Added a funny oxygen tank for the clown
-    type: Add
-  id: 5546
-  time: '2024-01-04T03:29:03.0000000+00:00'
-  url: https://api.github.com/repos/space-wizards/space-station-14/pulls/23495
 - author: SpeltIncorrectyl
   changes:
   - message: The flatpacker 1001 can now create flatpacks for computers.
@@ -3825,3 +3761,75 @@
   id: 6038
   time: '2024-02-26T23:19:51.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/25526
+- author: Sphiral
+  changes:
+  - message: NT has finally perfected methods for infusing Plasma/Uranium into Glass!
+      Windoors now have such varients! And Uranium Slim Windows exist!
+    type: Add
+  id: 6039
+  time: '2024-02-26T23:25:44.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25501
+- author: Whisper
+  changes:
+  - message: Bleed wounds will no longer heal so fast they do not need to be treated.
+      Please see the medical guidebook.
+    type: Tweak
+  - message: Decreased passive bleed wound clotting by 60% (now 0.33u per 3 seconds).
+    type: Tweak
+  - message: Decreased all bloodloss damage (as a result of bleeding) by 50%.
+    type: Tweak
+  - message: Health analyzers will report if your patient is bleeding.
+    type: Add
+  id: 6040
+  time: '2024-02-26T23:26:46.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25434
+- author: Velcroboy
+  changes:
+  - message: Tweaked wallmounted objects can not be interacted with through thindows
+      or windoors.
+    type: Tweak
+  - message: Fixed NanoMed vendor not being accessible from all directions.
+    type: Fix
+  id: 6041
+  time: '2024-02-26T23:28:55.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25451
+- author: Lank
+  changes:
+  - message: Diona can no longer split or reform to cure themselves of a zombie infection.
+    type: Fix
+  id: 6042
+  time: '2024-02-26T23:31:37.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25404
+- author: Zadeon
+  changes:
+  - message: Added salt as a new type of ore that can be mined from asteroids. Salt
+      can be ground up for its base components.
+    type: Add
+  id: 6043
+  time: '2024-02-26T23:34:15.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25324
+- author: juliangiebel
+  changes:
+  - message: The mass media consoles UI got overhauled
+    type: Tweak
+  - message: Added PDA notifications in chat for new news articles. They can be turned
+      off in the news reader program and are only visible to you.
+    type: Add
+  id: 6044
+  time: '2024-02-27T01:38:00.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/19610
+- author: rosieposieeee
+  changes:
+  - message: Added lockable wall buttons and decorative frames for differentiating
+      wall buttons.
+    type: Add
+  id: 6045
+  time: '2024-02-27T07:57:17.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25631
+- author: metalgearsloth
+  changes:
+  - message: Fix chat bubbles.
+    type: Fix
+  id: 6046
+  time: '2024-02-27T13:01:24.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/25643
