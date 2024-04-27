@@ -63,7 +63,7 @@ namespace Content.IntegrationTests.Tests
             "Reach",
             "Star",
             "Spade",
-            "Piracy"
+            "Piracy",
             "Train"
         };
 
