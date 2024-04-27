@@ -48,7 +48,6 @@ public sealed class ChatUIController : UIController
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
@@ -751,7 +750,7 @@ public sealed class ChatUIController : UIController
         ProcessChatMessage(msg);
 
         if ((msg.Channel & ChatChannel.AdminRelated) == 0 ||
-            _cfg.GetCVar(CCVars.ReplayRecordAdminChat))
+            _config.GetCVar(CCVars.ReplayRecordAdminChat))
         {
             _replayRecording.RecordClientMessage(msg);
         }
@@ -803,7 +802,7 @@ public sealed class ChatUIController : UIController
                 break;
 
             case ChatChannel.LOOC:
-                if (_cfg.GetCVar(CCVars.LoocAboveHeadShow))
+                if (_config.GetCVar(CCVars.LoocAboveHeadShow))
                     AddSpeechBubble(msg, SpeechBubble.SpeechType.Looc);
                 break;
         }
