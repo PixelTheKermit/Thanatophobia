@@ -54,6 +54,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
+    [UISystemDependency] private readonly SharedTransformSystem? _xformSystem = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -533,7 +534,7 @@ public sealed class ChatUIController : UIController
     private void UpdateQueuedSpeechBubbles(FrameEventArgs delta)
     {
         // Update queued speech bubbles.
-        if (_queuedSpeechBubbles.Count == 0 || _examine == null)
+        if (_queuedSpeechBubbles.Count == 0 || _examine is null || _xformSystem is null)
         {
             return;
         }
@@ -571,7 +572,7 @@ public sealed class ChatUIController : UIController
         var predicate = static (EntityUid uid, (EntityUid compOwner, EntityUid? attachedEntity) data)
             => uid == data.compOwner || uid == data.attachedEntity;
         var playerPos = player != null
-            ? EntityManager.GetComponent<TransformComponent>(player.Value).MapPosition
+            ? _xformSystem.GetMapCoordinates(player.Value)
             : MapCoordinates.Nullspace;
 
         var occluded = player != null && _examine.IsOccluded(player.Value);
@@ -590,7 +591,7 @@ public sealed class ChatUIController : UIController
                 continue;
             }
 
-            var otherPos = EntityManager.GetComponent<TransformComponent>(ent).MapPosition;
+            var otherPos = _xformSystem.GetMapCoordinates(ent);
 
             if (occluded && !ExamineSystemShared.InRangeUnOccluded(
                     playerPos,

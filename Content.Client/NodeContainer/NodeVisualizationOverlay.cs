@@ -23,6 +23,7 @@ namespace Content.Client.NodeContainer
         private readonly IMapManager _mapManager;
         private readonly IInputManager _inputManager;
         private readonly IEntityManager _entityManager;
+        private readonly SharedTransformSystem _xformSystem;
 
         private readonly Dictionary<(int, int), NodeRenderData> _nodeIndex = new();
         private readonly Dictionary<EntityUid, Dictionary<Vector2i, List<(GroupData, NodeDatum)>>> _gridIndex = new ();
@@ -51,6 +52,7 @@ namespace Content.Client.NodeContainer
             _mapManager = mapManager;
             _inputManager = inputManager;
             _entityManager = entityManager;
+            _xformSystem = _entityManager.System<SharedTransformSystem>();
 
             var normalFont = _protoManager.Index<FontPrototype>("Default");
             _font = cache.GetFont(normalFont.Path, 12);
@@ -152,7 +154,7 @@ namespace Content.Client.NodeContainer
             foreach (var (gridId, gridDict) in _gridIndex)
             {
                 var grid = _mapManager.GetGrid(gridId);
-                var (_, _, worldMatrix, invMatrix) = _entityManager.GetComponent<TransformComponent>(gridId).GetWorldPositionRotationMatrixWithInv();
+                var (_, _, worldMatrix, invMatrix) = _xformSystem.GetWorldPositionRotationMatrixWithInv(gridId);
 
                 var lCursorBox = invMatrix.TransformBox(cursorBox);
                 foreach (var (pos, list) in gridDict)
