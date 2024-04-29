@@ -123,6 +123,7 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
+    allowedEmotes: ['Squish']
 
 - type: entity
   name: blue slime
