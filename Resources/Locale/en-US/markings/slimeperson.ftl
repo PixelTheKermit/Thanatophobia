@@ -4,6 +4,12 @@ marking-SlimeGradientLeftArm = Slime Left Arm (Gradient)
 marking-SlimeGradientRightArm-0 = Slime Right Arm (Gradient)
 marking-SlimeGradientRightArm = Slime Right Arm (Gradient)
 
+marking-SlimeGradientLeftFoot-0 = Slime Left Foot (Gradient)
+marking-SlimeGradientLeftFoot = Slime Left Foot (Gradient)
+
+marking-SlimeGradientRightFoot-0 = Slime Right Foot (Gradient)
+marking-SlimeGradientRightFoot = Slime Right Foot (Gradient)
+
 marking-SlimeGradientLeftLeg-0 = Slime Left Leg (Gradient)
 marking-SlimeGradientLeftLeg = Slime Left Leg (Gradient)
 

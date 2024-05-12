@@ -14,6 +14,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
@@ -26,6 +27,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
     private readonly IPrototypeManager _prototypeManager;
     private readonly IEntityManager _entityManager;
     private readonly IClientPreferencesManager _preferencesManager;
+    private readonly IConfigurationManager _configManager;
     private readonly HumanoidAppearanceSystem _appearanceSystem;
 
     // Generic variables
@@ -53,6 +55,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
         _entityManager = entityManager;
 
         _appearanceSystem = _entityManager.System<HumanoidAppearanceSystem>();
+        _configManager = IoCManager.Resolve<IConfigurationManager>();
 
         _customisationControls = new()
         {
@@ -186,7 +189,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             profile = _preferencesManager.Preferences.SelectedCharacter;
 
         Humanoid = profile as HumanoidCharacterProfile ?? HumanoidCharacterProfile.DefaultWithSpecies();
-        Humanoid.EnsureValid();
+        Humanoid.EnsureValid(_configManager, _prototypeManager);
 
         UpdateSpriteView(true);
 

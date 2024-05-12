@@ -16,7 +16,7 @@
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
-  description: trait-narcolepsy-decs
+  description: trait-narcolepsy-desc
   cost: -2
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
@@ -33,6 +33,7 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: peace
+  description: trait-pacifist-desc
   components:
     - type: Pacified
 
@@ -52,12 +53,22 @@
         collection: Paracusia
 
 - type: trait
+  id: Unrevivable
+  name: trait-unrevivable-name
+  description: trait-unrevivable-desc
+  components:
+    - type: Unrevivable
+
+- type: trait
   id: Muted
   name: trait-muted-name
   description: trait-muted-desc
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: mute
+  blacklist:
+    components:
+      - BorgChassis
   components:
     - type: Muted
 
@@ -71,8 +82,12 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: wheelchair
+  blacklist:
+    components:
+      - BorgChassis
   components:
-    - type: WheelchairBound
+    - type: BuckleOnMapInit
+      prototype: VehicleWheelchair
     - type: LegsParalyzed
 
 - type: trait
