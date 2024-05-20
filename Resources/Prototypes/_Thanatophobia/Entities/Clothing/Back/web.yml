@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackWeb
+  name: web bag
+  description: It's basically a portable cocoon.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Clothing/Back/web-bag.rsi
+  - type: Storage
+    grid:
+    - 2, 0, 3, 0
+    - 1, 1, 4, 1
+    - 0, 2, 5, 5
+    - 1, 6, 4, 6
