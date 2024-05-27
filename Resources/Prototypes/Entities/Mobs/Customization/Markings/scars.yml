@@ -65,3 +65,18 @@
       chest:
       - sprite: Mobs/Customization/scars.rsi
         state: scar_top_surgery_long
+
+- type: marking
+  id: ScarChest
+  speciesRestrictions: [Human]
+  sexRestriction: [Male]
+  icon:
+    sprite: Mobs/Customization/scars.rsi
+    state: scar_top_surgery_long
+  markingCategory: Chest
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      chest:
+      - sprite: Mobs/Customization/scars.rsi
+        state: scar_chest

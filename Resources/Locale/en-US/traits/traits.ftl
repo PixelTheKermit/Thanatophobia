@@ -4,7 +4,7 @@ trait-blindness-desc = You are legally blind, and can't see clearly past a few m
                        "Sometimes a major sense is taken away from the recently reconstructed. For some reason, sight is the most common."
 
 trait-narcolepsy-name = Narcolepsy
-trait-narcolepsy-decs = You fall asleep randomly
+trait-narcolepsy-desc = You fall asleep randomly
 
                         "An odd defect. These usually report fine at first, if not a bit tired, yet they appear to fall asleep a lot. Medication for these people is recommended."
 

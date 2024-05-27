@@ -33,6 +33,7 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: peace
+  description: trait-pacifist-desc
   components:
     - type: Pacified
 
@@ -58,6 +59,9 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: mute
+  blacklist:
+    components:
+      - BorgChassis
   components:
     - type: Muted
 
@@ -71,8 +75,12 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: wheelchair
+  blacklist:
+    components:
+      - BorgChassis
   components:
-    - type: WheelchairBound
+    - type: BuckleOnMapInit
+      prototype: VehicleWheelchair
     - type: LegsParalyzed
 
 - type: trait

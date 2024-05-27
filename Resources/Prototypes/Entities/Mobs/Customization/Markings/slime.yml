@@ -34,9 +34,9 @@
     state: gradient_l_leg
   markingCategory: Legs
   function: !type:AddMarkingFunction
-    bodyPart: left foot
+    bodyPart: left leg
     sprites:
-      l-foot:
+      l-leg:
       - sprite: Mobs/Customization/slime_parts.rsi
         state: gradient_l_leg
 
@@ -48,11 +48,39 @@
     state: gradient_r_leg
   markingCategory: Legs
   function: !type:AddMarkingFunction
+    bodyPart: right leg
+    sprites:
+      r-leg:
+      - sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_r_leg
+
+- type: marking
+  id: SlimeGradientLeftFoot
+  speciesRestrictions: [SlimePerson]
+  icon:
+    sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_foot
+  markingCategory: Legs
+  function: !type:AddMarkingFunction
+    bodyPart: left foot
+    sprites:
+      l-foot:
+      - sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_l_foot
+
+- type: marking
+  id: SlimeGradientRightFoot
+  speciesRestrictions: [SlimePerson]
+  icon:
+    sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_foot
+  markingCategory: Legs
+  function: !type:AddMarkingFunction
     bodyPart: right foot
     sprites:
       r-foot:
       - sprite: Mobs/Customization/slime_parts.rsi
-        state: gradient_r_leg
+        state: gradient_r_foot
 
 - type: marking
   id: SlimeGradientLeftHand
