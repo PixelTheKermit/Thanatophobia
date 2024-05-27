@@ -1,7 +1,7 @@
 - type: marking
-  id: ArachnidEyesOld
+  id: ArachnidEyesOld # So retro.
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-old
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -9,7 +9,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-old
   forcedColoring: true
   coloring:
@@ -20,7 +20,7 @@
 - type: marking
   id: ArachnidEyesX
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-x
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -28,7 +28,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-x
   forcedColoring: true
   coloring:
@@ -39,7 +39,7 @@
 - type: marking
   id: ArachnidEyesGreed
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-greed
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -47,7 +47,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-greed
   forcedColoring: true
   coloring:
@@ -58,7 +58,7 @@
 - type: marking
   id: ArachnidEyesStarve
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-starve
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -66,7 +66,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-starve
   forcedColoring: true
   coloring:
@@ -77,7 +77,7 @@
 - type: marking
   id: ArachnidEyesEqual
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-equal
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -85,7 +85,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-equal
   forcedColoring: true
   coloring:
@@ -96,7 +96,7 @@
 - type: marking
   id: ArachnidEyesCircle
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-circle
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -104,7 +104,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-circle
   forcedColoring: true
   coloring:
@@ -115,7 +115,7 @@
 - type: marking
   id: ArachnidEyesTwo
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-two
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -123,7 +123,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-two
   forcedColoring: true
   coloring:
@@ -134,7 +134,7 @@
 - type: marking
   id: ArachnidEyesTwoDiagonal
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-two-diagonal
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -142,7 +142,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-two-diagonal
   forcedColoring: true
   coloring:
@@ -153,7 +153,7 @@
 - type: marking
   id: ArachnidEyesHognaWolf
   icon:
-    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+    sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
     state: eyes-hogna-wolf
   markingCategory: Eyes
   speciesRestrictions: [Arachnid]
@@ -161,7 +161,7 @@
     sprites:
       eyes:
         eyes:
-        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/parts.rsi
+        - sprite: /Textures/_Thanatophobia/Mobs/Species/Arachnid/eyes.rsi
           state: eyes-hogna-wolf
   forcedColoring: true
   coloring:

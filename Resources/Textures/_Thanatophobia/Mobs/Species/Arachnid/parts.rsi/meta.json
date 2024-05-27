@@ -22,46 +22,6 @@
     {
       "name": "r_hand_back_2",
       "directions": 4
-    },
-    {
-      "name": "eyes-four",
-      "directions": 4
-    },
-    {
-      "name": "eyes-old",
-      "directions": 4
-    },
-    {
-      "name": "eyes-x",
-      "directions": 4
-    },
-    {
-      "name": "eyes-greed",
-      "directions": 4
-    },
-    {
-      "name": "eyes-starve",
-      "directions": 4
-    },
-    {
-      "name": "eyes-equal",
-      "directions": 4
-    },
-    {
-      "name": "eyes-two",
-      "directions": 4
-    },
-    {
-      "name": "eyes-two-diagonal",
-      "directions": 4
-    },
-    {
-      "name": "eyes-hogna-wolf",
-      "directions": 4
-    },
-    {
-      "name": "eyes-circle",
-      "directions": 4
     }
   ]
 }
