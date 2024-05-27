@@ -7,3 +7,5 @@ tp-trait-two-hands-name = Hands^2
 tp-trait-two-hands-description = Gain an additional two hands.
 
                                  "Moth Person and Arachnid DNA is quite special, as it allows us to get away with attaching more limbs onto them. With Arachnid DNA, it's quite easy. Just replace two of their appendages with something a bit more useful. And Moth People are similar to... well, moths. So we can use genetic information from regular moths, modify it a little, and give it to Moth People."
+
+tp-trait-bffs-name = BFFs!

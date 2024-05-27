@@ -15,7 +15,7 @@
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
-  description: trait-narcolepsy-decs
+  description: trait-narcolepsy-desc
   cost: -1
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
@@ -33,7 +33,6 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: peace
-  description: trait-pacifist-desc
   components:
     - type: Pacified
 
