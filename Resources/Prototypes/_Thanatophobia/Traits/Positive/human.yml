@@ -86,7 +86,7 @@
   id: HumanSlimeLungs
   name: tp-trait-human-slime-lungs-name
   description: tp-trait-human-slime-lungs-description
-  cost: 2
+  cost: 1
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
     state: slime-lungs

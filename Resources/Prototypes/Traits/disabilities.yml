@@ -2,8 +2,7 @@
   id: Blindness
   name: trait-blindness-name
   description: trait-blindness-desc
-  traitGear: WhiteCane
-  cost: -2
+  cost: -1
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: blind
@@ -17,19 +16,20 @@
   id: Narcolepsy
   name: trait-narcolepsy-name
   description: trait-narcolepsy-decs
-  cost: -2
+  cost: -1
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: eepy
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
-      durationOfIncident: 10, 30
+      durationOfIncident: 7, 15
 
 - type: trait
   id: Pacifist
   name: trait-pacifist-name
-  cost: -3
+  description: trait-pacifist-desc
+  cost: -2
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: peace
@@ -65,7 +65,7 @@
   id: WheelchairBound
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
-  cost: -3
+  cost: -2
   exclusive:
   - BreaksWheelchair
   icon:

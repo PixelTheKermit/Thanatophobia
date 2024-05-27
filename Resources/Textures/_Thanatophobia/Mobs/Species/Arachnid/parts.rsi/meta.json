@@ -48,6 +48,18 @@
       "directions": 4
     },
     {
+      "name": "eyes-two",
+      "directions": 4
+    },
+    {
+      "name": "eyes-two-diagonal",
+      "directions": 4
+    },
+    {
+      "name": "eyes-hogna-wolf",
+      "directions": 4
+    },
+    {
       "name": "eyes-circle",
       "directions": 4
     }
