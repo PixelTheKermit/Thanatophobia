@@ -10,8 +10,10 @@
   - Moth
   exclusive:
   - Hands
-  components:
-  - type: ReplaceBodyPartTrait
-    replace:
-    - "body_part_slot_second left hand": SecondLeftHandMoth
-    - "body_part_slot_second right hand": SecondRightHandMoth
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ReplaceBodyPartTrait
+      replace:
+      - "body_part_slot_second left hand": SecondLeftHandMoth
+      - "body_part_slot_second right hand": SecondRightHandMoth

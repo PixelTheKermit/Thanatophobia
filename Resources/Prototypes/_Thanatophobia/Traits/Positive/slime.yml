@@ -8,14 +8,16 @@
     state: air
   allowed:
   - Slime
-  components:
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0
-    damageRecovery:
-      types:
-        Asphyxiation: -2.0
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: Respirator
+      damage:
+        types:
+          Asphyxiation: 0
+      damageRecovery:
+        types:
+          Asphyxiation: -2.0
 
 - type: trait
   id: SlimeBFFs
@@ -27,7 +29,9 @@
     state: friend
   allowed:
   - Slime
-  components:
-  - type: ChangeFactionsTrait
-    add:
-    - SlimeBFF
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ChangeFactionsTrait
+      add:
+      - SlimeBFF

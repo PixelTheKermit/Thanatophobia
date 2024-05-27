@@ -4,7 +4,7 @@
     sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_smooth_behind
   markingCategory: Tail
-  speciesRestrictions: [Human]
+  speciesRestrictions: [THEVOID]
   function: !type:AddMarkingFunction
     bodyPart: body_root_part
     sprites:
@@ -14,3 +14,4 @@
       tail-front:
         - sprite: Mobs/Customization/reptilian_parts.rsi
           state: "tail_smooth_front"
+

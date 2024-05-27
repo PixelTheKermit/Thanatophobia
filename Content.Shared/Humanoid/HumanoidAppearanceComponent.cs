@@ -70,4 +70,11 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedFacialHairColor;
+
+    /// <summary>
+    /// Any markings that will replace a trait's default markings.
+    /// </summary>
+    /// <returns></returns>
+    [DataField, AutoNetworkedField]
+    public Dictionary<string, Marking> TraitMarkings = new();
 }

@@ -29,22 +29,46 @@
       - sprite: Mobs/Customization/cat_parts.rsi
         state: ears_cat_inner
 
-# # TODO: This should, in the future, change trait markings, but that's wyci.
+- type: marking
+  id: CatTail
+  markingCategory: Tail
+  speciesRestrictions: [THEVOID]
+  icon:
+    sprite: Mobs/Customization/cat_parts.rsi
+    state: tail_cat
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:CategoryColoring
+          category: FacialHair
+        - !type:SkinColoring
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      tail-front:
+      - sprite: Mobs/Customization/cat_parts.rsi
+        state: tail_cat
 
-# - type: marking
-  # id: CatTail
-  # bodyPart: tail
-  # markingCategory: Tail
-  # speciesRestriction: [Human]
-  # coloring:
-    # default:
-      # type:
-        # !type:CategoryColoring
-          # category: Hair
-      # fallbackTypes:
-        # - !type:CategoryColoring
-          # category: FacialHair
-        # - !type:SkinColoring
-  # sprites:
-  # - sprite: Mobs/Customization/cat_parts.rsi
-    # state: tail_cat
+- type: marking
+  id: CatTailEquippable
+  markingCategory: Tail
+  icon:
+    sprite: Mobs/Customization/cat_parts.rsi
+    state: tail_cat
+  speciesRestrictions: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:CategoryColoring
+          category: FacialHair
+        - !type:SkinColoring
+  function: !type:ReplaceTraitMarking
+    traitId: HumanTail
+    markingId: CatTail
+    colourCount: 1

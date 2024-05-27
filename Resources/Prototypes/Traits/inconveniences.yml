@@ -5,7 +5,9 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: lightweight
-  components:
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
     - type: LightweightDrunk
       boozeStrengthMultiplier: 2
 
@@ -16,7 +18,9 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: anxiety
-  components:
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
     - type: StutteringAccent
       matchRandomProb: 0.1
       fourRandomProb: 0

@@ -10,28 +10,13 @@
   - Arachnid
   exclusive:
   - Hands
-  components:
-  - type: ReplaceBodyPartTrait
-    replace:
-    - "body_part_slot_left lower appendage": SecondLeftHandArachnid
-    - "body_part_slot_right lower appendage": SecondRightHandArachnid
-
-# TODO: make this work later.
-# - type: trait
-  # id: ArachnidPockets
-  # name: tp-trait-arachnid-pockets-name
-  # description: tp-trait-arachnid-pockets-description
-  # icon:
-    # sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/arachnid.rsi
-    # state: pockets
-  # exclusive:
-  # - Inventory
-  # allowed:
-  # - Arachnid
-  # cost: 2
-  # components:
-  # - type: Inventory
-    # templateId: arachnid
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ReplaceBodyPartTrait
+      replace:
+      - "body_part_slot_left lower appendage": SecondLeftHandArachnid
+      - "body_part_slot_right lower appendage": SecondRightHandArachnid
 
 - type: trait
   id: SpiderBFFs
@@ -43,7 +28,9 @@
     state: friend
   allowed:
   - Arachnid
-  components:
-  - type: ChangeFactionsTrait
-    add:
-    - SpiderBFF
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ChangeFactionsTrait
+      add:
+      - SpiderBFF

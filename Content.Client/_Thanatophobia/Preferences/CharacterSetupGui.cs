@@ -251,23 +251,9 @@ public sealed partial class TPCharacterSetupGui : Control
                     continue;
 
                 // Add all components required by the prototype
-                foreach (var entry in traitPrototype.Components.Values)
+                foreach (var function in traitPrototype.Functions)
                 {
-                    var comp = serializationManager.CreateCopy(entry.Component, notNullableOverride: true);
-                    comp.Owner = _previewDummy;
-                    entityManager.AddComponent(_previewDummy, comp, true);
-                }
-
-                if (traitPrototype.MarkingId != null
-                && prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
-                {
-                    var colors = MarkingColoring.GetMarkingLayerColors(markingProto, humanoid.Appearance.SkinColor, humanoid.Appearance.EyeColor, new MarkingSet());
-                    var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
-
-                    for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
-                        dictColors[i] = traitPrototype.MarkingColours[i];
-
-                    humanoidAppearanceSystem.AddMarking(_previewDummy, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
+                    function.AddTrait(_previewDummy, traitPrototype, prototypeManager, entityManager);
                 }
             }
 

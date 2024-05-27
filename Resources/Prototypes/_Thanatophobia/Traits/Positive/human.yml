@@ -10,11 +10,14 @@
   - Tail
   allowed:
   - Human
-  markingId: HumanTailSmooth
-  markingColours:
-  - "green"
-  components:
-  - type: TailDraggingTrait
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: TailDraggingTrait
+  - !type:TraitAddMarkingFunction
+    markingId: HumanTailSmooth
+    markingColours:
+    - "green"
 
 - type: trait
   id: HumanWings
@@ -28,14 +31,17 @@
   - Wings
   allowed:
   - Human
-  markingId: HumanWingsDefault
-  markingColours:
-  - "white"
-  components:
-  - type: WingsTrait
-    weightlessModifier: .9
-    weightlessFriction: .8
-    weightlessAcceleration: 1.2
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: WingsTrait
+      weightlessModifier: .9
+      weightlessFriction: .8
+      weightlessAcceleration: 1.2
+  - !type:TraitAddMarkingFunction
+    markingId: HumanWingsDefault
+    markingColours:
+    - "white"
 
 - type: trait
   id: HumanWebs
@@ -49,18 +55,21 @@
   - Webs
   allowed:
   - Human
-  markingId: ArachnidCheliceraeDownwards
-  markingColours:
-  - "#e3dac9"
-  components:
-  - type: Sericulture
-    action: ActionSericulture
-    productionLength: 2.5
-    entityProduced: MaterialWebSilk1
-    hungerCost: 6
-  - type: AddTagTrait
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: Sericulture
+      action: ActionSericulture
+      productionLength: 2.5
+      entityProduced: MaterialWebSilk1
+      hungerCost: 6
+  - !type:TraitAddTagsFunction
     add:
     - SpiderCraft
+  - !type:TraitAddMarkingFunction
+    markingId: ArachnidCheliceraeDownwards
+    markingColours:
+    - "#e3dac9"
 
 - type: trait
   id: HumanBloom
@@ -70,17 +79,20 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/human.rsi
     state: bloom
-  markingId: DionaSproutHeadSide
-  markingColours:
-  - "#eeee00"
   exclusive:
   - Stomach
   allowed:
   - Human
-  components:
-  - type: ReplaceOrganTrait
-    replace:
-    - body_organ_slot_stomach: OrganHumanBloomStomach
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ReplaceOrganTrait
+      replace:
+      - body_organ_slot_stomach: OrganHumanBloomStomach
+  - !type:TraitAddMarkingFunction
+    markingId: DionaSproutHeadSide
+    markingColours:
+    - "#eeee00"
 
 - type: trait
   id: HumanSlimeLungs
@@ -94,7 +106,9 @@
   - Lungs
   allowed:
   - Human
-  components:
-  - type: ReplaceOrganTrait
-    replace:
-    - body_organ_slot_lungs: OrganHumanSlimeLungs
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ReplaceOrganTrait
+      replace:
+      - body_organ_slot_lungs: OrganHumanSlimeLungs

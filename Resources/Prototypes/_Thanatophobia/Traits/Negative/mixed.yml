@@ -9,10 +9,12 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/mixed.rsi
     state: arm-missing
-  components:
-  - type: ReplaceBodyPartTrait
-    replace: # I fucking hate containers and their stupid fucking names.
-    - "body_part_slot_left hand": null
-    - "body_part_slot_left arm": null
-    - "body_part_slot_left_hand": null
-    - "body_part_slot_left_arm": null
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ReplaceBodyPartTrait
+      replace: # I fucking hate containers and their stupid fucking names.
+      - "body_part_slot_left hand": null
+      - "body_part_slot_left arm": null
+      - "body_part_slot_left_hand": null
+      - "body_part_slot_left_arm": null
