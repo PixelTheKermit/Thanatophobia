@@ -9,10 +9,8 @@
   exclusive:
   - Size
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: SizeAdjustmentTrait
-      height: 0.9
+  - !type:TraitChangeScaleFunction
+    height: 0.9
 
 - type: trait
   id: ShortPlus
@@ -24,10 +22,8 @@
   exclusive:
   - Size
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: SizeAdjustmentTrait
-      height: 0.8
+  - !type:TraitChangeScaleFunction
+    height: 0.8
 
 - type: trait
   id: ShortPlusPlus
@@ -39,10 +35,8 @@
   exclusive:
   - Size
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: SizeAdjustmentTrait
-      height: 0.7
+  - !type:TraitChangeScaleFunction
+    height: 0.7
 
 # Tall
 
@@ -56,10 +50,8 @@
   exclusive:
   - Size
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: SizeAdjustmentTrait
-      height: 1.1
+  - !type:TraitChangeScaleFunction
+    height: 1.1
 
 - type: trait
   id: TallPlus
@@ -71,10 +63,8 @@
   exclusive:
   - Size
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: SizeAdjustmentTrait
-      height: 1.25
+  - !type:TraitChangeScaleFunction
+    height: 1.25
 
 - type: trait
   id: TallPlusPlus
@@ -86,7 +76,5 @@
   exclusive:
   - Size
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: SizeAdjustmentTrait
-      height: 1.5
+  - !type:TraitChangeScaleFunction
+    height: 1.5

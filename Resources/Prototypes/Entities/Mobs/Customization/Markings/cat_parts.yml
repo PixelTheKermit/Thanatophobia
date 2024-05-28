@@ -32,7 +32,7 @@
 - type: marking
   id: CatTail
   markingCategory: Tail
-  speciesRestrictions: [THEVOID]
+  speciesRestrictions: [THEVOID] # Just so it's hidden in the character editor.
   icon:
     sprite: Mobs/Customization/cat_parts.rsi
     state: tail_cat

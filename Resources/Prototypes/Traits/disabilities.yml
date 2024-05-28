@@ -13,6 +13,8 @@
     - !type:TraitAddComponentsFunction
       components:
       - type: PermanentBlindness
+    - !type:TraitGiveGearFunction
+      itemId: WhiteCane
 
 - type: trait
   id: Narcolepsy

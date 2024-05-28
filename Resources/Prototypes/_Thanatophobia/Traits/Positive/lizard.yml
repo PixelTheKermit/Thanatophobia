@@ -11,12 +11,10 @@
   allowed:
   - Lizard
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: WingsTrait
-      weightlessModifier: .9
-      weightlessFriction: .8
-      weightlessAcceleration: 1.2
+  - !type:TraitWeightlessModifierFunction
+    weightlessModifier: .9
+    weightlessFriction: .8
+    weightlessAcceleration: 1.2
   - !type:TraitAddMarkingFunction
     markingId: LizardWingsDefault
 

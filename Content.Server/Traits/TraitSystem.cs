@@ -17,10 +17,13 @@ public sealed class TraitSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
+        _sawmill = _log.GetSawmill("Traits");
         base.Initialize();
 
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
@@ -36,8 +39,8 @@ public sealed class TraitSystem : EntitySystem
         {
             if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
             {
-                Logger.Warning($"No trait found with ID {traitId}!");
-                return;
+                _sawmill.Warning($"No trait found with ID {traitId}!");
+                continue;
             }
 
             if (traitPrototype.Whitelist != null && !traitPrototype.Whitelist.IsValid(args.Mob))
@@ -46,26 +49,8 @@ public sealed class TraitSystem : EntitySystem
             if (traitPrototype.Blacklist != null && traitPrototype.Blacklist.IsValid(args.Mob))
                 continue;
 
-            // Add item required by the trait
-            if (traitPrototype.TraitGear != null)
-            {
-                if (!TryComp(args.Mob, out HandsComponent? handsComponent))
-                    continue;
-
-                var coords = Transform(args.Mob).Coordinates;
-                var inhandEntity = EntityManager.SpawnEntity(traitPrototype.TraitGear, coords);
-                _sharedHandsSystem.TryPickup(args.Mob, inhandEntity, checkActionBlocker: false,
-                    handsComp: handsComponent);
-            }
-
-            # region Start Thanatophobia Edits
-
             foreach (var function in traitPrototype.Functions)
-            {
                 function.AddTrait(args.Mob, traitPrototype, _prototypeManager, EntityManager);
-            }
-
-            # endregion End Thanatophobia Edits
         }
     }
 }

@@ -77,4 +77,10 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// <returns></returns>
     [DataField, AutoNetworkedField]
     public Dictionary<string, Marking> TraitMarkings = new();
+
+    /// <summary>
+    /// Any markings that will be added post-body init.
+    /// </summary>
+    /// <returns></returns>
+    public HashSet<Marking> QueuedMarkings = new();
 }

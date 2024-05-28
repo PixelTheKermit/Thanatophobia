@@ -13,7 +13,8 @@
   functions:
   - !type:TraitAddComponentsFunction
     components:
-    - type: TailDraggingTrait
+    - type: Puller
+      needsHands: false
   - !type:TraitAddMarkingFunction
     markingId: HumanTailSmooth
     markingColours:
@@ -32,12 +33,10 @@
   allowed:
   - Human
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: WingsTrait
-      weightlessModifier: .9
-      weightlessFriction: .8
-      weightlessAcceleration: 1.2
+  - !type:TraitWeightlessModifierFunction
+    weightlessModifier: .9
+    weightlessFriction: .8
+    weightlessAcceleration: 1.2
   - !type:TraitAddMarkingFunction
     markingId: HumanWingsDefault
     markingColours:

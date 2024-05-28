@@ -66,10 +66,16 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             || !_prototypeManager.TryIndex(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
         {
             LoadProfile(uid, HumanoidCharacterProfile.DefaultWithSpecies(humanoid.Species), humanoid);
-            return;
+        }
+        else
+        {
+            LoadProfile(uid, startingSet.Profile, humanoid);
         }
 
-        LoadProfile(uid, startingSet.Profile, humanoid);
+        foreach (var marking in humanoid.QueuedMarkings)
+        {
+            AddMarking(uid, marking.MarkingId, marking.MarkingColors, humanoid: humanoid);
+        }
     }
 
     private void OnGenderUpdate(EntityUid uid, GenderedBodyPartComponent comp, UpdateGenderedBodyPartEvent args)
@@ -509,12 +515,19 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             }
         }
 
-        var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
+        if (TryComp<BodyComponent>(uid, out var bodyComp) && bodyComp.RootContainer != null)
+        {
+            var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
 
-        prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
+            prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
 
-        if (sync)
-            Dirty(uid, humanoid);
+            if (sync)
+                Dirty(uid, humanoid);
+        }
+        else // Queue markings for when bodycomp is ready.
+        {
+            humanoid.QueuedMarkings.Add(markingObject);
+        }
     }
 
     public void ReplaceMarkings(EntityUid uid, MarkingSet markingSet, bool dirty = true, HumanoidAppearanceComponent? component = null, List<EntityUid>? bodyParts = null)
@@ -606,14 +619,20 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
 
-        var bodyPartContainers = _bodySystem.GetBodyWithOrganContainers(uid);
-
-        prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
-
-        if (sync)
+        if (TryComp<BodyComponent>(uid, out var bodyComp) && bodyComp.RootContainer != null)
         {
-            UpdatePartVisuals(uid, humanoid);
-            Dirty(uid, humanoid);
+            var bodyPartContainers = _bodySystem.GetBodyWithOrganContainers(uid);
+            prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
+
+            if (sync)
+            {
+                UpdatePartVisuals(uid, humanoid);
+                Dirty(uid, humanoid);
+            }
+        }
+        else // Queue markings for when bodycomp is ready.
+        {
+            humanoid.QueuedMarkings.Add(markingObject);
         }
     }
 }
