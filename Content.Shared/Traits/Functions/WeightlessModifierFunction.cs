@@ -1,9 +1,8 @@
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Traits;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Humanoid.Markings;
+namespace Content.Shared.Traits;
 public sealed partial class TraitWeightlessModifierFunction : BaseTraitFunction
 {
     [DataField]

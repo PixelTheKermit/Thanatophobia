@@ -1,8 +1,4 @@
-using Content.Shared.Body.Part;
-using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Traits;
 

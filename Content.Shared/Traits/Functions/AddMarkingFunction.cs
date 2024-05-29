@@ -1,8 +1,9 @@
 using System.Linq;
-using Content.Shared.Traits;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Humanoid.Markings;
+namespace Content.Shared.Traits;
 public sealed partial class TraitAddMarkingFunction : BaseTraitFunction
 {
     public override bool DynamicUpdates => true;

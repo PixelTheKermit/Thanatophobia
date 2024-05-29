@@ -1,8 +1,7 @@
 using System.Numerics;
-using Content.Shared.Traits;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Humanoid.Markings;
+namespace Content.Shared.Traits;
 public sealed partial class TraitChangeScaleFunction : BaseTraitFunction
 {
     [DataField(required: true)]

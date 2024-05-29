@@ -1,9 +1,8 @@
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Traits;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Humanoid.Markings;
+namespace Content.Shared.Traits;
 public sealed partial class TraitGiveGearFunction : BaseTraitFunction
 {
     [DataField(required: true)]

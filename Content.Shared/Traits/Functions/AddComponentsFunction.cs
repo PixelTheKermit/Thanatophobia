@@ -1,12 +1,11 @@
 using Content.Shared.Tag;
-using Content.Shared.Traits;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Humanoid.Markings;
+namespace Content.Shared.Traits;
 public sealed partial class TraitAddComponentsFunction : BaseTraitFunction
 {
 
