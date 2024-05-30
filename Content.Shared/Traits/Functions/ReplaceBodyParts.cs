@@ -8,20 +8,21 @@ public sealed partial class TraitReplaceBodyPartsFunction : BaseTraitFunction
 {
     [DataField]
     public List<(string container, ProtoId<EntityPrototype>? protoId)> Replace = new();
+
     public override void AddTrait(EntityUid uid, TraitPrototype traitProto, IPrototypeManager protoManager, IEntityManager entityManager)
     {
         var sysManager = IoCManager.Resolve<IEntitySystemManager>();
         var bodySystem = sysManager.GetEntitySystem<SharedBodySystem>();
         var containerSystem = sysManager.GetEntitySystem<SharedContainerSystem>();
 
-        var bodyParts = bodySystem.GetBodyWithOrganContainers(uid).ToList();
+        var bodyContainers = bodySystem.GetBodyWithOrganContainers(uid).ToList();
 
         foreach (var (containerID, proto) in Replace)
         {
-            if (!bodyParts.Any(part => part.ID == containerID))
+            if (!bodyContainers.Any(part => part.ID == containerID))
                 continue;
 
-            var container = bodyParts.Find(part => part.ID == containerID)!;
+            var container = bodyContainers.Find(part => part.ID == containerID)!;
 
             if (container.ContainedEntities.Count > 0)
             {

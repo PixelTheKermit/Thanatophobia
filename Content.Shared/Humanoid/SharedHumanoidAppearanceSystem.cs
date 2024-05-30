@@ -517,7 +517,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         if (TryComp<BodyComponent>(uid, out var bodyComp) && bodyComp.RootContainer != null)
         {
-            var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
+            var bodyPartContainers = _bodySystem.GetBodyWithOrganContainers(uid);
 
             prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
 

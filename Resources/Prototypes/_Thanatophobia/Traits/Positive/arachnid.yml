@@ -11,12 +11,10 @@
   exclusive:
   - Hands
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: ReplaceBodyPartTrait
-      replace:
-      - "body_part_slot_left lower appendage": SecondLeftHandArachnid
-      - "body_part_slot_right lower appendage": SecondRightHandArachnid
+  - !type:TraitReplaceBodyPartsFunction
+    replace:
+    - "body_part_slot_left lower appendage": SecondLeftHandArachnid
+    - "body_part_slot_right lower appendage": SecondRightHandArachnid
 
 - type: trait
   id: SpiderBFFs

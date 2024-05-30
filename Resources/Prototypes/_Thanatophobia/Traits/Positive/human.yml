@@ -83,15 +83,13 @@
   allowed:
   - Human
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: ReplaceOrganTrait
-      replace:
-      - body_organ_slot_stomach: OrganHumanBloomStomach
   - !type:TraitAddMarkingFunction
     markingId: DionaSproutHeadSide
     markingColours:
     - "#eeee00"
+  - !type:TraitReplaceBodyPartsFunction
+    replace:
+    - "body_organ_slot_stomach": OrganHumanBloomStomach
 
 - type: trait
   id: HumanSlimeLungs
@@ -106,8 +104,6 @@
   allowed:
   - Human
   functions:
-  - !type:TraitAddComponentsFunction
-    components:
-    - type: ReplaceOrganTrait
-      replace:
-      - body_organ_slot_lungs: OrganHumanSlimeLungs
+  - !type:TraitReplaceBodyPartsFunction
+    replace:
+    - "body_organ_slot_lungs": OrganHumanSlimeLungs
