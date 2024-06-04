@@ -9,7 +9,10 @@
     sprites:
       tail-front:
       - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Lizard/wings.rsi
-        state: wings
+        state: front
+      tail-back:
+      - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Lizard/wings.rsi
+        state: back
   coloring:
     default:
       type:
