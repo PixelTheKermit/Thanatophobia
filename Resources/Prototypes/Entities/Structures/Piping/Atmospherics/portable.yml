@@ -1,6 +1,6 @@
 - type: entity
   id: PortableScrubber
-  parent: BaseStructureDynamic
+  parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
   name: portable scrubber
   description: It scrubs, portably!
   components:
