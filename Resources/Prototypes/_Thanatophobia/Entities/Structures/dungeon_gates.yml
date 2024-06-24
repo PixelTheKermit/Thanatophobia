@@ -1,0 +1,68 @@
+- type: entity
+  parent: BaseMachine
+  id: TPDungeonGateBase
+  name: mirror gate
+  description: A mirror that leads to a mirror world. These tend to be unstable nowadays, and the magic behind them is pretty much unknown.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Machines/mirror-gate.rsi
+    layers:
+    - state: hazy
+      map: ["ready"]
+    - state: mirror
+      map: ["in-progress"]
+    - state: broken
+      map: ["broken"]
+    - state: gate
+  - type: Fixtures
+    fixtures: {}
+  - type: DungeonGate
+    dungeonConfig: LavaBrig
+    exitGateProto: TPDungeonGateExit
+    gateReadySprite: "ready"
+    gateOngoingSprite: "in-progress"
+    gateBrokenSprite: "broken"
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateExit
+  name: mirror exit gate
+  description: A mirror that leads out of a mirror world. You may want to keep in mind where this is at all times.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Machines/mirror-gate.rsi
+    layers:
+    - state: hazy
+      map: ["ready"]
+    - state: mirror
+      map: ["in-progress"]
+    - state: broken
+      map: ["broken"]
+    - state: gate
+  - type: Fixtures
+    fixtures: {}
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateDesert
+  name: mirror of the desert
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Machines/mirror-gate.rsi
+    layers:
+    - state: hazy
+      map: ["ready"]
+      color: "#FFFFAA"
+    - state: mirror
+      color: "#FFFFAA"
+      map: ["in-progress"]
+    - state: broken
+      color: "#EEFF00"
+      map: ["broken"]
+    - state: gate
+  - type: DungeonGate
+    dungeonConfig: LavaBrig

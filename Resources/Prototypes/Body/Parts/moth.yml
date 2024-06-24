@@ -227,8 +227,13 @@
     state: default
   - type: BodyPartVisualiser
     sprites:
-      tail:
+      wings-back:
       - sprite:
           sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: default
+          state: atlas_back
+        colouringType: !type:PartUseSkin
+      wings-front:
+      - sprite:
+          sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: atlas_front
         colouringType: !type:PartUseSkin

@@ -38,3 +38,6 @@
     Arms:
       points: 4
       required: false
+    Body:
+      points: 1
+      required: false

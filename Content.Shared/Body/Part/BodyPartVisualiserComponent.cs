@@ -17,13 +17,13 @@ public sealed partial class BodyPartVisualiserComponent : Component
     /// Support for multiple layers, for things like tails which may have a front and back sprite.
     /// </summary>
     [DataField]
-    public Dictionary<string, List<BodyPartVisualiserSprite>> Sprites = new();
+    public BodyPartVisualiserSet Sprites = new();
 
     /// <summary>
     /// A dictionary for custom sprites. Used by markings that may replace the base body parts.
     /// </summary>
     [DataField]
-    public Dictionary<string, List<BodyPartVisualiserSprite>> CustomSprites = new();
+    public BodyPartVisualiserSet CustomSprites = new();
 
     /// <summary>
     /// A list of markings. Wow.
@@ -33,18 +33,15 @@ public sealed partial class BodyPartVisualiserComponent : Component
     public MarkingSet Markings = new();
 }
 
-[DataDefinition, Serializable, NetSerializable]
-public sealed partial class BodyPartVisualiserSprite
+[DataDefinition, NetSerializable, Serializable]
+public sealed partial class BodyPartVisualiserSet
 {
     [DataField]
-    public Color? Colour;
+    public Dictionary<string, List<SpriteSpecifier?>> Sprites;
 
     [DataField]
-    public PartColouringType? ColouringType = null;
+    public List<PartColouringType?> DefaultColouring;
 
     [DataField]
-    public SpriteSpecifier? Sprite;
-
-    [DataField]
-    public string? ID;
+    public Dictionary<string, List<Color>> Colours;
 }
