@@ -96,15 +96,17 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         args.Sprites.Add(sprites);
 
-        foreach (var (bodyPart, visual) in sprites.Sprites)
+        foreach (var _ in sprites.Sprites)
         {
             for (var i = 0; i < sprites.Sprites.Count; i++)
             {
-                if (sprites.DefaultColouring.Count < i && (args.OverrideColours || sprites.Colours.Count < i))
-                    sprites.Colours[i] = sprites.DefaultColouring[i].GetColour(args.SkinColour, args.EyeColour);
-
-                if (sprites.Colours.Count < i)
-                    sprites.Colours[i] = Color.White;
+                if (i < sprites.DefaultColouring.Count && (args.OverrideColours || i >= sprites.Colours.Count))
+                {
+                    if (i >= sprites.Colours.Count)
+                        sprites.Colours.Add(sprites.DefaultColouring[i].GetColour(args.SkinColour, args.EyeColour));
+                    else
+                        sprites.Colours[i] = sprites.DefaultColouring[i].GetColour(args.SkinColour, args.EyeColour);
+                }
             }
         }
     }
@@ -130,6 +132,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 {
                     visuals.Sprites[layer] = sprites;
                 }
+                args.Sprites.Add(visuals);
             }
         }
     }
@@ -172,7 +175,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
-        component.Parts = new();
+        component.Parts.Clear();
 
         bodyParts ??= QuickGetAllParts(uid);
 

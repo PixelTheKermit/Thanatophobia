@@ -33,15 +33,15 @@ public sealed partial class BodyPartVisualiserComponent : Component
     public MarkingSet Markings = new();
 }
 
-[DataDefinition, NetSerializable, Serializable]
+[DataDefinition, Serializable, NetSerializable]
 public sealed partial class BodyPartVisualiserSet
 {
     [DataField]
-    public Dictionary<string, List<SpriteSpecifier?>> Sprites;
+    public Dictionary<string, List<SpriteSpecifier?>> Sprites = new();
 
     [DataField]
-    public List<PartColouringType> DefaultColouring;
+    public List<PartColouringType> DefaultColouring = new();
 
     [DataField]
-    public List<Color> Colours;
+    public List<Color> Colours = new();
 }

@@ -54,15 +54,19 @@ public sealed partial class ReplaceBodyPartsMarkingFunction : BaseMarkingFunctio
                 var colours = new List<Color>();
                 for (var i = 0; i < sprites.Count; i++)
                 {
-                    var colour = Color.White;
+                    if (i >= colours.Count)
+                    {
+                        var colour = Color.White;
 
-                    if (markingObject.MarkingColors.Count > i)
-                        colour = markingObject.MarkingColors[i];
+                        if (i < markingObject.MarkingColors.Count)
+                            colour = markingObject.MarkingColors[i];
 
-                    colours.Add(colour);
+                        colours.Add(colour);
+                    }
 
                     bodyPartVisual.CustomSprites.Sprites[markingLayer] = sprites;
                 }
+                bodyPartVisual.CustomSprites.Colours = colours;
             }
         }
     }

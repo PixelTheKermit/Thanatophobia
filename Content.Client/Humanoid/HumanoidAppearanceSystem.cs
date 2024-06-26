@@ -47,7 +47,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             if (spriteComp.LayerMapTryGet(layer, out var index))
                 spriteComp.RemoveLayer(index);
         }
-
         component.PartLayers.Clear();
 
         foreach (var part in component.Parts)
@@ -56,7 +55,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             {
                 if (!IsHidden(component, layer.Key))
                 {
-                    if (!spriteComp.LayerMapTryGet(layer, out var baseIndex))
+                    if (!spriteComp.LayerMapTryGet(layer.Key, out var baseIndex))
                         continue;
 
                     var index = baseIndex;
@@ -64,7 +63,12 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                     for (var i = 0; i < layer.Value.Count; i++)
                     {
                         spriteComp.AddBlankLayer(index);
-                        var layerId = $"{part}-part-{index}";
+                        var layerId = $"{layer.Key}-part-{index}";
+                        while (spriteComp.LayerMapTryGet(layerId, out var _))
+                        {
+                            index++;
+                            layerId = $"{layer.Key}-part-{index}";
+                        }
                         spriteComp.LayerMapSet(layerId, index);
                         component.PartLayers.Add(layerId);
 
@@ -75,8 +79,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                         if (layer.Value[i] != null)
                             SetPartVisual(spriteComp, index, layer.Value[i]!, colour);
 
-                        index += 1;
-                }
+                        index++;
+                    }
                 }
             }
         }

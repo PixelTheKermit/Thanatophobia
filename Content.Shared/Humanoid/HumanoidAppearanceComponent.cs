@@ -15,7 +15,7 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField]
     public List<BodyPartVisualiserSet> Parts = new();
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public List<string> PartLayers = new();
 
     [DataField, AutoNetworkedField]
