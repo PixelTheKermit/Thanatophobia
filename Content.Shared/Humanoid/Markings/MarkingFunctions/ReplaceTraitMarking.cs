@@ -34,7 +34,7 @@ public sealed partial class ReplaceTraitMarking : BaseMarkingFunction
         return ColourCount;
     }
 
-    public override Dictionary<string, List<SpriteSpecifier>> GetSprites()
+    public override Dictionary<string, List<SpriteSpecifier?>> GetSprites()
     {
         return new();
     }

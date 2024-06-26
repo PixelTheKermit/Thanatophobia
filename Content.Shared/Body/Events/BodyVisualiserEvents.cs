@@ -2,13 +2,14 @@ using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Body;
 
 [ByRefEvent]
 public sealed partial class GetBodyPartVisualEvent : EntityEventArgs
 {
-    public List<(string, List<BodyPartVisualiserSprite>)> Sprites = new();
+    public List<BodyPartVisualiserSet> Sprites = new();
     public Color SkinColour;
     public Color EyeColour;
     public bool OverrideColours;
@@ -24,7 +25,7 @@ public sealed partial class GetBodyPartVisualEvent : EntityEventArgs
 [ByRefEvent]
 public sealed partial class GetMarkingVisualEvent : EntityEventArgs
 {
-    public List<(string, List<BodyPartVisualiserSprite>)> Sprites = new();
+    public List<BodyPartVisualiserSet> Sprites = new();
     public Color SkinColour;
     public Color EyeColour;
     public bool OverrideColours;

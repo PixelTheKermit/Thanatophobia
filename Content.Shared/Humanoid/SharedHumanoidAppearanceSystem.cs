@@ -92,21 +92,19 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
-        var sprites = comp.Sprites;
+        var sprites = comp.CustomSprites ?? comp.Sprites;
 
-        if (comp.CustomSprites.Count > 0)
-            sprites = comp.CustomSprites;
+        args.Sprites.Add(sprites);
 
-        foreach (var (bodyPart, visual) in sprites)
+        foreach (var (bodyPart, visual) in sprites.Sprites)
         {
-            args.Sprites.Add((bodyPart, visual));
-
-            foreach (var sprite in visual)
+            for (var i = 0; i < sprites.Sprites.Count; i++)
             {
-                if (sprite.ColouringType != null && (args.OverrideColours || sprite.Colour == null))
-                    sprite.Colour = sprite.ColouringType.GetColour(args.SkinColour, args.EyeColour);
+                if (sprites.DefaultColouring.Count < i && (args.OverrideColours || sprites.Colours.Count < i))
+                    sprites.Colours[i] = sprites.DefaultColouring[i].GetColour(args.SkinColour, args.EyeColour);
 
-                sprite.Colour ??= Color.White;
+                if (sprites.Colours.Count < i)
+                    sprites.Colours[i] = Color.White;
             }
         }
     }
@@ -123,22 +121,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var markingProto))
                     continue;
 
+                var visuals = new BodyPartVisualiserSet()
+                {
+                    Colours = marking.MarkingColors
+                };
+
                 foreach (var (layer, sprites) in markingProto.Function.GetSprites())
                 {
-                    var visuals = new List<BodyPartVisualiserSprite>();
-
-                    for (var i = 0; i < sprites.Count; i++)
-                    {
-                        var visualiser = new BodyPartVisualiserSprite()
-                        {
-                            Sprite = sprites[i],
-                            Colour = marking.MarkingColors[i]
-                        };
-                        visuals.Add(visualiser);
-                    }
-
-                    args.Sprites.Add((layer, visuals));
-
+                    visuals.Sprites[layer] = sprites;
                 }
             }
         }
@@ -157,7 +147,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     private void OnClearCustomParts(EntityUid uid, BodyPartVisualiserComponent comp, ClearCustomPartsEvent args)
     {
-        comp.CustomSprites.Clear();
+        comp.CustomSprites = null;
     }
 
     private void OnClearMarkings(EntityUid uid, BodyPartVisualiserComponent comp, ClearPartMarkingsEvent args)

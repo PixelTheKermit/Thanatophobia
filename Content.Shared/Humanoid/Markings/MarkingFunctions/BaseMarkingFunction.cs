@@ -27,7 +27,7 @@ public abstract partial class BaseMarkingFunction
     );
 
     public abstract int GetSpriteCount();
-    public virtual Dictionary<string, List<SpriteSpecifier>> GetSprites()
+    public virtual Dictionary<string, List<SpriteSpecifier?>> GetSprites()
     {
         return new();
     }

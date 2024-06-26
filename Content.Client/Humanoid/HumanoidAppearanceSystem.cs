@@ -42,12 +42,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void UpdatePartVisuals(EntityUid uid, HumanoidAppearanceComponent component, SpriteComponent spriteComp)
     {
-        foreach (var layer in component.Parts)
-        {
-            if (spriteComp.LayerMapTryGet(layer, out var index))
-                spriteComp[index].Visible = false;
-        }
-
         foreach (var layer in component.PartLayers)
         {
             if (spriteComp.LayerMapTryGet(layer, out var index))
@@ -56,39 +50,42 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         component.PartLayers.Clear();
 
-        foreach (var (part, visualisers) in component.Parts)
+        foreach (var part in component.Parts)
         {
-            if (!spriteComp.LayerMapTryGet(part, out var baseIndex))
-                continue;
-
-            spriteComp[baseIndex].Visible = true;
-
-            if (!IsHidden(component, part))
+            foreach (var layer in part.Sprites)
             {
-                var index = baseIndex;
-                foreach (var sprite in visualisers)
+                if (!IsHidden(component, layer.Key))
                 {
-                    spriteComp.AddBlankLayer(index);
-                    var layerId = $"{part}-part-{index}";
-                    spriteComp.LayerMapSet(layerId, index);
-                    component.PartLayers.Add(layerId);
-                    SetPartVisual(spriteComp, index, sprite);
+                    if (!spriteComp.LayerMapTryGet(layer, out var baseIndex))
+                        continue;
 
-                    index += 1;
+                    var index = baseIndex;
+
+                    for (var i = 0; i < layer.Value.Count; i++)
+                    {
+                        spriteComp.AddBlankLayer(index);
+                        var layerId = $"{part}-part-{index}";
+                        spriteComp.LayerMapSet(layerId, index);
+                        component.PartLayers.Add(layerId);
+
+                        var colour = Color.White;
+                        if (i < part.Colours.Count)
+                            colour = part.Colours[i];
+
+                        if (layer.Value[i] != null)
+                            SetPartVisual(spriteComp, index, layer.Value[i]!, colour);
+
+                        index += 1;
+                }
                 }
             }
         }
     }
 
-    private void SetPartVisual(SpriteComponent spriteComp, int index, BodyPartVisualiserSprite sprite)
+    private void SetPartVisual(SpriteComponent spriteComp, int index, SpriteSpecifier sprite, Color colour)
     {
-        if (sprite.Sprite == null)
-            return;
-
-        if (sprite.Colour != null)
-            spriteComp.LayerSetColor(index, sprite.Colour.Value);
-
-        spriteComp.LayerSetSprite(index, sprite.Sprite);
+        spriteComp.LayerSetColor(index, colour);
+        spriteComp.LayerSetSprite(index, sprite);
     }
 
     public override void SetSkinColor(EntityUid uid, Color skinColor, bool sync = true, bool verify = true, HumanoidAppearanceComponent? humanoid = null)

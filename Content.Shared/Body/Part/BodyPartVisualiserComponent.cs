@@ -23,7 +23,7 @@ public sealed partial class BodyPartVisualiserComponent : Component
     /// A dictionary for custom sprites. Used by markings that may replace the base body parts.
     /// </summary>
     [DataField]
-    public BodyPartVisualiserSet CustomSprites = new();
+    public BodyPartVisualiserSet? CustomSprites;
 
     /// <summary>
     /// A list of markings. Wow.
@@ -40,8 +40,8 @@ public sealed partial class BodyPartVisualiserSet
     public Dictionary<string, List<SpriteSpecifier?>> Sprites;
 
     [DataField]
-    public List<PartColouringType?> DefaultColouring;
+    public List<PartColouringType> DefaultColouring;
 
     [DataField]
-    public Dictionary<string, List<Color>> Colours;
+    public List<Color> Colours;
 }
