@@ -66,10 +66,16 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             || !_prototypeManager.TryIndex(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
         {
             LoadProfile(uid, HumanoidCharacterProfile.DefaultWithSpecies(humanoid.Species), humanoid);
-            return;
+        }
+        else
+        {
+            LoadProfile(uid, startingSet.Profile, humanoid);
         }
 
-        LoadProfile(uid, startingSet.Profile, humanoid);
+        foreach (var marking in humanoid.QueuedMarkings)
+        {
+            AddMarking(uid, marking.MarkingId, marking.MarkingColors, humanoid: humanoid);
+        }
     }
 
     private void OnGenderUpdate(EntityUid uid, GenderedBodyPartComponent comp, UpdateGenderedBodyPartEvent args)
@@ -86,21 +92,21 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
-        var sprites = comp.Sprites;
+        var sprites = comp.CustomSprites ?? comp.Sprites;
 
-        if (comp.CustomSprites.Count > 0)
-            sprites = comp.CustomSprites;
+        args.Sprites.Add(sprites);
 
-        foreach (var (bodyPart, visual) in sprites)
+        foreach (var _ in sprites.Sprites)
         {
-            args.Sprites.Add((bodyPart, visual));
-
-            foreach (var sprite in visual)
+            for (var i = 0; i < sprites.Sprites.Count; i++)
             {
-                if (sprite.ColouringType != null && (args.OverrideColours || sprite.Colour == null))
-                    sprite.Colour = sprite.ColouringType.GetColour(args.SkinColour, args.EyeColour);
-
-                sprite.Colour ??= Color.White;
+                if (i < sprites.DefaultColouring.Count && (args.OverrideColours || i >= sprites.Colours.Count))
+                {
+                    if (i >= sprites.Colours.Count)
+                        sprites.Colours.Add(sprites.DefaultColouring[i].GetColour(args.SkinColour, args.EyeColour));
+                    else
+                        sprites.Colours[i] = sprites.DefaultColouring[i].GetColour(args.SkinColour, args.EyeColour);
+                }
             }
         }
     }
@@ -117,23 +123,16 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var markingProto))
                     continue;
 
+                var visuals = new BodyPartVisualiserSet()
+                {
+                    Colours = marking.MarkingColors
+                };
+
                 foreach (var (layer, sprites) in markingProto.Function.GetSprites())
                 {
-                    var visuals = new List<BodyPartVisualiserSprite>();
-
-                    for (var i = 0; i < sprites.Count; i++)
-                    {
-                        var visualiser = new BodyPartVisualiserSprite()
-                        {
-                            Sprite = sprites[i],
-                            Colour = marking.MarkingColors[i]
-                        };
-                        visuals.Add(visualiser);
-                    }
-
-                    args.Sprites.Add((layer, visuals));
-
+                    visuals.Sprites[layer] = sprites;
                 }
+                args.Sprites.Add(visuals);
             }
         }
     }
@@ -151,7 +150,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     private void OnClearCustomParts(EntityUid uid, BodyPartVisualiserComponent comp, ClearCustomPartsEvent args)
     {
-        comp.CustomSprites.Clear();
+        comp.CustomSprites = null;
     }
 
     private void OnClearMarkings(EntityUid uid, BodyPartVisualiserComponent comp, ClearPartMarkingsEvent args)
@@ -176,7 +175,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_netManager.IsClient && !IsClientSide(uid))
             return;
 
-        component.Parts = new();
+        component.Parts.Clear();
 
         bodyParts ??= QuickGetAllParts(uid);
 
@@ -509,12 +508,19 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             }
         }
 
-        var bodyPartContainers = _bodySystem.GetBodyContainers(uid);
+        if (TryComp<BodyComponent>(uid, out var bodyComp) && bodyComp.RootContainer != null)
+        {
+            var bodyPartContainers = _bodySystem.GetBodyWithOrganContainers(uid);
 
-        prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
+            prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
 
-        if (sync)
-            Dirty(uid, humanoid);
+            if (sync)
+                Dirty(uid, humanoid);
+        }
+        else // Queue markings for when bodycomp is ready.
+        {
+            humanoid.QueuedMarkings.Add(markingObject);
+        }
     }
 
     public void ReplaceMarkings(EntityUid uid, MarkingSet markingSet, bool dirty = true, HumanoidAppearanceComponent? component = null, List<EntityUid>? bodyParts = null)
@@ -606,14 +612,20 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
 
-        var bodyPartContainers = _bodySystem.GetBodyWithOrganContainers(uid);
-
-        prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
-
-        if (sync)
+        if (TryComp<BodyComponent>(uid, out var bodyComp) && bodyComp.RootContainer != null)
         {
-            UpdatePartVisuals(uid, humanoid);
-            Dirty(uid, humanoid);
+            var bodyPartContainers = _bodySystem.GetBodyWithOrganContainers(uid);
+            prototype.Function.AddMarking(uid, markingObject, bodyPartContainers, _prototypeManager, EntityManager);
+
+            if (sync)
+            {
+                UpdatePartVisuals(uid, humanoid);
+                Dirty(uid, humanoid);
+            }
+        }
+        else // Queue markings for when bodycomp is ready.
+        {
+            humanoid.QueuedMarkings.Add(markingObject);
         }
     }
 }

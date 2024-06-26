@@ -127,6 +127,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     public int MaxTraits = 6;
 
     [DataField]
+    public uint StartingTraitPoints = 2;
+
+    [DataField]
     public List<string> AllowedTraits = new();
 
     # endregion Thanatophobia edits end here.

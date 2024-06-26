@@ -1,0 +1,23 @@
+- type: ore
+  id: TPIceCube
+  oreEntity: TPIceCube
+  minOreYield: 1
+  maxOreYield: 2
+
+- type: ore
+  id: TPIceCubeAmmonia
+  oreEntity: TPIceCubeAmmonia
+  minOreYield: 1
+  maxOreYield: 2
+
+- type: ore
+  id: TPFoodMeat
+  oreEntity: FoodMeat
+  minOreYield: 1
+  maxOreYield: 1
+
+- type: ore
+  id: TPMaterialBones
+  oreEntity: MaterialBones1
+  minOreYield: 1
+  maxOreYield: 2

@@ -1,0 +1,20 @@
+# Wings
+- type: marking
+  id: MothWingsDouble
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/Wings/double.rsi
+    state: back
+  markingCategory: Wings
+  speciesRestrictions: [Moth]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      wings:
+        wings-back:
+        - null
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/Wings/double.rsi
+          state: back
+        wings-front:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/Wings/double.rsi
+          state: fluff
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/Wings/double.rsi
+          state: front

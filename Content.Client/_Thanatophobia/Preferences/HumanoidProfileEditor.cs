@@ -230,27 +230,10 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
             if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
                 continue;
 
-            if (traitPrototype.MarkingId != null
-            && _prototypeManager.TryIndex<MarkingPrototype>(traitPrototype.MarkingId, out var markingProto))
+            foreach (var function in traitPrototype.Functions)
             {
-                var colors = MarkingColoring.GetMarkingLayerColors(markingProto, Humanoid.Appearance.SkinColor, Humanoid.Appearance.EyeColor, new MarkingSet());
-                var dictColors = colors.ToDictionary(x => colors.IndexOf(x));
-
-                for (var i = 0; i < traitPrototype.MarkingColours.Count; i++)
-                    dictColors[i] = traitPrototype.MarkingColours[i];
-
-                _appearanceSystem.AddMarking(_previewDummy.Value, traitPrototype.MarkingId, dictColors.Values.ToList(), true, true);
-            }
-
-            if (!fullUpdate)
-                continue;
-
-            // Add all components required by the prototype
-            foreach (var entry in traitPrototype.Components.Values)
-            {
-                var comp = serializationManager.CreateCopy(entry.Component, notNullableOverride: true);
-                comp.Owner = _previewDummy.Value;
-                _entityManager.AddComponent(_previewDummy.Value, comp, true);
+                if (fullUpdate || function.DynamicUpdates)
+                    function.AddTrait(_previewDummy.Value, traitPrototype, _prototypeManager, _entityManager);
             }
         }
 

@@ -1,0 +1,148 @@
+using System.Linq;
+using System.Numerics;
+using Content.Server.Administration.Logs;
+using Content.Server.Audio;
+using Content.Server.Popups;
+using Content.Server.Procedural;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Construction.EntitySystems;
+using Content.Shared.Interaction;
+using Content.Shared.Maps;
+using Content.Shared.Physics;
+using Content.Shared.Procedural;
+using Content.Shared.Thanatophobia.DungeonGate;
+using Robust.Server.Audio;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+
+namespace Content.Server.Thanatophobia.DungeonGate;
+
+public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
+{
+    [Dependency] private readonly DungeonSystem _dungeonSystem = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly AnchorableSystem _anchorSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly AudioSystem _audioSystem = default!;
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<DungeonGateComponent, InteractedNoHandEvent>(OnGateInteract);
+        SubscribeLocalEvent<DungeonGateComponent, InteractHandEvent>(OnGateInteract);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var queriedEnts = EntityManager.AllEntityQueryEnumerator<DungeonGateComponent>();
+
+        var curTime = _gameTiming.CurTime;
+
+        while (queriedEnts.MoveNext(out var uid, out var comp))
+        {
+            if (comp.GateState == DungeonGateState.InProgress &&
+                comp.DeathTime <= curTime)
+            {
+                comp.GateState = DungeonGateState.Broken;
+                _audioSystem.PlayPvs(comp.GateBreakSound, uid);
+                Dirty(uid, comp);
+
+                if (HasComp<DeleteMapOnGateBreakComponent>(uid))
+                    _mapManager.DeleteMap(Transform(uid).MapID);
+            }
+        }
+    }
+
+    private void OnGateInteract(EntityUid uid, DungeonGateComponent component, InteractedNoHandEvent args)
+    {
+        OnGateInteract(uid, component, args.User);
+    }
+
+    private void OnGateInteract(EntityUid uid, DungeonGateComponent component, InteractHandEvent args)
+    {
+        OnGateInteract(uid, component, args.User);
+    }
+
+    private async void OnGateInteract(EntityUid gateUid, DungeonGateComponent gateComp, EntityUid userUid)
+    {
+        switch (gateComp.GateState)
+        {
+            case DungeonGateState.Ready:
+                var curTime = _gameTiming.CurTime;
+
+                // We want somewhere to nest the dungeon.
+                var newMapId = _mapManager.CreateMap();
+                var gridEnt = _mapManager.CreateGridEntity(newMapId);
+
+                if (!_protoManager.TryIndex(gateComp.DungeonConfig, out var dungeonConfig))
+                {
+                    Log.Warning($"Dungeon prototype is invalid! No such prototype named {gateComp.DungeonConfig.Id} found!");
+                    return;
+                }
+
+                _popupSystem.PopupEntity(Loc.GetString(gateComp.GateOpenPopup), userUid, userUid);
+                _audioSystem.PlayPvs(gateComp.GateOpenSound, gateUid);
+
+                // We don't want this gate to start making 500 dungeons.
+                gateComp.DeathTime = curTime + gateComp.TimeToEnter;
+                gateComp.GateState = DungeonGateState.InProgress;
+
+                await _dungeonSystem.GenerateDungeonAsync(dungeonConfig, gridEnt, gridEnt.Comp, Vector2i.Zero, _random.Next());
+
+                // For spawning the exit.
+                var availableTiles = _mapSystem.GetAllTiles(gridEnt, gridEnt.Comp).ToList();
+                _random.Shuffle(availableTiles);
+
+                // Realistically, there shouldn't be a case where there is no valid tile... So a tile *will* be found.
+                // The real question is: Is that tile really safe? (idfk lol.)
+                foreach (var tile in availableTiles)
+                {
+                    if (_anchorSystem.TileFree(gridEnt.Comp, tile.GridIndices, (int) CollisionGroup.MachineLayer, (int) CollisionGroup.MachineLayer))
+                    {
+                        var otherPortal = Spawn(gateComp.ExitGateProto, new EntityCoordinates(gridEnt, tile.GridIndices));
+                        gateComp.LeadsToEntity = otherPortal;
+
+                        // We want the player to leave, no?
+                        var otherPortalComp = EnsureComp<DungeonGateComponent>(otherPortal);
+                        // We REALLY want the player to leave, no?
+                        EnsureComp<DeleteMapOnGateBreakComponent>(otherPortal);
+
+                        otherPortalComp.LeadsToEntity = gateUid;
+                        otherPortalComp.GateState = DungeonGateState.InProgress;
+                        // We probably want more time for anything inside the gate to exit when the main gate exits.
+                        // This is so there aren't cases where someone enters a gate really late and then immediately cannot leave (tldr: it prevents fustration!)
+                        otherPortalComp.DeathTime = curTime + gateComp.TimeToEnter + gateComp.TimeAddedToLeave;
+                        Dirty(otherPortal, otherPortalComp);
+                        break;
+                    }
+                }
+
+                Dirty(gateUid, gateComp);
+                break;
+            case DungeonGateState.InProgress:
+                if (gateComp.LeadsToEntity != null)
+                {
+                    _xformSystem.SetCoordinates(userUid, Transform(gateComp.LeadsToEntity.Value).Coordinates);
+                    _audioSystem.PlayPvs(gateComp.GateEnterSound, userUid);
+                }
+                break;
+            case DungeonGateState.Broken:
+                _popupSystem.PopupEntity(Loc.GetString(gateComp.GateBrokenPopup), userUid, userUid, Shared.Popups.PopupType.SmallCaution);
+                break;
+            default:
+                Log.Warning("DungeonGateState has no code attributed to this current state.");
+                break;
+        }
+    }
+}

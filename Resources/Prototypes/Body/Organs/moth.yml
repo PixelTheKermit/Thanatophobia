@@ -36,8 +36,9 @@
     - state: eyeball-r
   - type: BodyPartVisualiser
     sprites:
-      eyes:
-      - sprite:
-          sprite: Mobs/Species/Moth/parts.rsi
+      defaultColouring:
+      - !type:PartUseEyes
+      sprites:
+        eyes:
+        - sprite: Mobs/Species/Moth/parts.rsi
           state: "eyes"
-        colouringType: !type:PartUseEyes

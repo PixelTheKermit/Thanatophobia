@@ -1,0 +1,19 @@
+- type: npcFaction
+  id: Slime
+  friendly:
+  - SlimeBFF
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+
+- type: npcFaction
+  id: SlimeBFF
+  friendly:
+  - Slime
+
+- type: npcFaction
+  id: SpiderBFF

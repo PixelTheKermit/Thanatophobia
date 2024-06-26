@@ -1,0 +1,27 @@
+- type: entity
+  parent: BaseItem
+  id: TPIceCube
+  name: ice cube
+  description: A cube of ice, cool.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Resources/ice.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: PhysicalComposition
+    chemicalComposition:
+      Ice: 10
+      Water: 5
+
+- type: entity
+  parent: TPIceCube
+  id: TPIceCubeAmmonia
+  suffix: Ammonia
+  components:
+  - type: Sprite
+    color: "#DDFFDD"
+  - type: PhysicalComposition
+    chemicalComposition:
+      Ice: 10
+      Ammonia: 5

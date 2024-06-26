@@ -69,10 +69,13 @@
     noRot: true
     drawdepth: Mobs
     layers:
+      - map: [ "wings-back" ]
       - map: [ "chest" ]
       - map: [ "head" ]
       - map: [ "snout" ]
       - map: [ "eyes" ]
+      - map: [ "l-hand2-back" ]
+      - map: [ "r-hand2-back" ]
       - map: [ "r-arm" ]
       - map: [ "l-arm" ]
       - map: [ "r-leg" ]
@@ -103,9 +106,10 @@
       - map: [ "shoes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "l-hand2" ]
-      - map: [ "r-hand2" ]
+      - map: [ "l-hand2-front" ]
+      - map: [ "r-hand2-front" ]
       - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "wings-front" ] # Not utopian future: isn't an enum.
       - map: [ "neck" ]
       - map: [ "back" ]
       - map: [ "facialHair" ]
@@ -134,12 +138,13 @@
     noRot: true
     drawdepth: Mobs
     layers:
-      - map: [ "l-hand2-back" ]
-      - map: [ "r-hand2-back" ]
+      - map: [ "wings-back" ]
       - map: [ "chest" ]
       - map: [ "head" ]
       - map: [ "snout" ]
       - map: [ "eyes" ]
+      - map: [ "l-hand2-back" ]
+      - map: [ "r-hand2-back" ]
       - map: [ "r-arm" ]
       - map: [ "l-arm" ]
       - map: [ "r-leg" ]
@@ -170,9 +175,10 @@
       - map: [ "shoes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "l-hand2-front" ]
       - map: [ "r-hand2-front" ]
+      - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "wings-front" ] # Not utopian future: isn't an enum.
       - map: [ "neck" ]
       - map: [ "back" ]
       - map: [ "facialHair" ]

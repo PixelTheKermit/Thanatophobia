@@ -1,0 +1,54 @@
+- type: marking
+  id: SlimePartsReptilianMale
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+    state: torso_m
+  markingCategory: Body
+  speciesRestrictions: [SlimePerson]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      head:
+        head:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: head_m
+      body_root_part:
+        chest:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: torso_m
+      left arm:
+        l-arm:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: l_arm
+      right arm:
+        r-arm:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: r_arm
+      left hand:
+        l-hand:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: l_hand
+      right hand:
+        r-hand:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: r_hand
+      left leg:
+        l-leg:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: l_leg
+      right leg:
+        r-leg:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: r_leg
+      left foot:
+        l-foot:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: l_foot
+      right foot:
+        r-foot:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/Parts/reptilian.rsi
+          state: r_foot

@@ -139,6 +139,10 @@ namespace Content.Client.Entry
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffX", 520);
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffY", 240);
             _configManager.SetCVar("interface.resolutionAutoScaleMinimum", 0.5f);
+
+            #region Thanatophobia edits begin here
+            _prototypeManager.RegisterIgnore("hotfixBiome");
+            #endregion
         }
 
         public override void PostInit()

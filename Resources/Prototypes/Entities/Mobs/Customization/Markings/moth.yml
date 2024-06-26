@@ -272,337 +272,422 @@
   id: MothWingsDefault
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: default
+    state: atlas_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: default
+          state: atlas_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: atlas_front
 
 - type: marking
   id: MothWingsCharred
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: charred
+    state: burnt_off_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: charred
+          state: burnt_off_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: burnt_off_front
 
-- type: marking
-  id: MothWingsDbushy
-  icon:
-    sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: dbushy_primary
-  markingCategory: Wings
-  speciesRestrictions: [Moth]
-  function: !type:ReplaceBodyPartsMarkingFunction
-    sprites:
-      wings:
-        tail:
-        - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: dbushy_primary
-        - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: dbushy_secondary
+# Which one is bushy? Is bushy an exclusive to 14??? It's not linked in the copyright file...
+# - type: marking
+  # id: MothWingsDbushy
+  # icon:
+    # sprite: Mobs/Customization/Moth/moth_wings.rsi
+    # state: dbushy_primary
+  # markingCategory: Wings
+  # speciesRestrictions: [Moth]
+  # function: !type:ReplaceBodyPartsMarkingFunction
+    # sprites:
+      # wings:
+        # tail:
+        # - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          # state: dbushy_primary
+        # - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          # state: dbushy_secondary
 
 - type: marking
   id: MothWingsDeathhead
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: deathhead_primary
+    state: deathhead_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: deathhead_primary
+          state: deathhead_primary_back
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: deathhead_secondary
+          state: deathhead_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: deathhead_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: deathhead_secondary_front
 
 - type: marking
   id: MothWingsFan
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: fan
+    state: ragged_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: fan
+          state: ragged_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: ragged_front
 
-- type: marking
-  id: MothWingsDfan
-  icon:
-    sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: dfan
-  markingCategory: Wings
-  speciesRestrictions: [Moth]
-  function: !type:ReplaceBodyPartsMarkingFunction
-    sprites:
-      wings:
-        tail:
-        - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: dfan
+# Why is there a dark version???
+# - type: marking
+  # id: MothWingsDfan
+  # icon:
+    # sprite: Mobs/Customization/Moth/moth_wings.rsi
+    # state: dfan
+  # markingCategory: Wings
+  # speciesRestrictions: [Moth]
+  # function: !type:ReplaceBodyPartsMarkingFunction
+    # sprites:
+      # wings:
+        # tail:
+        # - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          # state: dfan
 
 - type: marking
   id: MothWingsFeathery
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: feathery
+    state: feathery_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: feathery
+          state: feathery_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: feathery_front
 
 - type: marking
   id: MothWingsFirewatch
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: firewatch_primary
+    state: firewatch_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: firewatch_primary
+          state: firewatch_primary_back
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: firewatch_secondary
+          state: firewatch_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: firewatch_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: firewatch_secondary_front
 
 - type: marking
   id: MothWingsGothic
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: gothic
+    state: gothic_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: gothic
+          state: gothic_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: gothic_front
 
 - type: marking
   id: MothWingsJungle
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: jungle
+    state: jungle_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: jungle
+          state: jungle_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: jungle_front
 
 - type: marking
   id: MothWingsLadybug
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: ladybug
+    state: snow_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: ladybug
+          state: snow_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: snow_front
 
 - type: marking
   id: MothWingsMaple
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: maple
+    state: rosy_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: maple
+          state: rosy_primary_back
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: rosy_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: rosy_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: rosy_secondary_front
 
 - type: marking
   id: MothWingsMoffra
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: moffra_primary
+    state: moffra_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: moffra_primary
+          state: moffra_primary_back
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: moffra_secondary
+          state: moffra_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: moffra_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: moffra_secondary_front
 
 - type: marking
   id: MothWingsOakworm
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: oakworm
+    state: oakworm_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: oakworm
+          state: oakworm_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: oakworm_front
 
 - type: marking
   id: MothWingsPlasmafire
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: plasmafire_primary
+    state: plasmafire_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: plasmafire_primary
+          state: plasmafire_primary_back
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: plasmafire_secondary
+          state: plasmafire_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: plasmafire_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: plasmafire_secondary_front
 
 - type: marking
   id: MothWingsPointy
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: pointy
+    state: monarch_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: pointy
+          state: monarch_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: monarch_front
 
 - type: marking
   id: MothWingsRoyal
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: royal_primary
+    state: royal_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: royal_primary
+          state: royal_primary_back
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: royal_secondary
+          state: royal_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: royal_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: royal_secondary_front
 
 - type: marking
   id: MothWingsStellar
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: stellar
+    state: plain_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: stellar
+          state: plain_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: plain_front
 
 - type: marking
   id: MothWingsStriped
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: striped
+    state: lovers_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: striped
+          state: lovers_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: lovers_front
 
 - type: marking
   id: MothWingsSwirly
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: swirly
+    state: luna_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: swirly
+          state: luna_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: luna_front
 
 - type: marking
   id: MothWingsWhitefly
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: whitefly
+    state: whitefly_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: whitefly
+          state: whitefly_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: whitefly_front
 
 - type: marking
   id: MothWingsWitchwing
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: witchwing
+    state: witchwing_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: witchwing
+          state: witchwing_primary_back
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: witchwing_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: witchwing_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: witchwing_secondary_front
 
 - type: marking
   id: MothWingsUnderwing
   icon:
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: underwing_primary
+    state: underwing_primary_back
   markingCategory: Wings
   speciesRestrictions: [Moth]
   function: !type:ReplaceBodyPartsMarkingFunction
     sprites:
       wings:
-        tail:
+        wings-back:
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: underwing_primary
+          state: underwing_primary_back
         - sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: underwing_secondary
+          state: underwing_secondary_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: underwing_primary_front
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: underwing_secondary_front
 
 # Body markings:
 # Charred

@@ -13,7 +13,9 @@ namespace Content.Shared.Humanoid;
 public sealed partial class HumanoidAppearanceComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public List<(string, List<BodyPartVisualiserSprite>)> Parts = new();
+    public List<BodyPartVisualiserSet> Parts = new();
+
+    [DataField]
     public List<string> PartLayers = new();
 
     [DataField, AutoNetworkedField]
@@ -70,4 +72,17 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedFacialHairColor;
+
+    /// <summary>
+    /// Any markings that will replace a trait's default markings.
+    /// </summary>
+    /// <returns></returns>
+    [DataField, AutoNetworkedField]
+    public Dictionary<string, Marking> TraitMarkings = new();
+
+    /// <summary>
+    /// Any markings that will be added post-body init.
+    /// </summary>
+    /// <returns></returns>
+    public HashSet<Marking> QueuedMarkings = new();
 }

@@ -14,6 +14,7 @@
   supportedTypes:
     - Heat
     - Shock
+    - Structural # Fuck it we ball.
 
 - type: damageContainer
   id: StructuralInorganic

@@ -1,0 +1,9 @@
+- type: stack # Currently unused. Physical composition doesn't seem to take stacks into account.
+  id: TPIceCube
+  name: ice cube
+  icon:
+    sprite: /Textures/_Thanatophobia/Objects/Resources/ice.rsi
+    state: icon
+  spawn: TPIceCube1
+  maxCount: 30
+  itemSize: 2 # Is this even used anymore?

@@ -1,0 +1,6 @@
+- type: htnCompound
+  id: TPSimpleSalvageHostileCompound # Theoretically this should make mobs that just stand still (and therefore do not step off the salvage grids)
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound

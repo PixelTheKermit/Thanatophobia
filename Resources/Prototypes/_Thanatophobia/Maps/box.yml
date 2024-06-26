@@ -1,0 +1,13 @@
+- type: gameMap
+  id: BoxShuttle # cuz boxstation exists, we gotta call this BoxShuttle.
+  minPlayers: 0
+  maxPlayers: 1
+  mapName: 'Box'
+  mapPath: /Maps/_Thanatophobia/box.yml
+  fallback: true
+  stations:
+    BoxShuttle:
+      stationProto: TPStandardShuttle
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Box'

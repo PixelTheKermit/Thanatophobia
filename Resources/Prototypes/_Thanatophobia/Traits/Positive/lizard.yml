@@ -10,12 +10,13 @@
   - Wings
   allowed:
   - Lizard
-  markingId: LizardWingsDefault
-  components:
-  - type: WingsTrait
+  functions:
+  - !type:TraitWeightlessModifierFunction
     weightlessModifier: .9
     weightlessFriction: .8
     weightlessAcceleration: 1.2
+  - !type:TraitAddMarkingFunction
+    markingId: LizardWingsDefault
 
 - type: trait
   id: LizardClaws
@@ -27,9 +28,11 @@
     state: claws
   allowed:
   - Lizard
-  components:
-  - type: Prying
-    pryPowered: true
-    force: true
-    useSound:
-      path: /Audio/Items/crowbar.ogg
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: Prying
+      pryPowered: true
+      force: true
+      useSound:
+        path: /Audio/Items/crowbar.ogg

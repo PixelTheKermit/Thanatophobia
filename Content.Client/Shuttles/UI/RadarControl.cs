@@ -11,6 +11,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
 
@@ -135,7 +136,7 @@ public sealed class RadarControl : MapGridControl
         var fakeAA = new Color(0.08f, 0.08f, 0.08f);
 
         handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius + 1, fakeAA);
-        handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius, Color.Black);
+        handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius, Color.FromHex("#333333"));
 
         // No data
         if (_coordinates == null || _rotation == null)
@@ -144,7 +145,7 @@ public sealed class RadarControl : MapGridControl
             return;
         }
 
-        var gridLines = new Color(0.08f, 0.08f, 0.08f);
+        var gridLines = Color.FromHex("#555555");
         var gridLinesRadial = 8;
         var gridLinesEquatorial = (int) Math.Floor(WorldRange / GridLinesDistance);
 
@@ -184,7 +185,7 @@ public sealed class RadarControl : MapGridControl
             var ourGridMatrix = _transform.GetWorldMatrix(ourGridId.Value);
             Matrix3.Multiply(in ourGridMatrix, in offsetMatrix, out var matrix);
 
-            DrawGrid(handle, matrix, ourGrid, Color.MediumSpringGreen, true);
+            DrawGrid(handle, matrix, ourGridId.Value, ourGrid, Color.MediumSpringGreen, true);
             DrawDocks(handle, ourGridId.Value, matrix);
         }
 
@@ -285,7 +286,7 @@ public sealed class RadarControl : MapGridControl
             }
 
             // Detailed view
-            DrawGrid(handle, matty, grid, color, true);
+            DrawGrid(handle, matty, gUid, grid, color, true);
 
             DrawDocks(handle, gUid, matty);
         }
@@ -356,69 +357,51 @@ public sealed class RadarControl : MapGridControl
         }
     }
 
-    private void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, MapGridComponent grid, Color color, bool drawInterior)
+    private void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, EntityUid gridUid, MapGridComponent grid, Color color, bool drawInterior)
     {
-        var rator = grid.GetAllTilesEnumerator();
-        var edges = new ValueList<Vector2>();
+        if (!_entManager.TryGetComponent<FixturesComponent>(gridUid, out var fixutreComp))
+            return;
 
-        while (rator.MoveNext(out var tileRef))
+        foreach (var (_, fixture) in fixutreComp.Fixtures)
         {
-            // TODO: Short-circuit interior chunk nodes
-            // This can be optimised a lot more if required.
-            Vector2? tileVec = null;
+            var shape = (PolygonShape) fixture.Shape;
 
-            // Iterate edges and see which we can draw
-            for (var i = 0; i < 4; i++)
+            if (shape.VertexCount < 2)
+                continue;
+
+            var totalVerts = new List<Vector2>();
+
+            for (var i = 0; i < shape.VertexCount; i++)
             {
-                var dir = (DirectionFlag) Math.Pow(2, i);
-                var dirVec = dir.AsDir().ToIntVec();
+                var vertex = shape.Vertices[i];
+                var radarVertex = matrix.Transform(vertex);
 
-                if (!grid.GetTileRef(tileRef.Value.GridIndices + dirVec).Tile.IsEmpty)
+                if (radarVertex.Length() > ActualRadarRange)
                     continue;
 
-                Vector2 start;
-                Vector2 end;
-                tileVec ??= (Vector2) tileRef.Value.GridIndices * grid.TileSize;
+                radarVertex.Y = -radarVertex.Y;
 
-                // Draw line
-                // Could probably rotate this but this might be faster?
-                switch (dir)
+                var newVertex = ScalePosition(radarVertex);
+
+                if (i < shape.VertexCount - 1)
                 {
-                    case DirectionFlag.South:
-                        start = tileVec.Value;
-                        end = tileVec.Value + new Vector2(grid.TileSize, 0f);
-                        break;
-                    case DirectionFlag.East:
-                        start = tileVec.Value + new Vector2(grid.TileSize, 0f);
-                        end = tileVec.Value + new Vector2(grid.TileSize, grid.TileSize);
-                        break;
-                    case DirectionFlag.North:
-                        start = tileVec.Value + new Vector2(grid.TileSize, grid.TileSize);
-                        end = tileVec.Value + new Vector2(0f, grid.TileSize);
-                        break;
-                    case DirectionFlag.West:
-                        start = tileVec.Value + new Vector2(0f, grid.TileSize);
-                        end = tileVec.Value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
+                    var nextVertex = matrix.Transform(shape.Vertices[i + 1]);
+                    nextVertex.Y = -nextVertex.Y;
+                    var nextRadarVertex = ScalePosition(nextVertex);
+                    handle.DrawLine(newVertex, nextRadarVertex, color);
                 }
-
-                var adjustedStart = matrix.Transform(start);
-                var adjustedEnd = matrix.Transform(end);
-
-                if (adjustedStart.Length() > ActualRadarRange || adjustedEnd.Length() > ActualRadarRange)
-                    continue;
-
-                start = ScalePosition(new Vector2(adjustedStart.X, -adjustedStart.Y));
-                end = ScalePosition(new Vector2(adjustedEnd.X, -adjustedEnd.Y));
-
-                edges.Add(start);
-                edges.Add(end);
+                else
+                {
+                    var nextVertex = matrix.Transform(shape.Vertices[0]);
+                    nextVertex.Y = -nextVertex.Y;
+                    var nextRadarVertex = ScalePosition(nextVertex);
+                    handle.DrawLine(newVertex, nextRadarVertex, color);
+                }
+                totalVerts.Add(newVertex);
             }
+            if (totalVerts.Count > 2)
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, totalVerts.ToArray(), color.WithAlpha(0.5f));
         }
-
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineList, edges.Span, color);
     }
 
     private Vector2 ScalePosition(Vector2 value)

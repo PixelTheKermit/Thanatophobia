@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: ThanatoBaseChemistryEmptyVial
+  result: BaseChemistryEmptyVial
+  completetime: 1
+  materials:
+   Steel: 50
+   Glass: 100

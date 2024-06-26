@@ -11,7 +11,7 @@ namespace Content.Shared.Humanoid.Markings;
 public sealed partial class ReplaceBodyPartsMarkingFunction : BaseMarkingFunction
 {
     [DataField]
-    public Dictionary<string, Dictionary<string, List<SpriteSpecifier>>> Sprites { get; private set; } = default!;
+    public Dictionary<string, Dictionary<string, List<SpriteSpecifier?>>> Sprites { get; private set; } = default!;
 
     public override void AddMarking(
         EntityUid uid,
@@ -47,27 +47,26 @@ public sealed partial class ReplaceBodyPartsMarkingFunction : BaseMarkingFunctio
             if (!entityManager.TryGetComponent<BodyPartVisualiserComponent>(part, out var bodyPartVisual) || bodyPartVisual.IsReplaceable == false)
                 continue;
 
-            bodyPartVisual.CustomSprites.Clear();
+            bodyPartVisual.CustomSprites = new();
             foreach (var (markingLayer, sprites) in protoSprites)
             {
-                bodyPartVisual.CustomSprites[markingLayer] = new();
+                bodyPartVisual.CustomSprites.Sprites[markingLayer] = new();
+                var colours = new List<Color>();
                 for (var i = 0; i < sprites.Count; i++)
                 {
-                    var colour = Color.White;
-
-                    if (markingObject.MarkingColors.Count > i)
-                        colour = markingObject.MarkingColors[i];
-
-                    var visual = new BodyPartVisualiserSprite()
+                    if (i >= colours.Count)
                     {
-                        Sprite = sprites[i],
-                        ColouringType = new PartUseBasicColour()
-                        {
-                            Colour = colour
-                        },
-                    };
-                    bodyPartVisual.CustomSprites[markingLayer].Add(visual);
+                        var colour = Color.White;
+
+                        if (i < markingObject.MarkingColors.Count)
+                            colour = markingObject.MarkingColors[i];
+
+                        colours.Add(colour);
+                    }
+
+                    bodyPartVisual.CustomSprites.Sprites[markingLayer] = sprites;
                 }
+                bodyPartVisual.CustomSprites.Colours = colours;
             }
         }
     }

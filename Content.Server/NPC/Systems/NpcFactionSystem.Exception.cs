@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.NPC.Components;
+using Content.Server.Thanatophobia.Factions;
 
 namespace Content.Server.NPC.Systems;
 
@@ -56,7 +57,17 @@ public sealed partial class NpcFactionSystem
         if (!Resolve(uid, ref comp, false))
             return false;
 
-        return comp.Ignored.Contains(target);
+        # region Start Thanatophobia edits here.
+
+        var ev = new UserFactionIgnoreEvent(target);
+        var targetEv = new TargetFactionIgnoreEvent(uid);
+
+        RaiseLocalEvent(uid, ev);
+        RaiseLocalEvent(target, targetEv);
+
+        return comp.Ignored.Contains(target) || ev.Ignore || targetEv.Ignore;
+
+        # endregion End Thanatophobia edits here.
     }
 
     /// <summary>

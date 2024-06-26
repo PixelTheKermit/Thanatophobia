@@ -11,5 +11,5 @@ namespace Content.Shared.Body.Part;
 public sealed partial class GenderedBodyPartComponent : Component
 {
     [DataField]
-    public Dictionary<Sex, Dictionary<string, List<BodyPartVisualiserSprite>>> Sprites = new();
+    public Dictionary<Sex, BodyPartVisualiserSet> Sprites = new();
 }

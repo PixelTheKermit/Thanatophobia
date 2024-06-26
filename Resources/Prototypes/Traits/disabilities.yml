@@ -2,40 +2,47 @@
   id: Blindness
   name: trait-blindness-name
   description: trait-blindness-desc
-  traitGear: WhiteCane
-  cost: -2
+  cost: -1
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: blind
   whitelist:
     components:
       - Blindable
-  components:
-    - type: PermanentBlindness
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: PermanentBlindness
+    - !type:TraitGiveGearFunction
+      itemId: WhiteCane
 
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
   description: trait-narcolepsy-desc
-  cost: -2
+  cost: -1
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: eepy
-  components:
-    - type: Narcolepsy
-      timeBetweenIncidents: 300, 600
-      durationOfIncident: 10, 30
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: Narcolepsy
+        timeBetweenIncidents: 300, 600
+        durationOfIncident: 7, 15
 
 - type: trait
   id: Pacifist
   name: trait-pacifist-name
-  cost: -3
+  description: trait-pacifist-desc
+  cost: -2
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: peace
-  description: trait-pacifist-desc
-  components:
-    - type: Pacified
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: Pacified
 
 - type: trait
   id: Paracusia
@@ -44,20 +51,15 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: fake-sound
-  components:
-    - type: Paracusia
-      minTimeBetweenIncidents: 0.1
-      maxTimeBetweenIncidents: 300
-      maxSoundDistance: 7
-      sounds:
-        collection: Paracusia
-
-- type: trait
-  id: Unrevivable
-  name: trait-unrevivable-name
-  description: trait-unrevivable-desc
-  components:
-    - type: Unrevivable
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: Paracusia
+        minTimeBetweenIncidents: 0.1
+        maxTimeBetweenIncidents: 300
+        maxSoundDistance: 7
+        sounds:
+          collection: Paracusia
 
 - type: trait
   id: Muted
@@ -69,14 +71,16 @@
   blacklist:
     components:
       - BorgChassis
-  components:
-    - type: Muted
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: Muted
 
 - type: trait
   id: WheelchairBound
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
-  cost: -3
+  cost: -2
   exclusive:
   - BreaksWheelchair
   icon:
@@ -85,10 +89,12 @@
   blacklist:
     components:
       - BorgChassis
-  components:
-    - type: BuckleOnMapInit
-      prototype: VehicleWheelchair
-    - type: LegsParalyzed
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: BuckleOnMapInit
+        prototype: VehicleWheelchair
+      - type: LegsParalyzed
 
 - type: trait
   id: FrontalLisp
@@ -97,5 +103,7 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: lisp
-  components:
-    - type: FrontalLisp
+  functions:
+    - !type:TraitAddComponentsFunction
+      components:
+      - type: FrontalLisp

@@ -1,0 +1,63 @@
+- type: entity
+  id: TPCircuitboardShipGunAmmoProviderBattery
+  parent: BaseMachineCircuitboard
+  name: laser ship ammo loader machine board
+  description: A machine printed circuit board for a ship gun loader.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShipGunAmmoProviderBattery
+    requirements:
+      Capacitor: 3
+    materialRequirements:
+      Plastic: 5
+      Steel: 15
+
+- type: entity
+  id: TPCircuitboardShipGunAmmoProviderShotgun
+  parent: BaseMachineCircuitboard
+  name: shotgun ship ammo loader machine board
+  description: A machine printed circuit board for a ship gun loader.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShipGunAmmoProviderShotgun
+    requirements:
+      Manipulator: 6
+    materialRequirements:
+      Plastic: 5
+      Steel: 10
+
+- type: entity
+  id: TPCircuitboardShipGunAmmoProviderCannon
+  parent: BaseMachineCircuitboard
+  name: cannon ship ammo loader machine board
+  description: A machine printed circuit board for a ship gun loader.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShipGunAmmoProviderCannon
+    requirements:
+      Manipulator: 6
+    materialRequirements:
+      Plastic: 5
+      Steel: 10
+
+- type: entity
+  id: TPCircuitboardShipGunAmmoProviderBallistic
+  parent: BaseMachineCircuitboard
+  name: ballistic ship ammo loader machine board
+  description: A machine printed circuit board for a ship gun loader.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShipGunAmmoProviderBallistic
+    requirements:
+      Manipulator: 6
+    materialRequirements:
+      Plastic: 5
+      Steel: 10

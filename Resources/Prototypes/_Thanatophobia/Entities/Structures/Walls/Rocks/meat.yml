@@ -1,0 +1,51 @@
+- type: entity
+  name: flesh
+  parent: WallRock
+  id: TPWallRockFlesh
+  description: It's flesh. Gross...
+  components:
+  - type: Sprite
+    layers:
+    - state: rock
+      color: "#FF8855"
+    - map: [ "enum.EdgeLayer.South" ]
+      color: "#FF8855" # More colour manipulation. Whoohoo I love being lazy!!!
+      state: rock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_east
+      color: "#FF8855"
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_north
+      color: "#FF8855"
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_west
+      color: "#FF8855"
+  - type: OreVein
+    currentOre: TPFoodMeat
+
+- type: entity
+  name: flesh
+  parent: WallRock
+  id: TPWallRockFleshBones
+  description: It's flesh with embedded bone shards. Gross...
+  components:
+  - type: Sprite
+    layers:
+    - state: rock
+      color: "#FF8855"
+    - map: [ "enum.EdgeLayer.South" ]
+      color: "#FF8855"
+      state: rock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_east
+      color: "#FF8855"
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_north
+      color: "#FF8855"
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_west
+      color: "#FF8855"
+    - state: rock_quartz
+      color: "#b39f9a"
+  - type: OreVein
+    currentOre: TPMaterialBones

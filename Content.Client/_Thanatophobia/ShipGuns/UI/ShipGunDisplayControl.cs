@@ -1,8 +1,11 @@
+using System.Linq;
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Thanatophobia.ShipGuns;
+using Content.Shared.Thanatophobia.ShipGuns.Ammo;
 using Content.Shared.Weapons.Ranged.Events;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Collections;
@@ -10,6 +13,9 @@ using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Collision.Shapes;
+using Robust.Shared.Physics.Dynamics;
+using Serilog;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -19,6 +25,7 @@ public class ShipGunDisplayControl : MapGridControl
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IEntitySystemManager _entSysManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    private readonly MapSystem _mapSystem = default!;
     private readonly SharedTransformSystem _transform;
 
     private const float GridLinesDistance = 32f;
@@ -48,6 +55,7 @@ public class ShipGunDisplayControl : MapGridControl
         SetSize = new Vector2(SizeFull, SizeFull);
 
         _transform = _entManager.System<SharedTransformSystem>();
+        _mapSystem = _entManager.System<MapSystem>();
         GunsInfo = new();
     }
 
@@ -117,7 +125,7 @@ public class ShipGunDisplayControl : MapGridControl
         var fakeAA = new Color(0.08f, 0.08f, 0.08f);
 
         handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius + 1, fakeAA);
-        handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius, Color.Black);
+        handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius, Color.FromHex("#333333"));
 
         // No data
         if (_coordinates == null || _rotation == null)
@@ -125,7 +133,7 @@ public class ShipGunDisplayControl : MapGridControl
             return;
         }
 
-        var gridLines = new Color(0.08f, 0.08f, 0.08f);
+        var gridLines = Color.FromHex("#555555");
         var gridLinesRadial = 8;
         var gridLinesEquatorial = (int) Math.Floor(WorldRange / GridLinesDistance);
 
@@ -163,7 +171,7 @@ public class ShipGunDisplayControl : MapGridControl
             var ourGridMatrix = _transform.GetWorldMatrix(ourGridId.Value);
             Matrix3.Multiply(in ourGridMatrix, in offsetMatrix, out var matrix);
 
-            DrawGrid(handle, matrix, ourGrid, Color.MediumSpringGreen, true);
+            DrawGrid(handle, matrix, ourGridId.Value, ourGrid, Color.MediumSpringGreen, true);
             DrawGuns(handle, matrix, ourGrid);
         }
 
@@ -200,7 +208,7 @@ public class ShipGunDisplayControl : MapGridControl
             var color = iff?.Color ?? Color.Gold;
 
             // Detailed view
-            DrawGrid(handle, matty, grid, color, true);
+            DrawGrid(handle, matty, gUid, grid, color, true);
             DrawGuns(handle, matty, grid);
         }
     }
@@ -231,8 +239,8 @@ public class ShipGunDisplayControl : MapGridControl
 
             var verts = new[]
             {
-                matrix.Transform(position + rotation.Transform(new Vector2(-gunScale, gunScale))),
-                matrix.Transform(position + rotation.Transform(new Vector2(gunScale, gunScale))),
+                matrix.Transform(position + rotation.Transform(new Vector2(-gunScale / 1.5f, gunScale))),
+                matrix.Transform(position + rotation.Transform(new Vector2(gunScale / 1.5f, gunScale))),
                 matrix.Transform(position + rotation.Transform(new Vector2(0, -gunScale)))
             };
 
@@ -248,69 +256,50 @@ public class ShipGunDisplayControl : MapGridControl
         }
     }
 
-    private void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, MapGridComponent grid, Color color, bool drawInterior)
+    private void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, EntityUid gridUid, MapGridComponent grid, Color color, bool drawInterior)
     {
-        var rator = grid.GetAllTilesEnumerator();
-        var edges = new ValueList<Vector2>();
+        if (!_entManager.TryGetComponent<FixturesComponent>(gridUid, out var fixutreComp))
+            return;
 
-        while (rator.MoveNext(out var tileRef))
+        foreach (var (_, fixture) in fixutreComp.Fixtures)
         {
-            // TODO: Short-circuit interior chunk nodes
-            // This can be optimised a lot more if required.
-            Vector2? tileVec = null;
+            var shape = (PolygonShape) fixture.Shape;
 
-            // Iterate edges and see which we can draw
-            for (var i = 0; i < 4; i++)
+            if (shape.VertexCount < 2)
+                continue;
+
+            var totalVerts = new List<Vector2>();
+
+            for (var i = 0; i < shape.VertexCount; i++)
             {
-                var dir = (DirectionFlag) Math.Pow(2, i);
-                var dirVec = dir.AsDir().ToIntVec();
+                var vertex = shape.Vertices[i];
+                var radarVertex = matrix.Transform(vertex);
 
-                if (!grid.GetTileRef(tileRef.Value.GridIndices + dirVec).Tile.IsEmpty)
+                if (radarVertex.Length() > ActualRadarRange)
                     continue;
 
-                Vector2 start;
-                Vector2 end;
-                tileVec ??= (Vector2) tileRef.Value.GridIndices * grid.TileSize;
+                radarVertex.Y = -radarVertex.Y;
 
-                // Draw line
-                // Could probably rotate this but this might be faster?
-                switch (dir)
+                var newVertex = ScalePosition(radarVertex);
+
+                if (i < shape.VertexCount - 1)
                 {
-                    case DirectionFlag.South:
-                        start = tileVec.Value;
-                        end = tileVec.Value + new Vector2(grid.TileSize, 0f);
-                        break;
-                    case DirectionFlag.East:
-                        start = tileVec.Value + new Vector2(grid.TileSize, 0f);
-                        end = tileVec.Value + new Vector2(grid.TileSize, grid.TileSize);
-                        break;
-                    case DirectionFlag.North:
-                        start = tileVec.Value + new Vector2(grid.TileSize, grid.TileSize);
-                        end = tileVec.Value + new Vector2(0f, grid.TileSize);
-                        break;
-                    case DirectionFlag.West:
-                        start = tileVec.Value + new Vector2(0f, grid.TileSize);
-                        end = tileVec.Value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
+                    var nextVertex = matrix.Transform(shape.Vertices[i + 1]);
+                    nextVertex.Y = -nextVertex.Y;
+                    var nextRadarVertex = ScalePosition(nextVertex);
+                    handle.DrawLine(newVertex, nextRadarVertex, color);
                 }
-
-                var adjustedStart = matrix.Transform(start);
-                var adjustedEnd = matrix.Transform(end);
-
-                if (adjustedStart.Length() > ActualRadarRange || adjustedEnd.Length() > ActualRadarRange)
-                    continue;
-
-                start = ScalePosition(new Vector2(adjustedStart.X, -adjustedStart.Y));
-                end = ScalePosition(new Vector2(adjustedEnd.X, -adjustedEnd.Y));
-
-                edges.Add(start);
-                edges.Add(end);
+                else
+                {
+                    var nextVertex = matrix.Transform(shape.Vertices[0]);
+                    nextVertex.Y = -nextVertex.Y;
+                    var nextRadarVertex = ScalePosition(nextVertex);
+                    handle.DrawLine(newVertex, nextRadarVertex, color);
+                }
+                totalVerts.Add(newVertex);
             }
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, totalVerts.ToArray(), color.WithAlpha(0.5f));
         }
-
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineList, edges.Span, color);
     }
 
     private Vector2 ScalePosition(Vector2 value)

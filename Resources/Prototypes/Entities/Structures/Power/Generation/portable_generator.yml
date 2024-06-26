@@ -84,11 +84,12 @@
     - type: PortableGenerator
       startSoundEmpty: { collection: GeneratorTugEmpty }
       startSound: { collection: GeneratorTug }
+      startChance: 1 # Small QoL.
     - type: FuelGenerator
     - type: PowerSupplier
-      supplyRate: 3000
-      supplyRampRate: 500
-      supplyRampTolerance: 500
+      supplyRate: 6000
+      supplyRampRate: 1000
+      supplyRampTolerance: 1000
       enabled: false
     - type: DeviceLinkSink
       ports:
@@ -158,12 +159,12 @@
     - type: Machine
       board: PortableGeneratorPacmanMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 5000
-      maxTargetPower: 30000
-      targetPower: 30000
-      optimalPower: 30000
-      # 15 minutes at max output
-      optimalBurnRate: 0.0333333
+      minTargetPower: 10000
+      maxTargetPower: 50000
+      targetPower: 50000
+      optimalPower: 50000
+      # 30 minutes at max output
+      optimalBurnRate: 0.01666665
       # a decent curve that goes up to about an hour at 5 kW.
       fuelEfficiencyConstant: 0.75
     - type: SolidFuelGeneratorAdapter
@@ -216,12 +217,12 @@
     - type: Machine
       board: PortableGeneratorSuperPacmanMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 10000
-      maxTargetPower: 50000
-      targetPower: 50000
-      optimalPower: 50000
-      # 30 minutes at full power
-      optimalBurnRate: 0.016666666
+      minTargetPower: 20000
+      maxTargetPower: 70000
+      targetPower: 70000
+      optimalPower: 70000
+      # 60 minutes at full power
+      optimalBurnRate: 0.008333333
       # Barely save any fuel from reducing power output
       fuelEfficiencyConstant: 0.1
     - type: SolidFuelGeneratorAdapter

@@ -1,0 +1,15 @@
+- type: entity
+  parent: BoxMRE
+  id: TPBoxMRESalvage
+  suffix: Salvage
+  components:
+  - type: StorageFill
+    contents:
+    - id: DrinkMREFlask
+      prob: 0.2
+    - id: FoodSnackNutribrick
+      prob: 0.75
+    - id: FoodSnackMREBrownie
+      prob: 0.35
+    - id: FoodCondimentPacketKetchup
+      prob: 0.25

@@ -1,0 +1,17 @@
+- type: marking
+  id: HumanTailSmooth
+  icon:
+    sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_smooth_behind
+  markingCategory: Tail
+  speciesRestrictions: [THEVOID]
+  function: !type:AddMarkingFunction
+    bodyPart: body_root_part
+    sprites:
+      tail-back:
+        - sprite: Mobs/Customization/reptilian_parts.rsi
+          state: "tail_smooth_behind"
+      tail-front:
+        - sprite: Mobs/Customization/reptilian_parts.rsi
+          state: "tail_smooth_front"
+

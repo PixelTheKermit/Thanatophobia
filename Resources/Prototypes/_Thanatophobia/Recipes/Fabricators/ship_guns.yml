@@ -1,0 +1,97 @@
+# Ammo
+- type: latheRecipe
+  id: MagazineShipAntiShip
+  result: MagazineShipAntiShip
+  completetime: 2
+  materials:
+   Steel: 1500
+   Plastic: 200
+
+- type: latheRecipe
+  id: MagazineShipShotgun
+  result: MagazineShipShotgun
+  completetime: 2
+  materials:
+   Steel: 1750
+   Plastic: 200
+
+- type: latheRecipe
+  id: ShipCannonBall
+  result: ShipCannonBall
+  completetime: 2
+  materials:
+   Steel: 100
+
+# Circuitboards (Ship guns)
+- type: latheRecipe
+  id: TPCircuitboardWeaponShipGunBallistic
+  result: TPCircuitboardWeaponShipGunBallistic
+  completetime: 2
+  materials:
+   Steel: 100
+   Plastic: 300
+   Gold: 100
+
+- type: latheRecipe
+  id: TPCircuitboardWeaponShipGunBattery
+  result: TPCircuitboardWeaponShipGunBattery
+  completetime: 2
+  materials:
+   Steel: 100
+   Plastic: 300
+   Gold: 100
+
+- type: latheRecipe
+  id: TPCircuitboardWeaponShipGunShotgun
+  result: TPCircuitboardWeaponShipGunShotgun
+  completetime: 2
+  materials:
+   Steel: 100
+   Plastic: 300
+   Gold: 100
+
+- type: latheRecipe
+  id: TPCircuitboardWeaponShipGunCannon
+  result: TPCircuitboardWeaponShipGunCannon
+  completetime: 2
+  materials:
+   Steel: 100
+   Plastic: 300
+   Gold: 100
+
+# Circuitboards (Loaders)
+- type: latheRecipe
+  id: TPCircuitboardShipGunAmmoProviderBattery
+  result: TPCircuitboardShipGunAmmoProviderBattery
+  completetime: 2
+  materials:
+   Steel: 50
+   Plastic: 150
+   Gold: 50
+
+- type: latheRecipe
+  id: TPCircuitboardShipGunAmmoProviderCannon
+  result: TPCircuitboardShipGunAmmoProviderCannon
+  completetime: 2
+  materials:
+   Steel: 50
+   Plastic: 150
+   Gold: 50
+
+- type: latheRecipe
+  id: TPCircuitboardShipGunAmmoProviderShotgun
+  result: TPCircuitboardShipGunAmmoProviderShotgun
+  completetime: 2
+  materials:
+   Steel: 50
+   Plastic: 150
+   Gold: 50
+
+- type: latheRecipe
+  id: TPCircuitboardShipGunAmmoProviderBallistic
+  result: TPCircuitboardShipGunAmmoProviderBallistic
+  completetime: 2
+  materials:
+   Steel: 50
+   Plastic: 150
+   Gold: 50

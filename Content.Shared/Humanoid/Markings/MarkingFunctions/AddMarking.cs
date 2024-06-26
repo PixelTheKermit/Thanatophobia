@@ -14,7 +14,7 @@ public sealed partial class AddMarkingFunction : BaseMarkingFunction
     public string BodyPart = default!;
 
     [DataField]
-    public Dictionary<string, List<SpriteSpecifier>> Sprites { get; private set; } = default!;
+    public Dictionary<string, List<SpriteSpecifier?>> Sprites { get; private set; } = default!;
 
     public override void AddMarking(
         EntityUid uid,
@@ -63,7 +63,7 @@ public sealed partial class AddMarkingFunction : BaseMarkingFunction
         return totalLayers;
     }
 
-    public override Dictionary<string, List<SpriteSpecifier>> GetSprites()
+    public override Dictionary<string, List<SpriteSpecifier?>> GetSprites()
     {
         return Sprites;
     }
