@@ -172,6 +172,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "l_leg"
+  - type: BodyPartVisualiser
     sprites:
       defaultColouring:
       - !type:PartUseSkin

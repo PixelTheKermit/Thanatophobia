@@ -189,10 +189,10 @@
     state: "r_leg"
   - type: BodyPartVisualiser
     sprites:
-      r-leg:
-        defaultColouring:
-        - !type:PartUseSkin
-        sprites:
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-leg:
         - sprite: Mobs/Species/Moth/parts.rsi
           state: "r_leg"
 
@@ -238,7 +238,7 @@
   components:
   - type: Sprite
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: default
+    state: atlas_back
   - type: BodyPartVisualiser
     sprites:
       defaultColouring:

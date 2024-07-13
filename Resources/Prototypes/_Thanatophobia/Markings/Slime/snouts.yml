@@ -1,0 +1,37 @@
+- type: marking
+  id: SlimeSnoutsSharp
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/snouts.rsi
+    state: sharp
+  markingCategory: Snout
+  speciesRestrictions: [SlimePerson]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      snout:
+      - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/snouts.rsi
+        state: sharp
+
+- type: marking
+  id: SlimeSnoutsRound
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/snouts.rsi
+    state: round
+  markingCategory: Snout
+  speciesRestrictions: [SlimePerson]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      snout:
+      - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Slime/snouts.rsi
+        state: round
