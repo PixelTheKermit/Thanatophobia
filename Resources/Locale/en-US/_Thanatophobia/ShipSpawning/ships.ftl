@@ -1,7 +1,3 @@
-tp-late-join-ui-title = Shuttle Purchasing Interface
-tp-purchase-ship-button = Purchase Shuttle
-tp-ui-request-ship-select = Please select a suitable ship.
-
 tp-ui-ship-name-Spade = Spade
 tp-ui-ship-desc-Spade = [font size=14][bold][color=yellow]Spade[/bold][/color][/font]
 

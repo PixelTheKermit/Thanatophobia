@@ -1,0 +1,9 @@
+tp-ship-lobby-window = Ship Lobby
+tp-join-lobby = Join
+tp-refresh-lobby = Refresh
+tp-get-room-code = Enter room code here...
+tp-create-lobby = Create Lobby
+tp-lobby-owner-name = {$owner}'s lobby
+tp-lobby-ship-name = Ship: {$ship}
+tp-lobby-player-count = Players: {$current} / {$max}
+tp-current-lobby-code = Code: {$code}

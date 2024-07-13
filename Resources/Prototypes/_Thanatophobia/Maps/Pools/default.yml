@@ -6,7 +6,15 @@
 - type: shipSpawnPool
   id: Default
   ships:
-    Spade: TPWanderer
-    Star: TPWanderer
-    Piracy: TPWanderer
-    BoxShuttle: TPWanderer
+    Spade:
+      crewRole: TPWanderer
+      maxPlayers: 2
+    Star:
+      crewRole: TPWanderer
+      maxPlayers: 3
+    Piracy:
+      crewRole: TPWanderer
+      maxPlayers: 3
+    BoxShuttle:
+      crewRole: TPWanderer
+      maxPlayers: 3

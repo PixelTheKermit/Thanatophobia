@@ -1,0 +1,8 @@
+- type: entity
+  parent: Paper
+  id: TPPaperHowToGenerate
+  name: How2Generate
+  description: A handy guide into the basic use of generators.
+  components:
+  - type: Paper
+    content: tp-paper-how-to-generate

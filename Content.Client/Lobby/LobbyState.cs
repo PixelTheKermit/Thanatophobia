@@ -36,6 +36,7 @@ namespace Content.Client.Lobby
         [ViewVariables] private TPCharacterSetupGui? _characterSetup; // Thanatophobia Edit
 
         private ClientGameTicker _gameTicker = default!;
+        private ShipLateJoinSystem _shipLateJoin = default!;
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         private LobbyGui? _lobby;
@@ -51,6 +52,7 @@ namespace Content.Client.Lobby
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
+            _shipLateJoin = _entityManager.System<ShipLateJoinSystem>();
             // Thanatophobia Edit
             _characterSetup = new TPCharacterSetupGui(_entityManager, _resourceCache, _preferencesManager,
                 _prototypeManager, _configurationManager);
@@ -130,9 +132,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            // Thanatophobia edits start here
-            new TPLateJoinGui().OpenCentered();
-            // And then they end here.
+            _shipLateJoin.ToggleUI();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
