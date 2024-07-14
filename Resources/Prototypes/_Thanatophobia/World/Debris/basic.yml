@@ -60,8 +60,6 @@
         prob: 1
       - id: SalvageCanisterSpawner
         prob: 0.2
-      - id: SalvageMobSpawner
-        prob: 0.7
   - type: IFF
     flags: HideLabel
     color: "#FFFFFF"

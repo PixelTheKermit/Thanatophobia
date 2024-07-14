@@ -5,6 +5,7 @@
   description: A mirror that leads to a mirror world. These tend to be unstable nowadays, and the magic behind them is pretty much unknown.
   noSpawn: true
   components:
+  - type: DoAfter
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Structures/Machines/mirror-gate.rsi
     layers:
@@ -45,6 +46,14 @@
     - state: gate
   - type: Fixtures
     fixtures: {}
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateBasic
+  name: mirror of the station
+  components:
+  - type: DungeonGate
+    dungeonConfig: TPBasic
 
 - type: entity
   parent: TPDungeonGateBase

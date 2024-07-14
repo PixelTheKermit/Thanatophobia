@@ -58,6 +58,7 @@
     sprites:
       defaultColouring:
       - !type:PartUseSkin
+      - !type:PartUseSkin
       sprites:
         left-appendage-upper-front:
         - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
@@ -80,6 +81,7 @@
   - type: BodyPartVisualiser
     sprites:
       defaultColouring:
+      - !type:PartUseSkin
       - !type:PartUseSkin
       sprites:
         left-appendage-lower-front:
@@ -104,6 +106,7 @@
     sprites:
       defaultColouring:
       - !type:PartUseSkin
+      - !type:PartUseSkin
       sprites:
         right-appendage-upper-front:
         - sprite: Mobs/Customization/Arachnid/Appendages/long.rsi
@@ -126,6 +129,7 @@
   - type: BodyPartVisualiser
     sprites:
       defaultColouring:
+      - !type:PartUseSkin
       - !type:PartUseSkin
       sprites:
         right-appendage-lower-front:

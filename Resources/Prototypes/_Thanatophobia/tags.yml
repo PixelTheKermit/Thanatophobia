@@ -28,3 +28,6 @@
 
 - type: Tag
   id: ShipGunAmmoProviderShotgun
+
+- type: Tag
+  id: TPDungeonBasic

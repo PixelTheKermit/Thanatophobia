@@ -1,3 +1,4 @@
+using Content.Shared.DragDrop;
 using Content.Shared.Thanatophobia.DungeonGate;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
@@ -13,6 +14,8 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
 
         SubscribeLocalEvent<DungeonGateComponent, AfterAutoHandleStateEvent>(DungeonGateStateHandling);
         SubscribeLocalEvent<DungeonGateComponent, ComponentStartup>(DungeonGateStateHandling);
+
+        SubscribeLocalEvent<DungeonGateComponent, CanDropTargetEvent>(OnCanDragDropOn);
     }
 
     private void DungeonGateStateHandling<TArgs>(EntityUid uid, DungeonGateComponent comp, ref TArgs args)

@@ -52,6 +52,13 @@ public sealed partial class DungeonGateComponent : Component
     [DataField]
     public TimeSpan DeathTime = TimeSpan.Zero;
 
+    /// <summary>
+    /// How long does it take for an entity to be warped if it was drag and dropped?
+    /// </summary>
+    /// <returns></returns>
+    [DataField]
+    public TimeSpan DragDropTime = TimeSpan.FromSeconds(2);
+
     // Popup strings
 
     [DataField]

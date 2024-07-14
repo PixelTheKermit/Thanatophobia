@@ -2,10 +2,13 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.Audio;
+using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Procedural;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.EntitySystems;
+using Content.Shared.DoAfter;
+using Content.Shared.DragDrop;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
@@ -33,12 +36,17 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
+    [Dependency] private readonly DoAfterSystem _doafterSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<DungeonGateComponent, InteractedNoHandEvent>(OnGateInteract);
         SubscribeLocalEvent<DungeonGateComponent, InteractHandEvent>(OnGateInteract);
+
+        SubscribeLocalEvent<DungeonGateComponent, DragDropTargetEvent>(OnGateDragDropInteract);
+        SubscribeLocalEvent<DungeonGateComponent, CanDropTargetEvent>(OnCanDragDropOn);
+        SubscribeLocalEvent<DungeonGateComponent, DungeonGateDragDropDoAfterEvent>(AfterGateDragDrop);
     }
 
     public override void Update(float frameTime)
@@ -83,6 +91,7 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
 
                 // We want somewhere to nest the dungeon.
                 var newMapId = _mapManager.CreateMap();
+                _mapManager.SetMapPaused(newMapId, true);
                 var gridEnt = _mapManager.CreateGridEntity(newMapId);
 
                 if (!_protoManager.TryIndex(gateComp.DungeonConfig, out var dungeonConfig))
@@ -99,6 +108,8 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
                 gateComp.GateState = DungeonGateState.InProgress;
 
                 await _dungeonSystem.GenerateDungeonAsync(dungeonConfig, gridEnt, gridEnt.Comp, Vector2i.Zero, _random.Next());
+
+                _mapManager.SetMapPaused(newMapId, false);
 
                 // For spawning the exit.
                 var availableTiles = _mapSystem.GetAllTiles(gridEnt, gridEnt.Comp).ToList();
@@ -134,7 +145,8 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
                 if (gateComp.LeadsToEntity != null)
                 {
                     _xformSystem.SetCoordinates(userUid, Transform(gateComp.LeadsToEntity.Value).Coordinates);
-                    _audioSystem.PlayPvs(gateComp.GateEnterSound, userUid);
+                    _audioSystem.PlayPvs(gateComp.GateEnterSound, gateUid);
+                    _audioSystem.PlayPvs(gateComp.GateEnterSound, gateComp.LeadsToEntity.Value);
                 }
                 break;
             case DungeonGateState.Broken:
@@ -143,6 +155,42 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
             default:
                 Log.Warning("DungeonGateState has no code attributed to this current state.");
                 break;
+        }
+    }
+
+    private void OnGateDragDropInteract(EntityUid uid, DungeonGateComponent gateComp, DragDropTargetEvent args)
+    {
+        if (gateComp.GateState == DungeonGateState.InProgress)
+        {
+            if (gateComp.LeadsToEntity != null)
+            {
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, gateComp.DragDropTime, new DungeonGateDragDropDoAfterEvent(), uid, target: args.Dragged, used: uid)
+                {
+                    BreakOnTargetMove = true,
+                    BreakOnUserMove = true,
+                    BreakOnDamage = true,
+                    NeedHand = true,
+                    BreakOnHandChange = true
+                };
+
+                _doafterSystem.TryStartDoAfter(doAfterArgs);
+            }
+        }
+    }
+
+    private void AfterGateDragDrop(EntityUid uid, DungeonGateComponent gateComp, DungeonGateDragDropDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Target == null)
+            return;
+
+        if (gateComp.GateState == DungeonGateState.InProgress)
+        {
+            if (gateComp.LeadsToEntity != null)
+            {
+                _xformSystem.SetCoordinates(args.Target.Value, Transform(gateComp.LeadsToEntity.Value).Coordinates);
+                _audioSystem.PlayPvs(gateComp.GateEnterSound, uid);
+                _audioSystem.PlayPvs(gateComp.GateEnterSound, gateComp.LeadsToEntity.Value);
+            }
         }
     }
 }

@@ -1,0 +1,175 @@
+- type: dungeonRoom
+  id: Basic17x5a
+  size: 17,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,0
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic11x5a
+  size: 11,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,6
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic11x5b
+  size: 11,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 12,6
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic7x5a
+  size: 7,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,12
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic7x5b
+  size: 7,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 8,12
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic7x5c
+  size: 7,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 16,12
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic5x5a
+  size: 5,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,18
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic5x5b
+  size: 5,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 6,18
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic5x5c
+  size: 5,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 12,18
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic5x5d
+  size: 5,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 18,18
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic3x5a
+  size: 3,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,24
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic3x5b
+  size: 3,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 4,24
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic3x5c
+  size: 3,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 8,24
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic3x5d
+  size: 3,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 12,24
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic3x5e
+  size: 3,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 16,24
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic3x5f
+  size: 3,5
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 20,24
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic13x3a
+  size: 13,3
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,30
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic11x3a
+  size: 11,3
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,34
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic11x3b
+  size: 11,3
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 12,34
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic7x3a
+  size: 7,3
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 0,38
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic7x3b
+  size: 7,3
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 8,38
+  tags:
+  - TPDungeonBasic
+
+- type: dungeonRoom
+  id: Basic7x3c
+  size: 7,3
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 16,38
+  tags:
+  - TPDungeonBasic

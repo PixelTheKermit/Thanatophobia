@@ -57,8 +57,6 @@
         prob: 1
       - id: SalvageCanisterSpawner
         prob: 0.2
-      - id: TPSalvageSandMobSpawner
-        prob: 0.7
   - type: IFF
     color: "#F2E2C0"
 
