@@ -34,6 +34,12 @@ public sealed partial class DungeonGateComponent : Component
     public EntityUid? LeadsToEntity = null;
 
     /// <summary>
+    /// Used to fixgridatmos the dungeon.
+    /// </summary>
+    [DataField]
+    public bool FirstEnter = false;
+
+    /// <summary>
     /// How much time do you have till the gate closes?
     /// </summary>
     [DataField]

@@ -16,6 +16,7 @@ using Content.Shared.Procedural;
 using Content.Shared.Thanatophobia.DungeonGate;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -37,6 +38,7 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly DoAfterSystem _doafterSystem = default!;
+    [Dependency] private readonly IConsoleHost _consoleHost = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -131,6 +133,7 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
 
                         otherPortalComp.LeadsToEntity = gateUid;
                         otherPortalComp.GateState = DungeonGateState.InProgress;
+                        otherPortalComp.FirstEnter = true;
                         // We probably want more time for anything inside the gate to exit when the main gate exits.
                         // This is so there aren't cases where someone enters a gate really late and then immediately cannot leave (tldr: it prevents fustration!)
                         otherPortalComp.DeathTime = curTime + gateComp.TimeToEnter + gateComp.TimeAddedToLeave;
@@ -144,6 +147,13 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
             case DungeonGateState.InProgress:
                 if (gateComp.LeadsToEntity != null)
                 {
+                    // Hot glue mess. Fucking hell.
+                    if (!gateComp.FirstEnter && Transform(gateComp.LeadsToEntity.Value).GridUid != null)
+                    {
+                        _consoleHost.ExecuteCommand($"fixgridatmos {Transform(gateComp.LeadsToEntity.Value).GridUid!.Value.Id}");
+                        gateComp.FirstEnter = true;
+                    }
+
                     _xformSystem.SetCoordinates(userUid, Transform(gateComp.LeadsToEntity.Value).Coordinates);
                     _audioSystem.PlayPvs(gateComp.GateEnterSound, gateUid);
                     _audioSystem.PlayPvs(gateComp.GateEnterSound, gateComp.LeadsToEntity.Value);

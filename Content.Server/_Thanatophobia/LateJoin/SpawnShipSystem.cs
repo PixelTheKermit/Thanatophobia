@@ -466,7 +466,8 @@ public sealed partial class SpawnShipSystem : EntitySystem
         {
             var collidingGrids = new List<Entity<MapGridComponent>>();
             _mapManager.FindGridsIntersecting(coords.MapId, safetyBounds.Translated(coords.Position), ref collidingGrids);
-            if (collidingGrids.Count <= 0)
+
+            if (collidingGrids.Count > 0)
                 continue;
 
             MapLoadOptions loadOptions = new()
