@@ -49,10 +49,12 @@
   postGeneration:
   - !type:CorridorPostGen
     width: 3
+    tile: FloorAsteroidTile
 
   - !type:RoomEntrancePostGen
     entities:
     - WoodDoor
+    tile: FloorAsteroidTile
 
   - !type:WallMountPostGen
     spawns:
