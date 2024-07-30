@@ -1,0 +1,9 @@
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleHardsuitSalvage
+  name: "Blueprint: Salvage Hardsuit"
+  description: A blueprint module that allows the fabrication of a salvage hardsuit.
+  components:
+  - type: BlueprintModule
+    recipes:
+    - ClothingOuterHardsuitSalvage

@@ -107,14 +107,14 @@
     requiredLegs: 1
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Weapons/punch3.ogg
+      path: /Audio/Weapons/punch3.ogg
     angle: 0
     animation: WeaponArcPunch
     damage:
       types:
-        Blunt: 6
+        Blunt: 4
         Structural: 4
-        Caustic: 4
+        Caustic: 2
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-slimes

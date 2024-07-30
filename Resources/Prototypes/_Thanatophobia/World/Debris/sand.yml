@@ -57,6 +57,8 @@
         prob: 1
       - id: SalvageCanisterSpawner
         prob: 0.2
+      - id: TPDungeonGateSand # shouldn't be common, but shouldn't be too rare.
+        prob: 0.025
   - type: IFF
     color: "#F2E2C0"
 

@@ -12,18 +12,9 @@
   - !type:CorridorPostGen
     width: 3
 
-  - !type:DungeonEntrancePostGen
-    count: 2
-
-  - !type:EntranceFlankPostGen
+  - !type:RoomEntrancePostGen
     entities:
-    - Grille
-    - Window
-
-  - !type:ExternalWindowPostGen
-    entities:
-    - Grille
-    - Window
+    - WoodDoor
 
   - !type:WallMountPostGen
     spawns:
@@ -39,12 +30,43 @@
     wall: WallSolid
     cornerWall: WallReinforced
 
-  - !type:JunctionPostGen
-    width: 1
+  - !type:CornerClutterPostGen
+    contents:
+    - id: PottedPlantRandom
+      amount: 1
 
-  - !type:JunctionPostGen
+- type: dungeonConfig
+  id: TPSand
+  generator: !type:PrefabDunGen
+    roomWhitelist:
+    - TPDungeonSand
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+    tile: FloorAsteroidTile
+  postGeneration:
+  - !type:CorridorPostGen
+    width: 3
 
-  - !type:AutoCablingPostGen
+  - !type:RoomEntrancePostGen
+    entities:
+    - WoodDoor
+
+  - !type:WallMountPostGen
+    spawns:
+    # Posters
+    - id: RandomPosterLegit
+      orGroup: content
+    - id: RandomPainting
+      prob: 0.05
+      orGroup: content
+
+  - !type:BoundaryWallPostGen
+    tile: FloorAsteroidTile
+    wall: WallSandstone
+    cornerWall: WallSandstone
 
   - !type:CornerClutterPostGen
     contents:

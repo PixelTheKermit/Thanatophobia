@@ -33,22 +33,6 @@
     - id: BookRandom
       prob: 0.01
 
-    # Cables
-    - id: CableHVStack
-      amount: 1
-      prob: 0.33
-      orGroup: Wires
-    - id: CableMVStack
-      amount: 1
-      prob: 0.33
-      orGroup: Wires
-    - id: CableApcStack
-      amount: 1
-      prob: 0.33
-      orGroup: Wires
-    - id: null
-      orGroup: Wires
-
     # Medical Supplies
     - id: MedkitFilled
       prob: 0.1
@@ -84,6 +68,12 @@
     - id: ClothingMaskBreath
       prob: 0.15
       orGroup: GasMask
+    - id: ClothingHeadHelmetEVA
+      prob: 0.2
+      orGroup: GasMask
+    - id: null
+      orGroup: GasMask
+
     - id: OxygenTankFilled
       prob: 0.005
       orGroup: Tank
@@ -96,10 +86,11 @@
     - id: EmergencyNitrogenTankFilled
       prob: 0.25
       orGroup: Tank
+    - id: ClothingOuterHardsuitEVA
+      prob: 0.2
+      orGroup: Tank
     - id: null
       orGroup: Tank
-    - id: ClothingOuterSuitEmergency
-      prob: 0.125
 
     # Seeds
     - id: AloeSeeds
@@ -242,16 +233,12 @@
       orGroup: Janitorial
 
     # Random Salvage
-    - id: ClothingOuterHardsuitSalvage
-      prob: 0.075
     - id: FireExtinguisher
       prob: 0.125
-    - id: ClothingShoesBootsMag
-      prob: 0.05
     - id: ClothingBeltUtility
       prob: 0.15
     - id: OreBag
-      prob: 0.25
+      prob: 0.15
     - id: ClothingBeltSalvageWebbing
       prob: 0.15
     - id: ClothingHeadHatCatEars # An important part of salvage equipment.

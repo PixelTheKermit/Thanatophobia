@@ -1,3 +1,17 @@
+# ---
+# 7x7
+# ---
+- type: dungeonRoom
+  id: Basic7x7a
+  size: 7,7
+  atlas: /Maps/_Thanatophobia/Dungeons/basic.yml
+  offset: 24,34
+  tags:
+  - TPDungeonBasic
+
+# ----
+# 17x5
+# ----
 - type: dungeonRoom
   id: Basic17x5a
   size: 17,5
@@ -6,6 +20,9 @@
   tags:
   - TPDungeonBasic
 
+# ----
+# 11x5
+# ----
 - type: dungeonRoom
   id: Basic11x5a
   size: 11,5
@@ -22,6 +39,9 @@
   tags:
   - TPDungeonBasic
 
+# ---
+# 7x5
+# ---
 - type: dungeonRoom
   id: Basic7x5a
   size: 7,5
@@ -46,6 +66,9 @@
   tags:
   - TPDungeonBasic
 
+# ---
+# 5x5
+# ---
 - type: dungeonRoom
   id: Basic5x5a
   size: 5,5
@@ -78,6 +101,9 @@
   tags:
   - TPDungeonBasic
 
+# ---
+# 3x5
+# ---
 - type: dungeonRoom
   id: Basic3x5a
   size: 3,5
@@ -126,6 +152,9 @@
   tags:
   - TPDungeonBasic
 
+# ----
+# 13x3
+# ----
 - type: dungeonRoom
   id: Basic13x3a
   size: 13,3
@@ -134,6 +163,9 @@
   tags:
   - TPDungeonBasic
 
+# ----
+# 11x3
+# ----
 - type: dungeonRoom
   id: Basic11x3a
   size: 11,3
@@ -150,6 +182,9 @@
   tags:
   - TPDungeonBasic
 
+# ----
+# 7x3
+# ----
 - type: dungeonRoom
   id: Basic7x3a
   size: 7,3

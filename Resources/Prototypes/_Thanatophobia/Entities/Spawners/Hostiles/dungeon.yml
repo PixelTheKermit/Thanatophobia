@@ -16,6 +16,8 @@
     - MobCarpSalvage
     - MobCarpSalvage
     - MobTickSalvage
+    - TPMobSlimeBlobRandom
+    - TPMobSlimeBlobRandom
     chance: 0.5
     offset: 0.2
 
@@ -41,7 +43,6 @@
   - type: RandomSpawner
     rarePrototypes:
     - TPMobQueenSpider
-    rareChance: 0.05
     prototypes:
     - MobSpiderSpace
     - MobPurpleSnake

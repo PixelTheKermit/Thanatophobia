@@ -4,6 +4,7 @@
   name: mirror gate
   description: A mirror that leads to a mirror world. These tend to be unstable nowadays, and the magic behind them is pretty much unknown.
   noSpawn: true
+  abstract: true
   components:
   - type: DoAfter
   - type: Sprite
@@ -24,6 +25,7 @@
     gateReadySprite: "ready"
     gateOngoingSprite: "in-progress"
     gateBrokenSprite: "broken"
+    timeToEnter: 1200
   - type: Destructible
     thresholds: []
 
@@ -31,7 +33,7 @@
   parent: TPDungeonGateBase
   id: TPDungeonGateExit
   name: mirror exit gate
-  description: A mirror that leads out of a mirror world. You may want to keep in mind where this is at all times.
+  description: A mirror that leads out of a mirror world. Use it before it breaks.
   noSpawn: true
   components:
   - type: Sprite
@@ -57,7 +59,7 @@
 
 - type: entity
   parent: TPDungeonGateBase
-  id: TPDungeonGateDesert
+  id: TPDungeonGateSand
   name: mirror of the desert
   components:
   - type: Sprite
@@ -74,4 +76,4 @@
       map: ["broken"]
     - state: gate
   - type: DungeonGate
-    dungeonConfig: LavaBrig
+    dungeonConfig: TPSand

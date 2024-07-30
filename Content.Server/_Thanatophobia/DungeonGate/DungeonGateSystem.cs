@@ -5,10 +5,12 @@ using Content.Server.Audio;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Procedural;
+using Content.Server.Pulling;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
+using Content.Shared.Gravity;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
@@ -39,6 +41,7 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly DoAfterSystem _doafterSystem = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
+    [Dependency] private readonly PullingSystem _pullingSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -91,16 +94,19 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
             case DungeonGateState.Ready:
                 var curTime = _gameTiming.CurTime;
 
-                // We want somewhere to nest the dungeon.
-                var newMapId = _mapManager.CreateMap();
-                _mapManager.SetMapPaused(newMapId, true);
-                var gridEnt = _mapManager.CreateGridEntity(newMapId);
-
                 if (!_protoManager.TryIndex(gateComp.DungeonConfig, out var dungeonConfig))
                 {
                     Log.Warning($"Dungeon prototype is invalid! No such prototype named {gateComp.DungeonConfig.Id} found!");
                     return;
                 }
+
+                // We want somewhere to nest the dungeon.
+                var newMapId = _mapManager.CreateMap();
+                _mapManager.SetMapPaused(newMapId, true);
+                var gridEnt = _mapManager.CreateGridEntity(newMapId);
+                var gravity = EnsureComp<GravityComponent>(gridEnt);
+                gravity.Inherent = true;
+                gravity.Enabled = true;
 
                 _popupSystem.PopupEntity(Loc.GetString(gateComp.GateOpenPopup), userUid, userUid);
                 _audioSystem.PlayPvs(gateComp.GateOpenSound, gateUid);
@@ -147,16 +153,33 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
             case DungeonGateState.InProgress:
                 if (gateComp.LeadsToEntity != null)
                 {
-                    // Hot glue mess. Fucking hell.
-                    if (!gateComp.FirstEnter && Transform(gateComp.LeadsToEntity.Value).GridUid != null)
+                    // More hot spicy glue!
+                    if (!_pullingSystem.IsPulling(userUid))
                     {
-                        _consoleHost.ExecuteCommand($"fixgridatmos {Transform(gateComp.LeadsToEntity.Value).GridUid!.Value.Id}");
-                        gateComp.FirstEnter = true;
-                    }
+                        // Hot glue mess. Fucking hell.
+                        if (!gateComp.FirstEnter && Transform(gateComp.LeadsToEntity.Value).GridUid != null)
+                        {
+                            _consoleHost.ExecuteCommand($"fixgridatmos {Transform(gateComp.LeadsToEntity.Value).GridUid!.Value.Id}");
+                            gateComp.FirstEnter = true;
+                        }
 
-                    _xformSystem.SetCoordinates(userUid, Transform(gateComp.LeadsToEntity.Value).Coordinates);
-                    _audioSystem.PlayPvs(gateComp.GateEnterSound, gateUid);
-                    _audioSystem.PlayPvs(gateComp.GateEnterSound, gateComp.LeadsToEntity.Value);
+                        _xformSystem.SetCoordinates(userUid, Transform(gateComp.LeadsToEntity.Value).Coordinates);
+                        _audioSystem.PlayPvs(gateComp.GateEnterSound, gateUid);
+                        _audioSystem.PlayPvs(gateComp.GateEnterSound, gateComp.LeadsToEntity.Value);
+                    }
+                    else
+                    {
+                        var doAfterArgs = new DoAfterArgs(EntityManager, userUid, gateComp.DragDropTime, new DungeonGateDragDropDoAfterEvent(), gateUid, target: _pullingSystem.GetPulled(userUid), used: gateUid)
+                        {
+                            BreakOnTargetMove = true,
+                            BreakOnUserMove = true,
+                            BreakOnDamage = true,
+                            NeedHand = true,
+                            BreakOnHandChange = true
+                        };
+
+                        _doafterSystem.TryStartDoAfter(doAfterArgs);
+                    }
                 }
                 break;
             case DungeonGateState.Broken:
@@ -197,6 +220,13 @@ public sealed partial class DungeonGateSystem : SharedDungeonGateSystem
         {
             if (gateComp.LeadsToEntity != null)
             {
+                // Hot glue mess. Fucking hell.
+                if (!gateComp.FirstEnter && Transform(gateComp.LeadsToEntity.Value).GridUid != null)
+                {
+                    _consoleHost.ExecuteCommand($"fixgridatmos {Transform(gateComp.LeadsToEntity.Value).GridUid!.Value.Id}");
+                    gateComp.FirstEnter = true;
+                }
+
                 _xformSystem.SetCoordinates(args.Target.Value, Transform(gateComp.LeadsToEntity.Value).Coordinates);
                 _audioSystem.PlayPvs(gateComp.GateEnterSound, uid);
                 _audioSystem.PlayPvs(gateComp.GateEnterSound, gateComp.LeadsToEntity.Value);

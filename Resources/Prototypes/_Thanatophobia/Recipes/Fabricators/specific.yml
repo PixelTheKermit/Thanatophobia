@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: WeaponAnchor
+  result: WeaponAnchor
+  completetime: 3
+  materials:
+   Steel: 750
+   Plastic: 750
