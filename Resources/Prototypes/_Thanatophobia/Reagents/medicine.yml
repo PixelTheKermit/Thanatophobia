@@ -9,19 +9,30 @@
   color: "#53ad88"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+      metabolismRate: 0.1
       effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 7.5
+        damage:
+          groups:
+            Brute: -3
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 15
         damage:
           groups:
-            Brute: -9
+            Brute: -3
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
-          min: 25.1
+          min: 17
         damage:
           types:
-            Cellular: 1
+            Cellular: 1.5

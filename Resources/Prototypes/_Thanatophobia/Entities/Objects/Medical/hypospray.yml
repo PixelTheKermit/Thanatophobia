@@ -2,7 +2,7 @@
   name: cell stimulant
   parent: ChemicalMedipen
   id: CellStimulantMedipen
-  description: An medipen that contains 25u of a certain chemical that accelerates the healing process. Careful, as overdosing may cause unwanted cancers appearing.
+  description: An medipen that contains 7.5u of a certain chemical that accelerates the healing process. Warning: Overdosing can carry the high risk of death.
   components:
   - type: Sprite
     sprite: /Textures/_Thanatophobia/Objects/Medical/k_ampule.rsi
@@ -16,11 +16,11 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 25
+        maxVol: 7.5
         reagents:
         - ReagentId: CellStimulant
-          Quantity: 25
+          Quantity: 7.5
   - type: Hypospray
-    transferAmount: 25
+    transferAmount: 7.5
   - type: Tag
     tags: []
