@@ -223,6 +223,9 @@ public partial class SharedBodySystem
         }
     }
 
+    /// <summary>
+    /// Gets all the containers within the body. This includes both parts and organs.
+    /// </summary>
     public IEnumerable<BaseContainer> GetBodyWithOrganContainers(EntityUid id, BodyComponent? body = null,
         BodyPartComponent? rootPart = null)
     {
@@ -234,6 +237,9 @@ public partial class SharedBodySystem
         }
 
         yield return body.RootContainer;
+
+        foreach (var organContainer in GetOrganContainers(body.RootContainer.ContainedEntities[0]))
+            yield return organContainer;
 
         foreach (var childContainer in GetPartContainers(body.RootContainer.ContainedEntity.Value, rootPart))
         {

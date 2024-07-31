@@ -1,0 +1,87 @@
+- type: entity
+  id: TPBaseSandDebris
+  parent: TPBaseBasicDebris
+  name: Scrap Debris
+  abstract: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorTileset:
+    - FloorAsteroidSand
+    - FloorAsteroidSand
+    - FloorAsteroidSand
+    - FloorAsteroidSand
+    - FloorAsteroidTile
+    - FloorAsteroidTile
+    - Lattice
+  - type: SimpleFloorPlanPopulator
+    entries:
+      FloorAsteroidSand:
+      - id: WallRockSand
+        prob: 0.5
+        orGroup: rock
+      - id: WallRockSandTin
+        prob: 0.075
+        orGroup: rock
+      - id: WallRockSandQuartz
+        prob: 0.25
+        orGroup: rock
+      - id: WallRockSandGold
+        prob: 0.15
+        orGroup: rock
+      - id: WallRockSandSilver
+        prob: 0.025
+        orGroup: rock
+      - id: WallRockSandPlasma
+        prob: 0.125
+        orGroup: rock
+      - id: WallRockSandCoal
+        prob: 0.2
+        orGroup: rock
+      - id: WallRockSandUranium
+        prob: 0.1
+        orGroup: rock
+      - id: WallRockSandArtifactFragment
+        prob: 0.0125
+        orGroup: rock
+      Lattice:
+      - id: null # Intentional blank.
+        prob: 1
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 0.3
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      FloorAsteroidTile:
+      - id: null # Intentional blank.
+        prob: 1
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 1
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      - id: TPDungeonGateSand # shouldn't be common, but shouldn't be too rare.
+        prob: 0.025
+  - type: IFF
+    color: "#F2E2C0"
+
+- type: entity
+  id: TPSandDebrisSmall
+  parent: TPBaseSandDebris
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 32
+
+- type: entity
+  id: TPSandDebrisMedium
+  parent: TPBaseSandDebris
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 64
+
+- type: entity
+  id: TPSandDebrisLarge
+  parent: TPBaseSandDebris
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 96

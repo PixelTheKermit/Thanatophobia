@@ -1,0 +1,26 @@
+- type: entity
+  name: cell stimulant
+  parent: ChemicalMedipen
+  id: CellStimulantMedipen
+  description: "An medipen that contains 7.5u of a certain chemical that accelerates the healing process. Warning: Overdosing can carry the high risk of death."
+  components:
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Objects/Medical/k_ampule.rsi
+    layers:
+    - state: filled
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: true
+    emptySpriteName: icon
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 7.5
+        reagents:
+        - ReagentId: CellStimulant
+          Quantity: 7.5
+  - type: Hypospray
+    transferAmount: 7.5
+  - type: Tag
+    tags: []

@@ -854,7 +854,7 @@ public sealed partial class DungeonJob
         }
 
         var setTiles = new List<(Vector2i, Tile)>();
-        var tileDef = _tileDefManager["FloorSteel"];
+        var tileDef = _tileDefManager[gen.Tile];
 
         foreach (var tile in corridorTiles)
         {

@@ -31,25 +31,28 @@
         Quantity: 20
   - type: BodyPartVisualiser
     sprites:
-      chest:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "torso_m"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        chest:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "torso_m"
   - type: GenderedBodyPart
     sprites:
       Male:
-        chest:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          chest:
+          - sprite: Mobs/Species/Moth/parts.rsi
             state: "torso_m"
-          colouringType: !type:PartUseSkin
       Female:
-        chest:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          chest:
+          - sprite: Mobs/Species/Moth/parts.rsi
             state: "torso_f"
-          colouringType: !type:PartUseSkin
 
 - type: entity
   id: HeadMoth
@@ -68,25 +71,28 @@
         Quantity: 10
   - type: BodyPartVisualiser
     sprites:
-      head:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "head_m"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        head:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "head_m"
   - type: GenderedBodyPart
     sprites:
       Male:
-        head:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          head:
+          - sprite: Mobs/Species/Moth/parts.rsi
             state: "head_m"
-          colouringType: !type:PartUseSkin
       Female:
-        head:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          head:
+          - sprite: Mobs/Species/Moth/parts.rsi
             state: "head_f"
-          colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftArmMoth
@@ -98,11 +104,12 @@
     state: "l_arm"
   - type: BodyPartVisualiser
     sprites:
-      l-arm:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-arm:
+          - sprite: Mobs/Species/Moth/parts.rsi
             state: "l_arm"
-          colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightArmMoth
@@ -114,11 +121,12 @@
     state: "r_arm"
   - type: BodyPartVisualiser
     sprites:
-      r-arm:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "r_arm"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-arm:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "r_arm"
 
 - type: entity
   id: LeftHandMoth
@@ -130,11 +138,12 @@
     state: "l_hand"
   - type: BodyPartVisualiser
     sprites:
-      l-hand:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "l_hand"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-hand:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "l_hand"
 
 - type: entity
   id: RightHandMoth
@@ -146,11 +155,12 @@
     state: "r_hand"
   - type: BodyPartVisualiser
     sprites:
-      r-hand:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "r_hand"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-hand:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "r_hand"
 
 - type: entity
   id: LeftLegMoth
@@ -162,11 +172,12 @@
     state: "l_leg"
   - type: BodyPartVisualiser
     sprites:
-      l-leg:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "l_leg"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-leg:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "l_leg"
 
 - type: entity
   id: RightLegMoth
@@ -178,11 +189,12 @@
     state: "r_leg"
   - type: BodyPartVisualiser
     sprites:
-      r-leg:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "r_leg"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-leg:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "r_leg"
 
 - type: entity
   id: LeftFootMoth
@@ -194,11 +206,12 @@
     state: "l_foot"
   - type: BodyPartVisualiser
     sprites:
-      l-foot:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "l_foot"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-foot:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "l_foot"
 
 - type: entity
   id: RightFootMoth
@@ -210,11 +223,12 @@
     state: "r_foot"
   - type: BodyPartVisualiser
     sprites:
-      r-foot:
-        - sprite:
-            sprite: Mobs/Species/Moth/parts.rsi
-            state: "r_foot"
-          colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-foot:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: "r_foot"
 
 - type: entity
   id: WingsMoth
@@ -224,11 +238,15 @@
   components:
   - type: Sprite
     sprite: Mobs/Customization/Moth/moth_wings.rsi
-    state: default
+    state: atlas_back
   - type: BodyPartVisualiser
     sprites:
-      tail:
-      - sprite:
-          sprite: Mobs/Customization/Moth/moth_wings.rsi
-          state: default
-        colouringType: !type:PartUseSkin
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        wings-back:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: atlas_back
+        wings-front:
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: atlas_front

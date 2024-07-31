@@ -31,25 +31,28 @@
         Quantity: 20
   - type: BodyPartVisualiser
     sprites:
-      chest:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        chest:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "torso_m"
-        colouringType: !type:PartUseSkin
   - type: GenderedBodyPart
     sprites:
       Male:
-        chest:
-        - sprite:
-            sprite: Mobs/Species/Reptilian/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          chest:
+          - sprite: Mobs/Species/Reptilian/parts.rsi
             state: "torso_m"
-          colouringType: !type:PartUseSkin
       Female:
-        chest:
-        - sprite:
-            sprite: Mobs/Species/Reptilian/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          chest:
+          - sprite: Mobs/Species/Reptilian/parts.rsi
             state: "torso_f"
-          colouringType: !type:PartUseSkin
 
 - type: entity
   id: HeadReptilian
@@ -68,25 +71,28 @@
         Quantity: 10
   - type: BodyPartVisualiser
     sprites:
-      head:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        head:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "head_m"
-        colouringType: !type:PartUseSkin
   - type: GenderedBodyPart
     sprites:
       Male:
-        head:
-        - sprite:
-            sprite: Mobs/Species/Reptilian/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          head:
+          - sprite: Mobs/Species/Reptilian/parts.rsi
             state: "head_m"
-          colouringType: !type:PartUseSkin
       Female:
-        head:
-        - sprite:
-            sprite: Mobs/Species/Reptilian/parts.rsi
+        defaultColouring:
+        - !type:PartUseSkin
+        sprites:
+          head:
+          - sprite: Mobs/Species/Reptilian/parts.rsi
             state: "head_f"
-          colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftArmReptilian
@@ -98,11 +104,12 @@
     state: "l_arm"
   - type: BodyPartVisualiser
     sprites:
-      l-arm:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-arm:
+        - sprite:  Mobs/Species/Reptilian/parts.rsi
           state: "l_arm"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightArmReptilian
@@ -114,11 +121,12 @@
     state: "r_arm"
   - type: BodyPartVisualiser
     sprites:
-      r-arm:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-arm:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "r_arm"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftHandReptilian
@@ -130,11 +138,12 @@
     state: "l_hand"
   - type: BodyPartVisualiser
     sprites:
-      l-hand:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-hand:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "l_hand"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightHandReptilian
@@ -146,11 +155,12 @@
     state: "r_hand"
   - type: BodyPartVisualiser
     sprites:
-      r-hand:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-hand:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "r_hand"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftLegReptilian
@@ -162,11 +172,12 @@
     state: "l_leg"
   - type: BodyPartVisualiser
     sprites:
-      l-leg:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-leg:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "l_leg"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightLegReptilian
@@ -178,11 +189,12 @@
     state: "r_leg"
   - type: BodyPartVisualiser
     sprites:
-      r-leg:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-leg:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "r_leg"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: LeftFootReptilian
@@ -194,11 +206,12 @@
     state: "l_foot"
   - type: BodyPartVisualiser
     sprites:
-      l-foot:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        l-foot:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "l_foot"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: RightFootReptilian
@@ -210,11 +223,12 @@
     state: "r_foot"
   - type: BodyPartVisualiser
     sprites:
-      r-foot:
-      - sprite:
-          sprite: Mobs/Species/Reptilian/parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        r-foot:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
           state: "r_foot"
-        colouringType: !type:PartUseSkin
 
 - type: entity
   id: TailReptilian
@@ -227,13 +241,12 @@
     state: tail_smooth
   - type: BodyPartVisualiser
     sprites:
-      tail-back:
-      - sprite:
-          sprite: Mobs/Customization/reptilian_parts.rsi
+      defaultColouring:
+      - !type:PartUseSkin
+      sprites:
+        tail-back:
+        - sprite: Mobs/Customization/reptilian_parts.rsi
           state: "tail_smooth_behind"
-        colouringType: !type:PartUseSkin
-      tail-front:
-      - sprite:
-          sprite: Mobs/Customization/reptilian_parts.rsi
+        tail-front:
+        - sprite: Mobs/Customization/reptilian_parts.rsi
           state: "tail_smooth_front"
-        colouringType: !type:PartUseSkin

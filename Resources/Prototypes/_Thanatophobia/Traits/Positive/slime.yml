@@ -8,11 +8,30 @@
     state: air
   allowed:
   - Slime
-  components:
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0
-    damageRecovery:
-      types:
-        Asphyxiation: -2.0
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: Respirator
+      damage:
+        types:
+          Asphyxiation: 0
+      damageRecovery:
+        types:
+          Asphyxiation: -2.0
+
+- type: trait
+  id: SlimeBFFs
+  name: tp-trait-bffs-name
+  description: tp-trait-slime-bffs-description
+  cost: 1
+  icon:
+    sprite: /Textures/_Thanatophobia/Traits/Icons/Thanatophobia/slime.rsi
+    state: friend
+  allowed:
+  - Slime
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: ChangeFactionsTrait
+      add:
+      - SlimeBFF

@@ -1,260 +1,319 @@
 - type: entity
-  id: TPCrateServiceSmokeables
-  parent: CrateGenericSteel
-  suffix: TP, Filled, Random
+  id: TPSimpleLootCrate
+  parent: CrateSecure
+  suffix: Filled, Random, Simple
   components:
   - type: StorageFill
     contents:
+    # Cigars
     - id: CigCartonGreen
       prob: 0.1
-      orGroup: CigCarton1
+      orGroup: Cigars
     - id: CigCartonRed
       prob: 0.25
-      orGroup: CigCarton1
+      orGroup: Cigars
     - id: CigCartonBlue
       prob: 0.1
-      orGroup: CigCarton2
+      orGroup: Cigars
     - id: CigCartonBlack
       prob: 0.25
-      orGroup: CigCarton2
+      orGroup: Cigars
     - id: CigarGoldCase
       prob: 0.025
       orGroup: Cigars
     - id: CigarCase
       prob: 0.25
       orGroup: Cigars
+    - id: null
+      orGroup: Cigars
     - id: Matchbox
       prob: 0.25
 
-- type: entity
-  id: TPCrateServiceBooks
-  parent: CrateGenericSteel
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
+    # Books (and possible lore?)
     - id: BookRandom
-      prob: 0.25
-    - id: BookRandom
-      prob: 0.25
-    - id: BookRandom
-      prob: 0.25
-    - id: BookRandom
-      prob: 0.25
-    - id: BookRandom
-      prob: 0.25
+      prob: 0.01
 
-- type: entity
-  id: TPCrateEngineeringCable
-  parent: CrateElectrical
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
-    - id: CableHVStack
-      amount: 1
-      prob: 0.25
-    - id: CableMVStack
-      amount: 1
-      prob: 0.25
-    - id: CableApcStack
-      amount: 1
-      prob: 0.25
-
-- type: entity
-  id: TPCrateMedicalSupplies
-  parent: CrateMedical
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
+    # Medical Supplies
     - id: MedkitFilled
-      prob: 0.25
-    - id: MedkitFilled
-      prob: 0.25
+      prob: 0.1
     - id: Gauze
-      prob: 0.25
-    - id: Gauze
-      prob: 0.25
-    - id: Bloodpack
-      prob: 0.25
+      prob: 0.1
     - id: Bloodpack
       prob: 0.25
     - id: BoxLatexGloves
-      prob: 0.25
+      prob: 0.05
     - id: BoxSterileMask
-      prob: 0.25
+      prob: 0.05
     - id: BoxMouthSwab
-      prob: 0.25
+      prob: 0.05
 
-- type: entity
-  id: TPCrateMaterialTextiles
-  parent: CrateGenericSteel
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
+    # Cloth and textiles
     - id: MaterialCloth
-      prob: 0.25
-    - id: MaterialCloth
-      prob: 0.25
+      prob: 0.15
+      orGroup: Cloth
     - id: MaterialDurathread
-      prob: 0.025
+      prob: 0.125
+      orGroup: Cloth
+    - id: null
+      orGroup: Cloth
 
-- type: entity
-  id: TPCrateFoodMRE
-  parent: CratePlastic
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
-    - id: BoxMRE
-      prob: 0.25
-    - id: BoxMRE
-      prob: 0.25
-    - id: BoxMRE
-      prob: 0.25
+    # Food
+    - id: TPBoxMRESalvage
+      prob: 0.15
 
-- type: entity
-  id: TPCrateEmergencyInternals
-  parent: CrateInternals
-  name: Emergency Suits
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
+    # Internals
     - id: ClothingMaskGas
-      prob: 0.25
+      prob: 0.15
+      orGroup: GasMask
     - id: ClothingMaskBreath
-      prob: 0.25
+      prob: 0.15
+      orGroup: GasMask
+    - id: ClothingHeadHelmetEVA
+      prob: 0.2
+      orGroup: GasMask
+    - id: null
+      orGroup: GasMask
+
     - id: OxygenTankFilled
-      prob: 0.25
+      prob: 0.005
+      orGroup: Tank
     - id: NitrogenTankFilled
+      prob: 0.005
+      orGroup: Tank
+    - id: EmergencyOxygenTankFilled
       prob: 0.25
-    - id: ClothingOuterSuitEmergency
+      orGroup: Tank
+    - id: EmergencyNitrogenTankFilled
       prob: 0.25
+      orGroup: Tank
+    - id: ClothingOuterHardsuitEVA
+      prob: 0.2
+      orGroup: Tank
+    - id: null
+      orGroup: Tank
 
-- type: entity
-  id: TPCrateHydroponicsSeedsMedicinal
-  parent: CrateHydroSecure
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
+    # Seeds
     - id: AloeSeeds
-      prob: 0.25
+      prob: 0.05
+      orGroup: Seeds
     - id: AmbrosiaVulgarisSeeds
-      prob: 0.25
+      prob: 0.05
+      orGroup: Seeds
     - id: GalaxythistleSeeds
-      prob: 0.25
+      prob: 0.05
+      orGroup: Seeds
     - id: LingzhiSeeds
-      prob: 0.25
+      prob: 0.05
+      orGroup: Seeds
     - id: PoppySeeds
-      prob: 0.25
+      prob: 0.05
+      orGroup: Seeds
+    - id: BananaSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: EggySeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: TowercapSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: TobaccoSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: CannabisSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: NettleSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: FlyAmanitaSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: PineappleSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: BungoSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: ChiliSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: CornSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: EggplantSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: TomatoSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: WheatSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: CarrotSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: CabbageSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: GarlicSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: ChanterelleSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: PotatoSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: SugarcaneSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: LemonSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: LimeSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: OrangeSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: OatSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: OnionSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: OnionRedSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: RiceSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: SoybeanSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: GrapeSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: WatermelonSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: PeaSeeds
+      prob: 0.05
+      orGroup: Seeds
+    - id: null
+      orGroup: Seeds
 
-- type: entity
-  id: TPCrateServiceJanitorialSupplies
-  parent: CratePlastic
-  suffix: TP, Filled, Random
-  components:
-  - type: StorageFill
-    contents:
+    # Janitorial Supplies
     - id: MopItem
-      prob: 0.25
+      prob: 0.5
+      orGroup: Janitorial
     - id: MopBucket
-      prob: 0.25
+      prob: 0.1
+      orGroup: Janitorial
     - id: Bucket
-      prob: 0.25
+      prob: 0.1
+      orGroup: Janitorial
     - id: WetFloorSign
-      prob: 0.25
+      prob: 0.2
+      orGroup: Janitorial
     - id: Soap
-      prob: 0.25
+      prob: 0.1
+      orGroup: Janitorial
     - id: SprayBottleSpaceCleaner
-      prob: 0.25
+      prob: 0.1
+      orGroup: Janitorial
     - id: TrashBag
-      prob: 0.25
+      prob: 0.2
+      orGroup: Janitorial
     - id: Plunger
-      prob: 0.25
+      prob: 0.2
+      orGroup: Janitorial
+    - id: null
+      orGroup: Janitorial
 
-- type: entity
-  id: TPCrateSalvageEquipment
-  name: "salvage equipment crate"
-  description: For the daring.
-  suffix: TP, Random, Filled
-  parent: CrateGenericSteel
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingOuterHardsuitSalvage
-      prob: 0.075
-    - id: ClothingMaskBreath
-      prob: 0.25
-    - id: OxygenTankFilled
-      prob: 0.25
+    # Random Salvage
     - id: FireExtinguisher
-      prob: 0.25
-    - id: ClothingShoesBootsMag
-      prob: 0.025
-    - id: Pickaxe
-      prob: 0.25
-    - id: Welder
-      prob: 0.25
-    - id: Wrench
-      prob: 0.25
-    - id: Screwdriver
-      prob: 0.25
-    - id: Crowbar
-      prob: 0.25
-    - id: Wirecutter
-      prob: 0.25
+      prob: 0.125
     - id: ClothingBeltUtility
-      prob: 0.125
+      prob: 0.15
     - id: OreBag
-      prob: 0.125
+      prob: 0.15
     - id: ClothingBeltSalvageWebbing
+      prob: 0.15
+    - id: ClothingHeadHatCatEars # An important part of salvage equipment.
+      prob: 0.05
+
+    # Tools
+    - id: Pickaxe
+      prob: 0.5
+      orGroup: Tool
+    - id: Welder
+      prob: 0.2
+      orGroup: Tool
+    - id: Wrench
+      prob: 0.2
+      orGroup: Tool
+    - id: Screwdriver
+      prob: 0.2
+      orGroup: Tool
+    - id: Crowbar
+      prob: 0.2
+      orGroup: Tool
+    - id: Wirecutter
+      prob: 0.2
+      orGroup: Tool
+    - id: null
+      orGroup: Tool
+
+    # Machine Bits
+    - id: CapacitorStockPart
+      prob: 0.5
+    - id: MicroManipulatorStockPart
+      prob: 0.5
+    - id: MatterBinStockPart
+      prob: 0.5
+    - id: CapacitorStockPart
       prob: 0.25
+    - id: MicroManipulatorStockPart
+      prob: 0.25
+    - id: MatterBinStockPart
+      prob: 0.25
+    - id: CapacitorStockPart
+      prob: 0.1
+    - id: MicroManipulatorStockPart
+      prob: 0.1
+    - id: MatterBinStockPart
+      prob: 0.1
+
+    # Fabricator Circutboards
+    - id: TPCircuitboardBasicFabricator
+      prob: 0.05 # It's rare that you may lose your own fabricator, but just in case I guess.
+
+    # Guns
+    - id: MagazineBoxMagnum
+      prob: 0.01
+      orGroup: Guns
+    - id: WeaponRevolverDeckard
+      prob: 0.01
+      orGroup: Guns
+    - id: WeaponRevolverInspector
+      prob: 0.01
+      orGroup: Guns
+    - id: WeaponRevolverPython
+      prob: 0.005
+      orGroup: Guns
+    - id: WeaponRevolverMateba
+      prob: 0.005
+      orGroup: Guns
+    - id: null
+      orGroup: Guns
 
 - type: entity
-  id: TPCrateSalvageAssortedGoodies
-  suffix: TP, Filled, Salvage Random
-  noSpawn: true
-  parent: CrateGenericSteel
+  id: TPSandLootCrate
+  parent: CrateSecure
+  suffix: Filled, Random, Simple
   components:
   - type: StorageFill
     contents:
-        # Normal (10%)
-      - id: OxygenTankFilled
-        prob: 0.05
-      - id: WelderIndustrialAdvanced
-        prob: 0.025
-      - id: ResearchDisk
-        prob: 0.025
-        #  - Service
-      - id: CrayonBox
-        prob: 0.025
-        #  - Medical
-      - id: MedkitFilled
-        prob: 0.05
-      - id: BoxSyringe
-        prob: 0.05
-      - id: BoxBeaker
-        prob: 0.05
-        #  - Ammo
-      - id: MagazineBoxMagnum
-        prob: 0.01
-      - id: ResearchDisk10000
-        prob: 0.01
-        #  - Working guns
-      - id: WeaponRevolverDeckard
-        prob: 0.005
-      - id: WeaponRevolverInspector
-        prob: 0.005
-      - id: WeaponRevolverPython
-        prob: 0.001
-      - id: WeaponRevolverMateba
-        prob: 0.001
-        #  - Skub
-      - id: Skub
-        prob: 0.001 # huh, skub
-      - id: ClothingHeadHatCatEars
-        prob: 0.05 # :troll
+    - id: null

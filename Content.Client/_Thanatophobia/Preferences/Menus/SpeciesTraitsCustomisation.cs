@@ -347,7 +347,7 @@ public sealed partial class TPSpeciesTraitsCustomisation : TPBaseCustomisationCo
                 rpUsedCount++;
         }
         _traitsCountLabel.Text = Loc.GetString("tp-humanoid-profile-editor-traits-count", ("count", usedCount), ("actual-count", rpUsedCount), ("max", speciesProto.MaxTraits));
-        _traitsPointsLabel.Text = Loc.GetString("tp-humanoid-profile-editor-traits-points", ("total", posPoints - negPoints), ("pos", posPoints), ("neg", negPoints));
+        _traitsPointsLabel.Text = Loc.GetString("tp-humanoid-profile-editor-traits-points", ("total", posPoints - negPoints + speciesProto.StartingTraitPoints), ("pos", posPoints + speciesProto.StartingTraitPoints), ("neg", negPoints));
     }
     public override void RefreshControls()
     {

@@ -10,6 +10,14 @@ namespace Content.Shared.Humanoid.Markings;
 [ImplicitDataDefinitionForInheritors]
 public abstract partial class BaseMarkingFunction
 {
+    /// <summary>
+    /// A function that adds the marking onto the entity
+    /// </summary>
+    /// <param name="uid">Humanoid mob uid.</param>
+    /// <param name="markingObject">The marking object about to be appied.</param>
+    /// <param name="bodyPartContainers">All the body part containers in the humanoid.</param>
+    /// <param name="protoManager">For easily accessing the prototype manager.</param>
+    /// <param name="entityManager">For easily accessing the entity manager.</param>
     public abstract void AddMarking(
         EntityUid uid,
         Marking markingObject,
@@ -19,7 +27,7 @@ public abstract partial class BaseMarkingFunction
     );
 
     public abstract int GetSpriteCount();
-    public virtual Dictionary<string, List<SpriteSpecifier>> GetSprites()
+    public virtual Dictionary<string, List<SpriteSpecifier?>> GetSprites()
     {
         return new();
     }

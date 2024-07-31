@@ -66,11 +66,12 @@
     - state: eyeball-r
   - type: BodyPartVisualiser
     sprites:
-      eyes:
-      - sprite:
-          sprite: Mobs/Customization/eyes.rsi
+      defaultColouring:
+      - !type:PartUseEyes
+      sprites:
+        eyes:
+        - sprite: Mobs/Customization/eyes.rsi
           state: "eyes"
-        colouringType: !type:PartUseEyes
 
 - type: entity
   id: OrganHumanTongue

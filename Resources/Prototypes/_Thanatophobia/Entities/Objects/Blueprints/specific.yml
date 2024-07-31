@@ -1,0 +1,9 @@
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleWeaponAnchor
+  name: "Blueprint: Lightweight Anchor"
+  description: A blueprint module that allows the creation of a lightweight anchor.
+  components:
+  - type: BlueprintModule
+    recipes:
+    - WeaponAnchor

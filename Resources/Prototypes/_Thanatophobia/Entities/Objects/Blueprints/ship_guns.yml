@@ -1,0 +1,11 @@
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleXSW45
+  name: "Blueprint: XSW-45"
+  description: A blueprint module for a ship gun. Comes with its loader and ammo.
+  components:
+  - type: BlueprintModule
+    recipes:
+    - TPCircuitboardWeaponShipGunShotgun
+    - TPCircuitboardShipGunAmmoProviderShotgun
+    - MagazineShipShotgun

@@ -32,16 +32,6 @@
     spawned:
       - id: FoodMeatSpider
         amount: 5
-  - type: Inventory
-    templateId: arachnid
-  - type: Reactive
-    reactions:
-    - reagents: [Water]
-      methods: [Touch]
-      effects:
-      - !type:WearableReaction
-        slot: head
-        prototypeID: WaterDropletHat
   # Damage (Self)
   - type: Bloodstream
     bloodReagent: CopperBlood
@@ -78,7 +68,6 @@
     - map: [ "chest" ]
     - map: [ "head" ]
     - map: [ "snout" ]
-    - map: [ "eyes" ]
     - map: [ "r-arm" ]
     - map: [ "l-arm" ]
     - map: [ "r-leg" ]
@@ -112,9 +101,9 @@
     - map: [ "back" ]
     - map: [ "facialHair" ]
     - map: [ "hair" ] # Do these need to be here? (arachnid hair arachnid hair)
-    - map: [ "hat" ]
     - map: [ "headSide" ]
     - map: [ "chelicerae" ]
+    - map: [ "eyes" ]
     - map: [ "headTop" ]
     - map: [ "mask" ]
     - map: [ "pocket1" ]
@@ -128,6 +117,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_arachnid"
       visible: false
+    - map: [ "hat" ]
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -146,7 +136,6 @@
     - map: [ "right-appendage-lower-back" ]
     - map: [ "chest" ]
     - map: [ "head" ]
-    - map: [ "eyes" ]
     - map: [ "r-arm" ]
     - map: [ "l-arm" ]
     - map: [ "r-leg" ]
@@ -182,6 +171,7 @@
     - map: [ "hair" ] # Do these need to be here? (arachnid hair arachnid hair)
     - map: [ "headSide" ]
     - map: [ "chelicerae" ]
+    - map: [ "eyes" ]
     - map: [ "headTop" ]
     - map: [ "mask" ]
     - map: [ "pocket1" ]

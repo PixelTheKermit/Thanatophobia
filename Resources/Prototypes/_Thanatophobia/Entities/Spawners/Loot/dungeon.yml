@@ -1,0 +1,129 @@
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageGlobalLootSpawner
+  parent: MarkerBase
+  suffix: Global
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rareChance: 0.25
+    rarePrototypes:
+    - SimpleXenoArtifact
+    - MediumXenoArtifact
+    - CrateMaterialPlasma
+    - SheetUranium
+    - ThanatoBlueprintModuleChemical
+    prototypes:
+    - CrateMaterialSteel
+    - SheetPlastic
+    - ToolboxEmergencyFilled
+    - RandomFoodSingle
+    - SheetPlasteel
+    - MagazinePistol
+    - WeaponPistolViper
+    chance: 1
+    offset: 0.2
+
+# Biome loot
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageBasicLootSpawner
+  parent: MarkerBase
+  suffix: Basic
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rarePrototypes:
+    - ThanatoBlueprintModuleSUPERPACMAN
+    - ThanatoBlueprintModuleWeaponAnchor
+    - ThanatoBlueprintModuleHardsuitSalvage
+    rareChance: 0.1
+    prototypes:
+    - WeaponShotgunKammerer
+    - MagazineShotgun
+    - RandomInstruments
+    - ClothingShoesBootsMag
+    - MaterialWoodPlank
+    - HydroponicsToolMiniHoe
+    - HydroponicsToolSpade
+    - HydroponicsToolHatchet
+    - HydroponicsToolClippers
+    - HydroponicsToolScythe
+    - RobustHarvestChemistryBottle
+    - TPSalvageGlobalLootSpawner
+    - TPSalvageGlobalLootSpawner
+    chance: 0.85
+    offset: 0.2
+
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageSandLootSpawner
+  parent: MarkerBase
+  suffix: Sand
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rareChance: 0.1
+    prototypes:
+    - TPSalvageGlobalLootSpawner
+    - TPSalvageGlobalLootSpawner
+    - WeaponRevolverDeckard
+    chance: 0.85
+    offset: 0.2
+
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageSnowLootSpawner
+  parent: MarkerBase
+  suffix: Snow
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rarePrototypes:
+    - ThanatoBlueprintModuleAdvancedMedicine
+    - ThanatoBlueprintModuleAdvancedChemical
+    - CellStimulantMedipen
+    - MedkitCombatFilled
+    rareChance: 0.1
+    prototypes:
+    - TPSalvageGlobalLootSpawner
+    - TPSalvageGlobalLootSpawner
+    - ThanatoBlueprintModuleChemical
+    - CrateChemistryP
+    - CrateChemistryS
+    - CrateChemistryD
+    - MedkitFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+    - MedkitOxygenFilled
+    - MedkitBruteFilled
+    - MedkitAdvancedFilled
+    - MedkitRadiationFilled
+    chance: 0.85
+    offset: 0.2
+
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageFleshLootSpawner
+  parent: MarkerBase
+  suffix: Flesh
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rareChance: 0.1
+    prototypes:
+    - TPSalvageGlobalLootSpawner
+    - TPSalvageGlobalLootSpawner
+    chance: 0.85
+    offset: 0.2

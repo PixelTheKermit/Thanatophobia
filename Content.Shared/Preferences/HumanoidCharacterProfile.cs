@@ -335,7 +335,7 @@ namespace Content.Shared.Preferences
             if (!protoManager.TryIndex<SpeciesPrototype>(Species, out var speciesProto)) // Species prototype required for max traits.
                 speciesProto = protoManager.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
 
-            var totalCost = 0;
+            var totalCost = (int) -speciesProto.StartingTraitPoints;
             var totalTraits = 0;
 
             var isTraitValid = pref;
@@ -582,7 +582,7 @@ namespace Content.Shared.Preferences
             #region Thanatophobia edits start here.
 
             var traits = new List<string>();
-            var totalCost = 0;
+            var totalCost = (int) -speciesPrototype!.StartingTraitPoints;
             var totalTraits = 0;
             var exclusiveTags = new List<string>();
 

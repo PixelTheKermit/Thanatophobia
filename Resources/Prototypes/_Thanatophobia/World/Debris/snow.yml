@@ -1,0 +1,92 @@
+- type: entity
+  id: TPBaseSnowDebris
+  parent: TPBaseBasicDebris
+  name: Scrap Debris
+  abstract: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorTileset:
+    - FloorSnow
+    - FloorSnow
+    - FloorSnow
+    - FloorSnow
+    - FloorFreezer
+    - FloorFreezer
+    - Lattice
+  - type: SimpleFloorPlanPopulator
+    entries:
+      FloorSnow:
+      - id: WallRockSnow
+        prob: 0.2
+        orGroup: rock
+      - id: TPWallRockSnowIce
+        prob: 0.2
+        orGroup: rock
+      - id: TPWallRockSnowIceAmmonia
+        prob: 0.2
+        orGroup: rock
+      - id: WallRockSnowTin
+        prob: 0.125
+        orGroup: rock
+      - id: WallRockSnowQuartz
+        prob: 0.025
+        orGroup: rock
+      - id: WallRockSnowGold
+        prob: 0.005
+        orGroup: rock
+      - id: WallRockSnowSilver
+        prob: 0.125
+        orGroup: rock
+      - id: WallRockSnowCoal
+        prob: 0.1
+        orGroup: rock
+      - id: WallRockSnowPlasma
+        prob: 0.125
+        orGroup: rock
+      - id: WallRockSnowUranium
+        prob: 0.1
+        orGroup: rock
+      - id: WallRockSnowArtifactFragment
+        prob: 0.0125
+        orGroup: rock
+      Lattice:
+      - prob: .5
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 0.3
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      FloorFreezer:
+      - prob: 1 # Intentional blank.
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 1
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+  - type: IFF
+    color: "#ccccff"
+
+- type: entity
+  id: TPSnowDebrisSmall
+  parent: TPBaseSnowDebris
+  name: Scrap Debris Small
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 32
+
+- type: entity
+  id: TPSnowDebrisMedium
+  parent: TPBaseSnowDebris
+  name: Scrap Debris Medium
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 64
+
+- type: entity
+  id: TPSnowDebrisLarge
+  parent: TPBaseSnowDebris
+  name: Scrap Debris Large
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 96

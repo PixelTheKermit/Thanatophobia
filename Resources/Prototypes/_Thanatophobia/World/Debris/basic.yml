@@ -1,0 +1,94 @@
+- type: entity
+  id: TPBaseBasicDebris
+  parent: BaseDebris
+  name: Scrap Debris
+  abstract: true
+  components:
+  - type: MapGrid
+  - type: BlobFloorPlanBuilder
+    floorTileset:
+    - FloorAsteroidSand
+    - FloorAsteroidSand
+    - FloorAsteroidSand
+    - FloorAsteroidSand
+    - FloorSteel
+    - FloorSteel
+    - Lattice
+    blobDrawProb: .75
+    radius: 20
+  - type: SimpleFloorPlanPopulator
+    entries:
+      FloorAsteroidSand:
+      - id: WallRock
+        prob: 0.5
+        orGroup: rock
+      - id: WallRockTin
+        prob: 0.2
+        orGroup: rock
+      - id: WallRockQuartz
+        prob: 0.2
+        orGroup: rock
+      - id: WallRockGold
+        prob: 0.05
+        orGroup: rock
+      - id: WallRockSilver
+        prob: 0.05
+        orGroup: rock
+      - id: WallRockPlasma
+        prob: 0.125
+        orGroup: rock
+      - id: WallRockUranium
+        prob: 0.1
+        orGroup: rock
+      - id: WallRockCoal
+        prob: 0.15
+        orGroup: rock
+      - id: WallRockArtifactFragment
+        prob: 0.025
+        orGroup: rock
+      Lattice:
+      - id: null # Intentional blank.
+        prob: 1
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 0.3
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      FloorSteel:
+      - id: null # Intentional blank.
+        prob: 1
+      - id: TPSalvageMaterialCrateSpawner
+        prob: 1
+      - id: SalvageCanisterSpawner
+        prob: 0.2
+      - id: TPDungeonGateBasic # shouldn't be common, but shouldn't be too rare.
+        prob: 0.025
+  - type: IFF
+    flags: HideLabel
+    color: "#FFFFFF"
+
+- type: entity
+  id: TPBasicDebrisSmall
+  parent: TPBaseBasicDebris
+  name: Scrap Debris Small
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 32
+
+- type: entity
+  id: TPBasicDebrisMedium
+  parent: TPBaseBasicDebris
+  name: Scrap Debris Medium
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 48
+
+- type: entity
+  id: TPBasicDebrisLarge
+  parent: TPBaseBasicDebris
+  name: Scrap Debris Large
+  noSpawn: true
+  components:
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 64

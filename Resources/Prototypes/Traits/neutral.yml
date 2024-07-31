@@ -5,7 +5,9 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: pirate
-  components:
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
     - type: PirateAccent
 
 - type: trait
@@ -15,10 +17,12 @@
   icon:
     sprite: /Textures/_Thanatophobia/Traits/Icons/wizden.rsi
     state: accentless
-  components:
-  - type: Accentless
-    removes:
-    - type: LizardAccent
-    - type: MothAccent
-    - type: ReplacementAccent
-      accent: dwarf
+  functions:
+  - !type:TraitAddComponentsFunction
+    components:
+    - type: Accentless
+      removes:
+      - type: LizardAccent
+      - type: MothAccent
+      - type: ReplacementAccent
+        accent: dwarf

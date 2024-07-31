@@ -1,0 +1,65 @@
+- type: entity
+  id: TPSalvageBasicMobSpawner
+  name: Mob Spawner
+  parent: MarkerBase
+  suffix: Basic
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    rarePrototypes:
+    - MobShark
+    rareChance: 0.05
+    prototypes:
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobTickSalvage
+    - TPMobSlimeBlobRandom
+    - TPMobSlimeBlobRandom
+    chance: 0.5
+    offset: 0.2
+
+
+- type: entity
+  id: TPSalvageSnowMobSpawner
+  suffix: Snow
+  parent: TPSalvageBasicMobSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobBearSpace
+    - MobBunnySpace
+    - MobBunnySpace
+    chance: 0.75
+    offset: 0.2
+
+- type: entity
+  suffix: Sand
+  id: TPSalvageSandMobSpawner
+  parent: TPSalvageBasicMobSpawner
+  components:
+  - type: RandomSpawner
+    rarePrototypes:
+    - TPMobQueenSpider
+    prototypes:
+    - MobSpiderSpace
+    - MobPurpleSnake
+    - MobKangarooSpace
+    chance: 0.3
+    offset: 0.2
+
+- type: entity
+  id: TPSalvageFleshSpawner
+  suffix: Flesh
+  parent: TPSalvageBasicMobSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobFleshJaredSalvage
+    - MobFleshGolemSalvage
+    - MobFleshClampSalvage
+    - MobFleshLoverSalvage
+    chance: 0.4
+    offset: 0.2

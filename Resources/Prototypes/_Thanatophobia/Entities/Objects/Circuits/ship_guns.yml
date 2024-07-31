@@ -1,0 +1,64 @@
+- type: entity
+  id: TPCircuitboardWeaponShipGunBallistic
+  parent: BaseMachineCircuitboard
+  name: SOW-B7 machine board
+  description: A machine printed circuit board for a full auto ballistic gun.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponShipGunBallistic
+    requirements:
+      Manipulator: 3
+    materialRequirements:
+      Plastic: 10
+      Steel: 15
+
+- type: entity
+  id: TPCircuitboardWeaponShipGunLaser
+  parent: BaseMachineCircuitboard
+  name: BLG-4 machine board
+  description: A machine printed circuit board for a gun firing armour piercing laser projectiles.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponShipGunLaser
+    requirements:
+      Manipulator: 1
+      Capacitor: 2
+    materialRequirements:
+      Glass: 10
+      Steel: 15
+
+- type: entity
+  id: TPCircuitboardWeaponShipGunShotgun
+  parent: BaseMachineCircuitboard
+  name: XSW-45 machine board
+  description: A machine printed circuit board for a shotgun that tears through armour.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponShipGunShotgun
+    requirements:
+      Manipulator: 6
+    materialRequirements:
+      Plastic: 10
+      Steel: 25
+
+- type: entity
+  id: TPCircuitboardWeaponShipGunCannon
+  parent: BaseMachineCircuitboard
+  name: Cannon machine board
+  description: A machine printed circuit board for a cannon that shoots large rocks.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponShipGunCannon
+    requirements:
+      Capacitor: 1
+    materialRequirements:
+      Plastic: 5
+      Steel: 10

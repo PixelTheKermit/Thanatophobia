@@ -1,0 +1,167 @@
+- type: entity
+  parent: BaseLathe
+  id: TPBasicFabricator
+  name: fabricator
+  description: An all-in-one fabricator. It has the ability to construct many things, but it also limited at the same time. Thankfully, you can surpass those limitations, if you have the right blueprints, of course.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/autolathe.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: TPCircuitboardBasicFabricator
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: BlueprintModuleTaker
+    insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg # shhhhhh 🤫🧏
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - AppraisalTool
+    - Beaker
+    - Bucket
+    - CableHVStack
+    - CableMVStack
+    - CableStack
+    - CapacitorStockPart
+    - CheapRollerBedSpawnFolded
+    - Crowbar
+    - EmergencyRollerBedSpawnFolded
+    - ExteriorLightTube
+    - FlashlightLantern
+    - FoodPlate
+    - FoodPlatePlastic
+    - FoodPlateSmall
+    - FoodPlateSmallPlastic
+    - GasAnalyzer
+    - HandheldGPSBasic
+    - ThanatoClothingHeadHatWelding
+    - LightBulb
+    - LightTube
+    - MatterBinStockPart
+    - MicroManipulatorStockPart
+    - ModularReceiver
+    - Multitool
+    - NetworkConfigurator
+    - Pickaxe
+    - PowerCellSmall
+    - Screwdriver
+    - SheetRGlass
+    - SodiumLightTube
+    - SprayBottle
+    - SprayPainter
+    - Syringe
+    - TRayScanner
+    - UtilityBelt
+    - Welder
+    - Wirecutter
+    - Wrench
+    - Beaker
+    - Brutepack
+    - CheapRollerBedSpawnFolded
+    - ChemistryEmptyBottle01
+    - ClothingHandsGlovesLatex
+    - ClothingMaskSterile
+    - DiseaseSwab
+    - EmergencyRollerBedSpawnFolded
+    - HandLabeler
+    - Medkit
+    - MedkitAdvanced
+    - MedkitBrute
+    - MedkitBurn
+    - MedkitCombat
+    - MedkitO2
+    - MedkitRadiation
+    - MedkitToxin
+    - Ointment
+    - PillCanister
+    - RollerBedSpawnFolded
+    - Syringe
+    - VehicleWheelchairFolded
+    - CartridgeLightRifleIncendiary
+    - CartridgeLightRifleRubber
+    - CartridgeMagnumIncendiary
+    - CartridgeMagnumRubber
+    - CartridgePistolIncendiary
+    - CartridgePistolRubber
+    - CartridgeRifleIncendiary
+    - CartridgeRifleRubber
+    - ExplosivePayload
+    - Flash
+    - FlashPayload
+    - MagazineBoxLightRifle
+    - MagazineBoxLightRifleIncendiary
+    - MagazineBoxLightRiflePractice
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnum
+    - MagazineBoxMagnumIncendiary
+    - MagazineBoxMagnumPractice
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistol
+    - MagazineBoxPistolIncendiary
+    - MagazineBoxPistolPractice
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifle
+    - MagazineBoxRifleIncendiary
+    - MagazineBoxRiflePractice
+    - MagazineBoxRifleRubber
+    - MagazineLightRifle
+    - MagazinePistol
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGunTopMounted
+    - MagazineRifle
+    - RiotShield
+    - ShellShotgun
+    - ShellShotgunBeanbag
+    - ShellShotgunFlare
+    - ShellShotgunIncendiary
+    - ShellShotgunPractice
+    - SpeedLoaderMagnum
+    - TPWeaponPistolCobra
+    - TPWeaponPistolMk58
+    - TPWeaponPistolViper
+    - TPWeaponRevolverInspector
+    - TPWeaponRevolverMateba
+    - TPWeaponSubMachineGunAtreides
+    - TPWeaponSubMachineGunC20r
+    - TPWeaponSubMachineGunDrozd
+    - TPWeaponSubMachineGunWt550
+    - WeaponLaserCarbine
+    - MagazineShipAntiShip
+    - ShipCannonBall
+    - TPCircuitboardShipGunAmmoProviderBallistic
+    - TPCircuitboardShipGunAmmoProviderBattery
+    - TPCircuitboardShipGunAmmoProviderCannon
+    - TPCircuitboardWeaponShipGunBallistic
+    - TPCircuitboardWeaponShipGunLaser
+    - TPCircuitboardWeaponShipGunCannon
+    - BiomassReclaimerMachineCircuitboard
+    - CellRechargerCircuitboard
+    - ElectricGrillMachineCircuitboard
+    - FatExtractorMachineCircuitboard
+    - GasRecyclerMachineCircuitboard
+    - GyroscopeMachineCircuitboard
+    - HydroponicsTrayMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - OreProcessorMachineCircuitboard
+    - PortableGeneratorPacmanMachineCircuitboard
+    - PortableScrubberMachineCircuitBoard
+    - PowerComputerCircuitboard
+    - ShuttleConsoleCircuitboard
+    - SolarTrackerElectronics
+    - ThermomachineFreezerMachineCircuitBoard
+    - ThrusterMachineCircuitboard

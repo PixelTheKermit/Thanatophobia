@@ -1,0 +1,15 @@
+- type: entity
+  id: TPLockerSalvageSpecialistFilled
+  suffix: Filled
+  parent: LockerSalvageSpecialist
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingBeltUtilityFilled
+    - id: SurvivalKnife
+    - id: HandheldGPSBasic
+    - id: RadioHandheld
+    - id: OreBag
+    - id: Flare
+    - id: Flare
+    - id: Flare

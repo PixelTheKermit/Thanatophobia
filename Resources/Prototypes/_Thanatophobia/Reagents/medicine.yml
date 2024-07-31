@@ -1,0 +1,38 @@
+# A helpful yet deadly drug. Can hypothetically be used as a weapon.
+- type: reagent
+  id: CellStimulant
+  name: reagent-name-cell-stim
+  group: Medicine
+  desc: reagent-desc-cell-stim
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#53ad88"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 7.5
+        damage:
+          groups:
+            Brute: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        damage:
+          groups:
+            Brute: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 17
+        damage:
+          types:
+            Cellular: 1.5

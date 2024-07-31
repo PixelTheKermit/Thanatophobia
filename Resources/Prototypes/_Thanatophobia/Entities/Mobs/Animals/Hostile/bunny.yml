@@ -1,0 +1,72 @@
+- type: entity
+  name: killer bunny
+  id: MobBunnySpace
+  parent: SimpleSpaceMobBase
+  description: The main cause of repetitive death.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Thanatophobia/Mobs/Animals/bunny.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: killer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: killer
+      Critical:
+        Base: killer-dead
+      Dead:
+        Base: killer-dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 8
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  # Whoops guess I'm dumping everything here!
+  - type: HTN
+    rootTask:
+      task: TPSimpleSalvageHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Bloodstream
+    bloodMaxVolume: 300
+    bloodReagent: Blood
+  - type: CombatMode
+  - type: Temperature
+    heatDamageThreshold: 500
+    coldDamageThreshold: 0
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: Puller
+    needsHands: false

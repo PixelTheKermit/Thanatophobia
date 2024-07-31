@@ -1,0 +1,13 @@
+- type: marking
+  id: ArachnidCheliceraeCentered
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Arachnid/chelicerae.rsi
+    state: centered
+  markingCategory: HeadSide
+  speciesRestrictions: [Arachnid]
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      headSide:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Arachnid/chelicerae.rsi
+          state: centered

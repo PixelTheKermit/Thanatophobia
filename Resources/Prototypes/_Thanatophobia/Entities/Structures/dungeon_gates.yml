@@ -1,0 +1,97 @@
+- type: entity
+  parent: BaseMachine
+  id: TPDungeonGateBase
+  name: mirror gate
+  description: A mirror that leads to a mirror world. These tend to be unstable nowadays, and the magic behind them is pretty much unknown.
+  noSpawn: true
+  abstract: true
+  components:
+  - type: DoAfter
+  - type: Sprite
+    sprite: /Textures/_Thanatophobia/Structures/Machines/mirror-gate.rsi
+    layers:
+    - state: hazy
+      map: ["ready"]
+    - state: mirror
+      map: ["in-progress"]
+    - state: broken
+      map: ["broken"]
+    - state: gate
+  - type: Fixtures
+    fixtures: {}
+  - type: DungeonGate
+    dungeonConfig: LavaBrig
+    exitGateProto: TPDungeonGateExit
+    gateReadySprite: "ready"
+    gateOngoingSprite: "in-progress"
+    gateBrokenSprite: "broken"
+    timeToEnter: 1200
+  - type: Destructible
+    thresholds: []
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateExit
+  name: mirror exit gate
+  description: A mirror that leads out of a mirror world. Use it before it breaks.
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: hazy
+      map: ["ready"]
+    - state: mirror
+      map: ["in-progress"]
+    - state: broken
+      map: ["broken"]
+    - state: gate
+  - type: Fixtures
+    fixtures: {}
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateBasic
+  name: mirror of the station
+  components:
+  - type: DungeonGate
+    dungeonConfig: TPBasic
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateSand
+  name: mirror of the desert
+  components:
+  - type: Sprite
+    layers:
+    - state: hazy
+      map: ["ready"]
+      color: "#FFFFAA"
+    - state: mirror
+      color: "#FFFFAA"
+      map: ["in-progress"]
+    - state: broken
+      color: "#FFFFAA"
+      map: ["broken"]
+    - state: gate
+  - type: DungeonGate
+    dungeonConfig: TPSand
+
+- type: entity
+  parent: TPDungeonGateBase
+  id: TPDungeonGateSnow
+  name: mirror of the tundra
+  components:
+  - type: Sprite
+    layers:
+    - state: hazy
+      map: ["ready"]
+      color: "#86d6d8"
+    - state: mirror
+      color: "#86d6d8"
+      map: ["in-progress"]
+    - state: broken
+      color: "#86d6d8"
+      map: ["broken"]
+    - state: gate
+  - type: DungeonGate
+    dungeonConfig: TPSnow
