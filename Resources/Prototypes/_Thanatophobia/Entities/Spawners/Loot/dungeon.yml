@@ -15,7 +15,7 @@
     - MediumXenoArtifact
     - CrateMaterialPlasma
     - SheetUranium
-    # - ThanatoBlueprintModuleAdvancedMedicine
+    - ThanatoBlueprintModuleChemical
     prototypes:
     - CrateMaterialSteel
     - SheetPlastic
@@ -65,6 +65,44 @@
   id: TPSalvageSandLootSpawner
   parent: MarkerBase
   suffix: Sand
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rareChance: 0.1
+    prototypes:
+    - TPSalvageGlobalLootSpawner
+    - TPSalvageGlobalLootSpawner
+    chance: 0.85
+    offset: 0.2
+
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageSnowLootSpawner
+  parent: MarkerBase
+  suffix: Snow
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    rarePrototypes:
+    - ThanatoBlueprintModuleAdvancedMedicine
+    - ThanatoBlueprintModuleAdvancedChemical
+    rareChance: 0.1
+    prototypes:
+    - TPSalvageGlobalLootSpawner
+    - TPSalvageGlobalLootSpawner
+    - ThanatoBlueprintModuleChemical
+    chance: 0.85
+    offset: 0.2
+
+- type: entity
+  name: Loot Spawner
+  id: TPSalvageFleshLootSpawner
+  parent: MarkerBase
+  suffix: Flesh
   components:
   - type: Sprite
     layers:

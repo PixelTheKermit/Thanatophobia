@@ -34,3 +34,6 @@
 
 - type: Tag
   id: TPDungeonSand
+
+- type: Tag
+  id: TPDungeonSnow

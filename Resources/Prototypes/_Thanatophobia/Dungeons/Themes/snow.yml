@@ -4,7 +4,7 @@
 - type: dungeonRoom
   id: Snow7x7a
   size: 7,7
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 24,34
   tags:
   - TPDungeonSnow
@@ -15,7 +15,7 @@
 - type: dungeonRoom
   id: Snow17x5a
   size: 17,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,0
   tags:
   - TPDungeonSnow
@@ -26,7 +26,7 @@
 - type: dungeonRoom
   id: Snow11x5a
   size: 11,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,6
   tags:
   - TPDungeonSnow
@@ -34,7 +34,7 @@
 - type: dungeonRoom
   id: Snow11x5b
   size: 11,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 12,6
   tags:
   - TPDungeonSnow
@@ -45,7 +45,7 @@
 - type: dungeonRoom
   id: Snow7x5a
   size: 7,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,12
   tags:
   - TPDungeonSnow
@@ -53,7 +53,7 @@
 - type: dungeonRoom
   id: Snow7x5b
   size: 7,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 8,12
   tags:
   - TPDungeonSnow
@@ -61,7 +61,7 @@
 - type: dungeonRoom
   id: Snow7x5c
   size: 7,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 16,12
   tags:
   - TPDungeonSnow
@@ -72,7 +72,7 @@
 - type: dungeonRoom
   id: Snow5x5a
   size: 5,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,18
   tags:
   - TPDungeonSnow
@@ -80,7 +80,7 @@
 - type: dungeonRoom
   id: Snow5x5b
   size: 5,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 6,18
   tags:
   - TPDungeonSnow
@@ -88,7 +88,7 @@
 - type: dungeonRoom
   id: Snow5x5c
   size: 5,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 12,18
   tags:
   - TPDungeonSnow
@@ -96,7 +96,7 @@
 - type: dungeonRoom
   id: Snow5x5d
   size: 5,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 18,18
   tags:
   - TPDungeonSnow
@@ -107,7 +107,7 @@
 - type: dungeonRoom
   id: Snow3x5a
   size: 3,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,24
   tags:
   - TPDungeonSnow
@@ -115,7 +115,7 @@
 - type: dungeonRoom
   id: Snow3x5b
   size: 3,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 4,24
   tags:
   - TPDungeonSnow
@@ -123,7 +123,7 @@
 - type: dungeonRoom
   id: Snow3x5c
   size: 3,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 8,24
   tags:
   - TPDungeonSnow
@@ -131,7 +131,7 @@
 - type: dungeonRoom
   id: Snow3x5d
   size: 3,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 12,24
   tags:
   - TPDungeonSnow
@@ -139,7 +139,7 @@
 - type: dungeonRoom
   id: Snow3x5e
   size: 3,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 16,24
   tags:
   - TPDungeonSnow
@@ -147,7 +147,7 @@
 - type: dungeonRoom
   id: Snow3x5f
   size: 3,5
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 20,24
   tags:
   - TPDungeonSnow
@@ -158,7 +158,7 @@
 - type: dungeonRoom
   id: Snow13x3a
   size: 13,3
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,30
   tags:
   - TPDungeonSnow
@@ -169,7 +169,7 @@
 - type: dungeonRoom
   id: Snow11x3a
   size: 11,3
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,34
   tags:
   - TPDungeonSnow
@@ -177,7 +177,7 @@
 - type: dungeonRoom
   id: Snow11x3b
   size: 11,3
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 12,34
   tags:
   - TPDungeonSnow
@@ -188,7 +188,7 @@
 - type: dungeonRoom
   id: Snow7x3a
   size: 7,3
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 0,38
   tags:
   - TPDungeonSnow
@@ -196,7 +196,7 @@
 - type: dungeonRoom
   id: Snow7x3b
   size: 7,3
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 8,38
   tags:
   - TPDungeonSnow
@@ -204,7 +204,7 @@
 - type: dungeonRoom
   id: Snow7x3c
   size: 7,3
-  atlas: /Maps/_Thanatophobia/Dungeons/Snow.yml
+  atlas: /Maps/_Thanatophobia/Dungeons/snow.yml
   offset: 16,38
   tags:
   - TPDungeonSnow
