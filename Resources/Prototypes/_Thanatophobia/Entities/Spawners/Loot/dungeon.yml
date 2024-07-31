@@ -74,6 +74,7 @@
     prototypes:
     - TPSalvageGlobalLootSpawner
     - TPSalvageGlobalLootSpawner
+    - WeaponRevolverDeckard
     chance: 0.85
     offset: 0.2
 
@@ -90,11 +91,23 @@
     rarePrototypes:
     - ThanatoBlueprintModuleAdvancedMedicine
     - ThanatoBlueprintModuleAdvancedChemical
+    - CellStimulantMedipen
+    - MedkitCombatFilled
     rareChance: 0.1
     prototypes:
     - TPSalvageGlobalLootSpawner
     - TPSalvageGlobalLootSpawner
     - ThanatoBlueprintModuleChemical
+    - CrateChemistryP
+    - CrateChemistryS
+    - CrateChemistryD
+    - MedkitFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+    - MedkitOxygenFilled
+    - MedkitBruteFilled
+    - MedkitAdvancedFilled
+    - MedkitRadiationFilled
     chance: 0.85
     offset: 0.2
 
