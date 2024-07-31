@@ -33,14 +33,14 @@
   - type: Physics
   - type: Fixtures
     fixtures:
+    fixtures:
       projectile:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
+          bounds: "-0.2,-0.2,0.2,0.2"
         hard: false
         mask:
-        - Impassable
-        - BulletImpassable
+        - Opaque
       fly-by: &flybyfixture
         shape: !type:PhysShapeCircle
           radius: 1.5
@@ -58,7 +58,7 @@
         Heat: 17
         Structural: 150
     soundHit:
-      path: "/Audio/Weapons/tap.ogg"
+      collection: WeakHit
     soundForce: true
 
 - type: entity

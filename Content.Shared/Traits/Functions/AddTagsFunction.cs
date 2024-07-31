@@ -8,14 +8,15 @@ namespace Content.Shared.Traits;
 public sealed partial class TraitAddTagsFunction : BaseTraitFunction
 {
     [DataField]
-    public List<ProtoId<TagPrototype>> Add;
+    public List<ProtoId<TagPrototype>> Add = new();
 
     [DataField]
-    public List<ProtoId<TagPrototype>> Remove;
+    public List<ProtoId<TagPrototype>> Remove = new();
 
     public override void AddTrait(EntityUid uid, TraitPrototype traitProto, IPrototypeManager protoManager, IEntityManager entityManager)
     {
-        var tagSystem = IoCManager.Resolve<TagSystem>();
+        var sysMan = IoCManager.Resolve<IEntitySystemManager>();
+        var tagSystem = sysMan.GetEntitySystem<TagSystem>();
 
         foreach (var tag in Add)
         {

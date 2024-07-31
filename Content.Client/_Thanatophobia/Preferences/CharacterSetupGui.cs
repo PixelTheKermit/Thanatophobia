@@ -96,6 +96,7 @@ public sealed partial class TPCharacterSetupGui : Control
         {
             StyleClasses = { StyleNano.StyleClassChatChannelSelectorButton },
             Text = Loc.GetString("character-setup-gui-create-new-character-button"),
+            ToolTip = Loc.GetString("character-setup-gui-create-new-character-button-tooltip", ("maxCharacters", _preferencesManager.Settings!.MaxCharacterSlots)),
         };
 
         _newCharacterButton.OnPressed += args =>
@@ -279,6 +280,8 @@ public sealed partial class TPCharacterSetupGui : Control
                 HorizontalExpand = true,
             };
 
+            ToolTip = profile.Name;
+
             if (isSelectedCharacter)
             {
                 Pressed = true;
@@ -337,6 +340,7 @@ public sealed partial class TPCharacterSetupGui : Control
                     Text = Loc.GetString("character-setup-gui-character-picker-button-delete-button"),
                     VerticalAlignment = VAlignment.Top,
                     HorizontalAlignment = HAlignment.Right,
+                    HorizontalExpand = true,
                     ModulateSelfOverride = StyleNano.ButtonColorCautionDefault,
                     StyleClasses = { StyleNano.StyleClassChatChannelSelectorButton },
                     Margin = new Thickness(0, -2, -5, 0),
