@@ -52,6 +52,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
+    allowedEmotes: ['Click']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
