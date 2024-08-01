@@ -154,7 +154,7 @@ public sealed partial class RCDMenu : RadialMenu
                     }
 
                     // Popup message
-                    _popup.PopupClient(msg, _owner, _playerManager.LocalSession.AttachedEntity);
+                    _popup.PopupClient(msg, _owner, _playerManager.LocalSession.AttachedEntity.Value);
                 }
 
                 Close();
