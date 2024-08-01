@@ -13,4 +13,5 @@
   - type: ContainerContainer
   - type: StaticPrice
     price: 500
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
+    sound: /Audio/Machines/high_tech_confirm.ogg

@@ -26,12 +26,10 @@
       orGroup: Cigars
     - id: null
       orGroup: Cigars
+      prob: 2
     - id: Matchbox
       prob: 0.25
-
-    # Books (and possible lore?)
-    - id: BookRandom
-      prob: 0.01
+      orGroup: Cigars
 
     # Medical Supplies
     - id: MedkitFilled
@@ -52,7 +50,7 @@
       prob: 0.15
       orGroup: Cloth
     - id: MaterialDurathread
-      prob: 0.125
+      prob: 0.05
       orGroup: Cloth
     - id: null
       orGroup: Cloth
@@ -71,14 +69,17 @@
     - id: ClothingHeadHelmetEVA
       prob: 0.2
       orGroup: GasMask
+    - id: ClothingOuterHardsuitSpatio # Rare goodie!
+      prob: 0.05
+      orGroup: GasMask
     - id: null
       orGroup: GasMask
 
     - id: OxygenTankFilled
-      prob: 0.005
+      prob: 0.05
       orGroup: Tank
     - id: NitrogenTankFilled
-      prob: 0.005
+      prob: 0.05
       orGroup: Tank
     - id: EmergencyOxygenTankFilled
       prob: 0.25
@@ -91,118 +92,7 @@
       orGroup: Tank
     - id: null
       orGroup: Tank
-
-    # Seeds
-    - id: AloeSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: AmbrosiaVulgarisSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: GalaxythistleSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: LingzhiSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: PoppySeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: BananaSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: EggySeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: TowercapSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: TobaccoSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: CannabisSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: NettleSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: FlyAmanitaSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: PineappleSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: BungoSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: ChiliSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: CornSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: EggplantSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: TomatoSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: WheatSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: CarrotSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: CabbageSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: GarlicSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: ChanterelleSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: PotatoSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: SugarcaneSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: LemonSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: LimeSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: OrangeSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: OatSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: OnionSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: OnionRedSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: RiceSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: SoybeanSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: GrapeSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: WatermelonSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: PeaSeeds
-      prob: 0.05
-      orGroup: Seeds
-    - id: null
-      orGroup: Seeds
+      prob: 1.5
 
     # Janitorial Supplies
     - id: MopItem
@@ -231,6 +121,7 @@
       orGroup: Janitorial
     - id: null
       orGroup: Janitorial
+      prob: 2
 
     # Random Salvage
     - id: FireExtinguisher
@@ -265,15 +156,10 @@
       orGroup: Tool
     - id: null
       orGroup: Tool
+      prob: 1.5
 
     # Machine Bits
     - id: CapacitorStockPart
-      prob: 0.5
-    - id: MicroManipulatorStockPart
-      prob: 0.5
-    - id: MatterBinStockPart
-      prob: 0.5
-    - id: CapacitorStockPart
       prob: 0.25
     - id: MicroManipulatorStockPart
       prob: 0.25
@@ -285,6 +171,12 @@
       prob: 0.1
     - id: MatterBinStockPart
       prob: 0.1
+    - id: CapacitorStockPart
+      prob: 0.05
+    - id: MicroManipulatorStockPart
+      prob: 0.05
+    - id: MatterBinStockPart
+      prob: 0.05
 
     # Fabricator Circutboards
     - id: TPCircuitboardBasicFabricator

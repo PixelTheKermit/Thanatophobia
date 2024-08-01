@@ -25,8 +25,8 @@
       - Sheet
       - RawMaterial
       - Ingot
-  - type: BlueprintModuleTaker
-    insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg # shhhhhh 🤫🧏
+  - type: UsesMemoryBlueprints
+    syncSound: /Audio/Machines/high_tech_confirm.ogg
   - type: Lathe
     idleState: icon
     runningState: building

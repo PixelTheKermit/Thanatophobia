@@ -4,6 +4,6 @@
   name: "Blueprint: Salvage Hardsuit"
   description: A blueprint module that allows the fabrication of a salvage hardsuit.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - ClothingOuterHardsuitSalvage

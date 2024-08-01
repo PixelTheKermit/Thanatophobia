@@ -21,7 +21,7 @@
   - type: Butcherable
     spawned:
     - id: FoodMeat
-      amount: 2
+      amount: 1
   - type: ReplacementAccent
     accent: genericAggressive
   - type: MeleeWeapon
@@ -31,11 +31,11 @@
     animation: WeaponArcBite
     damage:
       types:
-        Piercing: 8
+        Piercing: 3
   - type: MobThresholds
     thresholds:
       0: Alive
-      35: Dead
+      15: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 4
     baseSprintSpeed: 6

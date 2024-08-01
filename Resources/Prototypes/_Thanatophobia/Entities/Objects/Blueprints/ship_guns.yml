@@ -4,7 +4,7 @@
   name: "Blueprint: XSW-45"
   description: A blueprint module for a ship gun. Comes with its loader and ammo.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - TPCircuitboardWeaponShipGunShotgun
     - TPCircuitboardShipGunAmmoProviderShotgun

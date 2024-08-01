@@ -39,7 +39,8 @@ public sealed class JobSystem : SharedJobSystem
         if (prototype.RequireAdminNotify)
             _chat.DispatchServerMessage(session, Loc.GetString("job-greet-important-disconnect-admin-notify"));
 
-        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", prototype.LocalizedName), ("supervisors", Loc.GetString(prototype.Supervisors))));
+        // Technically thanato has no "supervisors". Commented out in case we want to use this later?
+        // _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", prototype.LocalizedName), ("supervisors", Loc.GetString(prototype.Supervisors))));
     }
 
     public void MindAddJob(EntityUid mindId, string jobPrototypeId)

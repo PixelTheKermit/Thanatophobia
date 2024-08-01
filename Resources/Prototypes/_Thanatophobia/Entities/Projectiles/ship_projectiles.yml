@@ -33,7 +33,6 @@
   - type: Physics
   - type: Fixtures
     fixtures:
-    fixtures:
       projectile:
         shape:
           !type:PhysShapeAabb

@@ -9,7 +9,7 @@
         - sprite: Structures/Storage/Crates/generic.rsi
           state: icon
     - type: RandomSpawner
-      chance: 0.9
+      chance: 0.25
       prototypes:
       - TPSimpleLootCrate
       offset: 0.1

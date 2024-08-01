@@ -4,7 +4,7 @@
   name: "Blueprint: Advanced Medical"
   description: A blueprint module that allows the creation of better medical tools, machinery and supplies.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - StasisBedMachineCircuitboard
     - HandheldHealthAnalyzer
@@ -17,7 +17,7 @@
   name: "Blueprint: Basic Chemical"
   description: A blueprint module that allows the creation of chemical machinery.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - ReagentGrinderMachineCircuitboard
     - HotplateMachineCircuitboard
@@ -31,7 +31,7 @@
   name: "Blueprint: Advanced Chemical"
   description: A blueprint module that allows the creation of advanced chemical machinery.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - ClothingEyesGlassesChemical
     - CryostasisBeaker
