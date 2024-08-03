@@ -1,0 +1,35 @@
+- type: latheRecipe
+  id: TPWeaponRevolverInspector
+  result: WeaponRevolverInspector
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 700
+   Plastic: 100
+
+- type: latheRecipe
+  id: TPWeaponRevolverMateba
+  result: WeaponRevolverMateba
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 700
+   Plastic: 100
+
+- type: latheRecipe
+  id: TPWeaponRevolverPython
+  result: WeaponRevolverPython
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 700
+   Plastic: 100
+
+- type: latheRecipe
+  id: TPWeaponRevolverDeckard
+  result: WeaponRevolverDeckard
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 700
+   Plastic: 100

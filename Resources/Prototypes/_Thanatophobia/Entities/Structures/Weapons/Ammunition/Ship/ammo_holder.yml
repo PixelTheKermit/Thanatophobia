@@ -2,7 +2,7 @@
   id: ShipGunAmmoProviderBase
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: ship ammo provider
-  description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun. This one appears to be non-functional.
+  description: An ammo loading machine using special technology to transfer bullets from itself to a ship's gun.
   abstract: true
   components:
   - type: Sprite
@@ -38,7 +38,7 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
   - type: Anchorable
   - type: DoAfter
   - type: StaticPrice

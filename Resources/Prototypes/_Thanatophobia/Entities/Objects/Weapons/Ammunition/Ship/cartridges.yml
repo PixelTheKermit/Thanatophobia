@@ -8,6 +8,7 @@
     - Cartridge
     - ShipShotgunShell
   - type: CartridgeAmmo
+    deleteOnSpawn: true # The heat from shooting this shell is so powerful it just burns the entire shell.
     proto: PelletShotgunShip
     count: 8
     spread: 20
@@ -52,6 +53,7 @@
     - Cartridge
     - ShipCartridgeAntiShip
   - type: CartridgeAmmo
+    deleteOnSpawn: true
     proto: ShipBulletAntiShip
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi

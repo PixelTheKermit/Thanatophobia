@@ -55,11 +55,12 @@
   - type: StaticPrice
     price: 10
 
-- type: entity
+- type: entity # Kept for compatibility, remove in the future.
   id: ReinforcedGirder
   parent: Girder
   name: reinforced girder
   description: A large structural assembly made out of metal and plasteel; It requires a layer of plasteel before it can be considered a reinforced wall.
+  noSpawn: true
   components:
     - type: Sprite
       sprite: Structures/Walls/solid.rsi

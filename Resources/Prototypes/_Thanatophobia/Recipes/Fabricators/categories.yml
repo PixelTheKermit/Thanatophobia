@@ -1,0 +1,11 @@
+- type: latheCategory
+  id: ShipGuns
+  name: lathe-category-ship-guns
+
+- type: latheCategory
+  id: ShipGunLoaders
+  name: lathe-category-ship-gun-loaders
+
+- type: latheCategory
+  id: ShipGunAmmo
+  name: lathe-category-ship-gun-ammo

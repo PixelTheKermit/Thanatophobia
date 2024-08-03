@@ -1,0 +1,35 @@
+- type: latheRecipe
+  id: TPWeaponSubMachineGunAtreides
+  result: WeaponSubMachineGunAtreides
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunC20r
+  result: WeaponSubMachineGunC20r
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunVector
+  result: WeaponSubMachineGunVector
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200
+
+- type: latheRecipe
+  id: TPWeaponSubMachineGunWt550
+  result: WeaponSubMachineGunWt550
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200

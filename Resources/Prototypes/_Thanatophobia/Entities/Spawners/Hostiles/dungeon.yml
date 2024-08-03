@@ -10,12 +10,12 @@
   - type: RandomSpawner
     rarePrototypes:
     - MobShark
-    rareChance: 0.05
+    rareChance: 0.025
     prototypes:
-    - MobCarpSalvage
-    - MobCarpSalvage
-    - MobCarpSalvage
-    - MobTickSalvage
+    - MobCarp
+    - MobCarp
+    - MobCarp
+    - MobTick
     - TPMobSlimeBlobRandom
     - TPMobSlimeBlobRandom
     chance: 0.5
@@ -32,7 +32,7 @@
     - MobBearSpace
     - MobBunnySpace
     - MobBunnySpace
-    chance: 0.75
+    chance: 0.5
     offset: 0.2
 
 - type: entity
@@ -47,7 +47,7 @@
     - MobSpiderSpace
     - MobPurpleSnake
     - MobKangarooSpace
-    chance: 0.3
+    chance: 0.5
     offset: 0.2
 
 - type: entity
@@ -61,5 +61,5 @@
     - MobFleshGolemSalvage
     - MobFleshClampSalvage
     - MobFleshLoverSalvage
-    chance: 0.4
+    chance: 0.5
     offset: 0.2

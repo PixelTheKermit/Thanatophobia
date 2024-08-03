@@ -2,9 +2,9 @@
   parent: ThanatoBaseBlueprintModule
   id: ThanatoBlueprintModuleAdvancedMedicine
   name: "Blueprint: Advanced Medical"
-  description: A blueprint module that allows the creation of better medical tools, machinery and supplies.
+  description: A medical blueprint for better medical tools, machinery and supplies.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - StasisBedMachineCircuitboard
     - HandheldHealthAnalyzer
@@ -15,9 +15,9 @@
   parent: ThanatoBaseBlueprintModule
   id: ThanatoBlueprintModuleChemical
   name: "Blueprint: Basic Chemical"
-  description: A blueprint module that allows the creation of chemical machinery.
+  description: A medical blueprint for chemical machinery.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - ReagentGrinderMachineCircuitboard
     - HotplateMachineCircuitboard
@@ -29,9 +29,9 @@
   parent: ThanatoBaseBlueprintModule
   id: ThanatoBlueprintModuleAdvancedChemical
   name: "Blueprint: Advanced Chemical"
-  description: A blueprint module that allows the creation of advanced chemical machinery.
+  description: A medical blueprint for advanced chemical machinery.
   components:
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
     recipes:
     - ClothingEyesGlassesChemical
     - CryostasisBeaker

@@ -104,6 +104,13 @@
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.01 # Not complete protection from fire
+  - type: Armor # Weak protection, but just enough to not make you a bullet sponge.
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Radiation: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8

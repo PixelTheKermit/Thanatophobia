@@ -28,6 +28,7 @@
   completetime: 2
   materials:
     RawQuartz: 3000
+    Coal: 1000
 
 - type: latheRecipe
   id: SheetRGlass
@@ -45,7 +46,7 @@
   materials:
     RawQuartz: 3000
     RawIron: 1500
-    Coal: 500
+    Coal: 1500
 
 - type: latheRecipe
   id: SheetPGlass30
@@ -54,6 +55,7 @@
   materials:
     RawQuartz: 3000
     RawPlasma: 3000
+    Coal: 1500
 
 - type: latheRecipe
   id: SheetRPGlass30
@@ -63,7 +65,7 @@
     RawQuartz: 3000
     RawPlasma: 3000
     RawIron: 1500
-    Coal: 500
+    Coal: 2000
 
 - type: latheRecipe
   id: SheetPlasma30
@@ -71,6 +73,7 @@
   completetime: 2
   materials:
     RawPlasma: 3000
+    Coal: 500
 
 - type: latheRecipe
   id: SheetPlasteel30
@@ -87,6 +90,7 @@
   completetime: 2
   materials:
     RawUranium: 3000
+    Coal: 500
 
 - type: latheRecipe
   id: SheetUGlass30
@@ -112,6 +116,7 @@
   completetime: 2
   materials:
     RawGold: 3000
+    Coal: 3000
 
 - type: latheRecipe
   id: IngotSilver30
@@ -119,6 +124,7 @@
   completetime: 2
   materials:
     RawSilver: 3000
+    Coal: 1000
 
 - type: latheRecipe
   id: MaterialBananium10

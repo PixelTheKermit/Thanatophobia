@@ -1,0 +1,26 @@
+- type: latheRecipe
+  id: TPWeaponShotgunDoubleBarreled
+  result: WeaponShotgunDoubleBarreled
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200
+
+- type: latheRecipe
+  id: TPWeaponShotgunEnforcer
+  result: WeaponShotgunEnforcer
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200
+
+- type: latheRecipe
+  id: TPWeaponShotgunKammerer
+  result: WeaponShotgunKammerer
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 1250
+   Plastic: 200

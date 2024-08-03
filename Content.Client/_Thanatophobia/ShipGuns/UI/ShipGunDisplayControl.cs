@@ -205,7 +205,7 @@ public class ShipGunDisplayControl : MapGridControl
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
             Matrix3.Multiply(in gridMatrix, in offsetMatrix, out var matty);
-            var color = iff?.Color ?? Color.Gold;
+            var color = iff?.Color ?? IFFComponent.IFFColor;
 
             // Detailed view
             DrawGrid(handle, matty, gUid, grid, color, true);

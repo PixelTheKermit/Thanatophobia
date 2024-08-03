@@ -259,7 +259,7 @@
     forceSound: true
 
 - type: entity
-  name : disabler bolt practice
+  name: disabler bolt practice
   id: BulletDisablerPractice
   parent: BaseBullet
   noSpawn: true

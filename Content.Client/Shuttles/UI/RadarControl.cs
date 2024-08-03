@@ -232,15 +232,19 @@ public sealed class RadarControl : MapGridControl
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
             Matrix3.Multiply(in gridMatrix, in offsetMatrix, out var matty);
-            var color = iff?.Color ?? Color.Gold;
+            var color = iff?.Color ?? IFFComponent.IFFColor;
 
             // Others default:
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
 
+            var gridCentre = matty.Transform(gridBody.LocalCenter);
+            gridCentre.Y = -gridCentre.Y;
+            var distance = gridCentre.Length();
+
             if (ShowIFF &&
-                (iff == null && IFFComponent.ShowIFFDefault ||
-                 (iff.Flags & IFFFlags.HideLabel) == 0x0))
+                (iff == null && IFFComponent.ShowIFFDefault && distance <= IFFComponent.DefaultRange ||
+                iff != null && iff.Flags != IFFFlags.HideLabel && distance <= iff.Range))
             {
                 var gridBounds = grid.Comp.LocalAABB;
                 Label label;
@@ -261,9 +265,6 @@ public sealed class RadarControl : MapGridControl
                 }
 
                 label.FontColorOverride = color;
-                var gridCentre = matty.Transform(gridBody.LocalCenter);
-                gridCentre.Y = -gridCentre.Y;
-                var distance = gridCentre.Length();
 
                 // y-offset the control to always render below the grid (vertically)
                 var yOffset = Math.Max(gridBounds.Height, gridBounds.Width) * MinimapScale / 1.8f / UIScale;

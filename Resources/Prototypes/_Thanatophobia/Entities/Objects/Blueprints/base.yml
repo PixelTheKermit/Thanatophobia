@@ -2,7 +2,7 @@
   name: "Blueprint: Empty"
   parent: BaseItem
   id: ThanatoBaseBlueprintModule
-  description: An empty blueprint module. Absolutely useless.
+  description: A blueprint.
   abstract: true
   components:
   - type: Sprite
@@ -13,4 +13,5 @@
   - type: ContainerContainer
   - type: StaticPrice
     price: 500
-  - type: BlueprintModule
+  - type: DigitalMemoryBlueprint
+    sound: /Audio/Machines/high_tech_confirm.ogg

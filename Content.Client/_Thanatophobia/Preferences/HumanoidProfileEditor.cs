@@ -123,7 +123,7 @@ public sealed partial class TPHumanoidProfileEditor : BoxContainer
 
         var saveButton = new HoldButton()
         {
-            Text = Loc.GetString("humanoid-profile-editor-save-button"),
+            Text = Loc.GetString("character-setup-gui-character-setup-save-button-hold"),
             HoldTime = TimeSpan.FromSeconds(.5),
         };
 

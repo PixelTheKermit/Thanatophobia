@@ -39,7 +39,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        50: Dead
+        25: Dead
     - type: Stamina
       critThreshold: 100
     - type: DamageStateVisuals
@@ -63,7 +63,7 @@
       damage:
         types:
           Piercing: 5
-          Slash: 10
+          Slash: 2.5
     - type: TypingIndicator
       proto: alien
     - type: Tag
