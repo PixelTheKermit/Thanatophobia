@@ -1,11 +1,10 @@
 - type: entity
-  id: BaseLathe
+  id: BaseUnpoweredLathe
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   abstract: true
   name: lathe
   components:
   - type: Appearance
-  - type: WiresVisuals
   - type: Fixtures
     fixtures:
       fix1:
@@ -32,13 +31,10 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: WiresPanel
-  - type: Wires
     boardName: wires-board-name-autolathe
     layoutId: Autolathe
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
-  - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
     - key: enum.LatheUiKey.Key
@@ -52,6 +48,26 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
+
+- type: entity
+  id: BaseLathe
+  parent: [ BaseMachinePowered, BaseUnpoweredLathe ]
+  abstract: true
+  name: lathe
+  components:
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-autolathe
+    layoutId: Autolathe
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+    - key: enum.LatheUiKey.Key
+      type: LatheBoundUserInterface
+    - key: enum.ResearchClientUiKey.Key
+      type: ResearchClientBoundUserInterface
+  - type: Pullable
 
 - type: entity
   id: Autolathe
@@ -1049,7 +1065,7 @@
         - Ingot
 
 - type: entity
-  parent: BaseLathe
+  parent: BaseUnpoweredLathe
   id: OreProcessor
   name: ore processor
   description: It produces sheets and ingots using ores.
@@ -1064,8 +1080,6 @@
           map: ["enum.PowerDeviceVisualLayers.Powered"]
         - state: inserting
           map: ["enum.MaterialStorageVisualLayers.Inserting"]
-        - state: panel
-          map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
@@ -1086,10 +1100,9 @@
         - SheetUranium30
         - IngotGold30
         - IngotSilver30
-        - MaterialBananium10
 
 - type: entity
-  parent: OreProcessor
+  parent: [BaseLathe, OreProcessor]
   id: OreProcessorIndustrial
   name: industrial ore processor
   description: An ore processor specifically designed for mass-producing metals in industrial applications.
@@ -1114,7 +1127,6 @@
       - SheetRUGlass30
       - IngotGold30
       - IngotSilver30
-      - MaterialBananium10
 
 - type: entity
   parent: BaseLathe

@@ -1,0 +1,37 @@
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleRevolvers
+  name: "Blueprint: Revolvers"
+  description: A gun blueprint containing the info needed to make several revolvers.
+  components:
+  - type: DigitalMemoryBlueprint
+    recipes:
+    - TPWeaponRevolverInspector
+    - TPWeaponRevolverMateba
+    - TPWeaponRevolverPython
+    - TPWeaponRevolverDeckard
+
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleSubMachine
+  name: "Blueprint: Sub-machine Guns"
+  description: A gun blueprint containing the info needed to make several revolvers.
+  components:
+  - type: DigitalMemoryBlueprint
+    recipes:
+    - TPWeaponSubMachineGunAtreides
+    - TPWeaponSubMachineGunC20r
+    - TPWeaponSubMachineGunVector
+    - TPWeaponSubMachineGunWt550
+
+- type: entity
+  parent: ThanatoBaseBlueprintModule
+  id: ThanatoBlueprintModuleShotguns
+  name: "Blueprint: Shotguns"
+  description: A gun blueprint containing the info needed to make several revolvers.
+  components:
+  - type: DigitalMemoryBlueprint
+    recipes:
+    - TPWeaponShotgunDoubleBarreled
+    - TPWeaponShotgunEnforcer
+    - TPWeaponShotgunKammerer

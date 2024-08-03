@@ -3,6 +3,7 @@
   id: MagazineShipAntiShip
   result: MagazineShipAntiShip
   completetime: 2
+  category: ShipGunAmmo
   materials:
    Steel: 1500
    Plastic: 200
@@ -11,6 +12,7 @@
   id: MagazineShipShotgun
   result: MagazineShipShotgun
   completetime: 2
+  category: ShipGunAmmo
   materials:
    Steel: 1750
    Plastic: 200
@@ -19,6 +21,7 @@
   id: ShipCannonBall
   result: ShipCannonBall
   completetime: 2
+  category: ShipGunAmmo
   materials:
    Steel: 100
 
@@ -27,15 +30,17 @@
   id: TPCircuitboardWeaponShipGunBallistic
   result: TPCircuitboardWeaponShipGunBallistic
   completetime: 2
+  category: ShipGuns
   materials:
    Steel: 100
    Plastic: 300
    Gold: 100
 
 - type: latheRecipe
-  id: TPCircuitboardWeaponShipGunBattery
-  result: TPCircuitboardWeaponShipGunBattery
+  id: TPCircuitboardWeaponShipGunLaser
+  result: TPCircuitboardWeaponShipGunLaser
   completetime: 2
+  category: ShipGuns
   materials:
    Steel: 100
    Plastic: 300
@@ -45,6 +50,7 @@
   id: TPCircuitboardWeaponShipGunShotgun
   result: TPCircuitboardWeaponShipGunShotgun
   completetime: 2
+  category: ShipGuns
   materials:
    Steel: 100
    Plastic: 300
@@ -54,6 +60,7 @@
   id: TPCircuitboardWeaponShipGunCannon
   result: TPCircuitboardWeaponShipGunCannon
   completetime: 2
+  category: ShipGuns
   materials:
    Steel: 100
    Plastic: 300
@@ -64,6 +71,7 @@
   id: TPCircuitboardShipGunAmmoProviderBattery
   result: TPCircuitboardShipGunAmmoProviderBattery
   completetime: 2
+  category: ShipGunLoaders
   materials:
    Steel: 50
    Plastic: 150
@@ -73,6 +81,7 @@
   id: TPCircuitboardShipGunAmmoProviderCannon
   result: TPCircuitboardShipGunAmmoProviderCannon
   completetime: 2
+  category: ShipGunLoaders
   materials:
    Steel: 50
    Plastic: 150
@@ -82,6 +91,7 @@
   id: TPCircuitboardShipGunAmmoProviderShotgun
   result: TPCircuitboardShipGunAmmoProviderShotgun
   completetime: 2
+  category: ShipGunLoaders
   materials:
    Steel: 50
    Plastic: 150
@@ -91,6 +101,7 @@
   id: TPCircuitboardShipGunAmmoProviderBallistic
   result: TPCircuitboardShipGunAmmoProviderBallistic
   completetime: 2
+  category: ShipGunLoaders
   materials:
    Steel: 50
    Plastic: 150

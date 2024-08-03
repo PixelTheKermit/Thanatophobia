@@ -16,12 +16,24 @@ public sealed partial class IFFComponent : Component
     public const bool ShowIFFDefault = true;
 
     /// <summary>
+    /// The range required for the label to show up on displays. This is for any grid that don't have IFFRange by default.
+    /// </summary>
+    public const float DefaultRange = 1024f;
+
+    /// <summary>
     /// Default color to use for IFF if no component is found.
     /// </summary>
     public static readonly Color IFFColor = Color.Aquamarine;
 
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public IFFFlags Flags = IFFFlags.None;
+
+    /// <summary>
+    /// The range required for the label to show up on displays.
+    /// </summary>
+
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    public float Range = DefaultRange;
 
     /// <summary>
     /// Color for this to show up on IFF.

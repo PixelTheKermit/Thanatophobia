@@ -1,0 +1,26 @@
+- type: latheRecipe
+  id: TPWeaponPistolCobra
+  result: WeaponPistolCobra
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 500
+   Plastic: 100
+
+- type: latheRecipe
+  id: TPWeaponPistolMk58
+  result: WeaponPistolMk58
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 500
+   Plastic: 100
+
+- type: latheRecipe
+  id: TPWeaponPistolViper
+  result: WeaponPistolViper
+  completetime: 2
+  category: Weapons
+  materials:
+   Steel: 500
+   Plastic: 100

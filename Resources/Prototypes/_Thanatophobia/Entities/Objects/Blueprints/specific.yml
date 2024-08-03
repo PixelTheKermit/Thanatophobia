@@ -2,7 +2,7 @@
   parent: ThanatoBaseBlueprintModule
   id: ThanatoBlueprintModuleWeaponAnchor
   name: "Blueprint: Lightweight Anchor"
-  description: A blueprint module that allows the creation of a lightweight anchor.
+  description: A melee weapon blueprint for a lightweight anchor.
   components:
   - type: DigitalMemoryBlueprint
     recipes:

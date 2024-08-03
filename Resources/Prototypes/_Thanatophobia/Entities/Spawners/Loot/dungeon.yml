@@ -42,6 +42,7 @@
     - ThanatoBlueprintModuleSUPERPACMAN
     - ThanatoBlueprintModuleWeaponAnchor
     - ThanatoBlueprintModuleHardsuitSalvage
+    - ThanatoBlueprintModuleSubMachine
     rareChance: 0.1
     prototypes:
     - WeaponShotgunKammerer
@@ -71,6 +72,10 @@
     - state: blue
   - type: RandomSpawner
     rareChance: 0.1
+    rarePrototypes:
+    - ThanatoBlueprintModuleRevolvers
+    - ThanatoBlueprintModuleShotguns
+    - ThanatoBlueprintModuleXSW45
     prototypes:
     - TPSalvageGlobalLootSpawner
     - TPSalvageGlobalLootSpawner

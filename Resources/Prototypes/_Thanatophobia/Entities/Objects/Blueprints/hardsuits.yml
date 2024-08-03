@@ -2,7 +2,7 @@
   parent: ThanatoBaseBlueprintModule
   id: ThanatoBlueprintModuleHardsuitSalvage
   name: "Blueprint: Salvage Hardsuit"
-  description: A blueprint module that allows the fabrication of a salvage hardsuit.
+  description: A hardsuit blueprint module for a salvage hardsuit.
   components:
   - type: DigitalMemoryBlueprint
     recipes:
