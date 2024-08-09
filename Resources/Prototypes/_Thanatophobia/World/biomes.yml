@@ -1,0 +1,100 @@
+- type: spaceBiome
+  id: TPStandard
+  priority: 0
+  noiseRanges:
+    TPTemperature:
+    - 0, 1
+    TPWetness:
+    - 0, 1
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+  - type: SimpleDebrisSelector
+    debrisTable:
+    - id: TPBasicDebrisSmall
+    - id: TPBasicDebrisMedium
+      prob: 0.7
+    - id: TPBasicDebrisLarge
+      prob: 0.4
+  - type: NoiseRangeCarver
+    ranges:
+    - 0.45, 0.55
+    noiseChannel: Carver
+
+- type: spaceBiome
+  id: TPSand
+  priority: 1
+  noiseRanges:
+    TPTemperature:
+    - .4, 1
+    TPWetness:
+    - 0, .4
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+  - type: SimpleDebrisSelector
+    debrisTable:
+    - id: TPSandDebrisSmall
+    - id: TPSandDebrisMedium
+      prob: 0.7
+    - id: TPSandDebrisLarge
+      prob: 0.4
+  - type: NoiseRangeCarver
+    ranges:
+    - 0.45, 0.55
+    noiseChannel: Carver
+
+- type: spaceBiome
+  id: TPSnow
+  priority: 1
+  noiseRanges:
+    TPTemperature:
+    - 0, .4
+    TPWetness:
+    - .4, 1
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+  - type: SimpleDebrisSelector
+    debrisTable:
+    - id: TPSnowDebrisSmall
+    - id: TPSnowDebrisMedium
+      prob: 0.7
+    - id: TPSnowDebrisLarge
+      prob: 0.4
+  - type: NoiseRangeCarver
+    ranges:
+    - 0.45, 0.55
+    noiseChannel: Carver
+
+- type: spaceBiome
+  id: TPFlesh
+  priority: 2
+  noiseRanges:
+    TPTemperature:
+    - .7, 1
+    TPWetness:
+    - .6, 1
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+  - type: SimpleDebrisSelector
+    debrisTable:
+    - id: TPFleshDebrisSmall
+    - id: TPFleshDebrisMedium
+      prob: 0.7
+    - id: TPFleshDebrisLarge
+      prob: 0.4
+  - type: NoiseRangeCarver
+    ranges:
+    - 0.45, 0.55
+    noiseChannel: Carver
+
+- type: spaceBiome
+  id: TPTheVoid
+  priority: -500
+  noiseRanges: {}
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+    randomCancelChance: 1 # To stop the screaming.
