@@ -25,6 +25,7 @@ public sealed class NoiseIndexSystem : EntitySystem
         var idx = EnsureComp<NoiseIndexComponent>(holder);
         if (idx.Generators.TryGetValue(protoId, out var generator))
             return generator;
+
         var proto = _prototype.Index<NoiseChannelPrototype>(protoId);
         var gen = new NoiseGenerator(proto, _random.Next());
         idx.Generators[protoId] = gen;

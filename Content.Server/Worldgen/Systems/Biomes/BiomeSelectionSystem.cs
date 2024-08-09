@@ -52,9 +52,14 @@ public sealed class BiomeSelectionSystem : BaseWorldSystem
 
     private bool CheckBiomeValidity(EntityUid chunk, BiomePrototype biome, Vector2i coords)
     {
+        var worldControllers = EntityQueryEnumerator<WorldControllerComponent>();
+
+        if (!worldControllers.MoveNext(out var worldUid, out var _))
+            return false;
+
         foreach (var (noise, ranges) in biome.NoiseRanges)
         {
-            var value = _noiseIdx.Evaluate(chunk, noise, coords);
+            var value = _noiseIdx.Evaluate(worldUid, noise, coords);
             var anyValid = false;
             foreach (var range in ranges)
             {
