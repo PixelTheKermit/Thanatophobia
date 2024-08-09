@@ -139,9 +139,14 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
 
         component.DoSpawns = false; // Don't repeat yourself if this crashes.
 
+        var worldControllers = EntityQueryEnumerator<WorldControllerComponent>();
+
+        if (!worldControllers.MoveNext(out var worldUid, out var _))
+            return;
+
         var chunk = Comp<WorldChunkComponent>(args.Chunk);
         var densityChannel = component.DensityNoiseChannel;
-        var density = _noiseIndex.Evaluate(uid, densityChannel, chunk.Coordinates + new Vector2(0.5f, 0.5f));
+        var density = _noiseIndex.Evaluate(worldUid, densityChannel, chunk.Coordinates + new Vector2(0.5f, 0.5f));
         if (density == 0)
             return;
 
@@ -169,7 +174,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
                 continue;
             }
 
-            var pointDensity = _noiseIndex.Evaluate(uid, densityChannel, WorldGen.WorldToChunkCoords(point));
+            var pointDensity = _noiseIndex.Evaluate(worldUid, densityChannel, WorldGen.WorldToChunkCoords(point));
             if (pointDensity == 0 && component.DensityClip || _random.Prob(component.RandomCancellationChance))
                 continue;
 

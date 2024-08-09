@@ -1,4 +1,5 @@
-﻿using Content.Server.Worldgen.Components.Carvers;
+﻿using Content.Server.Worldgen.Components;
+using Content.Server.Worldgen.Components.Carvers;
 using Content.Server.Worldgen.Systems.Debris;
 
 namespace Content.Server.Worldgen.Systems.Carvers;
@@ -19,8 +20,13 @@ public sealed class NoiseRangeCarverSystem : EntitySystem
     private void OnPrePlaceDebris(EntityUid uid, NoiseRangeCarverComponent component,
         ref PrePlaceDebrisFeatureEvent args)
     {
+        var worldControllers = EntityQueryEnumerator<WorldControllerComponent>();
+
+        if (!worldControllers.MoveNext(out var worldUid, out var _))
+            return;
+
         var coords = WorldGen.WorldToChunkCoords(args.Coords.ToMapPos(EntityManager));
-        var val = _index.Evaluate(uid, component.NoiseChannel, coords);
+        var val = _index.Evaluate(worldUid, component.NoiseChannel, coords);
 
         foreach (var (low, high) in component.Ranges)
         {
