@@ -2,14 +2,18 @@
   id: TPLockerSalvageSpecialistFilled
   suffix: Filled
   parent: LockerSalvageSpecialist
+  name: salvager gear locker
+  description: A locker containing many important tools useful for mining and salvaging.
   components:
   - type: StorageFill
     contents:
+    - id: ClothingOuterHardsuitSalvage
     - id: ClothingBeltUtilityFilled
     - id: SurvivalKnife
     - id: HandheldGPSBasic
-    - id: RadioHandheld
     - id: OreBag
     - id: Flare
     - id: Flare
     - id: Flare
+    - id: Pickaxe
+

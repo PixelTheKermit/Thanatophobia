@@ -1,0 +1,91 @@
+- type: entity
+  id: IronReinforcement
+  parent: BaseStructure
+  name: iron reinforcement
+  description: A dense reinforcement with high resistance to all things that may be dangerous to a hull.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: WallMount
+    arc: 360 # interact despite grilles
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmack
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Thanatophobia/Structures/reinforcements.rsi
+    state: iron
+  - type: Icon
+    sprite: /Textures/_Thanatophobia/Structures/reinforcements.rsi
+    state: iron
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 6000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Repairable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong # TODO: Change damage modifiers based on material.
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Destructible
+    thresholds:
+    # Nuke excess damage. Although thanato doesn't have nukes (yet)
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    # Regular ol threshold.
+    - trigger:
+        !type:DamageTrigger
+        damage: 1600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      # TODO: Okay so currently we can't construct these. Replace this once we can.
+      # - !type:ChangeConstructionNodeBehavior
+      #   node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+  - type: Appearance
+  # TODO: Thanatophobia price balancing for future gamemodes.
+  - type: StaticPrice
+    price: 0
+  # Stops cables from going through. Inspired by how it works in Highfleet.
+  - type: NodeContainer
+    nodes:
+      powerHV:
+        !type:CableTerminalNode
+        nodeGroupID: HVPower
+      powerMV:
+        !type:CableTerminalNode
+        nodeGroupID: MVPower
+      powerApc:
+        !type:CableTerminalNode
+        nodeGroupID: Apc

@@ -12,9 +12,10 @@
     concerningOrangeFore: "#A5762F"
     dangerousRedFore: "#BB3232"
     disabledFore: "#5A5A5A"
+
 - type: uiTheme
   id: SS14PlasmafireTheme
-  path: /Textures/Interface/Plasmafire/
+  path: /Textures/Interface/Themes/Plasmafire/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#FFF5EE"
@@ -26,9 +27,10 @@
     concerningOrangeFore: "#FFF5EE"
     dangerousRedFore: "#FFF5EE"
     disabledFore: "#FFF5EE"
+
 - type: uiTheme
   id: SS14SlimecoreTheme
-  path: /Textures/Interface/Slimecore/
+  path: /Textures/Interface/Themes/Slimecore/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#FFF5EE"
@@ -40,9 +42,10 @@
     concerningOrangeFore: "#FFF5EE"
     dangerousRedFore: "#FFF5EE"
     disabledFore: "#FFF5EE"
+
 - type: uiTheme
   id: SS14ClockworkTheme
-  path: /Textures/Interface/Clockwork/
+  path: /Textures/Interface/Themes/Clockwork/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#FFF5EE"
@@ -54,9 +57,10 @@
     concerningOrangeFore: "#FFF5EE"
     dangerousRedFore: "#FFF5EE"
     disabledFore: "#FFF5EE"
+
 - type: uiTheme
   id: SS14RetroTheme
-  path: /Textures/Interface/Retro/
+  path: /Textures/Interface/Themes/Retro/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#FFF5EE"
@@ -68,9 +72,10 @@
     concerningOrangeFore: "#FFF5EE"
     dangerousRedFore: "#FFF5EE"
     disabledFore: "#FFF5EE"
+
 - type: uiTheme
   id: SS14MinimalistTheme
-  path: /Textures/Interface/Minimalist/
+  path: /Textures/Interface/Themes/Minimalist/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#e6b812"
@@ -82,9 +87,10 @@
     concerningOrangeFore: "#A5762F"
     dangerousRedFore: "#BB3232"
     disabledFore: "#5A5A5A"
+
 - type: uiTheme
   id: SS14ErisTheme
-  path: /Textures/Interface/Eris/
+  path: /Textures/Interface/Themes/Eris/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#e6b812"
@@ -96,9 +102,10 @@
     concerningOrangeFore: "#A5762F"
     dangerousRedFore: "#BB3232"
     disabledFore: "#5A5A5A"
+
 - type: uiTheme
   id: SS14AshenTheme
-  path: /Textures/Interface/Ashen/
+  path: /Textures/Interface/Themes/Ashen/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#FFF5EE"
