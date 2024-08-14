@@ -1,12 +1,14 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Server.Worldgen;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems;
 using Content.Server.Worldgen.Tools;
+using Content.Shared.LateJoin;
 using Content.Shared.Roles;
 using Content.Shared.Thanatophobia.CCVar;
 using Content.Shared.Thanatophobia.LateJoin;
@@ -42,6 +44,9 @@ public sealed partial class SpawnShipSystem : EntitySystem
         SubscribeNetworkEvent<RoundStartShipTryLeaveLobbyUIMessage>(LeaveLobbyMessage);
         SubscribeNetworkEvent<RoundStartShipTryKickPlayerUIMessage>(TryKickMessage);
         SubscribeNetworkEvent<RoundStartShipTryChangeLobbyInfoUIMessage>(ChangeInfoMessage);
+
+        SubscribeNetworkEvent<GetLateJoinTypeUIMessage>(GetLateJoinMessage);
+        SubscribeLocalEvent<LobbyShipSpawnerRuleComponent, GetLateJoinTypeEvent>(GetLateJoinEv);
     }
 
     public override void Update(float frameTime) // This is going to copy Afterlight ngl bc I can't figure out how to spawn ships without grid fuckery or possibly a bunch of lag.
@@ -76,6 +81,33 @@ public sealed partial class SpawnShipSystem : EntitySystem
         }
     }
 
+    // Why is this here? I cannot be asked right now to move it somewhere else. And even if I could I don't know where to move it to.
+    // ! Yes. This needs to be moved in the future, but it's 3:20 AM and I just want this fucking shit finished.
+    private void GetLateJoinMessage(GetLateJoinTypeUIMessage msg, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession is not { } _)
+            return;
+
+        var gamerules = EntityQueryEnumerator<GameRuleComponent>();
+
+        var ev = new GetLateJoinTypeEvent();
+
+        while (gamerules.MoveNext(out var uid, out var _))
+            RaiseLocalEvent(uid, ev);
+
+        RaiseNetworkEvent(new GiveLateJoinTypeUIMessage(ev.LateType, ev.Data), args.SenderSession);
+    }
+
+    private void GetLateJoinEv(EntityUid uid, LobbyShipSpawnerRuleComponent comp, GetLateJoinTypeEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Data["ShipPool"] = comp.ShipPool.Id;
+
+        args.LateType = LateJoinType.SpawnShips;
+    }
+
     private void CreateLobbyMessage(RoundStartShipTryCreateLobbyUIMessage msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession is not { } _)
@@ -84,7 +116,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != null)
             return;
 
-        var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
+        var maps = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
 
         if (maps.Count <= 0)
             return;
@@ -94,9 +126,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (map.PlayersToCode.Any(x => x.Key == args.SenderSession.UserId) && map.Lobbies.Any(x => x.Key == map.PlayersToCode[args.SenderSession.UserId]))
             return;
 
-        var poolStr = _cfgManager.GetCVar(TPCCVars.ShipSpawnPool);
-
-        if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(poolStr, out var poolProto))
+        if (!_protoManager.TryIndex(map.ShipPool, out var poolProto))
             return;
 
         // Oh lord this looks painful.
@@ -161,7 +191,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != null)
             return;
 
-        var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
+        var maps = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
 
         if (maps.Count <= 0)
             return;
@@ -194,11 +224,11 @@ public sealed partial class SpawnShipSystem : EntitySystem
     /// </summary>
     /// <param name="senderSession"></param>
     /// <param name="map"></param>
-    private void UpdateLobbies(ICommonSession senderSession, WorldShipSpawnerComponent? map = null)
+    private void UpdateLobbies(ICommonSession senderSession, LobbyShipSpawnerRuleComponent? map = null)
     {
         if (map == null)
         {
-            var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
+            var maps = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
 
             if (maps.Count <= 0)
                 return;
@@ -206,11 +236,9 @@ public sealed partial class SpawnShipSystem : EntitySystem
             map = maps[0];
         }
 
-        var poolStr = _cfgManager.GetCVar(TPCCVars.ShipSpawnPool);
-
         var msg = new RoundStartShipListLobbiesUIMessage();
 
-        if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(poolStr, out var poolProto))
+        if (!_protoManager.TryIndex(map.ShipPool, out var poolProto))
             return;
 
         msg.IsPlayerInLobby = map.PlayersToCode.Any(x => x.Key == senderSession.UserId) && map.Lobbies.Any(x => x.Key == map.PlayersToCode[senderSession.UserId]);
@@ -223,7 +251,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
             msg.LobbyPlayerCount = map.CodeToPlayers[lobbyCode].Count;
             msg.LobbyCode = lobbyCode;
             msg.IsHidden = lobby.Private;
-            msg.CurrentShip = lobby.MapID.Id;
+            msg.CurrentShip = lobby.MapID;
 
             foreach (var player in map.CodeToPlayers[lobbyCode])
             {
@@ -266,7 +294,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != null)
             return;
 
-        var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
+        var maps = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
 
         if (maps.Count <= 0)
             return;
@@ -282,9 +310,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (!map.CodeToPlayers.Any(x => x.Key == ev.LobbyCode))
             return;
 
-        var poolStr = _cfgManager.GetCVar(TPCCVars.ShipSpawnPool);
-
-        if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(poolStr, out var poolProto))
+        if (!_protoManager.TryIndex(map.ShipPool, out var poolProto))
             return;
 
         if (!poolProto.Ships.Any(x => x.Key == map.Lobbies[ev.LobbyCode].MapID))
@@ -311,7 +337,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != null)
             return;
 
-        var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
+        var maps = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
 
         if (maps.Count <= 0)
             return;
@@ -333,9 +359,7 @@ public sealed partial class SpawnShipSystem : EntitySystem
 
         lobby.Private = ev.Private;
 
-        var poolStr = _cfgManager.GetCVar(TPCCVars.ShipSpawnPool);
-
-        if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(poolStr, out var poolProto))
+        if (!_protoManager.TryIndex(map.ShipPool, out var poolProto))
             return;
 
         if (!poolProto.Ships.Any(x => x.Key == ev.Ship))
@@ -366,11 +390,11 @@ public sealed partial class SpawnShipSystem : EntitySystem
     /// </summary>
     /// <param name="senderUserId"></param>
     /// <param name="map"></param>
-    private void LeaveLobby(NetUserId senderUserId, WorldShipSpawnerComponent? map = null)
+    private void LeaveLobby(NetUserId senderUserId, LobbyShipSpawnerRuleComponent? map = null)
     {
         if (map == null)
         {
-            var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
+            var maps = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
 
             if (maps.Count <= 0)
                 return;
@@ -429,33 +453,38 @@ public sealed partial class SpawnShipSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != null)
             return;
 
+        var lobbies = EntityQuery<LobbyShipSpawnerRuleComponent>().ToList();
+
+        if (lobbies.Count <= 0)
+            return;
+
+        var lobbyEnt = lobbies[0];
+
         var maps = EntityQuery<WorldShipSpawnerComponent>().ToList();
 
-        if (maps.Count <= 0)
+        if (lobbies.Count <= 0)
             return;
 
         var map = maps[0];
 
-        if (!map.PlayersToCode.Any(x => x.Key == args.SenderSession.UserId))
+        if (!lobbyEnt.PlayersToCode.Any(x => x.Key == args.SenderSession.UserId))
             return;
 
-        var lobbyCode = map.PlayersToCode[args.SenderSession.UserId];
+        var lobbyCode = lobbyEnt.PlayersToCode[args.SenderSession.UserId];
 
-        if (!map.Lobbies.Any(x => x.Key == lobbyCode))
+        if (!lobbyEnt.Lobbies.Any(x => x.Key == lobbyCode))
             return;
 
-        var lobby = map.Lobbies[lobbyCode];
+        var lobby = lobbyEnt.Lobbies[lobbyCode];
 
         if (lobby.Owner != args.SenderSession.UserId)
             return;
 
-        var poolStr = _cfgManager.GetCVar(TPCCVars.ShipSpawnPool);
-
-        if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(poolStr, out var poolProto))
+        if (!_protoManager.TryIndex(lobbyEnt.ShipPool, out var poolProto))
             return;
 
         if (!poolProto.Ships.Any(x => x.Key == lobby.MapID) ||
-            !_protoManager.TryIndex(lobby.MapID, out var gameMap))
+            !_protoManager.TryIndex<GameMapPrototype>(lobby.MapID, out var gameMap))
             return;
 
         var safetyBounds = Box2.UnitCentered.Enlarged(48);
@@ -480,14 +509,14 @@ public sealed partial class SpawnShipSystem : EntitySystem
             var grids = _gameTicker.LoadGameMap(gameMap, coords.MapId, loadOptions);
             Log.Warning($"{args.SenderSession} spawned in {lobby.MapID} and loaded {grids.Count} grids.");
 
-            foreach (var player in map.CodeToPlayers[lobbyCode])
+            foreach (var player in lobbyEnt.CodeToPlayers[lobbyCode])
             {
                 if (player == args.SenderSession.UserId && poolProto.Ships[lobby.MapID].CaptainRole != null)
                     _gameTicker.MakeJoinGame(args.SenderSession, (EntityUid) _stationSystem.GetOwningStation(grids[0])!, poolProto.Ships[lobby.MapID].CaptainRole);
                 else if (_playerManager.TryGetSessionById(player, out var playerSession))
                     _gameTicker.MakeJoinGame(playerSession, (EntityUid) _stationSystem.GetOwningStation(grids[0])!, poolProto.Ships[lobby.MapID].CrewRole);
             }
-            LeaveLobby(args.SenderSession.UserId, map);
+            LeaveLobby(args.SenderSession.UserId, lobbyEnt);
 
             return; // Doesn't need to do anything else now that the map is spawned.
         }

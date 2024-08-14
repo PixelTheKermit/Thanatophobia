@@ -2,12 +2,14 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Managers;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.LateJoin;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -148,7 +150,14 @@ namespace Content.Server.GameTicking
                     station = stations[0];
             }
 
-            if (lateJoin && DisallowLateJoin)
+            var gamerules = EntityQueryEnumerator<GameRuleComponent>();
+
+            var latejoinTypeEv = new GetLateJoinTypeEvent();
+
+            while (gamerules.MoveNext(out var uid, out var _))
+                RaiseLocalEvent(uid, latejoinTypeEv);
+
+            if (lateJoin && (DisallowLateJoin || latejoinTypeEv.Handled))
             {
                 JoinAsObserver(player);
                 return;

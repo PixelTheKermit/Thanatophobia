@@ -7,3 +7,5 @@
   showInVote: true
   description: standard-description
   supportedMaps: TPMapPool
+  rules:
+  - LobbyShipSpawnerRule

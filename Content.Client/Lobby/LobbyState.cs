@@ -8,6 +8,8 @@ using Content.Client.Thanatophobia.LateJoin;
 using Content.Client.Thanatophobia.Preferences.UI;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Content.Server.Thanatophobia.LateJoin;
+using Content.Shared.LateJoin;
 using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
@@ -32,11 +34,10 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-
+        [Dependency] private readonly IEntityNetworkManager _entityNetworkManager = default!;
         [ViewVariables] private TPCharacterSetupGui? _characterSetup; // Thanatophobia Edit
 
         private ClientGameTicker _gameTicker = default!;
-        private ShipLateJoinSystem _shipLateJoin = default!;
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         private LobbyGui? _lobby;
@@ -52,7 +53,6 @@ namespace Content.Client.Lobby
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
-            _shipLateJoin = _entityManager.System<ShipLateJoinSystem>();
             // Thanatophobia Edit
             _characterSetup = new TPCharacterSetupGui(_entityManager, _resourceCache, _preferencesManager,
                 _prototypeManager, _configurationManager);
@@ -132,8 +132,10 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            _shipLateJoin.ToggleUI();
+            _entityNetworkManager.SendSystemNetworkMessage(new GetLateJoinTypeUIMessage());
         }
+
+
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
         {

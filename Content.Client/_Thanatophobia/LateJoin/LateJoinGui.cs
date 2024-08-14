@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
+using Content.Server.Thanatophobia.LateJoin;
 using Content.Shared.Thanatophobia.CCVar;
 using Content.Shared.Thanatophobia.LateJoin;
 using Robust.Client.Graphics;
@@ -36,11 +37,15 @@ public sealed class TPLateJoinGui : FancyWindow
     public RichTextLabel ShipDescription;
     public Button StartLobbyButton;
     public Button PrivateLobbyButton;
+    public string ShipPool;
 
-    public TPLateJoinGui()
+    public TPLateJoinGui(string shipPool)
     {
         MinSize = new Vector2(500, 600);
         MaxSize = new Vector2(500, 600);
+
+        ShipPool = shipPool;
+
         Resizable = false;
         _entityNetworkManager = IoCManager.Resolve<IEntityNetworkManager>();
         _entityManager = IoCManager.Resolve<IEntityManager>();
@@ -344,9 +349,7 @@ public sealed class TPLateJoinGui : FancyWindow
                 PlayerList.XamlChildren.Add(plrContainer);
             }
 
-            var poolStr = _cfgManager.GetCVar(TPCCVars.ShipSpawnPool);
-
-            if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(poolStr, out var poolProto))
+            if (!_protoManager.TryIndex<ShipSpawnPoolPrototype>(ShipPool, out var poolProto))
                 return;
 
             foreach (var mapId in poolProto.Ships)

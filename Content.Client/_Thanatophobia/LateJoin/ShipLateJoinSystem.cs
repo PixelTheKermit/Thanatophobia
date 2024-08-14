@@ -19,11 +19,11 @@ public sealed partial class ShipLateJoinSystem : EntitySystem
         _lateJoinUI.UpdateLobbyList(msg);
     }
 
-    public void ToggleUI()
+    public void ToggleUI(string shipPool)
     {
         if (_lateJoinUI == null)
         {
-            _lateJoinUI = new();
+            _lateJoinUI = new(shipPool);
             _lateJoinUI.OpenCentered();
             _lateJoinUI.OnClose += () => CloseUI();
         }

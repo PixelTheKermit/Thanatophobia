@@ -1,0 +1,7 @@
+- type: entity
+  id: LobbyShipSpawnerRule
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: LobbyShipSpawnerRule
+    shipPool: Default
