@@ -4,7 +4,7 @@
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_lefteye_2
   markingCategory: Head
-  speciesRestrictions: [Moth, Dwarf, Human, Arachnid]
+  speciesRestrictions: [Moth, Human, Arachnid]
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:
@@ -23,7 +23,7 @@
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_lefteye_1
   markingCategory: Head
-  speciesRestrictions: [Moth, Dwarf, Human, Arachnid]
+  speciesRestrictions: [Moth, Human, Arachnid]
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:
@@ -42,7 +42,7 @@
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_righteye_2
   markingCategory: Head
-  speciesRestrictions: [Moth, Dwarf, Human, Arachnid]
+  speciesRestrictions: [Moth, Human, Arachnid]
   function: !type:AddMarkingFunction
     bodyPart: head
     sprites:
@@ -58,7 +58,7 @@
 
 - type: marking
   id: GauzeRighteyeTape
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   icon:
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_righteye_1
@@ -78,7 +78,7 @@
 
 - type: marking
   id: GauzeBlindfold
-  speciesRestrictions: [Moth, Dwarf, Human, Arachnid]
+  speciesRestrictions: [Moth, Human, Arachnid]
   icon:
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_blindfold
@@ -97,7 +97,7 @@
 
 - type: marking
   id: GauzeShoulder
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth Human, Reptilian, Arachnid]
   icon:
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_shoulder
@@ -116,7 +116,7 @@
 
 - type: marking
   id: GauzeStomach
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   icon:
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_abdomen
@@ -135,7 +135,7 @@
 
 - type: marking
   id: GauzeUpperArmRight
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   icon:
     sprite: Mobs/Customization/gauze.rsi
     state: gauze_upperarm_r
@@ -154,7 +154,7 @@
 
 - type: marking
   id: GauzeLowerArmRight
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:
@@ -174,7 +174,7 @@
 
 - type: marking
   id: GauzeLeftArm
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:
@@ -193,7 +193,7 @@
 
 - type: marking
   id: GauzeLowerLegLeft
-  speciesRestrictions: [Moth, Dwarf, Human, Arachnid]
+  speciesRestrictions: [Moth, Human, Arachnid]
   coloring:
     default:
       type:
@@ -212,7 +212,7 @@
 
 - type: marking
   id: GauzeUpperLegLeft
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:
@@ -231,7 +231,7 @@
 
 - type: marking
   id: GauzeUpperLegRight
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:
@@ -251,7 +251,7 @@
 - type: marking
   id: GauzeLowerLegRight
   markingCategory: Legs
-  speciesRestrictions: [Moth, Dwarf, Human, Arachnid]
+  speciesRestrictions: [Moth, Human, Arachnid]
   coloring:
     default:
       type:
@@ -270,7 +270,7 @@
 - type: marking
   id: GauzeBoxerWrapRight
   markingCategory: Arms
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:
@@ -289,7 +289,7 @@
 - type: marking
   id: GauzeBoxerWrapLeft
   markingCategory: Arms
-  speciesRestrictions: [Moth, Dwarf, Human, Reptilian, Arachnid]
+  speciesRestrictions: [Moth, Human, Reptilian, Arachnid]
   coloring:
     default:
       type:

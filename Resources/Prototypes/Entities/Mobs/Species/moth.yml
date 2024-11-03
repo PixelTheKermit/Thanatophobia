@@ -1,12 +1,82 @@
+# The dummy should contain everything that's important to show on the Character Creation Menu.
 - type: entity
-  save: false
-  name: Urist McFluff
-  parent: BaseMobSpeciesOrganic
-  id: BaseMobMoth
-  abstract: true
+  parent: BaseSpeciesDummy
+  id: MobMothDummy
+  noSpawn: true
   components:
   - type: HumanoidAppearance
     species: Moth
+  - type: Body
+    prototype: Moth
+    requiredLegs: 2
+  - type: Sprite # sprite again because we want different layer ordering
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - map: [ "wings-back" ]
+      - map: [ "chest" ]
+      - map: [ "head" ]
+      - map: [ "snout" ]
+      - map: [ "eyes" ]
+      - map: [ "l-hand2-back" ]
+      - map: [ "r-hand2-back" ]
+      - map: [ "r-arm" ]
+      - map: [ "l-arm" ]
+      - map: [ "r-leg" ]
+      - map: [ "l-leg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
+        # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
+        # sprite refactor when
+        state: l_leg
+      - shader: StencilMask
+        map: [ "stencilMask" ]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: [ "l-foot" ]
+      - map: [ "r-foot" ]
+      - map: [ "jumpsuit" ]
+      - map: [ "l-hand" ]
+      - map: [ "r-hand" ]
+      - map: [ "handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "l-hand2-front" ]
+      - map: [ "r-hand2-front" ]
+      - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "wings-front" ] # Not utopian future: isn't an enum.
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "facialHair" ]
+      - map: [ "headTop" ]
+      - map: [ "hair" ]
+      - map: [ "headSide" ]
+      - map: [ "mask" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_moth"
+        visible: false
+      - map: [ "hat" ]
+
+# The basemob itself should have everything that's related to actual gameplay.
+- type: entity
+  save: false
+  name: Urist McFluff
+  parent: [MobMothDummy, BaseMobSpeciesOrganic]
+  id: BaseMobMoth
+  abstract: true
+  components:
   - type: Hunger
     starvationDamage:
       types:
@@ -16,9 +86,6 @@
   - type: Icon
     sprite: Mobs/Species/Moth/parts.rsi
     state: full
-  - type: Body
-    prototype: Moth
-    requiredLegs: 2
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -66,131 +133,3 @@
     heatDamage:
       types:
         Heat : 3 #per second, scales with temperature & other constants
-  - type: Sprite # sprite again because we want different layer ordering
-    noRot: true
-    drawdepth: Mobs
-    layers:
-      - map: [ "wings-back" ]
-      - map: [ "chest" ]
-      - map: [ "head" ]
-      - map: [ "snout" ]
-      - map: [ "eyes" ]
-      - map: [ "l-hand2-back" ]
-      - map: [ "r-hand2-back" ]
-      - map: [ "r-arm" ]
-      - map: [ "l-arm" ]
-      - map: [ "r-leg" ]
-      - map: [ "l-leg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
-        # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
-        # sprite refactor when
-        state: l_leg
-      - shader: StencilMask
-        map: [ "stencilMask" ]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: [ "l-foot" ]
-      - map: [ "r-foot" ]
-      - map: [ "jumpsuit" ]
-      - map: [ "l-hand" ]
-      - map: [ "r-hand" ]
-      - map: [ "handcuffs" ]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - map: [ "ears" ]
-      - map: [ "outerClothing" ]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "l-hand2-front" ]
-      - map: [ "r-hand2-front" ]
-      - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
-      - map: [ "wings-front" ] # Not utopian future: isn't an enum.
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "facialHair" ]
-      - map: [ "hair" ]
-      - map: [ "headSide" ]
-      - map: [ "headTop" ]
-      - map: [ "mask" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: [ "clownedon" ] # Dynamically generated
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_moth"
-        visible: false
-      - map: [ "hat" ]
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobMothDummy
-  noSpawn: true
-  components:
-  - type: HumanoidAppearance
-    species: Moth
-  - type: Body
-    prototype: Moth
-  - type: Sprite # sprite again because we want different layer ordering
-    noRot: true
-    drawdepth: Mobs
-    layers:
-      - map: [ "wings-back" ]
-      - map: [ "chest" ]
-      - map: [ "head" ]
-      - map: [ "snout" ]
-      - map: [ "eyes" ]
-      - map: [ "l-hand2-back" ]
-      - map: [ "r-hand2-back" ]
-      - map: [ "r-arm" ]
-      - map: [ "l-arm" ]
-      - map: [ "r-leg" ]
-      - map: [ "l-leg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
-        # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
-        # sprite refactor when
-        state: l_leg
-      - shader: StencilMask
-        map: [ "stencilMask" ]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: [ "l-foot" ]
-      - map: [ "r-foot" ]
-      - map: [ "jumpsuit" ]
-      - map: [ "l-hand" ]
-      - map: [ "r-hand" ]
-      - map: [ "handcuffs" ]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - map: [ "ears" ]
-      - map: [ "outerClothing" ]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "l-hand2-front" ]
-      - map: [ "r-hand2-front" ]
-      - map: [ "tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
-      - map: [ "wings-front" ] # Not utopian future: isn't an enum.
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "facialHair" ]
-      - map: [ "hair" ]
-      - map: [ "headSide" ]
-      - map: [ "headTop" ]
-      - map: [ "mask" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: [ "clownedon" ] # Dynamically generated
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_moth"
-        visible: false
-      - map: [ "hat" ]

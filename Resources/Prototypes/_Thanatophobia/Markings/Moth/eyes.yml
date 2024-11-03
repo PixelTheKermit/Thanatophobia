@@ -1,0 +1,18 @@
+- type: marking
+  id: MothEyesSide
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/eyes.rsi
+    state: side
+  markingCategory: Eyes
+  speciesRestrictions: [Moth]
+  function: !type:ReplaceBodyPartsMarkingFunction
+    sprites:
+      eyes:
+        eyes:
+        - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/eyes.rsi
+          state: side
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:EyeColoring

@@ -1,7 +1,7 @@
 - type: marking
   id: TattooHiveChest
   markingCategory: Chest
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -20,7 +20,7 @@
 - type: marking
   id: TattooNightlingChest
   markingCategory: Chest
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -39,7 +39,7 @@
 - type: marking
   id: TattooSilverburghLeftLeg
   markingCategory: Legs
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -58,7 +58,7 @@
 - type: marking
   id: TattooSilverburghRightLeg
   markingCategory: Legs
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -77,7 +77,7 @@
 - type: marking
   id: TattooCampbellLeftArm
   markingCategory: Arms
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -96,7 +96,7 @@
 - type: marking
   id: TattooCampbellRightArm
   markingCategory: Arms
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -115,7 +115,7 @@
 - type: marking
   id: TattooCampbellLeftLeg
   markingCategory: Legs
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -134,7 +134,7 @@
 - type: marking
   id: TattooCampbellRightLeg
   markingCategory: Legs
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -153,7 +153,7 @@
 - type: marking
   id: TattooEyeRight
   markingCategory: Head
-  speciesRestrictions: [Human, SlimePerson, Reptilian, Dwarf]
+  speciesRestrictions: [Human, SlimePerson, Reptilian]
   coloring:
     default:
       type:
@@ -172,7 +172,7 @@
 - type: marking
   id: TattooEyeLeft
   markingCategory: Head
-  speciesRestrictions: [Human, SlimePerson, Reptilian, Dwarf]
+  speciesRestrictions: [Human, SlimePerson, Reptilian]
   coloring:
     default:
       type:

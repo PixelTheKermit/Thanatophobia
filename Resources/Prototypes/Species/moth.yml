@@ -19,14 +19,18 @@
   onlyWhitelisted: true
   points:
     Hair:
-      points: 0
+      points: 1
       required: false
+      usesSkinColour: true
     FacialHair:
       points: 0
       required: false
     Wings:
       points: 1
       required: true
+    Eyes:
+      points: 1
+      required: false
     Snout:
       points: 1
       required: false

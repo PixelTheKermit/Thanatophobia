@@ -1,4 +1,6 @@
-﻿- type: entity
+﻿# TODO: Port displacement maps
+
+- type: entity
   parent: BaseMobSpeciesOrganic
   id: BaseMobVox
   abstract: true

@@ -1,6 +1,19 @@
+# The dummy should contain everything that's important to show on the Character Creation Menu.
+- type: entity
+  parent: MobHumanDummy
+  id: MobSlimePersonDummy
+  noSpawn: true
+  components:
+  - type: HumanoidAppearance
+    species: SlimePerson
+  - type: Body
+    prototype: Slime
+    requiredLegs: 2
+
+# The basemob itself should have everything that's related to actual gameplay.
 - type: entity
   name: Urist McSlime
-  parent: BaseMobSpeciesOrganic
+  parent: [MobSlimePersonDummy, BaseMobSpeciesOrganic]
   id: BaseMobSlimePerson
   abstract: true
   components:
@@ -12,11 +25,6 @@
   - type: Icon
     sprite: Mobs/Species/Slime/parts.rsi
     state: full
-  - type: Body
-    prototype: Slime
-    requiredLegs: 2
-  - type: HumanoidAppearance
-    species: SlimePerson
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
@@ -77,13 +85,3 @@
       types:
         Asphyxiation: -1.0
     maxSaturation: 15
-
-- type: entity
-  parent: MobHumanDummy
-  id: MobSlimePersonDummy
-  noSpawn: true
-  components:
-  - type: HumanoidAppearance
-    species: SlimePerson
-  - type: Body
-    prototype: Slime

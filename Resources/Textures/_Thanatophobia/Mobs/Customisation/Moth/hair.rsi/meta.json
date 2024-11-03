@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by PixelTheKermit for Thanatophobia.",
+  "states": [
+    {
+        "name": "emo_right",
+        "directions": 4
+    },
+    {
+        "name": "emo_left",
+        "directions": 4
+    }
+  ]
+}

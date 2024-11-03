@@ -1,3 +1,17 @@
+# The dummy should contain everything that's important to show on the Character Creation Menu.
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobReptilianDummy
+  noSpawn: true
+  description: A dummy reptilian meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Reptilian
+  - type: Body
+    prototype: Reptilian
+    requiredLegs: 2
+
+# The basemob itself should have everything that's related to actual gameplay.
 - type: entity
   save: false
   name: Urisst' Mzhand
@@ -5,8 +19,6 @@
   id: BaseMobReptilian
   abstract: true
   components:
-  - type: HumanoidAppearance
-    species: Reptilian
   - type: Hunger
     starvationDamage:
       types:
@@ -18,9 +30,6 @@
   - type: Icon
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: full
-  - type: Body
-    prototype: Reptilian
-    requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -61,16 +70,5 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobReptilianDummy
-  noSpawn: true
-  description: A dummy reptilian meant to be used in character setup.
-  components:
-  - type: HumanoidAppearance
-    species: Reptilian
-  - type: Body
-    prototype: Reptilian
 
 #Weh

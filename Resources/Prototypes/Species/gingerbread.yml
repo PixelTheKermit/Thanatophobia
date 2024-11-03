@@ -1,9 +1,0 @@
-- type: species
-  id: Gingerbread
-  name: species-name-human
-  roundStart: false
-  prototype: MobGingerbread
-  markingLimits: MobHumanMarkingLimits
-  dollPrototype: MobGingerbreadDummy
-  skinColoration: HumanToned
-  defaultSkinTone: "#9a7c5a"

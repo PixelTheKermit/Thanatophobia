@@ -1,0 +1,18 @@
+- type: marking
+  id: MothHairEmoLeft
+  icon:
+    sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/hair.rsi
+    state: emo_left
+  markingCategory: Hair
+  speciesRestrictions: [Moth]
+  function: !type:AddMarkingFunction
+    bodyPart: head
+    sprites:
+      hair:
+      - sprite: /Textures/_Thanatophobia/Mobs/Customisation/Moth/hair.rsi
+        state: emo_left
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SkinColoring

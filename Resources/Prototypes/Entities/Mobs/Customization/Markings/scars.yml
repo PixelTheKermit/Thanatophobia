@@ -1,6 +1,6 @@
 - type: marking
   id: ScarEyeRight
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   coloring:
     default:
       type:
@@ -19,7 +19,7 @@
 
 - type: marking
   id: ScarEyeLeft
-  speciesRestrictions: [Human, Dwarf]
+  speciesRestrictions: [Human]
   icon:
     sprite: Mobs/Customization/scars.rsi
     state: scar_eye_left

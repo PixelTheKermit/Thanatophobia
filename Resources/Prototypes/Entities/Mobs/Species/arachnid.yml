@@ -1,65 +1,14 @@
+# The dummy should contain everything that's important to show on the Character Creation Menu.
 - type: entity
-  save: false
-  name: Urist McWebs
-  parent: BaseMobSpeciesOrganic
-  id: BaseMobArachnid
-  abstract: true
+  parent: BaseSpeciesDummy
+  id: MobArachnidDummy
+  noSpawn: true
   components:
+  - type: HumanoidAppearance
+    species: Arachnid
   - type: Body
     prototype: Arachnid
     requiredLegs: 2 # It would be funny if arachnids could use their little back limbs to move around once they lose their legs, but just something to consider post-woundmed
-  - type: HumanoidAppearance
-    species: Arachnid
-  - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.5
-        Bloodloss: 0.5
-  - type: Thirst
-  - type: Sericulture
-    action: ActionSericulture
-    productionLength: 2
-    entityProduced: MaterialWebSilk1
-    hungerCost: 4 # Should total to 25 total silk on full hunger
-  - type: Tag
-    tags:
-    - CanPilot
-    - FootstepSound
-    - DoorBumpOpener
-    - SpiderCraft
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-      - id: FoodMeatSpider
-        amount: 5
-  # Damage (Self)
-  - type: Bloodstream
-    bloodReagent: CopperBlood
-  # Damage (Others)
-  - type: MeleeWeapon
-    animation: WeaponArcBite
-    soundHit:
-      collection: AlienClaw
-    damage:
-      types:
-        Piercing: 5
-  # Visual & Audio
-  - type: DamageVisuals
-    damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#162581"
-  - type: Speech
-    speechVerb: Arachnid
-    speechSounds: Arachnid
-    allowedEmotes: ['Click']
-  - type: Vocal
-    sounds:
-      Male: UnisexArachnid
-      Female: UnisexArachnid
-      Unsexed: UnisexArachnid
-  - type: TypingIndicator
-    proto: spider
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.
     layers:
     - map: [ "left-appendage-upper-back" ]
@@ -120,73 +69,63 @@
       visible: false
     - map: [ "hat" ]
 
+# The basemob itself should have everything that's related to actual gameplay.
 - type: entity
-  parent: BaseSpeciesDummy
-  id: MobArachnidDummy
-  noSpawn: true
+  save: false
+  name: Urist McWebs
+  parent: [MobArachnidDummy, BaseMobSpeciesOrganic]
+  id: BaseMobArachnid
+  abstract: true
   components:
-  - type: HumanoidAppearance
-    species: Arachnid
-  - type: Body
-    prototype: Arachnid
-  - type: Sprite # This is cbt.
-    layers:
-    - map: [ "left-appendage-upper-back" ]
-    - map: [ "right-appendage-upper-back" ]
-    - map: [ "left-appendage-lower-back" ]
-    - map: [ "right-appendage-lower-back" ]
-    - map: [ "chest" ]
-    - map: [ "head" ]
-    - map: [ "r-arm" ]
-    - map: [ "l-arm" ]
-    - map: [ "r-leg" ]
-    - map: [ "l-leg" ]
-    - shader: StencilClear
-      sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
-      # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
-      # sprite refactor when
-      state: l_leg
-    - shader: StencilMask
-      map: [ "stencilMask" ]
-      sprite: Mobs/Customization/masking_helpers.rsi
-      state: unisex_full
-      visible: false
-    - map: [ "l-foot" ]
-    - map: [ "r-foot" ]
-    - map: [ "jumpsuit" ]
-    - map: [ "l-hand" ]
-    - map: [ "r-hand" ]
-    - map: [ "ears" ]
-    - map: [ "outerClothing" ]
-    - map: [ "gloves" ]
-    - map: [ "shoes" ]
-    - map: [ "belt" ]
-    - map: [ "id" ]
-    - map: [ "left-appendage-lower-front" ]
-    - map: [ "right-appendage-lower-front" ]
-    - map: [ "left-appendage-upper-front" ]
-    - map: [ "right-appendage-upper-front" ]
-    - map: [ "neck" ]
-    - map: [ "back" ]
-    - map: [ "facialHair" ]
-    - map: [ "hair" ] # Do these need to be here? (arachnid hair arachnid hair)
-    - map: [ "headSide" ]
-    - map: [ "chelicerae" ]
-    - map: [ "eyes" ]
-    - map: [ "headTop" ]
-    - map: [ "mask" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: ["handcuffs"]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "clownedon" ] # Dynamically generated
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_arachnid"
-      visible: false
-    - map: [ "hat" ]
-
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
+  - type: Sericulture
+    action: ActionSericulture
+    productionLength: 2
+    entityProduced: MaterialWebSilk1
+    hungerCost: 4 # Should total to 25 total silk on full hunger
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - SpiderCraft
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+      - id: FoodMeatSpider
+        amount: 5
+  # Damage (Self)
+  - type: Bloodstream
+    bloodReagent: CopperBlood
+  # Damage (Others)
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    soundHit:
+      collection: AlienClaw
+    damage:
+      types:
+        Piercing: 5
+  # Visual & Audio
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#162581"
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: ['Click']
+  - type: Vocal
+    sounds:
+      Male: UnisexArachnid
+      Female: UnisexArachnid
+      Unsexed: UnisexArachnid
+  - type: TypingIndicator
+    proto: spider
 
 #88w88
