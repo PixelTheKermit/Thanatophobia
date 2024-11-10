@@ -8,7 +8,6 @@ namespace Content.Server.Stunnable.Components
     {
         // TODO: Can probably predict this.
 
-        // See stunsystem for what these do
         [DataField("stunAmount")]
         public int StunAmount;
 

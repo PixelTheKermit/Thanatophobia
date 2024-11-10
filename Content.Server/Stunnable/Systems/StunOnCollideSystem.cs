@@ -5,13 +5,14 @@ using JetBrains.Annotations;
 using Robust.Shared.Physics.Dynamics;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Events;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Stunnable
 {
     [UsedImplicitly]
     internal sealed class StunOnCollideSystem : EntitySystem
     {
-        [Dependency] private readonly StunSystem _stunSystem = default!;
+        [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
         public override void Initialize()
         {
@@ -25,13 +26,7 @@ namespace Content.Server.Stunnable
 
             if (EntityManager.TryGetComponent<StatusEffectsComponent>(target, out var status))
             {
-                _stunSystem.TryStun(target, TimeSpan.FromSeconds(component.StunAmount), true, status);
-
-                _stunSystem.TryKnockdown(target, TimeSpan.FromSeconds(component.KnockdownAmount), true,
-                    status);
-
-                _stunSystem.TrySlowdown(target, TimeSpan.FromSeconds(component.SlowdownAmount), true,
-                    component.WalkSpeedMultiplier, component.RunSpeedMultiplier, status);
+                _statusEffects.ApplyEffect(target, "Stun", 1, null, TimeSpan.FromSeconds(component.StunAmount), true);
             }
         }
         private void HandleCollide(EntityUid uid, StunOnCollideComponent component, ref StartCollideEvent args)

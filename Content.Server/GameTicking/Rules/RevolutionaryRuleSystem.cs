@@ -13,6 +13,7 @@ using Content.Server.Revolutionary;
 using Content.Server.Revolutionary.Components;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Server.StatusEffect;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -48,7 +49,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
 
@@ -212,7 +213,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         _npcFaction.AddFaction(ev.Target, RevolutionaryNpcFaction);
         EnsureComp<RevolutionaryComponent>(ev.Target);
-        _stun.TryParalyze(ev.Target, comp.StunTime, true);
+        _statusEffectsSystem.ApplyEffect(ev.Target, "Paralysis", 1, null, comp.StunTime, true);
         if (ev.User != null)
         {
             _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(ev.User.Value)} converted {ToPrettyString(ev.Target)} into a Revolutionary");
@@ -316,7 +317,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     continue;
 
                 _npcFaction.RemoveFaction(uid, RevolutionaryNpcFaction);
-                _stun.TryParalyze(uid, stunTime, true);
+                _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, stunTime, true);
                 RemCompDeferred<RevolutionaryComponent>(uid);
                 _popup.PopupEntity(Loc.GetString("rev-break-control", ("name", Identity.Entity(uid, EntityManager))), uid);
                 _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(uid)} was deconverted due to all Head Revolutionaries dying.");

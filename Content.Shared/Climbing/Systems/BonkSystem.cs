@@ -8,6 +8,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -22,7 +23,7 @@ public sealed partial class BonkSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -66,7 +67,7 @@ public sealed partial class BonkSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("bonkable-success-message-user", ("user", userName), ("bonkable", bonkableName)), user, user);
 
         _audioSystem.PlayPvs(bonkableComponent.BonkSound, bonkableUid);
-        _stunSystem.TryParalyze(user, TimeSpan.FromSeconds(bonkableComponent.BonkTime), true);
+        _statusEffectsSystem.ApplyEffect(user, "Paralysis", 1, null, TimeSpan.FromSeconds(bonkableComponent.BonkTime), true);
 
         if (bonkableComponent.BonkDamage is { } bonkDmg)
             _damageableSystem.TryChangeDamage(user, bonkDmg, true, origin: user);

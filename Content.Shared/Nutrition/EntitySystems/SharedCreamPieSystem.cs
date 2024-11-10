@@ -1,4 +1,5 @@
 using Content.Shared.Nutrition.Components;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
@@ -8,7 +9,7 @@ namespace Content.Shared.Nutrition.EntitySystems
     [UsedImplicitly]
     public abstract class SharedCreamPieSystem : EntitySystem
     {
-        [Dependency] private SharedStunSystem _stunSystem = default!;
+        [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
         public override void Initialize()
@@ -64,7 +65,7 @@ namespace Content.Shared.Nutrition.EntitySystems
 
             CreamedEntity(uid, creamPied, args);
 
-            _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(creamPie.ParalyzeTime), true);
+            _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, TimeSpan.FromSeconds(creamPie.ParalyzeTime), true);
         }
 
         protected virtual void CreamedEntity(EntityUid uid, CreamPiedComponent creamPied, ThrowHitByEvent args) {}

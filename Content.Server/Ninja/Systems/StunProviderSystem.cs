@@ -12,6 +12,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Ninja.Systems;
 
@@ -27,7 +28,7 @@ public sealed class StunProviderSystem : SharedStunProviderSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedNinjaGlovesSystem _gloves = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
     public override void Initialize()
     {
@@ -62,7 +63,7 @@ public sealed class StunProviderSystem : SharedStunProviderSystem
         _audio.PlayPvs(comp.Sound, target);
 
         _damageable.TryChangeDamage(target, comp.StunDamage, false, true, null, origin: uid);
-        _stun.TryParalyze(target, comp.StunTime, refresh: false);
+        _statusEffectsSystem.ApplyEffect(target, "Paralysis", 1, null, comp.StunTime, false);
 
         // short cooldown to prevent instant stunlocking
         comp.NextStun = _timing.CurTime + comp.Cooldown;

@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -16,7 +17,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Medical.Cryogenics;
 
-public abstract partial class SharedCryoPodSystem: EntitySystem
+public abstract partial class SharedCryoPodSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
@@ -25,6 +26,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
 
     public override void Initialize()
     {
@@ -122,7 +124,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         // RemComp<InsideCryoPodComponent>(contained);
 
         // Restore the correct position of the patient. Checking the components manually feels hacky, but I did not find a better way for now.
-        if (HasComp<KnockedDownComponent>(contained) || _mobStateSystem.IsIncapacitated(contained))
+        if (_statusEffectsSystem.HasStatusEffectWithTag(uid, "KnockedDown") || _mobStateSystem.IsIncapacitated(contained))
         {
             _standingStateSystem.Down(contained);
         }

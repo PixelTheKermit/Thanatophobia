@@ -1,6 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Interaction;
 using Content.Server.Popups;
+using Content.Server.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
 using Content.Shared.Instruments;
@@ -25,7 +26,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConsoleHost _conHost = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly StunSystem _stuns = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _bui = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -415,7 +416,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             {
                 if (instrument.InstrumentPlayer?.AttachedEntity is {Valid: true} mob)
                 {
-                    _stuns.TryParalyze(mob, TimeSpan.FromSeconds(1), true);
+                    _statusEffectsSystem.ApplyEffect(mob, "Paralysis", 1, null, TimeSpan.FromSeconds(1), true);
 
                     _popup.PopupEntity(Loc.GetString("instrument-component-finger-cramps-max-message"),
                         uid, mob, PopupType.LargeCaution);

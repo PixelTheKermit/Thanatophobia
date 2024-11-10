@@ -27,6 +27,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -34,7 +35,7 @@ namespace Content.Server.Atmos.EntitySystems
     {
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly StunSystem _stunSystem = default!;
+        [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
         [Dependency] private readonly IgnitionSourceSystem _ignitionSourceSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -359,7 +360,7 @@ namespace Content.Server.Atmos.EntitySystems
             flammable.Resisting = true;
 
             _popup.PopupEntity(Loc.GetString("flammable-component-resist-message"), uid, uid);
-            _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(2f), true);
+            _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, TimeSpan.FromSeconds(2f), true);
 
             // TODO FLAMMABLE: Make this not use TimerComponent...
             uid.SpawnTimer(2000, () =>

@@ -6,6 +6,7 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Tools.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Eye.Blinding.EyeProtection
 {
@@ -14,7 +15,7 @@ namespace Content.Server.Eye.Blinding.EyeProtection
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly BlindableSystem _blindingSystem = default!;
         [Dependency] private readonly SharedItemToggleSystem _itemToggle = default!;
-        
+
         public override void Initialize()
         {
             base.Initialize();
@@ -55,8 +56,8 @@ namespace Content.Server.Eye.Blinding.EyeProtection
             // how much damage they already accumulated.
             _blindingSystem.AdjustEyeDamage((args.User, blindable), 1);
             var statusTimeSpan = TimeSpan.FromSeconds(time * MathF.Sqrt(blindable.EyeDamage));
-            _statusEffectsSystem.TryAddStatusEffect(args.User, TemporaryBlindnessSystem.BlindingStatusEffect,
-                statusTimeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
+            _statusEffectsSystem.ApplyEffect(args.User, "TemporaryBlindness", 1, null,
+                statusTimeSpan, false);
         }
         private void OnWelderToggled(EntityUid uid, RequiresEyeProtectionComponent component, ItemToggledEvent args)
         {

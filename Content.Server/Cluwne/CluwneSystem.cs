@@ -16,6 +16,7 @@ using Content.Shared.Cluwne;
 using Content.Shared.Interaction.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Cluwne;
 
@@ -24,7 +25,7 @@ public sealed class CluwneSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -100,7 +101,7 @@ public sealed class CluwneSystem : EntitySystem
         else if (_robustRandom.Prob(component.KnockChance))
         {
             _audio.PlayPvs(component.KnockSound, uid);
-            _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+            _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, TimeSpan.FromSeconds(component.ParalyzeTime), true);
             _chat.TrySendInGameICMessage(uid, "spasms", InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
     }

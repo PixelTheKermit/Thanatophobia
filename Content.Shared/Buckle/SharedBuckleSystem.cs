@@ -7,6 +7,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Pulling;
 using Content.Shared.Standing;
+using Content.Shared.StatusEffect;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -24,6 +25,7 @@ public abstract partial class SharedBuckleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem StatusEffectsSystem = default!;
 
     [Dependency] protected readonly ActionBlockerSystem ActionBlocker = default!;
     [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;

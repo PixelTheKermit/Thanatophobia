@@ -68,9 +68,6 @@ namespace Content.IntegrationTests.Tests
                 {
                     ID: "InventoryJumpsuitJanitorDummy"
                 });
-#pragma warning restore NUnit2045
-
-                systemMan.GetEntitySystem<StunSystem>().TryStun(human, TimeSpan.FromSeconds(1f), true);
 
 #pragma warning disable NUnit2045
                 // Since the mob is stunned, they can't equip this.

@@ -14,9 +14,6 @@ namespace Content.Server.Electrocution
         public string Description => Loc.GetString("electrocute-command-description");
         public string Help => $"{Command} <uid> <seconds> <damage>";
 
-        [ValidatePrototypeId<StatusEffectPrototype>]
-        public const string ElectrocutionStatusEffect = "Electrocution";
-
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (args.Length < 1)
@@ -34,7 +31,7 @@ namespace Content.Server.Electrocution
                 return;
             }
 
-            if (!_entManager.EntitySysManager.GetEntitySystem<StatusEffectsSystem>().CanApplyEffect(uid.Value, ElectrocutionStatusEffect))
+            if (!_entManager.EntitySysManager.GetEntitySystem<SharedStatusEffectsSystem>().CanApplyEffect(uid.Value, "Electrocution"))
             {
                 shell.WriteError(Loc.GetString("electrocute-command-entity-cannot-be-electrocuted"));
                 return;

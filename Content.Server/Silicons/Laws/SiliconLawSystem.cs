@@ -5,6 +5,7 @@ using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Roles;
 using Content.Server.Station.Systems;
+using Content.Server.StatusEffect;
 using Content.Shared.Actions;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
@@ -35,7 +36,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
@@ -177,7 +178,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         NotifyLawsChanged(uid);
         EnsureEmaggedRole(uid, component);
 
-        _stunSystem.TryParalyze(uid, component.StunTime, true);
+        _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, component.StunTime, true);
 
         if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;

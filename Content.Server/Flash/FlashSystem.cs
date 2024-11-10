@@ -35,7 +35,6 @@ namespace Content.Server.Flash
         [Dependency] private readonly SharedInteractionSystem _interaction = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly StunSystem _stun = default!;
         [Dependency] private readonly TagSystem _tag = default!;
 
         public override void Initialize()
@@ -137,8 +136,7 @@ namespace Content.Server.Flash
             flashable.Duration = flashDuration / 1000f; // TODO: Make this sane...
             Dirty(target, flashable);
 
-            _stun.TrySlowdown(target, TimeSpan.FromSeconds(flashDuration/1000f), true,
-                slowTo, slowTo);
+            // TODO: Flash slowdown
 
             if (displayPopup && user != null && target != user && Exists(user.Value))
             {

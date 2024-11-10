@@ -28,7 +28,7 @@ namespace Content.Server.Bed.Sleep
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+        [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
 
         [ValidatePrototypeId<EntityPrototype>] public const string SleepActionId = "ActionSleep";
 
@@ -55,28 +55,18 @@ namespace Content.Server.Bed.Sleep
         {
             if (args.FellAsleep)
             {
-                // Expiring status effects would remove the components needed for sleeping
-                _statusEffectsSystem.TryRemoveStatusEffect(uid, "Stun");
-                _statusEffectsSystem.TryRemoveStatusEffect(uid, "KnockedDown");
 
-                EnsureComp<StunnedComponent>(uid);
-                EnsureComp<KnockedDownComponent>(uid);
+                // if (TryComp<SleepEmitSoundComponent>(uid, out var sleepSound))
+                // {
+                //     var emitSound = EnsureComp<SpamEmitSoundComponent>(uid);
+                //     emitSound.Sound = sleepSound.Snore;
+                //     emitSound.PlayChance = sleepSound.Chance;
+                //     emitSound.RollInterval = sleepSound.Interval;
+                //     emitSound.PopUp = sleepSound.PopUp;
+                // }
 
-                if (TryComp<SleepEmitSoundComponent>(uid, out var sleepSound))
-                {
-                    var emitSound = EnsureComp<SpamEmitSoundComponent>(uid);
-                    emitSound.Sound = sleepSound.Snore;
-                    emitSound.PlayChance = sleepSound.Chance;
-                    emitSound.RollInterval = sleepSound.Interval;
-                    emitSound.PopUp = sleepSound.PopUp;
-                }
-
-                return;
+                // return;
             }
-
-            RemComp<StunnedComponent>(uid);
-            RemComp<KnockedDownComponent>(uid);
-            RemComp<SpamEmitSoundComponent>(uid);
         }
 
         /// <summary>

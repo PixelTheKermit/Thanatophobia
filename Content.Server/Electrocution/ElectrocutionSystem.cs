@@ -7,6 +7,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.NodeGroups;
+using Content.Server.StatusEffect;
 using Content.Server.Weapons.Melee;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -51,13 +52,9 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedJitteringSystem _jittering = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    private const string StatusEffectKey = "Electrocution";
 
     [ValidatePrototypeId<DamageTypePrototype>]
     private const string DamageType = "Shock";
@@ -408,18 +405,18 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         }
 
         if (!Resolve(uid, ref statusEffects, false) ||
-            !_statusEffects.CanApplyEffect(uid, StatusEffectKey, statusEffects))
+            !_statusEffects.CanApplyEffect(uid, "Electrocution"))
         {
             return false;
         }
 
-        if (!_statusEffects.TryAddStatusEffect<ElectrocutedComponent>(uid, StatusEffectKey, time, refresh, statusEffects))
+        if (_statusEffects.ApplyEffect(uid, "Electrocution", 1, 0, time, refresh) == null)
             return false;
 
         var shouldStun = siemensCoefficient > 0.5f;
 
         if (shouldStun)
-            _stun.TryParalyze(uid, time * ParalyzeTimeMultiplier, refresh, statusEffects);
+            _statusEffects.ApplyEffect(uid, "Paralysis", 1, null, time * ParalyzeTimeMultiplier, refresh);
 
         // TODO: Sparks here.
 

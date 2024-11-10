@@ -1,0 +1,96 @@
+- type: entity
+  id: Stun
+  name: Stun
+  description: You are stunned! You are unable to move around or interact with anything.
+  noSpawn: true
+  components:
+  - type: StatEffect
+    maxStrength: 1
+  - type: PreventMovementEffect
+  - type: PreventUseOfHandsEffect
+  - type: ClearEffectOnCrit
+  - type: ForceSayOnApplyEffect
+  - type: Tag
+    tags:
+    - Stunned
+
+- type: entity
+  id: KnockedDown
+  name: Knocked Down
+  description: You are knocked down! And the ground doesn't taste too good...
+  noSpawn: true
+  components:
+  - type: StatEffect
+    maxStrength: 1
+  - type: ReduceEffectTimeOnInteract
+  - type: AdjustTileFrictionEffect
+  - type: ForcedDownedEffect
+  - type: ClearEffectOnCrit
+  - type: Tag
+    tags:
+    - KnockedDown
+
+- type: entity
+  id: Paralysis
+  name: Paralysis
+  description: You are paralysed! Your body drops down to the floor as you are unable to do anything.
+  noSpawn: true
+  components:
+  - type: StatEffect
+    maxStrength: 1
+  - type: PreventMovementEffect
+  - type: PreventUseOfHandsEffect
+  - type: ClearEffectOnCrit
+  - type: ForceSayOnApplyEffect
+  - type: AdjustTileFrictionEffect
+  - type: ForcedDownedEffect
+  - type: ClearEffectOnCrit
+  - type: Tag
+    tags:
+    - KnockedDown
+    - Stunned
+
+- type: entity
+  id: Sleep
+  name: Sleep
+  description: You're asleep.
+  noSpawn: true
+  components:
+  - type: StatEffect
+    maxStrength: 1
+    isTimed: false
+  - type: PreventMovementEffect
+  - type: PreventUseOfHandsEffect
+  - type: ReduceEffectTimeOnInteract
+  - type: ForceSayOnApplyEffect
+  - type: AdjustTileFrictionEffect
+  - type: ForcedDownedEffect
+  - type: ClearEffectOnCrit
+  - type: BlindnessEffect
+  - type: Tag
+    tags:
+    - KnockedDown
+    - Stunned
+    - Sleep
+
+- type: entity
+  id: ForcedSleep
+  name: Forced Sleep
+  description: You're too tired to wake up. You can hear everything, but cannot react to it.
+  noSpawn: true
+  components:
+  - type: StatEffect
+    maxStrength: 1
+  - type: PreventMovementEffect
+  - type: PreventUseOfHandsEffect
+  - type: ReduceEffectTimeOnInteract
+  - type: ForceSayOnApplyEffect
+  - type: AdjustTileFrictionEffect
+  - type: ForcedDownedEffect
+  - type: ClearEffectOnCrit
+  - type: BlindnessEffect
+  - type: Tag
+    tags:
+    - KnockedDown
+    - Stunned
+    - Sleep

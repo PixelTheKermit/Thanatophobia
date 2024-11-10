@@ -14,7 +14,7 @@ public abstract class SharedGodmodeSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<GodmodeComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
-        SubscribeLocalEvent<GodmodeComponent, BeforeStatusEffectAddedEvent>(OnBeforeStatusEffect);
+        // SubscribeLocalEvent<GodmodeComponent, BeforeStatusEffectAddedEvent>(OnBeforeStatusEffect);
         SubscribeLocalEvent<GodmodeComponent, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
         SubscribeLocalEvent<GodmodeComponent, SlipAttemptEvent>(OnSlipAttempt);
     }
@@ -29,10 +29,10 @@ public abstract class SharedGodmodeSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnBeforeStatusEffect(EntityUid uid, GodmodeComponent component, ref BeforeStatusEffectAddedEvent args)
-    {
-        args.Cancelled = true;
-    }
+    // private void OnBeforeStatusEffect(EntityUid uid, GodmodeComponent component, ref BeforeStatusEffectAddedEvent args)
+    // {
+    //     args.Cancelled = true;
+    // }
 
     private void OnBeforeStaminaDamage(EntityUid uid, GodmodeComponent component, ref BeforeStaminaDamageEvent args)
     {

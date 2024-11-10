@@ -26,6 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Containers;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -40,7 +41,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public const float DamagePitchVariation = SharedMeleeWeaponSystem.DamagePitchVariation;
@@ -83,7 +84,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 {
                     // Wound them
                     Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
-                    _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
+                    _statusEffectsSystem.ApplyEffect(user.Value, "Paralysis", 1, null, TimeSpan.FromSeconds(3f), true);
 
                     // Apply salt to the wound ("Honk!")
                     Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);

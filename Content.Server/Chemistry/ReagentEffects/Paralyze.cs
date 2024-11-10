@@ -1,3 +1,4 @@
+using Content.Server.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
@@ -23,7 +24,7 @@ public sealed partial class Paralyze : ReagentEffect
         var paralyzeTime = ParalyzeTime;
         paralyzeTime *= args.Scale;
 
-        EntitySystem.Get<StunSystem>().TryParalyze(args.SolutionEntity, TimeSpan.FromSeconds(paralyzeTime), Refresh);
+        EntitySystem.Get<StatusEffectsSystem>().ApplyEffect(args.SolutionEntity, "Paralysis", 1, null, TimeSpan.FromSeconds(paralyzeTime), Refresh);
     }
 }
 

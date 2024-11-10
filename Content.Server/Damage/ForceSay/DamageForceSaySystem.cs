@@ -3,6 +3,7 @@ using Content.Shared.Damage.ForceSay;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,7 @@ public sealed class DamageForceSaySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DamageForceSayComponent, StunnedEvent>(OnStunned);
+        SubscribeLocalEvent<DamageForceSayComponent, ForceSayOnApplyEffectEvent>(OnEffectApply);
         SubscribeLocalEvent<DamageForceSayComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         // need to raise after mobthreshold
@@ -83,7 +84,7 @@ public sealed class DamageForceSaySystem : EntitySystem
         AllowNextSpeech(uid);
     }
 
-    private void OnStunned(EntityUid uid, DamageForceSayComponent component, ref StunnedEvent args)
+    private void OnEffectApply(EntityUid uid, DamageForceSayComponent component, ForceSayOnApplyEffectEvent args)
     {
         TryForceSay(uid, component);
     }

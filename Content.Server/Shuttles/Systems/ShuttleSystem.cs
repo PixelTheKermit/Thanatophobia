@@ -3,6 +3,7 @@ using Content.Server.Doors.Systems;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Systems;
+using Content.Server.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Systems;
@@ -43,7 +44,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly StunSystem _stuns = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;

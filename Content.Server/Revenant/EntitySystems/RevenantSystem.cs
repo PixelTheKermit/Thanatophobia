@@ -37,10 +37,10 @@ public sealed partial class RevenantSystem : EntitySystem
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedInteractionSystem _interact = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedStunbatonSystem _stun = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
@@ -58,8 +58,8 @@ public sealed partial class RevenantSystem : EntitySystem
         SubscribeLocalEvent<RevenantComponent, RevenantShopActionEvent>(OnShop);
         SubscribeLocalEvent<RevenantComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<RevenantComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<RevenantComponent, StatusEffectAddedEvent>(OnStatusAdded);
-        SubscribeLocalEvent<RevenantComponent, StatusEffectEndedEvent>(OnStatusEnded);
+        // SubscribeLocalEvent<RevenantComponent, StatusEffectAddedEvent>(OnStatusAdded);
+        // SubscribeLocalEvent<RevenantComponent, StatusEffectEndedEvent>(OnStatusEnded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
 
         InitializeAbilities();
@@ -94,17 +94,17 @@ public sealed partial class RevenantSystem : EntitySystem
         _action.AddAction(uid, ref component.Action, RevenantShopId);
     }
 
-    private void OnStatusAdded(EntityUid uid, RevenantComponent component, StatusEffectAddedEvent args)
-    {
-        if (args.Key == "Stun")
-            _appearance.SetData(uid, RevenantVisuals.Stunned, true);
-    }
+    // private void OnStatusAdded(EntityUid uid, RevenantComponent component, StatusEffectAddedEvent args)
+    // {
+    //     if (args.Key == "Stun")
+    //         _appearance.SetData(uid, RevenantVisuals.Stunned, true);
+    // }
 
-    private void OnStatusEnded(EntityUid uid, RevenantComponent component, StatusEffectEndedEvent args)
-    {
-        if (args.Key == "Stun")
-            _appearance.SetData(uid, RevenantVisuals.Stunned, false);
-    }
+    // private void OnStatusEnded(EntityUid uid, RevenantComponent component, StatusEffectEndedEvent args)
+    // {
+    //     if (args.Key == "Stun")
+    //         _appearance.SetData(uid, RevenantVisuals.Stunned, false);
+    // }
 
     private void OnExamine(EntityUid uid, RevenantComponent component, ExaminedEvent args)
     {
@@ -170,8 +170,8 @@ public sealed partial class RevenantSystem : EntitySystem
 
         ChangeEssenceAmount(uid, abilityCost, component, false);
 
-        _statusEffects.TryAddStatusEffect<CorporealComponent>(uid, "Corporeal", TimeSpan.FromSeconds(debuffs.Y), false);
-        _stun.TryStun(uid, TimeSpan.FromSeconds(debuffs.X), false);
+        _statusEffects.ApplyEffect(uid, "Corporeal", 1, null, TimeSpan.FromSeconds(debuffs.Y), false);
+        _statusEffects.ApplyEffect(uid, "Stun", 1, null, TimeSpan.FromSeconds(debuffs.X), false);
 
         return true;
     }

@@ -10,7 +10,7 @@ namespace Content.Shared.Jittering
     public abstract class SharedJitteringSystem : EntitySystem
     {
         [Dependency] protected readonly IGameTiming GameTiming = default!;
-        [Dependency] protected readonly StatusEffectsSystem StatusEffects = default!;
+        [Dependency] protected readonly SharedStatusEffectsSystem StatusEffects = default!;
 
         public float MaxAmplitude = 300f;
         public float MinAmplitude = 1f;
@@ -46,22 +46,22 @@ namespace Content.Shared.Jittering
         public void DoJitter(EntityUid uid, TimeSpan time, bool refresh, float amplitude = 10f, float frequency = 4f, bool forceValueChange = false,
             StatusEffectsComponent? status = null)
         {
-            if (!Resolve(uid, ref status, false))
-                return;
+            // if (!Resolve(uid, ref status, false))
+            //     return;
 
-            amplitude = Math.Clamp(amplitude, MinAmplitude, MaxAmplitude);
-            frequency = Math.Clamp(frequency, MinFrequency, MaxFrequency);
+            // amplitude = Math.Clamp(amplitude, MinAmplitude, MaxAmplitude);
+            // frequency = Math.Clamp(frequency, MinFrequency, MaxFrequency);
 
-            if (StatusEffects.TryAddStatusEffect<JitteringComponent>(uid, "Jitter", time, refresh, status))
-            {
-                var jittering = EntityManager.GetComponent<JitteringComponent>(uid);
+            // if (StatusEffects.ApplyEffect(uid, "Jitter", 1, amplitude, time, refresh, status) != null)
+            // {
+            //     var jittering = EntityManager.GetComponent<JitteringComponent>(uid);
 
-                if(forceValueChange || jittering.Amplitude < amplitude)
-                    jittering.Amplitude = amplitude;
+            //     if(forceValueChange || jittering.Amplitude < amplitude)
+            //         jittering.Amplitude = amplitude;
 
-                if (forceValueChange || jittering.Frequency < frequency)
-                    jittering.Frequency = frequency;
-            }
+            //     if (forceValueChange || jittering.Frequency < frequency)
+            //         jittering.Frequency = frequency;
+            // }
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Client.StatusEffect;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
@@ -30,6 +31,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -191,7 +193,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (!HasComp<HandsComponent>(target!.Value))
         {
             // or just be able to be shoved over.
-            if (TryComp<StatusEffectsComponent>(target, out var status) && status.AllowedEffects.Contains("KnockedDown"))
+            if (_statusEffectsSystem.CanApplyEffect(target!.Value, "KnockedDown"))
                 return true;
 
             if (Timing.IsFirstTimePredicted && HasComp<MobStateComponent>(target.Value))

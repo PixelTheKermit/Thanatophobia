@@ -18,8 +18,7 @@ public sealed class SlipperySystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
@@ -55,12 +54,12 @@ public sealed class SlipperySystem : EntitySystem
     private bool CanSlip(EntityUid uid, EntityUid toSlip)
     {
         return !_container.IsEntityInContainer(uid)
-                && _statusEffects.CanApplyEffect(toSlip, "Stun"); //Should be KnockedDown instead?
+                && _statusEffectsSystem.CanApplyEffect(toSlip, "Stun"); //Should be KnockedDown instead?
     }
 
     private void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other)
     {
-        if (HasComp<KnockedDownComponent>(other) && !component.SuperSlippery)
+        if (_statusEffectsSystem.HasStatusEffectWithTag(uid, "KnockedDown") && !component.SuperSlippery)
             return;
 
         var attemptEv = new SlipAttemptEvent();
@@ -83,9 +82,9 @@ public sealed class SlipperySystem : EntitySystem
             }
         }
 
-        var playSound = !_statusEffects.HasStatusEffect(other, "KnockedDown");
+        var playSound = !_statusEffectsSystem.HasStatusEffectWithTag(other, "KnockedDown");
 
-        _stun.TryParalyze(other, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+        _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, TimeSpan.FromSeconds(component.ParalyzeTime), true);
 
         // Preventing from playing the slip sound when you are already knocked down.
         if (playSound)

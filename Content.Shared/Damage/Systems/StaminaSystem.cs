@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Rounding;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
@@ -32,7 +33,7 @@ public sealed partial class StaminaSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     /// <summary>
@@ -264,7 +265,7 @@ public sealed partial class StaminaSystem : EntitySystem
         if (oldDamage < slowdownThreshold &&
             component.StaminaDamage > slowdownThreshold)
         {
-            _stunSystem.TrySlowdown(uid, TimeSpan.FromSeconds(3), true, 0.8f, 0.8f);
+            _statusEffectsSystem.ApplyEffect(uid, "StaminaSlowdown", 1, null, TimeSpan.FromSeconds(3), true);
         }
 
         SetStaminaAlert(uid, component);
@@ -363,7 +364,7 @@ public sealed partial class StaminaSystem : EntitySystem
         component.Critical = true;
         component.StaminaDamage = component.CritThreshold;
 
-        _stunSystem.TryParalyze(uid, component.StunTime, true);
+        _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, component.StunTime, true);
 
         // Give them buffer before being able to be re-stunned
         component.NextUpdate = _timing.CurTime + component.StunTime + StamCritBufferTime;

@@ -26,6 +26,7 @@ using Content.Shared.Popups;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Pulling.Events;
 using Content.Shared.Rejuvenate;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
@@ -58,6 +59,7 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly UseDelaySystem _delay = default!;
+        [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
 
         public override void Initialize()
         {
@@ -471,7 +473,7 @@ namespace Content.Shared.Cuffs
 
             var cuffTime = handcuffComponent.CuffTime;
 
-            if (HasComp<StunnedComponent>(target))
+            if (_statusEffectsSystem.HasStatusEffectWithTag(target, "Stunned"))
                 cuffTime = MathF.Max(0.1f, cuffTime - handcuffComponent.StunBonus);
 
             if (HasComp<DisarmProneComponent>(target))

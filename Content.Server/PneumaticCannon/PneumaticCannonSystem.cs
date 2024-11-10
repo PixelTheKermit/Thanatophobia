@@ -1,5 +1,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.StatusEffect;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Server.Weapons.Ranged.Systems;
@@ -20,7 +21,7 @@ public sealed class PneumaticCannonSystem : SharedPneumaticCannonSystem
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly GasTankSystem _gasTank = default!;
     [Dependency] private readonly GunSystem _gun = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
 
     public override void Initialize()
@@ -84,7 +85,7 @@ public sealed class PneumaticCannonSystem : SharedPneumaticCannonSystem
         if (TryComp<StatusEffectsComponent>(args.User, out var status)
             && component.Power == PneumaticCannonPower.High)
         {
-            _stun.TryParalyze(args.User, TimeSpan.FromSeconds(component.HighPowerStunTime), true, status);
+            _statusEffectsSystem.ApplyEffect(args.User, "Paralysis", 1, null, TimeSpan.FromSeconds(component.HighPowerStunTime), true);
             Popup.PopupEntity(Loc.GetString("pneumatic-cannon-component-power-stun",
                 ("cannon", uid)), cannon, args.User);
         }

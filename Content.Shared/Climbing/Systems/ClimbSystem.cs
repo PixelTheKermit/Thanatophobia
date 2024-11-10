@@ -14,6 +14,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Movement.Events;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
@@ -41,7 +42,7 @@ public sealed partial class ClimbSystem : VirtualController
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
     private const string ClimbingFixtureName = "climb";
@@ -475,7 +476,7 @@ public sealed partial class ClimbSystem : VirtualController
 
         _damageableSystem.TryChangeDamage(args.Climber, component.ClimberDamage, origin: args.Climber);
         _damageableSystem.TryChangeDamage(uid, component.TableDamage, origin: args.Climber);
-        _stunSystem.TryParalyze(args.Climber, TimeSpan.FromSeconds(component.StunTime), true);
+        _statusEffectsSystem.ApplyEffect(args.Climber, "Paralysis", 1, null,  TimeSpan.FromSeconds(component.StunTime), true);
 
         // Not shown to the user, since they already get a 'you climb on the glass table' popup
         _popupSystem.PopupEntity(

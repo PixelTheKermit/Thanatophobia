@@ -476,7 +476,7 @@ public abstract partial class SharedBuckleSystem
 
         if (TryComp<MobStateComponent>(buckleUid, out var mobState)
             && _mobState.IsIncapacitated(buckleUid, mobState)
-            || HasComp<KnockedDownComponent>(buckleUid))
+            || StatusEffectsSystem.HasStatusEffectWithTag(buckleUid, "KnockedDown"))
         {
             _standing.Down(buckleUid);
         }

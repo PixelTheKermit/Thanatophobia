@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Doors.Systems;
 
@@ -32,7 +33,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] protected readonly SharedPhysicsSystem PhysicsSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] protected readonly TagSystem Tags = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
@@ -522,7 +523,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             if (door.CrushDamage != null)
                 _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid);
 
-            _stunSystem.TryParalyze(entity, stunTime, true);
+            _statusEffectsSystem.ApplyEffect(entity, "Paralysis", 1, null, stunTime, true);
         }
 
         if (door.CurrentlyCrushing.Count == 0)

@@ -9,6 +9,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Species;
 
@@ -19,10 +20,10 @@ public sealed partial class ReformSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -63,7 +64,8 @@ public sealed partial class ReformSystem : EntitySystem
     {
         // Stun them when they use the action for the amount of reform time.
         if (comp.ShouldStun)
-            _stunSystem.TryStun(uid, TimeSpan.FromSeconds(comp.ReformTime), true);
+            _statusEffectSystem.ApplyEffect(uid, "Stun", 1, null, TimeSpan.FromSeconds(comp.ReformTime), true);
+
         _popupSystem.PopupClient(Loc.GetString(comp.PopupText, ("name", uid)), uid, uid);
 
         // Create a doafter & start it
@@ -89,7 +91,7 @@ public sealed partial class ReformSystem : EntitySystem
             return;
 
         // Spawn a new entity
-        // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent. 
+        // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent.
         var child = Spawn(comp.ReformPrototype, Transform(uid).Coordinates);
 
         // This transfers the mind to the new entity
@@ -105,8 +107,8 @@ public sealed partial class ReformSystem : EntitySystem
         _actionsSystem.RemoveAction(uid, comp.ActionEntity); // Zombies can't reform
     }
 
-    public sealed partial class ReformEvent : InstantActionEvent { } 
-    
+    public sealed partial class ReformEvent : InstantActionEvent { }
+
     [Serializable, NetSerializable]
     public sealed partial class ReformDoAfterEvent : SimpleDoAfterEvent { }
 }

@@ -7,6 +7,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -17,7 +18,7 @@ public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectSystem = default!;
 
     public override void Initialize()
     {
@@ -45,7 +46,7 @@ public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
         component.LastHit = _gameTiming.CurTime;
 
         if (_robustRandom.Prob(component.StunChance))
-            _stun.TryStun(uid, TimeSpan.FromSeconds(component.StunSeconds), true);
+            _statusEffectSystem.ApplyEffect(uid, "Stun", 1, null, TimeSpan.FromSeconds(component.StunSeconds), true);
 
         var damageScale = component.SpeedDamageFactor * speed / component.MinimumSpeed;
 
