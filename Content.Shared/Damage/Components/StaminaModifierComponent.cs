@@ -9,6 +9,8 @@ namespace Content.Shared.Damage.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(StaminaSystem))]
 public sealed partial class StaminaModifierComponent : Component
 {
+    [DataField]
+    public bool AlreadyApplied = false;
     /// <summary>
     /// What to multiply max stamina by.
     /// When added this scales max stamina, but not stamina damags to give you an extra boost of survability.

@@ -5,6 +5,7 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.HealthExaminable;
 using Content.Server.Popups;
+using Content.Server.StatusEffect;
 using Content.Shared.Alert;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -18,6 +19,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Speech.EntitySystems;
+using Content.Shared.StatusEffect;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -33,9 +35,8 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedDrunkSystem _drunkSystem = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
 
@@ -133,8 +134,7 @@ public sealed class BloodstreamSystem : EntitySystem
                 // Apply dizziness as a symptom of bloodloss.
                 // The effect is applied in a way that it will never be cleared without being healthy.
                 // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
-                _drunkSystem.TryApplyDrunkenness(uid, bloodstream.UpdateInterval*2, false);
-                _stutteringSystem.DoStutter(uid, TimeSpan.FromSeconds(bloodstream.UpdateInterval*2), false);
+                _statusEffectsSystem.ApplyEffect(uid, "Bloodloss", 1, null, TimeSpan.FromSeconds(bloodstream.UpdateInterval * 2), StatusEffectApplicationType.UseStrongest);
 
                 // storing the drunk and stutter time so we can remove it independently from other effects additions
                 bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
@@ -144,9 +144,7 @@ public sealed class BloodstreamSystem : EntitySystem
                 // If they're healthy, we'll try and heal some bloodloss instead.
                 _damageableSystem.TryChangeDamage(uid, bloodstream.BloodlossHealDamage * bloodPercentage, true, false);
 
-                // Remove the drunk effect when healthy. Should only remove the amount of drunk and stutter added by low blood level
-                _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime);
-                _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime);
+                _statusEffectsSystem.TryRemoveEffect(uid, "Bloodloss");
                 // Reset the drunk and stutter time to zero
                 bloodstream.StatusTime = 0;
             }

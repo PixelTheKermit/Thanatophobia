@@ -1,4 +1,5 @@
 using Content.Shared.Drugs;
+using Content.Shared.StatusEffect;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
@@ -14,42 +15,72 @@ public sealed class DrugOverlaySystem : EntitySystem
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
 
     private RainbowOverlay _overlay = default!;
-
-    public static string RainbowKey = "SeeingRainbows";
+    private int _stacks = 0;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<SeeingRainbowsComponent, ComponentInit>(OnInit);
+        SubscribeNetworkEvent<ClientStatusEffectOnApplicationEvent>(OnApplyInit);
         SubscribeLocalEvent<SeeingRainbowsComponent, ComponentShutdown>(OnShutdown);
 
-        SubscribeLocalEvent<SeeingRainbowsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<SeeingRainbowsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<SeeingRainbowsComponent, StatusEffectRelayEvent<LocalPlayerAttachedEvent>>(OnPlayerAttached);
+        SubscribeLocalEvent<SeeingRainbowsComponent, StatusEffectRelayEvent<LocalPlayerDetachedEvent>>(OnPlayerDetached);
 
         _overlay = new();
     }
 
-    private void OnPlayerAttached(EntityUid uid, SeeingRainbowsComponent component, LocalPlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, SeeingRainbowsComponent component, StatusEffectRelayEvent<LocalPlayerAttachedEvent> args)
     {
-        _overlayMan.AddOverlay(_overlay);
+        AddOverlay();
     }
 
-    private void OnPlayerDetached(EntityUid uid, SeeingRainbowsComponent component, LocalPlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, SeeingRainbowsComponent component, StatusEffectRelayEvent<LocalPlayerDetachedEvent> args)
     {
-        _overlay.Intoxication = 0;
-        _overlayMan.RemoveOverlay(_overlay);
+        RemoveOverlay();
     }
 
     private void OnInit(EntityUid uid, SeeingRainbowsComponent component, ComponentInit args)
     {
-        if (_player.LocalEntity == uid)
-            _overlayMan.AddOverlay(_overlay);
+        if (TryComp<StatusEffectComponent>(uid, out var statusEffectComp)
+        && statusEffectComp.NetOwner != null
+        && GetEntity(statusEffectComp.NetOwner.Value) == uid)
+            AddOverlay();
+    }
+
+    private void OnApplyInit(ClientStatusEffectOnApplicationEvent args)
+    {
+        if (!HasComp<SeeingRainbowsComponent>(GetEntity(args.Effect)))
+            return;
+
+        if (TryComp<StatusEffectComponent>(GetEntity(args.Effect), out var statusEffectComp)
+        && statusEffectComp.NetOwner != null
+        && GetEntity(statusEffectComp.NetOwner.Value) == _player.LocalEntity)
+            AddOverlay();
     }
 
     private void OnShutdown(EntityUid uid, SeeingRainbowsComponent component, ComponentShutdown args)
     {
-        if (_player.LocalEntity == uid)
+        if (TryComp<StatusEffectComponent>(uid, out var statusEffectComp)
+        && statusEffectComp.NetOwner != null
+        && GetEntity(statusEffectComp.NetOwner.Value) == _player.LocalEntity)
+            RemoveOverlay();
+    }
+
+    private void AddOverlay()
+    {
+        if (_stacks <= 0)
+            _overlayMan.AddOverlay(_overlay);
+
+        _stacks++;
+    }
+
+    private void RemoveOverlay()
+    {
+        _stacks--;
+
+        if (_stacks <= 0)
         {
             _overlay.Intoxication = 0;
             _overlayMan.RemoveOverlay(_overlay);

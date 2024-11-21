@@ -1,6 +1,22 @@
 
 
+using Robust.Shared.Serialization;
+
 namespace Content.Shared.StatusEffect;
+
+/// <summary>
+/// Raised on the owner when the effect is initially inflicted.
+/// </summary>
+public sealed class OwnerStatusEffectOnApply : EntityEventArgs
+{
+    public EntityUid Effect;
+
+    public OwnerStatusEffectOnApply(EntityUid effect)
+    {
+
+        Effect = effect;
+    }
+}
 
 /// <summary>
 /// Raised when the effect is initially inflicted.
@@ -17,7 +33,57 @@ public sealed class StatusEffectOnApplicationEvent : EntityEventArgs
 }
 
 /// <summary>
-/// Raised when the effect is modified.
+/// Raised when the effect wears off on the entity.
+/// </summary>
+public sealed class OwnerOnStatusEffectShutdown : EntityEventArgs
+{
+    public EntityUid Effect;
+
+    public OwnerOnStatusEffectShutdown(EntityUid effect)
+    {
+        Effect = effect;
+    }
+}
+
+/// <summary>
+/// Raised when the effect is being modified.
+/// </summary>
+[ByRefEvent]
+public sealed class StatusEffectModifyEvent : EntityEventArgs
+{
+    public int? Strength;
+    public TimeSpan? Length;
+    public readonly StatusEffectApplicationType ApplyType;
+
+    public StatusEffectModifyEvent(int? strength, TimeSpan? length, StatusEffectApplicationType applyType)
+    {
+        Strength = strength;
+        Length = length;
+        ApplyType = applyType;
+    }
+}
+
+/// <summary>
+/// Raised on the user when the effect is being modified.
+/// </summary>
+[ByRefEvent]
+public sealed class OwnerStatusEffectModifyEvent : EntityEventArgs
+{
+    public EntityUid Effect;
+    public int? Strength;
+    public TimeSpan? Length;
+    public readonly StatusEffectApplicationType ApplyType;
+    public OwnerStatusEffectModifyEvent(EntityUid effect, int? strength, TimeSpan? length, StatusEffectApplicationType applyType)
+    {
+        Effect = effect;
+        Strength = strength;
+        Length = length;
+        ApplyType = applyType;
+    }
+}
+
+/// <summary>
+/// Raised after the effect has been modified.
 /// </summary>
 public sealed class StatusEffectModifiedEvent : EntityEventArgs { }
 
@@ -42,7 +108,7 @@ public sealed class StatusEffectRelayEvent<TEvent> : EntityEventArgs
 }
 
 /// <summary>
-/// For when an effect loses all it's length.
+/// For when an effect expires.
 /// </summary>
 public sealed class StatusEffectTimeoutEvent : EntityEventArgs
 {
@@ -66,6 +132,36 @@ public sealed class StatusEffectActivateEvent : EntityEventArgs
     }
 }
 
+#region Network Events
 
+/// <summary>
+/// Raised when the effect is initially inflicted, and the client needs to know.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class ClientStatusEffectOnApplicationEvent : EntityEventArgs
+{
+    public NetEntity Effect;
+
+    public ClientStatusEffectOnApplicationEvent(NetEntity effect)
+    {
+
+        Effect = effect;
+    }
+}
+
+/// <summary>
+/// Raised after the effect has been modified, and the client needs to know.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class ClientStatusEffectModifiedEvent : EntityEventArgs
+{
+    public NetEntity Effect;
+    public ClientStatusEffectModifiedEvent(NetEntity effect)
+    {
+        Effect = effect;
+    }
+}
+
+#endregion
 
 public sealed class ForceSayOnApplyEffectEvent : EntityEventArgs { }

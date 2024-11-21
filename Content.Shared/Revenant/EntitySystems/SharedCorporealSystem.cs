@@ -4,6 +4,7 @@ using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Revenant.Components;
 using Robust.Shared.Physics.Systems;
+using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Revenant.EntitySystems;
 
@@ -24,40 +25,37 @@ public abstract class SharedCorporealSystem : EntitySystem
 
         SubscribeLocalEvent<CorporealComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<CorporealComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<CorporealComponent, RefreshMovementSpeedModifiersEvent>(OnRefresh);
-    }
-
-    private void OnRefresh(EntityUid uid, CorporealComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        args.ModifySpeed(component.MovementSpeedDebuff, component.MovementSpeedDebuff);
     }
 
     public virtual void OnStartup(EntityUid uid, CorporealComponent component, ComponentStartup args)
     {
-        _appearance.SetData(uid, RevenantVisuals.Corporeal, true);
+        if (!TryComp<StatusEffectComponent>(uid, out var status) || status.Owner == null)
+            return;
 
-        if (TryComp<FixturesComponent>(uid, out var fixtures) && fixtures.FixtureCount >= 1)
+        _appearance.SetData(status.Owner.Value, RevenantVisuals.Corporeal, true);
+
+        if (TryComp<FixturesComponent>(status.Owner.Value, out var fixtures) && fixtures.FixtureCount >= 1)
         {
             var fixture = fixtures.Fixtures.First();
 
-            _physics.SetCollisionMask(uid, fixture.Key, fixture.Value, (int) (CollisionGroup.SmallMobMask | CollisionGroup.GhostImpassable), fixtures);
-            _physics.SetCollisionLayer(uid, fixture.Key, fixture.Value, (int) CollisionGroup.SmallMobLayer, fixtures);
+            _physics.SetCollisionMask(status.Owner.Value, fixture.Key, fixture.Value, (int) (CollisionGroup.SmallMobMask | CollisionGroup.GhostImpassable), fixtures);
+            _physics.SetCollisionLayer(status.Owner.Value, fixture.Key, fixture.Value, (int) CollisionGroup.SmallMobLayer, fixtures);
         }
-        _movement.RefreshMovementSpeedModifiers(uid);
     }
 
     public virtual void OnShutdown(EntityUid uid, CorporealComponent component, ComponentShutdown args)
     {
-        _appearance.SetData(uid, RevenantVisuals.Corporeal, false);
+        if (!TryComp<StatusEffectComponent>(uid, out var status) || status.Owner == null)
+            return;
 
-        if (TryComp<FixturesComponent>(uid, out var fixtures) && fixtures.FixtureCount >= 1)
+        _appearance.SetData(status.Owner.Value, RevenantVisuals.Corporeal, false);
+
+        if (TryComp<FixturesComponent>(status.Owner.Value, out var fixtures) && fixtures.FixtureCount >= 1)
         {
             var fixture = fixtures.Fixtures.First();
 
-            _physics.SetCollisionMask(uid, fixture.Key, fixture.Value, (int) CollisionGroup.GhostImpassable, fixtures);
-            _physics.SetCollisionLayer(uid, fixture.Key, fixture.Value, 0, fixtures);
+            _physics.SetCollisionMask(status.Owner.Value, fixture.Key, fixture.Value, (int) CollisionGroup.GhostImpassable, fixtures);
+            _physics.SetCollisionLayer(status.Owner.Value, fixture.Key, fixture.Value, 0, fixtures);
         }
-        component.MovementSpeedDebuff = 1; //just so we can avoid annoying code elsewhere
-        _movement.RefreshMovementSpeedModifiers(uid);
     }
 }

@@ -27,19 +27,11 @@
     critThreshold: 400
   # immune to space drugs, pax, temporary blindness
   - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
+    whitelist:
+    - Stunnable
+    - Slowdown
     - Electrocution
-    - Drunk
-    - SlurredSpeech
-    - RatvarianLanguage
-    - PressureImmunity
-    - Muted
-    - ForcedSleep
-    - StaminaModifier
+    - Sleep
   - type: MobState
     allowedStates:
     - Alive

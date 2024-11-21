@@ -1,3 +1,4 @@
+using Content.Client.StatusEffect;
 using Content.Shared.Drugs;
 using Content.Shared.StatusEffect;
 using Robust.Client.Graphics;
@@ -5,6 +6,7 @@ using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Serilog;
 
 namespace Content.Client.Drugs;
 
@@ -14,6 +16,7 @@ public sealed class RainbowOverlay : Overlay
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     public override bool RequestScreenTexture => true;
@@ -39,15 +42,23 @@ public sealed class RainbowOverlay : Overlay
         if (playerEntity == null)
             return;
 
-        if (!_entityManager.HasComponent<SeeingRainbowsComponent>(playerEntity)
-            || !_entityManager.TryGetComponent<StatusEffectsComponent>(playerEntity, out var status))
-            return;
-
         var statusSys = _sysMan.GetEntitySystem<StatusEffectsSystem>();
-        if (!statusSys.TryGetTime(playerEntity.Value, DrugOverlaySystem.RainbowKey, out var time, status))
+
+        var timeLeft = 0f;
+        var total = 0;
+
+        foreach (var effect in statusSys.GetStatusEffectsWithComponent<SeeingRainbowsComponent>(playerEntity.Value))
+        {
+            var statusComp = _entityManager.GetComponent<StatusEffectComponent>(effect);
+            timeLeft += (float) Math.Max((statusComp.Length - _timing.CurTime).TotalSeconds, 0);
+            total++;
+        }
+
+        // We cannot divide by 0.
+        if (total <= 0)
             return;
 
-        var timeLeft = (float) (time.Value.Item2 - time.Value.Item1).TotalSeconds;
+        timeLeft /= total;
         Intoxication += (timeLeft - Intoxication) * args.DeltaSeconds / 16f;
     }
 

@@ -54,12 +54,12 @@ public sealed class SlipperySystem : EntitySystem
     private bool CanSlip(EntityUid uid, EntityUid toSlip)
     {
         return !_container.IsEntityInContainer(uid)
-                && _statusEffectsSystem.CanApplyEffect(toSlip, "Stun"); //Should be KnockedDown instead?
+                && _statusEffectsSystem.CanApplyEffectFromCollection(toSlip, "Stunnable"); //Should be KnockedDown instead?
     }
 
     private void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other)
     {
-        if (_statusEffectsSystem.HasStatusEffectWithTag(uid, "KnockedDown") && !component.SuperSlippery)
+        if (_statusEffectsSystem.HasStatusEffectWithTag(other, "KnockedDown") && !component.SuperSlippery)
             return;
 
         var attemptEv = new SlipAttemptEvent();
@@ -84,7 +84,7 @@ public sealed class SlipperySystem : EntitySystem
 
         var playSound = !_statusEffectsSystem.HasStatusEffectWithTag(other, "KnockedDown");
 
-        _statusEffectsSystem.ApplyEffect(uid, "Paralysis", 1, null, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+        _statusEffectsSystem.ApplyEffect(other, "Paralysis", 1, null, TimeSpan.FromSeconds(component.ParalyzeTime), true);
 
         // Preventing from playing the slip sound when you are already knocked down.
         if (playSound)

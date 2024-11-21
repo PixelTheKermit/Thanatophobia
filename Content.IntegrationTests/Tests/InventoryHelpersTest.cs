@@ -18,7 +18,7 @@ namespace Content.IntegrationTests.Tests
   - type: Inventory
   - type: ContainerContainer
   - type: StatusEffects
-    allowed:
+    whitelist:
     - Stun
 
 - type: entity

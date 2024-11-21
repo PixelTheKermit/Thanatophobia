@@ -105,19 +105,17 @@
     Narcotic:
       effects:
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
+        length: 5
+        strength: 1
         type: Add
-        time: 5
-        refresh: false
     Drink:
       effects:
       - !type:GenericStatusEffect
-        key: Muted
-        component: Muted
+        effectId: Muted
+        length: 5
+        strength: 1
         type: Add
-        time: 5
-        refresh: false
   footstepSound:
     collection: FootstepSticky
     params:

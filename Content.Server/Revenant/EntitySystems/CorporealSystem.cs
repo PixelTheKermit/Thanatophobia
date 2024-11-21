@@ -2,6 +2,7 @@
 using Content.Shared.Eye;
 using Content.Shared.Revenant.Components;
 using Content.Shared.Revenant.EntitySystems;
+using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.Revenant.EntitySystems;
@@ -15,11 +16,14 @@ public sealed class CorporealSystem : SharedCorporealSystem
     {
         base.OnStartup(uid, component, args);
 
-        if (TryComp<VisibilityComponent>(uid, out var visibility))
+        if (!TryComp<StatusEffectComponent>(uid, out var status) || status.Owner == null)
+            return;
+
+        if (TryComp<VisibilityComponent>(status.Owner.Value, out var visibility))
         {
-            _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.Ghost, false);
-            _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
-            _visibilitySystem.RefreshVisibility(uid, visibility);
+            _visibilitySystem.RemoveLayer(status.Owner.Value, visibility, (int) VisibilityFlags.Ghost, false);
+            _visibilitySystem.AddLayer(status.Owner.Value, visibility, (int) VisibilityFlags.Normal, false);
+            _visibilitySystem.RefreshVisibility(status.Owner.Value, visibility);
         }
     }
 
@@ -27,11 +31,14 @@ public sealed class CorporealSystem : SharedCorporealSystem
     {
         base.OnShutdown(uid, component, args);
 
-        if (TryComp<VisibilityComponent>(uid, out var visibility) && _ticker.RunLevel != GameRunLevel.PostRound)
+        if (!TryComp<StatusEffectComponent>(uid, out var status) || status.Owner == null)
+            return;
+
+        if (TryComp<VisibilityComponent>(status.Owner.Value, out var visibility) && _ticker.RunLevel != GameRunLevel.PostRound)
         {
-            _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.Ghost, false);
-            _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
-            _visibilitySystem.RefreshVisibility(uid, visibility);
+            _visibilitySystem.AddLayer(status.Owner.Value, visibility, (int) VisibilityFlags.Ghost, false);
+            _visibilitySystem.RemoveLayer(status.Owner.Value, visibility, (int) VisibilityFlags.Normal, false);
+            _visibilitySystem.RefreshVisibility(status.Owner.Value, visibility);
         }
     }
 }

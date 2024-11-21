@@ -58,8 +58,8 @@ public sealed partial class RevenantSystem : EntitySystem
         SubscribeLocalEvent<RevenantComponent, RevenantShopActionEvent>(OnShop);
         SubscribeLocalEvent<RevenantComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<RevenantComponent, ExaminedEvent>(OnExamine);
-        // SubscribeLocalEvent<RevenantComponent, StatusEffectAddedEvent>(OnStatusAdded);
-        // SubscribeLocalEvent<RevenantComponent, StatusEffectEndedEvent>(OnStatusEnded);
+        SubscribeLocalEvent<RevenantComponent, OwnerStatusEffectOnApply>(OnStatusAdded);
+        SubscribeLocalEvent<RevenantComponent, OwnerOnStatusEffectShutdown>(OnStatusEnded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
 
         InitializeAbilities();
@@ -94,17 +94,17 @@ public sealed partial class RevenantSystem : EntitySystem
         _action.AddAction(uid, ref component.Action, RevenantShopId);
     }
 
-    // private void OnStatusAdded(EntityUid uid, RevenantComponent component, StatusEffectAddedEvent args)
-    // {
-    //     if (args.Key == "Stun")
-    //         _appearance.SetData(uid, RevenantVisuals.Stunned, true);
-    // }
+    private void OnStatusAdded(EntityUid uid, RevenantComponent component, OwnerStatusEffectOnApply args)
+    {
+        if (_statusEffects.HasStatusEffectWithTag(uid, "Stun"))
+            _appearance.SetData(uid, RevenantVisuals.Stunned, true);
+    }
 
-    // private void OnStatusEnded(EntityUid uid, RevenantComponent component, StatusEffectEndedEvent args)
-    // {
-    //     if (args.Key == "Stun")
-    //         _appearance.SetData(uid, RevenantVisuals.Stunned, false);
-    // }
+    private void OnStatusEnded(EntityUid uid, RevenantComponent component, OwnerOnStatusEffectShutdown args)
+    {
+        if (!_statusEffects.HasStatusEffectWithTag(uid, "Stun"))
+            _appearance.SetData(uid, RevenantVisuals.Stunned, false);
+    }
 
     private void OnExamine(EntityUid uid, RevenantComponent component, ExaminedEvent args)
     {
@@ -117,7 +117,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
     private void OnDamage(EntityUid uid, RevenantComponent component, DamageChangedEvent args)
     {
-        if (!HasComp<CorporealComponent>(uid) || args.DamageDelta == null)
+        if (!_statusEffects.HasStatusEffect(uid, "Corporeal") || args.DamageDelta == null)
             return;
 
         var essenceDamage = args.DamageDelta.GetTotal().Float() * component.DamageToEssenceCoefficient * -1;

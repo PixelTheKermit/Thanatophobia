@@ -3,4 +3,5 @@
 [RegisterComponent]
 public sealed partial class PressureImmunityComponent : Component
 {
+    public bool AlreadyApplied = false;
 }

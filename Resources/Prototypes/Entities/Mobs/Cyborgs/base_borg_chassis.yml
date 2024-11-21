@@ -122,10 +122,8 @@
         name: power-cell-slot-component-slot-name-default
   - type: Body
   - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
+    whitelist:
+    - Stunnable
   - type: TypingIndicator
     proto: robot
   - type: Speech

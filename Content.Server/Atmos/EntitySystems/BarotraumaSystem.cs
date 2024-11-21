@@ -8,6 +8,7 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.StatusEffect;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
@@ -30,23 +31,35 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureProtectionComponent, ComponentInit>(OnUpdateResistance);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentRemove>(OnUpdateResistance);
 
-            SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
+            SubscribeLocalEvent<PressureImmunityComponent, StatusEffectModifiedEvent>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
         }
 
-        private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
+        private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, StatusEffectModifiedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(uid, out var barotrauma))
+            if (pressureImmunity.AlreadyApplied)
+                return;
+
+            if (!TryComp<StatusEffectComponent>(uid, out var statusEffect) || statusEffect.Owner == null)
+                return;
+
+            if (TryComp<BarotraumaComponent>(statusEffect.Owner.Value, out var barotrauma))
             {
-                barotrauma.HasImmunity = true;
+                barotrauma.ImmunityValue += 1;
             }
         }
 
         private void OnPressureImmuneRemove(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentRemove args)
         {
-            if (TryComp<BarotraumaComponent>(uid, out var barotrauma))
+            if (!pressureImmunity.AlreadyApplied)
+                return;
+
+            if (!TryComp<StatusEffectComponent>(uid, out var statusEffect) || statusEffect.Owner == null)
+                return;
+
+            if (TryComp<BarotraumaComponent>(statusEffect.Owner.Value, out var barotrauma))
             {
-                barotrauma.HasImmunity = false;
+                barotrauma.ImmunityValue -= 1;
             }
         }
 

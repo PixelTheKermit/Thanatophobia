@@ -52,7 +52,6 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedJitteringSystem _jittering = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
@@ -64,12 +63,8 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     private const float RecursiveTimeMultiplier = 0.8f;
 
     private const float ParalyzeTimeMultiplier = 1f;
-
-    private const float StutteringTimeMultiplier = 1.5f;
-
-    private const float JitterTimeMultiplier = 0.75f;
     private const float JitterAmplitude = 80f;
-    private const float JitterFrequency = 8f;
+    private const float JitterFrequency = 24f;
 
     public override void Initialize()
     {
@@ -410,7 +405,8 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             return false;
         }
 
-        if (_statusEffects.ApplyEffect(uid, "Electrocution", 1, 0, time, refresh) == null)
+        var effect = _statusEffects.ApplyEffect(uid, "Electrocution", 1, null, time, refresh);
+        if (effect == null)
             return false;
 
         var shouldStun = siemensCoefficient > 0.5f;
@@ -432,8 +428,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             }
         }
 
-        _stuttering.DoStutter(uid, time * StutteringTimeMultiplier, refresh, statusEffects);
-        _jittering.DoJitter(uid, time * JitterTimeMultiplier, refresh, JitterAmplitude, JitterFrequency, true, statusEffects);
+        _jittering.DoJitterOnEffect(effect.Value, JitterAmplitude, JitterFrequency);
 
         _popup.PopupEntity(Loc.GetString("electrocuted-component-mob-shocked-popup-player"), uid, uid);
 

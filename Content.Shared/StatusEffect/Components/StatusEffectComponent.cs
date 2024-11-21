@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.StatusEffect;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedStatusEffectsSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedStatusEffectsSystem))]
 public sealed partial class StatusEffectComponent : Component
 {
     /// <summary>
@@ -24,6 +24,13 @@ public sealed partial class StatusEffectComponent : Component
     [DataField]
     public new EntityUid? Owner;
 
+    /// <summary>
+    /// The owner of the effect.
+    /// Yes, I know this makes a conflict, but owner is deprecated anyways!
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public NetEntity? NetOwner;
+
     #region Timer
 
     /// <summary>
@@ -38,7 +45,10 @@ public sealed partial class StatusEffectComponent : Component
     [DataField("defaultLength")]
     public float DefaultLength = 0f;
 
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
+    public TimeSpan AppliedTime = TimeSpan.Zero;
+
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan Length = TimeSpan.Zero;
 
     #endregion

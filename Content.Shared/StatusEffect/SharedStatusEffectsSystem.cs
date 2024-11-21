@@ -1,6 +1,7 @@
 using System.Linq;
-using Content.Shared._ArcheCrawl.CCVar;
+using Content.Server.Bed.Sleep;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Hands;
@@ -12,6 +13,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Speech;
 using Content.Shared.Standing;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Tag;
@@ -20,6 +22,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -36,6 +39,8 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
     [Dependency] protected readonly SharedAudioSystem AudioSystem = default!;
     [Dependency] protected readonly StandingStateSystem StandingStateSystem = default!;
     [Dependency] protected readonly BlindableSystem BlindableSystem = default!;
+    [Dependency] protected readonly MovementSpeedModifierSystem MovementSpeedModifierSystem = default!;
+    [Dependency] protected readonly AlertsSystem AlertsSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!;
@@ -48,7 +53,8 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<StatusEffectsComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<StatusEffectComponent, ComponentStartup>(OnEffectStartup);
+        SubscribeLocalEvent<StatusEffectComponent, MapInitEvent>(OnEffectStartup);
+        SubscribeLocalEvent<StatusEffectComponent, ComponentShutdown>(OnEffectShutdown);
 
         // Event relays down here
         SubscribeLocalEvent<StatusEffectsComponent, MeleeHitEvent>(RelayEvent);
@@ -58,8 +64,10 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         SubscribeLocalEvent<StatusEffectsComponent, GetStatusIconsEvent>(RefRelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, TileFrictionEvent>(RefRelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, InteractHandEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, ChangeDirectionAttemptEvent>(RelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, UpdateCanMoveEvent>(RelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, StatusEffectModifiedEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, StatusEffectOnApplicationEvent>(RelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, MobStateChangedEvent>(RelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, CanSeeAttemptEvent>(RefRelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, InteractionAttemptEvent>(RelayEvent);
@@ -70,6 +78,13 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         SubscribeLocalEvent<StatusEffectsComponent, PickupAttemptEvent>(RelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, IsEquippingAttemptEvent>(RelayEvent);
         SubscribeLocalEvent<StatusEffectsComponent, IsUnequippingAttemptEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, TryWakeUpEv>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, RefreshMovementSpeedModifiersEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, LocalPlayerAttachedEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, LocalPlayerDetachedEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, SpeakAttemptEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, ScreamActionEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, AlertEffectGoneEv>(RelayEvent);
 
         InitializeActivation();
         InitializeEffects();
@@ -79,6 +94,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
     /// <summary>
     /// The entire stat effect economy will collapse without this.
     /// </summary>
+
     private void OnStartup(EntityUid uid, StatusEffectsComponent comp, ComponentStartup args)
     {
         comp.StatusContainer = _container.EnsureContainer<Container>(uid, comp.StatusContainerId);
@@ -103,9 +119,15 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         }
     }
 
-    private void OnEffectStartup(EntityUid uid, StatusEffectComponent comp, ComponentStartup args)
+    private void OnEffectStartup(EntityUid uid, StatusEffectComponent comp, MapInitEvent args)
     {
         comp.Length = Timing.CurTime + TimeSpan.FromSeconds(comp.DefaultLength);
+    }
+
+    private void OnEffectShutdown(EntityUid uid, StatusEffectComponent comp, ComponentShutdown args)
+    {
+        if (comp.Owner != null)
+            RaiseLocalEvent(comp.Owner.Value, new OwnerOnStatusEffectShutdown(uid));
     }
 
     public override void Update(float frameTime)
@@ -121,7 +143,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
             var args = new StatusEffectUpdateEvent();
             if (comp.NextActivation < curTime)
             {
-                comp.NextActivation = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ACCCVars.StatusEffectUpdateInterval));
+                comp.NextActivation = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(StatusEffectsCCVars.StatusEffectUpdateInterval));
                 RelayEvent(uid, comp, args);
             }
         }
@@ -149,7 +171,8 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         int? newStrength = null,
         TimeSpan? newLength = null,
         StatusEffectApplicationType applyType = StatusEffectApplicationType.Add,
-        StatusEffectsComponent? comp = null)
+        StatusEffectsComponent? comp = null,
+        bool dirty = true)
     {
         if (!Resolve(uid, ref comp))
             return null;
@@ -168,23 +191,28 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
 
         if (TryGetStatusEffect(uid, effect, out var storedEffect, comp))
         {
-            ModifyEffect(storedEffect!.Value, newStrength, newLength, applyType);
+            ModifyEffect(storedEffect!.Value, newStrength, newLength, applyType, dirty: dirty);
             return storedEffect;
         }
 
         var effectEnt = Spawn(effect, Transform(uid).Coordinates);
+        _container.Insert(effectEnt, comp.StatusContainer);
+
         EnsureComp<StatusEffectComponent>(effectEnt).Owner = uid;
-        ModifyEffect(effectEnt, newStrength ?? initialStrength, newLength, StatusEffectApplicationType.Override);
+        EnsureComp<StatusEffectComponent>(effectEnt).NetOwner = GetNetEntity(uid);
+        EnsureComp<StatusEffectComponent>(effectEnt).AppliedTime = Timing.CurTime;
+        ModifyEffect(effectEnt, newStrength ?? initialStrength, newLength, StatusEffectApplicationType.Override, dirty: dirty);
 
         RaiseLocalEvent(effectEnt, new StatusEffectOnApplicationEvent(uid));
+        RaiseLocalEvent(uid, new OwnerStatusEffectOnApply(effectEnt));
 
-        _container.Insert(effectEnt, comp.StatusContainer);
+        RaiseNetworkEvent(new ClientStatusEffectOnApplicationEvent(GetNetEntity(effectEnt)));
 
         return effectEnt;
     }
 
     /// <summary>
-    /// For legacy code. Shouldn't be used otherwise.
+    /// For legacy code. Shouldn't be used otherwise. (watch me break this rule.)
     /// </summary>
     public EntityUid? ApplyEffect(
         EntityUid uid,
@@ -192,11 +220,12 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         int initialStrength = 1,
         int? newStrength = null,
         TimeSpan? newLength = null,
-        bool refresh = false)
+        bool refresh = false,
+        bool dirty = true)
     {
         if (refresh)
-            return ApplyEffect(uid, effect, initialStrength, newStrength, newLength, StatusEffectApplicationType.Override);
-        return ApplyEffect(uid, effect, initialStrength, newStrength, newLength, StatusEffectApplicationType.Add);
+            return ApplyEffect(uid, effect, initialStrength, newStrength, newLength, StatusEffectApplicationType.Override, dirty: dirty);
+        return ApplyEffect(uid, effect, initialStrength, newStrength, newLength, StatusEffectApplicationType.Add, dirty: dirty);
     }
 
     /// <summary>
@@ -234,28 +263,66 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
         int? newStrength = null,
         TimeSpan? newLength = null,
         StatusEffectApplicationType applyType = StatusEffectApplicationType.Override,
-        StatusEffectComponent? comp = null)
+        StatusEffectComponent? comp = null,
+        bool dirty = true)
     {
         if (!Resolve(uid, ref comp))
             return;
 
+        var effectEv = new StatusEffectModifyEvent(newStrength, newLength, applyType);
+        RaiseLocalEvent(uid, ref effectEv);
+
+        newStrength = effectEv.Strength;
+        newLength = effectEv.Length;
+
+        if (comp.Owner != null)
+        {
+            var ownerEv = new OwnerStatusEffectModifyEvent(uid, newStrength, newLength, applyType);
+            RaiseLocalEvent(comp.Owner.Value, ref ownerEv);
+
+            newStrength = ownerEv.Strength;
+            newLength = ownerEv.Length;
+        }
+
         switch (applyType)
         {
             case StatusEffectApplicationType.Add:
-                comp.OverallStrength = Math.Clamp(comp.OverallStrength + (newStrength ?? 0), 0, comp.MaxStrength);
+                if (comp.MaxStrength >= 0)
+                    comp.OverallStrength = Math.Clamp(comp.OverallStrength + (newStrength ?? 0), 0, comp.MaxStrength);
+                else
+                    comp.OverallStrength = comp.OverallStrength + (newStrength ?? 0);
                 comp.Length += newLength ?? TimeSpan.Zero;
                 break;
             case StatusEffectApplicationType.UseStrongest:
-                comp.OverallStrength = Math.Clamp(newStrength ?? 0, comp.OverallStrength, comp.MaxStrength);
+                if (comp.MaxStrength >= 0 && comp.MaxStrength >= comp.OverallStrength)
+                    comp.OverallStrength = Math.Clamp(newStrength ?? 0, comp.OverallStrength, comp.MaxStrength);
+                else if (comp.MaxStrength < 0)
+                    comp.OverallStrength = Math.Max(newStrength ?? 0, comp.OverallStrength);
+                comp.Length = MathHelper.Max((Timing.CurTime + newLength) ?? comp.Length, comp.Length);
+                break;
+            case StatusEffectApplicationType.UseStrongestAddTime:
+                if (comp.MaxStrength >= 0 && comp.MaxStrength >= comp.OverallStrength)
+                    comp.OverallStrength = Math.Clamp(newStrength ?? 0, comp.OverallStrength, comp.MaxStrength);
+                else if (comp.MaxStrength < 0)
+                    comp.OverallStrength = Math.Max(newStrength ?? 0, comp.OverallStrength);
                 comp.Length += (newLength ?? TimeSpan.Zero) / (1 / (comp.OverallStrength - (newStrength ?? comp.OverallStrength) + 1));
                 break;
             case StatusEffectApplicationType.Override:
-                comp.OverallStrength = Math.Clamp(newStrength ?? comp.OverallStrength, 0, comp.MaxStrength);
-                comp.Length = newLength ?? comp.Length;
+                if (comp.MaxStrength >= 0)
+                    comp.OverallStrength = Math.Clamp(newStrength ?? comp.OverallStrength, 0, comp.MaxStrength);
+                else
+                    comp.OverallStrength = newStrength ?? comp.OverallStrength;
+                comp.Length = (Timing.CurTime + newLength) ?? comp.Length;
                 break;
         }
 
         RaiseLocalEvent(uid, new StatusEffectModifiedEvent());
+
+        if (dirty)
+        {
+            Dirty(uid, comp);
+            RaiseNetworkEvent(new ClientStatusEffectModifiedEvent(GetNetEntity(uid)));
+        }
 
         if (comp.OverallStrength <= 0)
             QueueDel(uid);
@@ -284,6 +351,45 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
 
         return true;
     }
+
+    public bool CanApplyEffectFromCollection(EntityUid uid, string collection, StatusEffectsComponent? comp = null)
+    {
+        // Cannot apply effects if the entity cannot have effects in the first place!
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        // If the collection isn't on our *existing* whitelist, nuh uh!
+        if (comp.Whitelist.Count > 0 && !comp.Whitelist.Contains(collection))
+            return false;
+
+        // If the collection is on our blacklist, nuh uh!
+        if (comp.Blacklist.Contains(collection))
+            return false;
+
+        return true;
+    }
+
+    public List<EntityUid> GetStatusEffectsWithComponent<TComp>(EntityUid affected, StatusEffectsComponent? comp = null) where TComp : Component
+    {
+        var statusEffects = new List<EntityUid>();
+
+        if (!Resolve(affected, ref comp))
+            return statusEffects;
+
+        if (comp.StatusContainer == null)
+            return statusEffects;
+
+        foreach (var storedEffect in comp.StatusContainer.ContainedEntities)
+        {
+            if (TryComp<StatusEffectComponent>(storedEffect, out var effectComp)
+            && effectComp.LifeStage <= ComponentLifeStage.Running
+            && HasComp<TComp>(storedEffect))
+                statusEffects.Add(storedEffect);
+        }
+
+        return statusEffects;
+    }
+
     /// <summary>
     /// Does the entity have the specified effect?
     /// </summary>
@@ -310,8 +416,10 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
 
         foreach (var storedEffect in comp.StatusContainer.ContainedEntities)
         {
-            if (HasComp<StatusEffectComponent>(storedEffect)
-            && TryComp<MetaDataComponent>(storedEffect, out var metaData) && metaData.EntityPrototype == statusPrototype)
+            if (TryComp<StatusEffectComponent>(storedEffect, out var effectComp)
+            && effectComp.LifeStage <= ComponentLifeStage.Running
+            && TryComp<MetaDataComponent>(storedEffect, out var metaData)
+            && metaData.EntityPrototype == statusPrototype)
                 return true;
         }
 
@@ -343,7 +451,9 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
 
         foreach (var storedEffect in comp.StatusContainer.ContainedEntities)
         {
-            if (HasComp<StatusEffectComponent>(storedEffect) && _tagSystem.HasTag(uid, tag))
+            if (TryComp<StatusEffectComponent>(storedEffect, out var effectComp)
+            && effectComp.LifeStage <= ComponentLifeStage.Running
+            && _tagSystem.HasTag(uid, tag))
                 return true;
         }
 
@@ -369,7 +479,8 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
 
         foreach (var storedEffect in comp.StatusContainer.ContainedEntities)
         {
-            if (TryComp<StatusEffectComponent>(storedEffect, out var statusEffectComp)
+            if (TryComp<StatusEffectComponent>(storedEffect, out var effectComp)
+            && effectComp.LifeStage <= ComponentLifeStage.Running
             && TryComp<MetaDataComponent>(storedEffect, out var metaData) && metaData.EntityPrototype == statusPrototype)
             {
                 effectUid = storedEffect;
@@ -387,7 +498,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
     /// <summary>
     /// Used to relay an event that an entity recieved into it's effects so that the event can be modified by the effects.
     /// </summary>
-    private void RelayEvent<TEvent>(EntityUid uid, StatusEffectsComponent comp, TEvent args)
+    protected void RelayEvent<TEvent>(EntityUid uid, StatusEffectsComponent comp, TEvent args)
     {
         var relayedArgs = new StatusEffectRelayEvent<TEvent>(args, uid);
 
@@ -406,7 +517,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
     /// <param name="uid"></param>
     /// <param name="comp"></param>
     /// <param name="args"></param>
-    private void RelayPureEvent(EntityUid uid, StatusEffectsComponent comp, object args)
+    protected void RelayPureEvent(EntityUid uid, StatusEffectsComponent comp, object args)
     {
         if (comp.StatusContainer == null)
             return;
@@ -420,7 +531,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
     /// <summary>
     /// A ref version of RelayEvent. Does the same thing as it.
     /// </summary>
-    private void RefRelayEvent<TEvent>(EntityUid uid, StatusEffectsComponent comp, ref TEvent args)
+    protected void RefRelayEvent<TEvent>(EntityUid uid, StatusEffectsComponent comp, ref TEvent args)
     {
         var relayedArgs = new StatusEffectRelayEvent<TEvent>(args, uid);
 
@@ -436,7 +547,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
     /// <summary>
     /// A ref version of RelayPureEvent. Does the same thing as it.
     /// </summary>
-    private void RefRelayPureEvent(EntityUid uid, StatusEffectsComponent comp, ref object args)
+    protected void RefRelayPureEvent(EntityUid uid, StatusEffectsComponent comp, ref object args)
     {
         if (comp.StatusContainer == null)
             return;
@@ -453,6 +564,7 @@ public abstract partial class SharedStatusEffectsSystem : EntitySystem
 public enum StatusEffectApplicationType
 {
     Add, // Add both.
-    UseStrongest, // Use the strongest effect, then add more time. Weaken the length of the time if applying a weaker effect.
+    UseStrongest, // Use the stronger and longer effect.
+    UseStrongestAddTime, // Use the strongest effect, then add more time. Weaken the length of the time if applying a weaker effect.
     Override, // Override all.
 }

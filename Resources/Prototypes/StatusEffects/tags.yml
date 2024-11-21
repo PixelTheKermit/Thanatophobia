@@ -1,0 +1,8 @@
+- type: Tag
+  id: Stunned
+
+- type: Tag
+  id: KnockedDown
+
+- type: Tag
+  id: Sleep

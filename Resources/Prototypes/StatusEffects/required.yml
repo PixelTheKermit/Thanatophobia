@@ -1,42 +1,49 @@
+# Stores all the "required" effects. Most of these are hardcoded.
+# TODO: Unhardcode it. Then organise these into seperate files.
+
 - type: entity
   id: Stun
-  name: Stun
+  name: stunned
   description: You are stunned! You are unable to move around or interact with anything.
   noSpawn: true
   components:
-  - type: StatEffect
+  - type: StatusEffect
     maxStrength: 1
   - type: PreventMovementEffect
   - type: PreventUseOfHandsEffect
   - type: ClearEffectOnCrit
   - type: ForceSayOnApplyEffect
+  - type: AlertEffect
+    alert: Stun
   - type: Tag
     tags:
     - Stunned
 
 - type: entity
   id: KnockedDown
-  name: Knocked Down
+  name: knocked down
   description: You are knocked down! And the ground doesn't taste too good...
   noSpawn: true
   components:
-  - type: StatEffect
+  - type: StatusEffect
     maxStrength: 1
   - type: ReduceEffectTimeOnInteract
   - type: AdjustTileFrictionEffect
   - type: ForcedDownedEffect
   - type: ClearEffectOnCrit
+  - type: AlertEffect
+    alert: Stun
   - type: Tag
     tags:
     - KnockedDown
 
 - type: entity
   id: Paralysis
-  name: Paralysis
+  name: paralysis
   description: You are paralysed! Your body drops down to the floor as you are unable to do anything.
   noSpawn: true
   components:
-  - type: StatEffect
+  - type: StatusEffect
     maxStrength: 1
   - type: PreventMovementEffect
   - type: PreventUseOfHandsEffect
@@ -44,53 +51,209 @@
   - type: ForceSayOnApplyEffect
   - type: AdjustTileFrictionEffect
   - type: ForcedDownedEffect
-  - type: ClearEffectOnCrit
+  - type: AlertEffect
+    alert: Stun
   - type: Tag
     tags:
     - KnockedDown
     - Stunned
-
-- type: entity
-  id: Sleep
-  name: Sleep
-  description: You're asleep.
-  noSpawn: true
-  components:
-  - type: StatEffect
-    maxStrength: 1
-    isTimed: false
-  - type: PreventMovementEffect
-  - type: PreventUseOfHandsEffect
-  - type: ReduceEffectTimeOnInteract
-  - type: ForceSayOnApplyEffect
-  - type: AdjustTileFrictionEffect
-  - type: ForcedDownedEffect
-  - type: ClearEffectOnCrit
-  - type: BlindnessEffect
-  - type: Tag
-    tags:
-    - KnockedDown
-    - Stunned
-    - Sleep
 
 - type: entity
   id: ForcedSleep
-  name: Forced Sleep
-  description: You're too tired to wake up. You can hear everything, but cannot react to it.
+  name: forced sleep
+  description: Due to one way or another, you have fallen asleep. You will be unable to wake up until this effect ends.
   noSpawn: true
   components:
-  - type: StatEffect
+  - type: StatusEffect
     maxStrength: 1
-  - type: PreventMovementEffect
-  - type: PreventUseOfHandsEffect
-  - type: ReduceEffectTimeOnInteract
-  - type: ForceSayOnApplyEffect
-  - type: AdjustTileFrictionEffect
-  - type: ForcedDownedEffect
-  - type: ClearEffectOnCrit
-  - type: BlindnessEffect
+  - type: ForceSleepingEffect
   - type: Tag
     tags:
     - KnockedDown
     - Stunned
     - Sleep
+
+- type: entity
+  id: NarcolepsySleep
+  parent: ForcedSleep
+  name: narcoleptic sleep
+  description: Due to your narcolepsy, you have fallen asleep. You will be unable to wake up until this effect ends.
+  noSpawn: true
+
+- type: entity
+  id: TemporaryBlindness
+  name: temporary blindness
+  description: You're blind. Don't panic! It's only for a moment.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: BlindnessEffect
+
+- type: entity
+  id: Slowdown
+  name: slowdown
+  description: You're slowed down.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 5
+  - type: AdjustSpeedEffect
+    walkingSpeed: 0.7
+    sprintingSpeed: 0.7
+
+- type: entity
+  id: StaminaSlowdown
+  parent: Slowdown
+  name: stamina slowdown
+  description: Your lack in energy makes you very slow.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: AdjustSpeedEffect
+    walkingSpeed: 0.5
+    sprintingSpeed: 0.5
+
+- type: entity
+  id: VomitSlowdown
+  parent: Slowdown
+  name: sick slowdown
+  description: Bleh! You feel weakened after puking your guts out.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: AdjustSpeedEffect
+    walkingSpeed: 0.5
+    sprintingSpeed: 0.5
+
+- type: entity
+  id: FlashSlowdown
+  parent: Slowdown
+  name: flash slowdown
+  description: Your ears ring, your eyes hurt, and you're stumbling around.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: AdjustSpeedEffect
+    walkingSpeed: 0.5
+    sprintingSpeed: 0.5
+
+- type: entity
+  id: Electrocution
+  name: electrocution
+  description: At least you're not a water type.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: Jittering
+  - type: StutteringAccent
+
+- type: entity
+  id: Jittering
+  name: jittering
+  description: You feel jittery.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: Jittering
+
+- type: entity
+  id: Stutter
+  name: stutter
+  description: It's hard to say anything.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: StutteringAccent
+
+- type: entity
+  id: StaminaModifier
+  name: energetic
+  description: Your stamina crit threshold increased.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: StaminaModifier
+
+- type: entity
+  id: PressureImmunity
+  name: pressure immunity
+  description: You're immune to significant changes in pressure.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: PressureImmunity
+
+- type: entity
+  id: SeeingRainbows
+  name: seeing rainbows
+  description: I CAN SEE EVERYTHING!
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: SeeingRainbows
+
+- type: entity
+  id: RatvarianLanguage
+  name: ratvarian language
+  description: ...who's been putting rats in my variables?
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: RatvarianLanguage
+
+- type: entity
+  id: Drunk
+  name: drunk
+  description: Iham' nauhbht the dtrauhh nk oene here! you8 areae!
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: Drunk
+  - type: SlurredAccent
+
+- type: entity
+  id: Bloodloss
+  name: bloodloss
+  description: Oh, you're looking rather pale! And weak too I guess.
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: StutteringAccent
+  - type: SlurredAccent
+
+- type: entity
+  id: Corporeal
+  name: corporeal
+  description: Boo! Did I scare you?
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: Corporeal
+  - type: AdjustSpeedEffect
+    walkingSpeed: 0.66
+    sprintingSpeed: 0.66
+
+- type: entity
+  id: Pacified
+  name: pacified
+  description: 'You feel like you cannot hurt even a fly. Of course, you have other "indirect" ways of causing harm.'
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  # TODO: Pacified effect. CBF to do it now.
+  - type: PreventUseOfHandsEffect

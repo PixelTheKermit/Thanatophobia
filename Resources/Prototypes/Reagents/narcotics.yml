@@ -29,17 +29,22 @@
         walkSpeedModifier: 1.35
         sprintSpeedModifier: 1.35
       - !type:GenericStatusEffect
-        key: Stutter
-        component: StutteringAccent
+        effectId: Stutter
+        length: 2
+        strength: 1
       - !type:Jitter
       - !type:GenericStatusEffect
-        key: Stun
-        time: 3
-        type: Remove
+        effectId: Stun
+        length: -3
+        type: Add
       - !type:GenericStatusEffect
-        key: KnockedDown
-        time: 3
-        type: Remove
+        effectId: KnockedDown
+        length: -3
+        type: Add
+      - !type:GenericStatusEffect
+        effectId: Paralysis
+        length: -3
+        type: Add
     Medicine:
       effects:
       - !type:ResetNarcolepsy
@@ -73,13 +78,17 @@
             Asphyxiation: 2
       - !type:Jitter
       - !type:GenericStatusEffect
-        key: Stun
-        time: 1
-        type: Remove
+        effectId: Stun
+        length: -1
+        type: Add
       - !type:GenericStatusEffect
-        key: KnockedDown
-        time: 1
-        type: Remove
+        effectId: KnockedDown
+        length: -1
+        type: Add
+      - !type:GenericStatusEffect
+        effectId: Paralysis
+        length: -1
+        type: Add
       - !type:PopupMessage
         visualType: Medium
         messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
@@ -117,17 +126,20 @@
           types:
             Poison: 1
       - !type:GenericStatusEffect
-        key: Stun
-        time: 3
-        type: Remove
+        effectId: Stun
+        length: -3
+        type: Add
       - !type:GenericStatusEffect
-        key: KnockedDown
-        time: 3
-        type: Remove
+        effectId: KnockedDown
+        length: -3
+        type: Add
       - !type:GenericStatusEffect
-        key: StaminaModifier
-        component: StaminaModifier
-        time: 3
+        effectId: Paralysis
+        length: -3
+        type: Add
+      - !type:GenericStatusEffect
+        effectId: StaminaModifier
+        length: 3
         type: Add
     Medicine:
       metabolismRate: 1.0
@@ -165,11 +177,10 @@
     Narcotic:
       effects:
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 16
-        refresh: false
+        length: 16
+        strength: 1
 
 - type: reagent
   id: THCOil # deprecated in favor of THC, preserved here for forks
@@ -184,11 +195,10 @@
     Narcotic:
       effects:
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 16
-        refresh: false
+        length: 16
+        strength: 1
 
 - type: reagent
   id: Nicotine
@@ -222,15 +232,16 @@
           types:
             Poison: 2
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 10
-        refresh: false
+        length: 10
+        strength: 1
       - !type:ChemVomit # Vomiting is a symptom of brain damage
         probability: 0.05
-      - !type:Drunk # Headaches and slurring are major symptoms of brain damage, this is close enough
-        boozePower: 5
+      - !type:GenericStatusEffect
+        effectId: Drunk
+        length: 5
+        strength: 1
 
 - type: reagent
   id: SpaceDrugs
@@ -244,11 +255,10 @@
     Narcotic:
       effects:
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 5
-        refresh: false
+        length: 5
+        strength: 1
 
 - type: reagent
   id: Bananadine
@@ -262,11 +272,10 @@
     Narcotic:
       effects:
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 5
-        refresh: false
+        length: 5
+        strength: 1
 
 # Probably replace this one with sleeping chem when putting someone in a comatose state is easier
 - type: reagent
@@ -287,8 +296,8 @@
           reagent: Nocturine
           min: 8
         key: ForcedSleep
-        component: ForcedSleeping
-        refresh: false
+        length: 2
+        strength: 1
         type: Add
 
 - type: reagent
@@ -304,8 +313,9 @@
     Narcotic:
       effects:
       - !type:GenericStatusEffect
-        key: Muted
-        component: Muted
+        effectId: Muted
+        length: 2
+        strength: 1
 
 - type: reagent
   id: NorepinephricAcid
@@ -345,8 +355,9 @@
         probability: 0.03
         #If anyone wants to add a light dimming or grayscale effect when under 20u, be my guest
       - !type:GenericStatusEffect
-        key: TemporaryBlindness
-        component: TemporaryBlindness
+        effectId: TemporaryBlindness
+        length: 2
+        strength: 1
         conditions:
         - !type:ReagentThreshold
           min: 20
@@ -391,8 +402,9 @@
         emote: Scream
         probability: 0.08
       - !type:GenericStatusEffect
-        key: TemporaryBlindness
-        component: TemporaryBlindness
+        effectId: TemporaryBlindness
+        length: 2
+        strength: 1
         conditions:
         - !type:ReagentThreshold
           min: 20

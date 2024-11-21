@@ -19,9 +19,9 @@
     - state: active
   - type: Clickable
   - type: StatusEffects
-    allowed:
-    - Stun
-    - Corporeal
+    whitelist:
+    - Stunnable
+    - Ghostly
   - type: InteractionOutline
   - type: Physics
     bodyType: KinematicController

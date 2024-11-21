@@ -193,7 +193,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (!HasComp<HandsComponent>(target!.Value))
         {
             // or just be able to be shoved over.
-            if (_statusEffectsSystem.CanApplyEffect(target!.Value, "KnockedDown"))
+            if (_statusEffectsSystem.CanApplyEffectFromCollection(target!.Value, "Stunnable"))
                 return true;
 
             if (Timing.IsFirstTimePredicted && HasComp<MobStateComponent>(target.Value))

@@ -51,11 +51,9 @@
   - type: Physics
     bodyType: KinematicController # Same for all inheritors
   - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
+    whitelist:
+    - Stunnable
+    - Slowdown
     - Electrocution
   - type: NameIdentifier
     group: GenericNumber
@@ -350,12 +348,12 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: ShowHealthBars
-    damageContainers: 
+    damageContainers:
     - Biological
   - type: ShowHealthIcons
-    damageContainers: 
+    damageContainers:
     - Biological
-  
+
 - type: entity
   parent: MobSiliconBase
   id: MobMimeBot

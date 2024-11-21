@@ -5,6 +5,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffect;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -28,6 +29,9 @@ public sealed class PacificationSystem : EntitySystem
         SubscribeLocalEvent<PacifiedComponent, BeforeThrowEvent>(OnBeforeThrow);
         SubscribeLocalEvent<PacifiedComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<PacifiedComponent, ShotAttemptedEvent>(OnShootAttempt);
+
+        // TODO: Uh I cbf to do the pacifism effect. Someone else can do this shit I just want to finish this.
+
         SubscribeLocalEvent<PacifismDangerousAttackComponent, AttemptPacifiedAttackEvent>(OnPacifiedDangerousAttack);
     }
 

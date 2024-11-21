@@ -1,5 +1,6 @@
 using System.Text;
 using Content.Server.Speech.Components;
+using Content.Server.StatusEffect;
 using Content.Shared.Drunk;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
@@ -10,48 +11,31 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class SlurredSystem : SharedSlurredSystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-
-
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    private const string SlurKey = "SlurredSpeech";
-
     public override void Initialize()
     {
-        SubscribeLocalEvent<SlurredAccentComponent, AccentGetEvent>(OnAccent);
-    }
-
-    public override void DoSlur(EntityUid uid, TimeSpan time, StatusEffectsComponent? status = null)
-    {
-        if (!Resolve(uid, ref status, false))
-            return;
-
-        if (!_statusEffectsSystem.HasStatusEffect(uid, SlurKey, status))
-            _statusEffectsSystem.TryAddStatusEffect<SlurredAccentComponent>(uid, SlurKey, time, true, status);
-        else
-            _statusEffectsSystem.TryAddTime(uid, SlurKey, time, status);
+        SubscribeLocalEvent<SlurredAccentComponent, StatusEffectRelayEvent<AccentGetEvent>>(OnAccent);
     }
 
     /// <summary>
     ///     Slur chance scales with "drunkeness", which is just measured using the time remaining on the status effect.
     /// </summary>
-    private float GetProbabilityScale(EntityUid uid)
+    private float GetProbabilityScale(StatusEffectComponent component)
     {
-        if (!_statusEffectsSystem.TryGetTime(uid, SharedDrunkSystem.DrunkKey, out var time))
-            return 0;
-
         var curTime = _timing.CurTime;
-        var timeLeft = (float) (time.Value.Item2 - curTime).TotalSeconds;
+        var timeLeft = (float) (component.Length - curTime).TotalSeconds;
         return Math.Clamp((timeLeft - 80) / 1100, 0f, 1f);
     }
 
-    private void OnAccent(EntityUid uid, SlurredAccentComponent component, AccentGetEvent args)
+    private void OnAccent(EntityUid uid, SlurredAccentComponent component, StatusEffectRelayEvent<AccentGetEvent> args)
     {
-        var scale = GetProbabilityScale(uid);
-        args.Message = Accentuate(args.Message, scale);
+        if (!TryComp<StatusEffectComponent>(uid, out var statusComp))
+            return;
+
+        var scale = GetProbabilityScale(statusComp);
+        args.Args.Message = Accentuate(args.Args.Message, scale);
     }
 
     private string Accentuate(string message, float scale)

@@ -5,6 +5,7 @@ using Content.Server.Chemistry.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.CombatMode.Disarm;
 using Content.Server.Movement.Systems;
+using Content.Server.StatusEffect;
 using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Components;
 using Content.Shared.CombatMode;
@@ -40,6 +41,7 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly LagCompensationSystem _lag = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SolutionContainerSystem _solutions = default!;
     [Dependency] private readonly TagSystem _tag = default!;
@@ -108,7 +110,7 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         if (!TryComp<HandsComponent>(target, out var targetHandsComponent))
         {
-            if (!TryComp<StatusEffectsComponent>(target, out var status) || !status.AllowedEffects.Contains("KnockedDown"))
+            if (!_statusEffectsSystem.HasStatusEffectWithTag(target, "KnockedDown"))
                 return false;
         }
 

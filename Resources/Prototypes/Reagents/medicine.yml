@@ -10,11 +10,13 @@
     Medicine:
       effects:
       - !type:GenericStatusEffect
-        key: Stutter
-        component: ScrambledAccent
-      - !type:Drunk
-        slurSpeech: false
-        boozePower: 20
+        effectId: Stutter
+        length: 2
+        strength: 1
+      - !type:GenericStatusEffect
+        effectId: Drunk
+        length: 20
+        strength: 1
 
 - type: reagent
   id: Dylovene
@@ -55,10 +57,10 @@
         - !type:ReagentThreshold
           min: 20
         probability: 0.02
-      - !type:Drunk
-        conditions:
-        - !type:ReagentThreshold
-          min: 15
+      # - !type:Drunk
+      #   conditions:
+      #   - !type:ReagentThreshold
+      #     min: 15
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -10
@@ -80,9 +82,9 @@
         reagent: Histamine
         amount: -3.0
       - !type:GenericStatusEffect
-        key: Jitter
-        time: 3.0
-        type: Remove
+        effectId: Jitter
+        length: -3
+        type: Add
       - !type:HealthChange
         damage:
           types:
@@ -100,9 +102,9 @@
     Medicine:
       effects:
       - !type:GenericStatusEffect
-        key: Drunk
-        time: 6.0
-        type: Remove
+        effectId: Drunk
+        length: -6
+        type: Add
       - !type:HealthChange
         damage:
           types:
@@ -158,7 +160,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 15
-      - !type:Drunk
+      # - !type:Drunk
 
 - type: reagent
   id: Cryoxadone
@@ -352,13 +354,17 @@
         reagent: Histamine
         amount: 4
       - !type:GenericStatusEffect
-        key: Stun
-        time: 0.75
-        type: Remove
+        effectId: Stun
+        length: -0.75
+        type: Add
       - !type:GenericStatusEffect
-        key: KnockedDown
-        time: 0.75
-        type: Remove
+        effectId: KnockedDown
+        length: -0.75
+        type: Add
+      - !type:GenericStatusEffect
+        effectId: Paralysis
+        length: -0.75
+        type: Add
 
 - type: reagent
   id: Hyronalin
@@ -524,11 +530,13 @@
           - !type:ReagentThreshold
             min: 30
       - !type:GenericStatusEffect
-        key: PressureImmunity
-        component: PressureImmunity
+        effectId: PressureImmunity
+        length: 2
+        strength: 1
       - !type:GenericStatusEffect
-        key: Stutter
-        component: StutteringAccent
+        effectId: Stutter
+        length: 2
+        strength: 1
       - !type:Jitter
       - !type:Emote
         emote: Scream
@@ -710,17 +718,21 @@
           types:
             Poison: 2
       - !type:GenericStatusEffect
-        key: Stun
-        time: 3.0
-        type: Remove
+        effectId: Stun
+        length: -3
+        type: Add
       - !type:GenericStatusEffect
-        key: KnockedDown
-        time: 3.0
-        type: Remove
+        effectId: KnockedDown
+        length: -3
+        type: Add
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        time: 15.0
-        type: Remove
+        effectId: Paralysis
+        length: -3
+        type: Add
+      - !type:GenericStatusEffect
+        effectId: SeeingRainbows
+        length: -15
+        type: Add
 
 - type: reagent
   id: TranexamicAcid
@@ -889,8 +901,9 @@
       effects:
       - !type:Jitter
       - !type:GenericStatusEffect
-        key: Stutter
-        component: StutteringAccent
+        effectId: Stutter
+        length: 2
+        strength: 1
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentThreshold

@@ -14,6 +14,9 @@ using Content.Shared.Item;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Movement.Components;
+using Content.Server.Bed.Sleep;
+using Content.Shared.Movement.Systems;
 
 namespace Content.Shared.StatusEffect;
 
@@ -29,8 +32,12 @@ public abstract partial class SharedStatusEffectsSystem
         SubscribeLocalEvent<AttackDamageEffectComponent, StatusEffectRelayEvent<MeleeHitEvent>>(AttackDamageEffect);
         SubscribeLocalEvent<DefenceEffectComponent, StatusEffectRelayEvent<DamageModifyEvent>>(DefenceEffect);
 
+        SubscribeLocalEvent<AdjustSpeedEffectComponent, StatusEffectModifiedEvent>(UpdateMovementSpeedEffect);
+        SubscribeLocalEvent<AdjustSpeedEffectComponent, ComponentShutdown>(UpdateMovementSpeedEffect);
+        SubscribeLocalEvent<AdjustSpeedEffectComponent, StatusEffectRelayEvent<RefreshMovementSpeedModifiersEvent>>(RefreshMovementSpeedEffect);
+
         SubscribeLocalEvent<PreventMovementEffectComponent, StatusEffectRelayEvent<UpdateCanMoveEvent>>(StopMoveEffect);
-        SubscribeLocalEvent<PreventMovementEffectComponent, StatusEffectRelayEvent<ChangeDirectionAttemptEvent>>(StopMoveEffect);
+        SubscribeLocalEvent<PreventMovementEffectComponent, StatusEffectRelayEvent<ChangeDirectionAttemptEvent>>(StopMoveRotateEffect);
         SubscribeLocalEvent<PreventMovementEffectComponent, StatusEffectModifiedEvent>(UpdateUnmoveEffect);
         SubscribeLocalEvent<PreventMovementEffectComponent, ComponentShutdown>(UpdateUnmoveEffect);
         SubscribeLocalEvent<AdjustTileFrictionEffectComponent, StatusEffectRelayEvent<TileFrictionEvent>>(TileFrictionEffect);
@@ -51,11 +58,17 @@ public abstract partial class SharedStatusEffectsSystem
         SubscribeLocalEvent<BlindnessEffectComponent, ComponentShutdown>(UpdateBlindlessEffect);
         SubscribeLocalEvent<BlindnessEffectComponent, StatusEffectRelayEvent<CanSeeAttemptEvent>>(OnBlindAttempt);
 
+        SubscribeLocalEvent<ForceSayOnApplyEffectComponent, StatusEffectOnApplicationEvent>(ForceSayOnApply);
+
         SubscribeLocalEvent<ClearEffectOnCritComponent, StatusEffectRelayEvent<MobStateChangedEvent>>(ClearEffectOnCrit);
 
         SubscribeLocalEvent<ReduceEffectTimeOnInteractComponent, StatusEffectRelayEvent<InteractHandEvent>>(ReduceTimeEffect);
 
         SubscribeLocalEvent<StatusEffectIconComponent, StatusEffectRelayEvent<GetStatusIconsEvent>>(OnGetStatusIcon);
+
+        SubscribeLocalEvent<AlertEffectComponent, StatusEffectModifiedEvent>(AlertGet);
+        SubscribeLocalEvent<AlertEffectComponent, StatusEffectRelayEvent<AlertEffectGoneEv>>(AlertGet);
+        SubscribeLocalEvent<AlertEffectComponent, ComponentShutdown>(AlertShutdown);
     }
 
     #region Active Effects
@@ -83,6 +96,9 @@ public abstract partial class SharedStatusEffectsSystem
     #region Passive Effects
     private void DefenceEffect(EntityUid uid, DefenceEffectComponent comp, StatusEffectRelayEvent<DamageModifyEvent> args)
     {
+        if (comp.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
@@ -91,6 +107,9 @@ public abstract partial class SharedStatusEffectsSystem
 
     private void AttackDamageEffect(EntityUid uid, AttackDamageEffectComponent comp, StatusEffectRelayEvent<MeleeHitEvent> args)
     {
+        if (comp.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
@@ -99,43 +118,64 @@ public abstract partial class SharedStatusEffectsSystem
 
     private void OnGetStatusIcon(EntityUid uid, StatusEffectIconComponent component, StatusEffectRelayEvent<GetStatusIconsEvent> args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         args.Args.StatusIcons.Add(PrototypeManager.Index<StatusIconPrototype>(component.StatusIcon));
     }
 
-    private void UpdateUnmoveEffect(EntityUid uid, PreventMovementEffectComponent component, object args)
+    private void UpdateUnmoveEffect<TEvent>(EntityUid uid, PreventMovementEffectComponent component, ref TEvent args)
     {
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp) || effectComp.Owner == null)
             return;
 
-        ActionBlocker.UpdateCanMove(effectComp.Owner.Value);
+        if (TryComp<InputMoverComponent>(effectComp.Owner.Value, out var inputMove))
+        {
+            ActionBlocker.UpdateCanMove(effectComp.Owner.Value, inputMove);
+        }
     }
-
-    private void StopMoveEffect(EntityUid uid, PreventMovementEffectComponent component, object args)
+    private void StopMoveEffect(EntityUid uid, PreventMovementEffectComponent component, StatusEffectRelayEvent<UpdateCanMoveEvent> args)
     {
-        if (!(args is StatusEffectRelayEvent<CancellableEntityEventArgs> realArgs))
+        if (component.LifeStage > ComponentLifeStage.Running)
             return;
 
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
         if (effectComp.OverallStrength >= component.StrengthNeeded)
-            realArgs.Args.Cancel();
+            args.Args.Cancel();
     }
 
-    private void OnHandsUseAttempt(EntityUid uid, PreventUseOfHandsEffectComponent component, object args)
+
+    private void StopMoveRotateEffect(EntityUid uid, PreventMovementEffectComponent component, StatusEffectRelayEvent<ChangeDirectionAttemptEvent> args)
     {
-        if (!(args is StatusEffectRelayEvent<CancellableEntityEventArgs> realArgs))
+        if (component.LifeStage > ComponentLifeStage.Running)
             return;
 
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
         if (effectComp.OverallStrength >= component.StrengthNeeded)
-            realArgs.Args.Cancel();
+            args.Args.Cancel();
+    }
+
+    private void OnHandsUseAttempt<TEvent>(EntityUid uid, PreventUseOfHandsEffectComponent component, StatusEffectRelayEvent<TEvent> args) where TEvent : CancellableEntityEventArgs
+    {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
+        if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
+            return;
+
+        if (effectComp.OverallStrength >= component.StrengthNeeded)
+            args.Args.Cancel();
     }
 
     private void OnHandsUseEquipAttempt(EntityUid uid, PreventUseOfHandsEffectComponent component, StatusEffectRelayEvent<IsEquippingAttemptEvent> args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
@@ -145,6 +185,9 @@ public abstract partial class SharedStatusEffectsSystem
 
     private void OnHandsUseUnequipAttempt(EntityUid uid, PreventUseOfHandsEffectComponent component, StatusEffectRelayEvent<IsUnequippingAttemptEvent> args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
@@ -154,6 +197,9 @@ public abstract partial class SharedStatusEffectsSystem
 
     private void TileFrictionEffect(EntityUid uid, AdjustTileFrictionEffectComponent component, ref StatusEffectRelayEvent<TileFrictionEvent> args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
@@ -162,6 +208,9 @@ public abstract partial class SharedStatusEffectsSystem
 
     private void OnForceDownedUpdate(EntityUid uid, ForcedDownedEffectComponent component, StatusEffectModifiedEvent args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp) || effectComp.Owner == null)
             return;
 
@@ -180,14 +229,17 @@ public abstract partial class SharedStatusEffectsSystem
     }
     private void OnForceDownedStandAttempt(EntityUid uid, ForcedDownedEffectComponent component, StatusEffectRelayEvent<StandAttemptEvent> args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
-        if (component.LifeStage <= ComponentLifeStage.Running && effectComp.OverallStrength >= component.StrengthNeeded)
+        if (effectComp.OverallStrength >= component.StrengthNeeded)
             args.Args.Cancel();
     }
 
-    private void UpdateBlindlessEffect(EntityUid uid, BlindnessEffectComponent component, object args)
+    private void UpdateBlindlessEffect<TEvent>(EntityUid uid, BlindnessEffectComponent component, TEvent args)
     {
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp) || effectComp.Owner == null)
             return;
@@ -197,11 +249,53 @@ public abstract partial class SharedStatusEffectsSystem
 
     private void OnBlindAttempt(EntityUid uid, BlindnessEffectComponent component, StatusEffectRelayEvent<CanSeeAttemptEvent> args)
     {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
             return;
 
         if (effectComp.OverallStrength >= component.StrengthNeeded)
             args.Args.Cancel();
+    }
+
+    private void UpdateMovementSpeedEffect<TEvent>(EntityUid uid, AdjustSpeedEffectComponent component, TEvent args)
+    {
+        if (!TryComp<StatusEffectComponent>(uid, out var effectComp) || effectComp.Owner == null)
+            return;
+
+        MovementSpeedModifierSystem.RefreshMovementSpeedModifiers(effectComp.Owner.Value);
+    }
+
+    private void RefreshMovementSpeedEffect(EntityUid uid, AdjustSpeedEffectComponent component, StatusEffectRelayEvent<RefreshMovementSpeedModifiersEvent> args)
+    {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
+        if (!TryComp<StatusEffectComponent>(uid, out var effectComp))
+            return;
+
+        args.Args.ModifySpeed((float) Math.Pow(component.WalkingSpeed, effectComp.OverallStrength), (float) Math.Pow(component.SprintingSpeed, effectComp.OverallStrength));
+    }
+
+    private void AlertGet<TEvent>(EntityUid uid, AlertEffectComponent component, TEvent args)
+    {
+        if (component.LifeStage > ComponentLifeStage.Running)
+            return;
+
+        if (!TryComp<StatusEffectComponent>(uid, out var effectComp) || effectComp.Owner == null)
+            return;
+
+        AlertsSystem.ShowAlert(effectComp.Owner.Value, component.Alert, cooldown: effectComp.IsTimed ? (effectComp.AppliedTime, effectComp.Length) : null);
+    }
+
+    private void AlertShutdown(EntityUid uid, AlertEffectComponent component, ComponentShutdown args)
+    {
+        if (!TryComp<StatusEffectComponent>(uid, out var effectComp) || effectComp.Owner == null)
+            return;
+
+        AlertsSystem.ClearAlert(effectComp.Owner.Value, component.Alert);
+        RaiseLocalEvent(uid, new AlertEffectGoneEv());
     }
 
     #endregion

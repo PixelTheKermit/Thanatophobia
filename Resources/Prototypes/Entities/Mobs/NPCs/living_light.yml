@@ -42,11 +42,11 @@
         Base: dead
         BaseUnshaded: dead_glow
   - type: StatusEffects
-    allowed:
-    - Stun
-    - Corporeal
+    whitelist:
+    - Stunnable
+    - Ghostly
     - Electrocution
-    - StaminaModifier
+    - Slowdown
   - type: Fixtures
     fixtures:
       fix1:

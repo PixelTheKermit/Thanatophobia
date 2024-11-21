@@ -17,7 +17,7 @@ public sealed partial class StatusEffectsSystem
             if (!TryComp<StatusEffectsComponent>(entity, out var StatusEffects))
                 continue;
 
-            ApplyEffect(entity, comp.Effect, comp.Strength, TimeSpan.FromSeconds(comp.Length), comp.AddOn, comp.Replace, StatusEffects);
+            ApplyEffect(entity, comp.Effect, 1, comp.Strength, TimeSpan.FromSeconds(comp.Length), comp.Replace);
         }
     }
 }

@@ -64,9 +64,9 @@
         - !type:ReagentThreshold
           reagent: ChloralHydrate
           min: 10
-        key: ForcedSleep
-        component: ForcedSleeping
-        refresh: false
+        effectId: ForcedSleep
+        length: 2
+        power: 1
         type: Add
       - !type:HealthChange
         conditions:
@@ -341,11 +341,10 @@
     Poison:
       effects:
       - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 10
-        refresh: false
+        length: 10
+        power: 1
   # TODO: PROPER hallucinations
 
 - type: reagent
@@ -536,9 +535,9 @@
     Poison:
       effects:
       - !type:GenericStatusEffect
-        key: Pacified
-        component: Pacified
-        refresh: false
+        effectId: Pacified
+        length: 2
+        strength: 1
         type: Add
 
 - type: reagent

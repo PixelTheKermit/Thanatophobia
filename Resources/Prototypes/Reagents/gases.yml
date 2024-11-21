@@ -258,9 +258,9 @@
         - !type:OrganType
           type: Slime
           shouldHave: false
-        key: ForcedSleep
-        component: ForcedSleeping
-        time: 3
+        effectId: ForcedSleep
+        length: 3
+        strength: 1
         type: Add
       - !type:HealthChange
         conditions:
@@ -303,16 +303,17 @@
           reagent: Frezon
           min: 1
         key: SeeingRainbows
-        component: SeeingRainbows
+        effectId: SeeingRainbows
         type: Add
-        time: 500
+        length: 500 # Holy, this shit makes you high af!!!
+        strength: 1
         refresh: false
-      - !type:Drunk
-        boozePower: 500
-        conditions:
-        - !type:ReagentThreshold
-          reagent: Frezon
-          min: 1
+      # - !type:Drunk
+      #   boozePower: 500
+      #   conditions:
+      #   - !type:ReagentThreshold
+      #     reagent: Frezon
+      #     min: 1
       - !type:PopupMessage
         type: Local
         messages: [ "frezon-lungs-cold" ]

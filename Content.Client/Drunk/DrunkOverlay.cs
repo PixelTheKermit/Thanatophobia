@@ -1,3 +1,4 @@
+using Content.Client.StatusEffect;
 using Content.Shared.Drunk;
 using Content.Shared.StatusEffect;
 using Robust.Client.Graphics;
@@ -35,25 +36,28 @@ public sealed class DrunkOverlay : Overlay
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
-
         var playerEntity = _playerManager.LocalEntity;
 
         if (playerEntity == null)
             return;
 
-        if (!_entityManager.HasComponent<DrunkComponent>(playerEntity)
-            || !_entityManager.TryGetComponent<StatusEffectsComponent>(playerEntity, out var status))
-            return;
-
         var statusSys = _sysMan.GetEntitySystem<StatusEffectsSystem>();
-        if (!statusSys.TryGetTime(playerEntity.Value, SharedDrunkSystem.DrunkKey, out var time, status))
+
+        var timeLeft = 0f;
+        var total = 0;
+
+        foreach (var effect in statusSys.GetStatusEffectsWithComponent<DrunkComponent>(playerEntity.Value))
+        {
+            var statusComp = _entityManager.GetComponent<StatusEffectComponent>(effect);
+            timeLeft += (float) Math.Max((statusComp.Length - _timing.CurTime).TotalSeconds, 0);
+            total++;
+        }
+
+        // We cannot divide by 0.
+        if (total <= 0)
             return;
 
-        var curTime = _timing.CurTime;
-        var timeLeft = (float) (time.Value.Item2 - curTime).TotalSeconds;
-
-
-        CurrentBoozePower += 8f * (0.5f*timeLeft - CurrentBoozePower) * args.DeltaSeconds / (timeLeft+1);
+        CurrentBoozePower += 8f * (0.5f * timeLeft - CurrentBoozePower) * args.DeltaSeconds / (timeLeft + 1);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)

@@ -43,25 +43,36 @@ namespace Content.Shared.Jittering
         /// <param name="frequency">Frequency for jittering. See <see cref="MaxFrequency"/> and <see cref="MinFrequency"/>.</param>
         /// <param name="forceValueChange">Whether to change any existing jitter value even if they're greater than the ones we're setting.</param>
         /// <param name="status">The status effects component to modify.</param>
-        public void DoJitter(EntityUid uid, TimeSpan time, bool refresh, float amplitude = 10f, float frequency = 4f, bool forceValueChange = false,
-            StatusEffectsComponent? status = null)
+        public void DoJitter(EntityUid uid, TimeSpan time, bool refresh, float amplitude = 10f, float frequency = 4f, bool forceValueChange = false, StatusEffectsComponent? status = null)
         {
-            // if (!Resolve(uid, ref status, false))
-            //     return;
+            if (!Resolve(uid, ref status, false))
+                return;
 
-            // amplitude = Math.Clamp(amplitude, MinAmplitude, MaxAmplitude);
-            // frequency = Math.Clamp(frequency, MinFrequency, MaxFrequency);
+            var effect = StatusEffects.ApplyEffect(uid, "Jitter", 1, null, time, refresh);
 
-            // if (StatusEffects.ApplyEffect(uid, "Jitter", 1, amplitude, time, refresh, status) != null)
-            // {
-            //     var jittering = EntityManager.GetComponent<JitteringComponent>(uid);
+            if (effect != null)
+                DoJitterOnEffect(effect.Value, amplitude, frequency, forceValueChange);
+        }
 
-            //     if(forceValueChange || jittering.Amplitude < amplitude)
-            //         jittering.Amplitude = amplitude;
+        public void DoJitterOnEffect(EntityUid uid, float amplitude = 10f, float frequency = 4f, bool forceValueChange = false, StatusEffectComponent? status = null)
+        {
+            if (!Resolve(uid, ref status, false))
+                return;
 
-            //     if (forceValueChange || jittering.Frequency < frequency)
-            //         jittering.Frequency = frequency;
-            // }
+            amplitude = Math.Clamp(amplitude, MinAmplitude, MaxAmplitude);
+            frequency = Math.Clamp(frequency, MinFrequency, MaxFrequency);
+
+            if (TryComp<JitteringComponent>(uid, out var jitterComp))
+            {
+                if (forceValueChange || jitterComp.Amplitude < amplitude)
+                    jitterComp.Amplitude = amplitude;
+
+                if (forceValueChange || jitterComp.Frequency < frequency)
+                    jitterComp.Frequency = frequency;
+
+                Dirty(uid, jitterComp);
+                StatusEffects.ModifyEffect(uid, null, null);
+            }
         }
 
         /// <summary>

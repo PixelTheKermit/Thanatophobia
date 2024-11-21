@@ -1,4 +1,5 @@
-﻿using Content.Shared.Chemistry.Reagent;
+﻿using Content.Server.StatusEffect;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.StatusEffect;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -18,59 +19,32 @@ namespace Content.Server.Chemistry.ReagentEffects.StatusEffects
     public sealed partial class GenericStatusEffect : ReagentEffect
     {
         [DataField(required: true)]
-        public string Key = default!;
+        public string EffectId = default!;
 
         [DataField]
-        public string Component = String.Empty;
+        public int? Strength = null;
 
         [DataField]
-        public float Time = 2.0f;
+        public TimeSpan? Length = null;
 
-        /// <remarks>
-        ///     true - refresh status effect time,  false - accumulate status effect time
-        /// </remarks>
         [DataField]
-        public bool Refresh = true;
-
-        /// <summary>
-        ///     Should this effect add the status effect, remove time from it, or set its cooldown?
-        /// </summary>
-        [DataField]
-        public StatusEffectMetabolismType Type = StatusEffectMetabolismType.Add;
+        public StatusEffectApplicationType Type = StatusEffectApplicationType.UseStrongest;
 
         public override void Effect(ReagentEffectArgs args)
         {
             var statusSys = args.EntityManager.EntitySysManager.GetEntitySystem<StatusEffectsSystem>();
 
-            var time = Time;
-            time *= args.Scale;
+            var strength = (Strength != null) ? (int?) Math.Ceiling(Strength.Value * args.Scale) : null;
+            var time = Length * args.Scale ?? null;
 
-            if (Type == StatusEffectMetabolismType.Add && Component != String.Empty)
-            {
-                statusSys.TryAddStatusEffect(args.SolutionEntity, Key, TimeSpan.FromSeconds(time), Refresh, Component);
-            }
-            else if (Type == StatusEffectMetabolismType.Remove)
-            {
-                statusSys.TryRemoveTime(args.SolutionEntity, Key, TimeSpan.FromSeconds(time));
-            }
-            else if (Type == StatusEffectMetabolismType.Set)
-            {
-                statusSys.TrySetTime(args.SolutionEntity, Key, TimeSpan.FromSeconds(time));
-            }
+            statusSys.ApplyEffect(args.SolutionEntity, EffectId, 0, strength, time, Type);
         }
 
         protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => Loc.GetString(
             "reagent-effect-guidebook-status-effect",
             ("chance", Probability),
             ("type", Type),
-            ("time", Time),
-            ("key", $"reagent-effect-status-effect-{Key}"));
-    }
-
-    public enum StatusEffectMetabolismType
-    {
-        Add,
-        Remove,
-        Set
+            ("time", (Length != null) ? Length.Value.Seconds : 0),
+            ("key", $"reagent-effect-status-effect-{EffectId}"));
     }
 }

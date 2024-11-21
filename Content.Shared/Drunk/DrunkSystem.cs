@@ -1,38 +1,24 @@
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Drunk;
 
 public abstract class SharedDrunkSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly SharedSlurredSystem _slurredSystem = default!;
-
-    public void TryApplyDrunkenness(EntityUid uid, float boozePower, bool applySlur = true,
-        StatusEffectsComponent? status = null)
+    [Dependency] private readonly SharedStatusEffectsSystem _statusSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTimer = default!;
+    public override void Initialize()
     {
-        if (!Resolve(uid, ref status, false))
-            return;
+        base.Initialize();
 
-        if (TryComp<LightweightDrunkComponent>(uid, out var trait))
-            boozePower *= trait.BoozeStrengthMultiplier;
-
-        if (applySlur)
-        {
-            _slurredSystem.DoSlur(uid, TimeSpan.FromSeconds(boozePower), status);
-        }
-
-        _statusEffectsSystem.ApplyEffect(uid, "Drunk", 1, null, TimeSpan.FromSeconds(boozePower), StatusEffectApplicationType.Add);
+        SubscribeLocalEvent<LightweightDrunkComponent, OwnerStatusEffectModifyEvent>(StatusModify);
     }
 
-    public void TryRemoveDrunkenness(EntityUid uid)
+    private void StatusModify(EntityUid uid, LightweightDrunkComponent comp, OwnerStatusEffectModifyEvent args)
     {
-        _statusEffectsSystem.ApplyEffect(uid, "Drunk", 0, 0, null, StatusEffectApplicationType.Override);
+        if (args.Length != null && args.Length > TimeSpan.Zero)
+            args.Length = args.Length.Value * comp.BoozeStrengthMultiplier;
     }
-    public void TryRemoveDrunkenessTime(EntityUid uid, double timeRemoved)
-    {
-        _statusEffectsSystem.ApplyEffect(uid, "Drunk", 0, null, -TimeSpan.FromSeconds(timeRemoved), StatusEffectApplicationType.Add);
-    }
-
 }

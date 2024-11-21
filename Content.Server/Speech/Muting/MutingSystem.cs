@@ -7,6 +7,7 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Puppet;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Muting;
+using Content.Shared.StatusEffect;
 
 namespace Content.Server.Speech.Muting
 {
@@ -17,8 +18,11 @@ namespace Content.Server.Speech.Muting
         {
             base.Initialize();
             SubscribeLocalEvent<MutedComponent, SpeakAttemptEvent>(OnSpeakAttempt);
+            SubscribeLocalEvent<MutedComponent, StatusEffectRelayEvent<SpeakAttemptEvent>>(OnSpeakAttempt);
             SubscribeLocalEvent<MutedComponent, EmoteEvent>(OnEmote, before: new[] { typeof(VocalSystem) });
+            SubscribeLocalEvent<MutedComponent, StatusEffectRelayEvent<EmoteEvent>>(OnEmote, before: new[] { typeof(VocalSystem) });
             SubscribeLocalEvent<MutedComponent, ScreamActionEvent>(OnScreamAction, before: new[] { typeof(VocalSystem) });
+            SubscribeLocalEvent<MutedComponent, StatusEffectRelayEvent<ScreamActionEvent>>(OnScreamAction, before: new[] { typeof(VocalSystem) });
         }
 
         private void OnEmote(EntityUid uid, MutedComponent component, ref EmoteEvent args)
@@ -29,6 +33,14 @@ namespace Content.Server.Speech.Muting
             //still leaves the text so it looks like they are pantomiming a laugh
             if (args.Emote.Category.HasFlag(EmoteCategory.Vocal))
                 args.Handled = true;
+        }
+
+        private void OnEmote(EntityUid uid, MutedComponent component, ref StatusEffectRelayEvent<EmoteEvent> args)
+        {
+            if (!TryComp<StatusEffectComponent>(uid, out var statusEffectComp) || statusEffectComp.Owner == null)
+                return;
+
+            OnEmote(statusEffectComp.Owner.Value, component, ref args.Args);
         }
 
         private void OnScreamAction(EntityUid uid, MutedComponent component, ScreamActionEvent args)
@@ -44,6 +56,13 @@ namespace Content.Server.Speech.Muting
             args.Handled = true;
         }
 
+        private void OnScreamAction(EntityUid uid, MutedComponent component, StatusEffectRelayEvent<ScreamActionEvent> args)
+        {
+            if (!TryComp<StatusEffectComponent>(uid, out var statusEffectComp) || statusEffectComp.Owner == null)
+                return;
+
+            OnScreamAction(statusEffectComp.Owner.Value, component, args.Args);
+        }
 
         private void OnSpeakAttempt(EntityUid uid, MutedComponent component, SpeakAttemptEvent args)
         {
@@ -57,6 +76,14 @@ namespace Content.Server.Speech.Muting
                 _popupSystem.PopupEntity(Loc.GetString("speech-muted"), uid, uid);
 
             args.Cancel();
+        }
+
+        private void OnSpeakAttempt(EntityUid uid, MutedComponent component, StatusEffectRelayEvent<SpeakAttemptEvent> args)
+        {
+            if (!TryComp<StatusEffectComponent>(uid, out var statusEffectComp) || statusEffectComp.Owner == null)
+                return;
+
+            OnSpeakAttempt(statusEffectComp.Owner.Value, component, args.Args);
         }
     }
 }

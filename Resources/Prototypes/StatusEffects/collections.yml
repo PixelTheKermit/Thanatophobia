@@ -1,0 +1,69 @@
+- type: statusEffectCollection
+  id: Visual
+  collection:
+  - Jittering
+
+- type: statusEffectCollection
+  id: Stunnable
+  collection:
+  - Stun
+  - KnockedDown
+  - Paralysis
+
+- type: statusEffectCollection
+  id: Electrocution
+  collection:
+  - Electrocution
+
+- type: statusEffectCollection
+  id: Sleep
+  collection:
+  - ForcedSleep
+  - NarcolepsySleep
+
+- type: statusEffectCollection
+  id: Slowdown
+  collection:
+  - Slowdown
+  - StaminaSlowdown
+  - VomitSlowdown
+  - FlashSlowdown
+
+- type: statusEffectCollection
+  id: Narcotics
+  collection:
+  - SeeingRainbows
+  - Drunk
+
+- type: statusEffectCollection
+  id: Ghostly
+  collection:
+  - Corporeal
+
+- type: statusEffectCollection
+  id: Blindable
+  collection:
+  - TemporaryBlindness
+
+- type: statusEffectCollection
+  id: Vocal
+  collection:
+  - RatvarianLanguage
+  - Muted
+  - SlurredSpeech
+  - Stutter
+
+- type: statusEffectCollection
+  id: Organic
+  collection:
+  - Bloodloss
+
+- type: statusEffectCollection
+  id: Pacified
+  collection:
+  - Pacified
+
+- type: statusEffectCollection
+  id: Pressure
+  collection:
+  - PressureImmunity

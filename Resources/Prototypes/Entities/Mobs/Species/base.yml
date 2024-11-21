@@ -124,20 +124,15 @@
       effects:
       - !type:WashCreamPieReaction
   - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
+    whitelist:
+    - Visual
+    - Stunnable
+    - Slowdown
+    - Narcotics
     - Electrocution
-    - Drunk
-    - SlurredSpeech
-    - RatvarianLanguage
-    - PressureImmunity
     - Muted
-    - ForcedSleep
-    - TemporaryBlindness
+    - Sleep
+    - Blindable
     - Pacified
     - StaminaModifier
   - type: Reflect
@@ -249,20 +244,17 @@
         Brute: -0.07
   # Organs
   - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
+    whitelist:
+    - Visual
+    - Stunnable
+    - Slowdown
+    - Narcotics
     - Electrocution
-    - ForcedSleep
-    - TemporaryBlindness
-    - Drunk
-    - SlurredSpeech
-    - RatvarianLanguage
-    - PressureImmunity
-    - Muted
+    - Sleep
+    - Blindable
+    - Vocal
+    - Organic
+    - Pressure
     - Pacified
     - StaminaModifier
   - type: Blindable

@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
+using Content.Server.StatusEffect;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
@@ -18,20 +19,12 @@ namespace Content.Server.Speech.EntitySystems
 
         public override void Initialize()
         {
-            SubscribeLocalEvent<StutteringAccentComponent, AccentGetEvent>(OnAccent);
+            SubscribeLocalEvent<StutteringAccentComponent, StatusEffectRelayEvent<AccentGetEvent>>(OnAccent);
         }
 
-        public override void DoStutter(EntityUid uid, TimeSpan time, bool refresh, StatusEffectsComponent? status = null)
+        private void OnAccent(EntityUid uid, StutteringAccentComponent component, StatusEffectRelayEvent<AccentGetEvent> args)
         {
-            if (!Resolve(uid, ref status, false))
-                return;
-
-            _statusEffectsSystem.TryAddStatusEffect<StutteringAccentComponent>(uid, StutterKey, time, refresh, status);
-        }
-
-        private void OnAccent(EntityUid uid, StutteringAccentComponent component, AccentGetEvent args)
-        {
-            args.Message = Accentuate(args.Message, component);
+            args.Args.Message = Accentuate(args.Args.Message, component);
         }
 
         public string Accentuate(string message, StutteringAccentComponent component)

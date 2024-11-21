@@ -34,11 +34,8 @@
   - type: Physics
     bodyType: KinematicController # Same for all inheritors
   - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
+    whitelist:
+    - Stunnable
     - Electrocution
   - type: Pullable
   - type: Tag
@@ -259,8 +256,8 @@
     bloodReagent: Water
     chemicalMaxVolume: 100
   - type: StatusEffects
-    allowed:
-    - SlowedDown
+    whitelist:
+    - Slowdown
     - Electrocution
   - type: MeleeWeapon
     soundHit:

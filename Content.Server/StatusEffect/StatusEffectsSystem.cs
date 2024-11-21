@@ -1,4 +1,7 @@
 using Content.Server.Administration;
+using Content.Server.Bed.Sleep;
+using Content.Server.Chat.Systems;
+using Content.Server.Speech;
 using Content.Shared.Administration;
 using Content.Shared.Prototypes;
 using Content.Shared.StatusEffect;
@@ -7,8 +10,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server.StatusEffect;
-public sealed partial class StatusEffectsSystem : SharedStatusEffectsSystem
+public partial class StatusEffectsSystem : SharedStatusEffectsSystem
 {
+    // Internal readonly suppressed the warning... so it should be good!
+    [Dependency] internal readonly SleepingSystem SleepingSystem = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly SharedStatusEffectsSystem _sharedSystem = default!;
 
@@ -18,6 +23,8 @@ public sealed partial class StatusEffectsSystem : SharedStatusEffectsSystem
         base.Initialize();
 
         SubscribeLocalEvent<StatusEffectsComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<StatusEffectsComponent, AccentGetEvent>(RelayEvent);
+        SubscribeLocalEvent<StatusEffectsComponent, EmoteEvent>(RefRelayEvent);
 
         SubscribeLocalEvent<StatusEffectComponent, StatusEffectRelayEvent<StatusEffectUpdateEvent>>(EffectUpdate);
         SubscribeLocalEvent<AdjustEffectStrengthEffectComponent, StatusEffectActivateEvent>(AdjustStrengthEffect);
@@ -29,6 +36,7 @@ public sealed partial class StatusEffectsSystem : SharedStatusEffectsSystem
             StatusCommandCompletion);
 
         InitializeInflictor();
+        InitializePassive();
     }
 
     private void OnShutdown(EntityUid uid, StatusEffectsComponent component, ComponentShutdown args)

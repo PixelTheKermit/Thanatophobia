@@ -473,7 +473,7 @@ namespace Content.Shared.Cuffs
 
             var cuffTime = handcuffComponent.CuffTime;
 
-            if (_statusEffectsSystem.HasStatusEffectWithTag(target, "Stunned"))
+            if (_statusEffectsSystem.HasStatusEffectWithTag(target, "Stun"))
                 cuffTime = MathF.Max(0.1f, cuffTime - handcuffComponent.StunBonus);
 
             if (HasComp<DisarmProneComponent>(target))

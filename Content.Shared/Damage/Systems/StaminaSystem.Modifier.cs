@@ -1,4 +1,5 @@
 using Content.Shared.Damage.Components;
+using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -6,13 +7,19 @@ public sealed partial class StaminaSystem
 {
     private void InitializeModifier()
     {
-        SubscribeLocalEvent<StaminaModifierComponent, ComponentStartup>(OnModifierStartup);
+        SubscribeLocalEvent<StaminaModifierComponent, StatusEffectModifiedEvent>(OnModifierStartup);
         SubscribeLocalEvent<StaminaModifierComponent, ComponentShutdown>(OnModifierShutdown);
     }
 
-    private void OnModifierStartup(EntityUid uid, StaminaModifierComponent comp, ComponentStartup args)
+    private void OnModifierStartup(EntityUid uid, StaminaModifierComponent comp, StatusEffectModifiedEvent args)
     {
-        if (!TryComp<StaminaComponent>(uid, out var stamina))
+        if (comp.AlreadyApplied)
+            return;
+
+        if (!TryComp<StatusEffectComponent>(uid, out var statusEffect) || statusEffect.Owner == null)
+            return;
+
+        if (!TryComp<StaminaComponent>(statusEffect.Owner.Value, out var stamina))
             return;
 
         stamina.CritThreshold *= comp.Modifier;
@@ -20,7 +27,13 @@ public sealed partial class StaminaSystem
 
     private void OnModifierShutdown(EntityUid uid, StaminaModifierComponent comp, ComponentShutdown args)
     {
-        if (!TryComp<StaminaComponent>(uid, out var stamina))
+        if (!comp.AlreadyApplied)
+            return;
+
+        if (!TryComp<StatusEffectComponent>(uid, out var statusEffect) || statusEffect.Owner == null)
+            return;
+
+        if (!TryComp<StaminaComponent>(statusEffect.Owner.Value, out var stamina))
             return;
 
         stamina.CritThreshold /= comp.Modifier;

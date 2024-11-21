@@ -4,6 +4,7 @@ using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
+using Content.Server.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.IdentityManagement;
@@ -25,6 +26,7 @@ namespace Content.Server.Medical
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly PuddleSystem _puddle = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
+        [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly ThirstSystem _thirst = default!;
         [Dependency] private readonly ForensicsSystem _forensics = default!;
 
@@ -48,7 +50,7 @@ namespace Content.Server.Medical
             // It fully empties the stomach, this amount from the chem stream is relatively small
             var solutionSize = (MathF.Abs(thirstAdded) + MathF.Abs(hungerAdded)) / 6;
             // Apply a bit of slowdown
-            // TODO: Vomit slowdown
+            _statusEffectsSystem.ApplyEffect(uid, "VomitSlowdown", 1, null, TimeSpan.FromSeconds(5), true);
 
             // TODO: Need decals
             var solution = new Solution();

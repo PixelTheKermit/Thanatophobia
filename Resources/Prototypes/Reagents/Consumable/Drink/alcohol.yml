@@ -179,8 +179,8 @@
         - !type:OrganType
           type: Dwarf
           shouldHave: false
-      - !type:Drunk
-        boozePower: 2
+      # - !type:Drunk
+      #   boozePower: 2
 
 - type: reagent
   id: Gin
@@ -1348,8 +1348,9 @@
     Drink:
       effects:
         - !type:GenericStatusEffect
-          key: RatvarianLanguage
-          component: RatvarianLanguage
+          effectId: RatvarianLanguage
+          length: 2
+          strength: 1
         - !type:SatiateThirst
           factor: 2
         - !type:AdjustReagent
@@ -1374,8 +1375,9 @@
     Drink:
       effects:
       - !type:GenericStatusEffect
-        key: Muted
-        component: Muted
+        effectId: Muted
+        length: 2
+        strength: 1
       - !type:SatiateThirst
         factor: 2
 

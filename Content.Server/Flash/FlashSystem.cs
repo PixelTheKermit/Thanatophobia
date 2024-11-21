@@ -21,6 +21,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using InventoryComponent = Content.Shared.Inventory.InventoryComponent;
+using Content.Server.StatusEffect;
 
 namespace Content.Server.Flash
 {
@@ -36,6 +37,7 @@ namespace Content.Server.Flash
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly TagSystem _tag = default!;
+        [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
         public override void Initialize()
         {
@@ -136,7 +138,7 @@ namespace Content.Server.Flash
             flashable.Duration = flashDuration / 1000f; // TODO: Make this sane...
             Dirty(target, flashable);
 
-            // TODO: Flash slowdown
+            _statusEffectsSystem.ApplyEffect(target, "VomitSlowdown", 1, null, TimeSpan.FromSeconds(flashable.Duration), true);
 
             if (displayPopup && user != null && target != user && Exists(user.Value))
             {

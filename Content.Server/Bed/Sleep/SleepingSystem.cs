@@ -45,7 +45,6 @@ namespace Content.Server.Bed.Sleep
             SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<SleepingComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<SleepingComponent, SlipAttemptEvent>(OnSlip);
-            SubscribeLocalEvent<ForcedSleepingComponent, ComponentInit>(OnInit);
         }
 
         /// <summary>
@@ -56,16 +55,16 @@ namespace Content.Server.Bed.Sleep
             if (args.FellAsleep)
             {
 
-                // if (TryComp<SleepEmitSoundComponent>(uid, out var sleepSound))
-                // {
-                //     var emitSound = EnsureComp<SpamEmitSoundComponent>(uid);
-                //     emitSound.Sound = sleepSound.Snore;
-                //     emitSound.PlayChance = sleepSound.Chance;
-                //     emitSound.RollInterval = sleepSound.Interval;
-                //     emitSound.PopUp = sleepSound.PopUp;
-                // }
+                if (TryComp<SleepEmitSoundComponent>(uid, out var sleepSound))
+                {
+                    var emitSound = EnsureComp<SpamEmitSoundComponent>(uid);
+                    emitSound.Sound = sleepSound.Snore;
+                    emitSound.PlayChance = sleepSound.Chance;
+                    emitSound.RollInterval = sleepSound.Interval;
+                    emitSound.PopUp = sleepSound.PopUp;
+                }
 
-                // return;
+                return;
             }
         }
 
@@ -163,11 +162,6 @@ namespace Content.Server.Bed.Sleep
             args.Cancel();
         }
 
-        private void OnInit(EntityUid uid, ForcedSleepingComponent component, ComponentInit args)
-        {
-            TrySleeping(uid);
-        }
-
         /// <summary>
         /// Try sleeping. Only mobs can sleep.
         /// </summary>
@@ -209,7 +203,10 @@ namespace Content.Server.Bed.Sleep
             if (!Resolve(uid, ref component, false))
                 return false;
 
-            if (!force && HasComp<ForcedSleepingComponent>(uid))
+            var tryWakeEv = new TryWakeUpEv(user);
+            RaiseLocalEvent(uid, tryWakeEv);
+
+            if (!force && tryWakeEv.Cancelled)
             {
                 if (user != null)
                 {
@@ -225,6 +222,8 @@ namespace Content.Server.Bed.Sleep
                 _popupSystem.PopupEntity(Loc.GetString("wake-other-success", ("target", Identity.Entity(uid, EntityManager))), uid, Filter.Entities(user.Value), true);
             }
             RemComp<SleepingComponent>(uid);
+            RemComp<SpamEmitSoundComponent>(uid);
+
             return true;
         }
     }

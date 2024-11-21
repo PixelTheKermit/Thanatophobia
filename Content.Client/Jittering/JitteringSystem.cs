@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.Jittering;
+using Content.Shared.StatusEffect;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Random;
@@ -19,44 +20,95 @@ namespace Content.Client.Jittering
             base.Initialize();
 
             SubscribeLocalEvent<JitteringComponent, ComponentStartup>(OnStartup);
+            SubscribeNetworkEvent<ClientStatusEffectModifiedEvent>(OnEffectModified);
             SubscribeLocalEvent<JitteringComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<JitteringComponent, AnimationCompletedEvent>(OnAnimationCompleted);
+            SubscribeLocalEvent<JitteringComponent, StatusEffectRelayEvent<AnimationCompletedEvent>>(OnAnimationCompleted);
         }
 
         private void OnStartup(EntityUid uid, JitteringComponent jittering, ComponentStartup args)
         {
-            if (!TryComp(uid, out SpriteComponent? sprite))
+            if (!TryComp<StatusEffectComponent>(uid, out var statusEffectComp)
+            || statusEffectComp.Owner == null)
+            {
+                StartJitter(uid, jittering);
+                return;
+            }
+
+            StartJitter(statusEffectComp.Owner.Value, jittering);
+        }
+
+        private void OnEffectModified(ClientStatusEffectModifiedEvent args)
+        {
+            if (!TryComp<JitteringComponent>(GetEntity(args.Effect), out var jitterComp)
+            || !TryComp<StatusEffectComponent>(GetEntity(args.Effect), out var statusEffectComp)
+            || statusEffectComp.NetOwner == null)
                 return;
 
-            var animationPlayer = EnsureComp<AnimationPlayerComponent>(uid);
+            StartJitter(GetEntity(statusEffectComp.NetOwner.Value), jitterComp);
+        }
 
-            jittering.StartOffset = sprite.Offset;
-            _animationPlayer.Play(uid, animationPlayer, GetAnimation(jittering, sprite), _jitterAnimationKey);
+        private void StartJitter(EntityUid target, JitteringComponent jittering)
+        {
+            if (!TryComp(target, out SpriteComponent? sprite))
+                return;
+
+            EnsureComp<AnimationPlayerComponent>(target);
+
+            if (!_animationPlayer.HasRunningAnimation(target, _jitterAnimationKey))
+            {
+                jittering.StartOffset = sprite.Offset;
+                _animationPlayer.Play(target, GetAnimation(jittering, sprite), _jitterAnimationKey);
+            }
         }
 
         private void OnShutdown(EntityUid uid, JitteringComponent jittering, ComponentShutdown args)
         {
-            if (TryComp(uid, out AnimationPlayerComponent? animationPlayer))
-                _animationPlayer.Stop(uid, animationPlayer, _jitterAnimationKey);
+            if (TryComp<StatusEffectComponent>(uid, out var statusEffectComp)
+            && statusEffectComp.Owner != null)
+            {
+                var ownerUid = statusEffectComp.Owner.Value;
 
-            if (TryComp(uid, out SpriteComponent? sprite))
-                sprite.Offset = jittering.StartOffset;
+                if (TryComp(ownerUid, out AnimationPlayerComponent? animationPlayer))
+                    _animationPlayer.Stop(ownerUid, animationPlayer, _jitterAnimationKey);
+
+                if (TryComp(ownerUid, out SpriteComponent? sprite))
+                    sprite.Offset = jittering.StartOffset;
+            }
+            else
+            {
+                if (TryComp(uid, out AnimationPlayerComponent? animationPlayer))
+                    _animationPlayer.Stop(uid, animationPlayer, _jitterAnimationKey);
+
+                if (TryComp(uid, out SpriteComponent? sprite))
+                    sprite.Offset = jittering.StartOffset;
+            }
         }
 
         private void OnAnimationCompleted(EntityUid uid, JitteringComponent jittering, AnimationCompletedEvent args)
         {
-            if(args.Key != _jitterAnimationKey)
+            if (args.Key != _jitterAnimationKey)
                 return;
 
-            if (TryComp(uid, out AnimationPlayerComponent? animationPlayer)
-                && TryComp(uid, out SpriteComponent? sprite))
-                _animationPlayer.Play(uid, animationPlayer, GetAnimation(jittering, sprite), _jitterAnimationKey);
+            if (HasComp<AnimationPlayerComponent>(uid)
+            && TryComp(uid, out SpriteComponent? sprite))
+                _animationPlayer.Play(uid, GetAnimation(jittering, sprite), _jitterAnimationKey);
+        }
+
+        private void OnAnimationCompleted(EntityUid uid, JitteringComponent jittering, StatusEffectRelayEvent<AnimationCompletedEvent> args)
+        {
+            if (args.Args.Key != _jitterAnimationKey)
+                return;
+
+            if (HasComp<AnimationPlayerComponent>(args.Victim)
+            && TryComp(args.Victim, out SpriteComponent? sprite))
+                _animationPlayer.Play(args.Victim, GetAnimation(jittering, sprite), _jitterAnimationKey);
         }
 
         private Animation GetAnimation(JitteringComponent jittering, SpriteComponent sprite)
         {
             var amplitude = MathF.Min(4f, jittering.Amplitude / 100f + 1f) / 10f;
-            var offset = new Vector2(_random.NextFloat(amplitude/4f, amplitude),
+            var offset = new Vector2(_random.NextFloat(amplitude / 4f, amplitude),
                 _random.NextFloat(amplitude / 4f, amplitude / 3f));
 
             offset.X *= _random.Pick(_sign);

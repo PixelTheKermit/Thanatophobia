@@ -214,8 +214,9 @@
           types:
             Poison: 1
       - !type:GenericStatusEffect
-        key: Stutter
-        component: ScrambledAccent
+        effectId: Stutter
+        length: 2
+        strength: 1
 
 - type: reagent
   id: Potassium
