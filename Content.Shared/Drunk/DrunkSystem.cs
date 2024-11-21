@@ -16,7 +16,7 @@ public abstract class SharedDrunkSystem : EntitySystem
         SubscribeLocalEvent<LightweightDrunkComponent, OwnerStatusEffectModifyEvent>(StatusModify);
     }
 
-    private void StatusModify(EntityUid uid, LightweightDrunkComponent comp, OwnerStatusEffectModifyEvent args)
+    private void StatusModify(EntityUid uid, LightweightDrunkComponent comp, ref OwnerStatusEffectModifyEvent args)
     {
         if (args.Length != null && args.Length > TimeSpan.Zero)
             args.Length = args.Length.Value * comp.BoozeStrengthMultiplier;

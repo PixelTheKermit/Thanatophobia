@@ -213,6 +213,18 @@
   - type: RatvarianLanguage
 
 - type: entity
+  id: Muted
+  name: muted
+  description: Mmmmph!
+  noSpawn: true
+  components:
+  - type: StatusEffect
+    maxStrength: 1
+  - type: Muted
+  - type: AlertEffect
+    alert: Muted
+
+- type: entity
   id: Drunk
   name: drunk
   description: Iham' nauhbht the dtrauhh nk oene here! you8 areae!

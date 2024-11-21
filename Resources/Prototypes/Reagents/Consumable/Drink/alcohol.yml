@@ -179,8 +179,10 @@
         - !type:OrganType
           type: Dwarf
           shouldHave: false
-      # - !type:Drunk
-      #   boozePower: 2
+      - !type:GenericStatusEffect
+        effectId: Drunk
+        length: 2
+        strength: 1
 
 - type: reagent
   id: Gin

@@ -295,7 +295,7 @@
         - !type:ReagentThreshold
           reagent: Nocturine
           min: 8
-        key: ForcedSleep
+        effectId: ForcedSleep
         length: 2
         strength: 1
         type: Add
