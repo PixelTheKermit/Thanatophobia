@@ -39,8 +39,8 @@ public sealed class StatusIconOverlay : Overlay
         var eyeRot = args.Viewport.Eye?.Rotation ?? default;
 
         var xformQuery = _entity.GetEntityQuery<TransformComponent>();
-        var scaleMatrix = Matrix3.CreateScale(new Vector2(1, 1));
-        var rotationMatrix = Matrix3.CreateRotation(-eyeRot);
+        var scaleMatrix = Matrix3x2.CreateScale(new Vector2(1, 1));
+        var rotationMatrix = Matrix3Helpers.CreateRotation(-eyeRot);
 
         handle.UseShader(_shader);
 
@@ -61,9 +61,9 @@ public sealed class StatusIconOverlay : Overlay
             if (icons.Count == 0)
                 continue;
 
-            var worldMatrix = Matrix3.CreateTranslation(worldPos);
-            Matrix3.Multiply(scaleMatrix, worldMatrix, out var scaledWorld);
-            Matrix3.Multiply(rotationMatrix, scaledWorld, out var matty);
+            var worldMatrix = Matrix3x2.CreateTranslation(worldPos);
+            var scaledWorld = Matrix3x2.Multiply(scaleMatrix, worldMatrix);
+            var matty = Matrix3x2.Multiply(rotationMatrix, scaledWorld);
             handle.SetTransform(matty);
 
             var countL = 0;

@@ -60,7 +60,7 @@ public sealed partial class ExplosionSystem : EntitySystem
     {
         Dictionary<Vector2i, BlockedSpaceTile> transformedEdges = new();
 
-        var targetMatrix = Matrix3.Identity;
+        var targetMatrix = Matrix3x2.Identity;
         Angle targetAngle = new();
         var tileSize = DefaultTileSize;
         var maxDistanceSq = (int) (maxDistance * maxDistance);
@@ -75,7 +75,7 @@ public sealed partial class ExplosionSystem : EntitySystem
             tileSize = targetGrid.TileSize;
         }
 
-        var offsetMatrix = Matrix3.Identity;
+        var offsetMatrix = Matrix3x2.Identity;
         offsetMatrix.R0C2 = tileSize / 2f;
         offsetMatrix.R1C2 = tileSize / 2f;
 

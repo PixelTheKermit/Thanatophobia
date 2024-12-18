@@ -9,6 +9,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Shared.Item;
 
@@ -192,7 +193,7 @@ public abstract class SharedItemSystem : EntitySystem
         var shapes = GetItemShape(entity);
         var boundingShape = shapes.GetBoundingBox();
         var boundingCenter = ((Box2) boundingShape).Center;
-        var matty = Matrix3.CreateTransform(boundingCenter, rotation);
+        var matty = Matrix3Helpers.CreateTransform(boundingCenter, rotation);
         var drift = boundingShape.BottomLeft - matty.TransformBox(boundingShape).BottomLeft;
 
         var adjustedShapes = new List<Box2i>();

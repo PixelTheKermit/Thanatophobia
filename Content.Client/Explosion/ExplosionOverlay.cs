@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Explosion.Components;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
@@ -15,15 +16,17 @@ public sealed class ExplosionOverlay : Overlay
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private readonly IEntitySystemManager _entSysMan = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
-
+    private AppearanceSystem _appearanceSystem;
     private ShaderInstance _shader;
 
     public ExplosionOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _appearanceSystem = _entSysMan.GetEntitySystem<AppearanceSystem>();
         _shader = _proto.Index<ShaderPrototype>("unshaded").Instance();
     }
 
@@ -41,14 +44,14 @@ public sealed class ExplosionOverlay : Overlay
             if (visuals.Epicenter.MapId != args.MapId)
                 continue;
 
-            if (!appearance.TryGetData(ExplosionAppearanceData.Progress, out int index))
+            if (!_appearanceSystem.TryGetData(appearance.Owner, ExplosionAppearanceData.Progress, out int index))
                 continue;
 
             index = Math.Min(index, visuals.Intensity.Count - 1);
             DrawExplosion(drawHandle, args.WorldBounds, visuals, index, xforms, textures);
         }
 
-        drawHandle.SetTransform(Matrix3.Identity);
+        drawHandle.SetTransform(Matrix3x2.Identity);
         drawHandle.UseShader(null);
     }
 
@@ -78,7 +81,8 @@ public sealed class ExplosionOverlay : Overlay
         if (visuals.SpaceTiles == null)
             return;
 
-        gridBounds = Matrix3.Invert(visuals.SpaceMatrix).TransformBox(worldBounds).Enlarged(2);
+        Matrix3x2.Invert(visuals.SpaceMatrix, out var invertSpaceMat);
+        gridBounds = invertSpaceMat.TransformBox(worldBounds).Enlarged(2);
         drawHandle.SetTransform(visuals.SpaceMatrix);
 
         DrawTiles(drawHandle, gridBounds, index, visuals.SpaceTiles, visuals, visuals.SpaceTileSize, textures);

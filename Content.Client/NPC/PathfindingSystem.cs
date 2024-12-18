@@ -25,6 +25,7 @@ namespace Content.Client.NPC
         [Dependency] private readonly IResourceCache _cache = default!;
         [Dependency] private readonly NPCSteeringSystem _steering = default!;
         [Dependency] private readonly MapSystem _mapSystem = default!;
+        [Dependency] private readonly TransformSystem _xformSystem = default!;
 
         public PathfindingDebugMode Modes
         {
@@ -41,7 +42,7 @@ namespace Content.Client.NPC
                 }
                 else if (!overlayManager.HasOverlay<PathfindingOverlay>())
                 {
-                    overlayManager.AddOverlay(new PathfindingOverlay(EntityManager, _eyeManager, _inputManager, _mapManager, _cache, this, _mapSystem));
+                    overlayManager.AddOverlay(new PathfindingOverlay(EntityManager, _eyeManager, _inputManager, _mapManager, _cache, this, _mapSystem, _xformSystem));
                 }
 
                 if ((value & PathfindingDebugMode.Steering) != 0x0)
@@ -143,6 +144,7 @@ namespace Content.Client.NPC
         private readonly IMapManager _mapManager;
         private readonly PathfindingSystem _system;
         private readonly MapSystem _mapSystem;
+        private readonly TransformSystem _xformSystem;
 
         public override OverlaySpace Space => OverlaySpace.ScreenSpace | OverlaySpace.WorldSpace;
 
@@ -156,7 +158,8 @@ namespace Content.Client.NPC
             IMapManager mapManager,
             IResourceCache cache,
             PathfindingSystem system,
-            MapSystem mapSystem)
+            MapSystem mapSystem,
+            TransformSystem xformSystem)
         {
             IoCManager.InjectDependencies(this);
 
@@ -166,6 +169,7 @@ namespace Content.Client.NPC
             _mapManager = mapManager;
             _system = system;
             _mapSystem = mapSystem;
+            _xformSystem = xformSystem;
 
             var normalFont = _protoManager.Index<FontPrototype>("Default");
             _font = new VectorFont(cache.GetResource<FontResource>(normalFont.Path), 10);
@@ -226,7 +230,7 @@ namespace Content.Client.NPC
 
                         foreach (var crumb in chunk.Value)
                         {
-                            var crumbMapPos = worldMatrix.Transform(_system.GetCoordinate(chunk.Key, crumb.Coordinates));
+                            var crumbMapPos = Vector2.Transform(_system.GetCoordinate(chunk.Key, crumb.Coordinates), worldMatrix);
                             var distance = (crumbMapPos - mouseWorldPos.Position).Length();
 
                             if (distance < nearestDistance)
@@ -296,7 +300,7 @@ namespace Content.Client.NPC
 
                 foreach (var poly in tile)
                 {
-                    if (poly.Box.Contains(invGridMatrix.Transform(mouseWorldPos.Position)))
+                    if (poly.Box.Contains(Vector2.Transform(mouseWorldPos.Position, invGridMatrix)))
                     {
                         nearest = poly;
                         break;
@@ -487,12 +491,12 @@ namespace Content.Client.NPC
                                     if (neighborPoly.NetEntity != poly.GraphUid)
                                     {
                                         color = Color.Green;
-                                        var neighborMap = _entManager.GetCoordinates(neighborPoly).ToMap(_entManager);
+                                        var neighborMap = _entManager.GetCoordinates(neighborPoly).ToMap(_entManager, _xformSystem);
 
                                         if (neighborMap.MapId != args.MapId)
                                             continue;
 
-                                        neighborPos = invMatrix.Transform(neighborMap.Position);
+                                        neighborPos = Vector2.Transform(neighborMap.Position, invMatrix);
                                     }
                                     else
                                     {
@@ -580,7 +584,7 @@ namespace Content.Client.NPC
                 }
             }
 
-            worldHandle.SetTransform(Matrix3.Identity);
+            worldHandle.SetTransform(Matrix3x2.Identity);
         }
     }
 }

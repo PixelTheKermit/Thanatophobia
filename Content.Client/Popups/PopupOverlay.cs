@@ -1,4 +1,6 @@
+using System.Numerics;
 using Content.Shared.Examine;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -20,6 +22,7 @@ public sealed class PopupOverlay : Overlay
     private readonly IEntityManager _entManager;
     private readonly IPlayerManager _playerMgr;
     private readonly IUserInterfaceManager _uiManager;
+    private readonly TransformSystem _xformSystem;
     private readonly PopupSystem _popup;
     private readonly PopupUIController _controller;
 
@@ -34,6 +37,7 @@ public sealed class PopupOverlay : Overlay
         IPrototypeManager protoManager,
         IUserInterfaceManager uiManager,
         PopupUIController controller,
+        TransformSystem xformSystem,
         PopupSystem popup)
     {
         _configManager = configManager;
@@ -42,6 +46,7 @@ public sealed class PopupOverlay : Overlay
         _uiManager = uiManager;
         _popup = popup;
         _controller = controller;
+        _xformSystem = xformSystem;
 
         _shader = protoManager.Index<ShaderPrototype>("unshaded").Instance();
     }
@@ -51,7 +56,7 @@ public sealed class PopupOverlay : Overlay
         if (args.ViewportControl == null)
             return;
 
-        args.DrawingHandle.SetTransform(Matrix3.Identity);
+        args.DrawingHandle.SetTransform(Matrix3x2.Identity);
         args.DrawingHandle.UseShader(_shader);
         var scale = _configManager.GetCVar(CVars.DisplayUIScale);
 
@@ -74,7 +79,7 @@ public sealed class PopupOverlay : Overlay
 
         foreach (var popup in _popup.WorldLabels)
         {
-            var mapPos = popup.InitialPos.ToMap(_entManager);
+            var mapPos = popup.InitialPos.ToMap(_entManager, _xformSystem);
 
             if (mapPos.MapId != args.MapId)
                 continue;
@@ -86,7 +91,7 @@ public sealed class PopupOverlay : Overlay
                     e => e == popup.InitialPos.EntityId || e == ourEntity, entMan: _entManager))
                 continue;
 
-            var pos = matrix.Transform(mapPos.Position);
+            var pos = Vector2.Transform(mapPos.Position, matrix);
             _controller.DrawPopup(popup, worldHandle, pos, scale);
         }
     }

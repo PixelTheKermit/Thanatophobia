@@ -175,7 +175,7 @@ public sealed class RadarControl : MapGridControl
 
         var (pos, rot) = _transform.GetWorldPositionRotation(xform);
         var offset = _coordinates.Value.Position;
-        var offsetMatrix = Matrix3.CreateInverseTransform(pos, rot + _rotation.Value);
+        var offsetMatrix = Matrix3Helpers.CreateInverseTransform(pos, rot + _rotation.Value);
 
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
@@ -183,7 +183,7 @@ public sealed class RadarControl : MapGridControl
             fixturesQuery.HasComponent(ourGridId.Value))
         {
             var ourGridMatrix = _transform.GetWorldMatrix(ourGridId.Value);
-            Matrix3.Multiply(in ourGridMatrix, in offsetMatrix, out var matrix);
+            var matrix = Matrix3x2.Multiply(ourGridMatrix, offsetMatrix);
 
             DrawGrid(handle, matrix, ourGridId.Value, ourGrid, Color.MediumSpringGreen, true);
             DrawDocks(handle, ourGridId.Value, matrix);
@@ -231,14 +231,14 @@ public sealed class RadarControl : MapGridControl
                 name = Loc.GetString("shuttle-console-unknown");
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
-            Matrix3.Multiply(in gridMatrix, in offsetMatrix, out var matty);
+            var matty = Matrix3x2.Multiply(gridMatrix, offsetMatrix);
             var color = iff?.Color ?? IFFComponent.IFFColor;
 
             // Others default:
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
 
-            var gridCentre = matty.Transform(gridBody.LocalCenter);
+            var gridCentre = Vector2.Transform(gridBody.LocalCenter, matty);
             gridCentre.Y = -gridCentre.Y;
             var distance = gridCentre.Length();
 
@@ -316,7 +316,7 @@ public sealed class RadarControl : MapGridControl
         _iffControls.Remove(uid);
     }
 
-    private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3 matrix)
+    private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 matrix)
     {
         if (!ShowDocks)
             return;
@@ -328,7 +328,7 @@ public sealed class RadarControl : MapGridControl
             foreach (var state in docks)
             {
                 var position = state.Coordinates.Position;
-                var uiPosition = matrix.Transform(position);
+                var uiPosition = Vector2.Transform(position, matrix);
 
                 if (uiPosition.Length() > WorldRange - DockScale)
                     continue;
@@ -339,10 +339,10 @@ public sealed class RadarControl : MapGridControl
 
                 var verts = new[]
                 {
-                    matrix.Transform(position + new Vector2(-DockScale, -DockScale)),
-                    matrix.Transform(position + new Vector2(DockScale, -DockScale)),
-                    matrix.Transform(position + new Vector2(DockScale, DockScale)),
-                    matrix.Transform(position + new Vector2(-DockScale, DockScale)),
+                    Vector2.Transform(position + new Vector2(-DockScale, -DockScale), matrix),
+                    Vector2.Transform(position + new Vector2(DockScale, -DockScale), matrix),
+                    Vector2.Transform(position + new Vector2(DockScale, DockScale), matrix),
+                    Vector2.Transform(position + new Vector2(-DockScale, DockScale), matrix),
                 };
 
                 for (var i = 0; i < verts.Length; i++)
@@ -358,7 +358,7 @@ public sealed class RadarControl : MapGridControl
         }
     }
 
-    private void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, EntityUid gridUid, MapGridComponent grid, Color color, bool drawInterior)
+    private void DrawGrid(DrawingHandleScreen handle, Matrix3x2 matrix, EntityUid gridUid, MapGridComponent grid, Color color, bool drawInterior)
     {
         if (!_entManager.TryGetComponent<FixturesComponent>(gridUid, out var fixutreComp))
             return;
@@ -375,7 +375,7 @@ public sealed class RadarControl : MapGridControl
             for (var i = 0; i < shape.VertexCount; i++)
             {
                 var vertex = shape.Vertices[i];
-                var radarVertex = matrix.Transform(vertex);
+                var radarVertex = Vector2.Transform(vertex, matrix);
 
                 if (radarVertex.Length() > ActualRadarRange)
                     continue;
@@ -386,14 +386,14 @@ public sealed class RadarControl : MapGridControl
 
                 if (i < shape.VertexCount - 1)
                 {
-                    var nextVertex = matrix.Transform(shape.Vertices[i + 1]);
+                    var nextVertex = Vector2.Transform(shape.Vertices[i + 1], matrix);
                     nextVertex.Y = -nextVertex.Y;
                     var nextRadarVertex = ScalePosition(nextVertex);
                     handle.DrawLine(newVertex, nextRadarVertex, color);
                 }
                 else
                 {
-                    var nextVertex = matrix.Transform(shape.Vertices[0]);
+                    var nextVertex = Vector2.Transform(shape.Vertices[0], matrix);
                     nextVertex.Y = -nextVertex.Y;
                     var nextRadarVertex = ScalePosition(nextVertex);
                     handle.DrawLine(newVertex, nextRadarVertex, color);

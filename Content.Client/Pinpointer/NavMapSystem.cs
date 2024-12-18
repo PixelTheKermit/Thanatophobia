@@ -58,7 +58,7 @@ public sealed class NavMapOverlay : Overlay
     {
         var query = _entManager.GetEntityQuery<NavMapComponent>();
         var xformQuery = _entManager.GetEntityQuery<TransformComponent>();
-        var scale = Matrix3.CreateScale(new Vector2(1f, 1f));
+        var scale = Matrix3x2.CreateScale(new Vector2(1f, 1f));
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(args.MapId, args.WorldBounds, ref _grids);
@@ -72,7 +72,7 @@ public sealed class NavMapOverlay : Overlay
             var (_, _, matrix, invMatrix) = xform.GetWorldPositionRotationMatrixWithInv();
 
             var localAABB = invMatrix.TransformBox(args.WorldBounds);
-            Matrix3.Multiply(in scale, in matrix, out var matty);
+            var matty = Matrix3x2.Multiply(scale, matrix);
 
             args.WorldHandle.SetTransform(matty);
 
@@ -104,6 +104,6 @@ public sealed class NavMapOverlay : Overlay
             }
         }
 
-        args.WorldHandle.SetTransform(Matrix3.Identity);
+        args.WorldHandle.SetTransform(Matrix3x2.Identity);
     }
 }

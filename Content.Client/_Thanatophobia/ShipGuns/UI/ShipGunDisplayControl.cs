@@ -161,7 +161,7 @@ public class ShipGunDisplayControl : MapGridControl
 
         var (pos, rot) = _transform.GetWorldPositionRotation(xform);
         var offset = _coordinates.Value.Position;
-        var offsetMatrix = Matrix3.CreateInverseTransform(pos, rot + _rotation.Value);
+        var offsetMatrix = Matrix3Helpers.CreateInverseTransform(pos, rot + _rotation.Value);
 
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
@@ -169,7 +169,7 @@ public class ShipGunDisplayControl : MapGridControl
             fixturesQuery.HasComponent(ourGridId.Value))
         {
             var ourGridMatrix = _transform.GetWorldMatrix(ourGridId.Value);
-            Matrix3.Multiply(in ourGridMatrix, in offsetMatrix, out var matrix);
+            var matrix = Matrix3x2.Multiply(ourGridMatrix, offsetMatrix);
 
             DrawGrid(handle, matrix, ourGridId.Value, ourGrid, Color.MediumSpringGreen, true);
             DrawGuns(handle, matrix, ourGrid);
@@ -185,8 +185,7 @@ public class ShipGunDisplayControl : MapGridControl
         var shown = new HashSet<EntityUid>();
 
         // Draw other grids... differently
-        foreach (var grid in _mapManager.FindGridsIntersecting(xform.MapID,
-                     new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector)))
+        foreach (var grid in _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector)))
         {
             var gUid = grid.Owner;
             if (gUid == ourGridId || !fixturesQuery.HasComponent(gUid))
@@ -204,7 +203,7 @@ public class ShipGunDisplayControl : MapGridControl
             shown.Add(gUid);
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
-            Matrix3.Multiply(in gridMatrix, in offsetMatrix, out var matty);
+            var matty = Matrix3x2.Multiply(gridMatrix, offsetMatrix);
             var color = iff?.Color ?? IFFComponent.IFFColor;
 
             // Detailed view
@@ -213,7 +212,7 @@ public class ShipGunDisplayControl : MapGridControl
         }
     }
 
-    private void DrawGuns(DrawingHandleScreen handle, Matrix3 matrix, MapGridComponent grid)
+    private void DrawGuns(DrawingHandleScreen handle, Matrix3x2 matrix, MapGridComponent grid)
     {
         const float gunScale = 2f;
 
@@ -223,11 +222,11 @@ public class ShipGunDisplayControl : MapGridControl
                 continue;
 
             var position = gun.LocalPos;
-            var rotation = Matrix3.CreateRotation(gun.LocalRot);
+            var rotation = Matrix3Helpers.CreateRotation(gun.LocalRot);
             var ammo = gun.Ammo;
             var maxAmmo = gun.MaxAmmo;
 
-            var uiPosition = matrix.Transform(position);
+            var uiPosition = Vector2.Transform(position, matrix);
 
             if (uiPosition.Length() > WorldRange - gunScale)
                 continue;
@@ -239,9 +238,9 @@ public class ShipGunDisplayControl : MapGridControl
 
             var verts = new[]
             {
-                matrix.Transform(position + rotation.Transform(new Vector2(-gunScale / 1.5f, gunScale))),
-                matrix.Transform(position + rotation.Transform(new Vector2(gunScale / 1.5f, gunScale))),
-                matrix.Transform(position + rotation.Transform(new Vector2(0, -gunScale)))
+                Vector2.Transform(position + Vector2.Transform(new Vector2(-gunScale / 1.5f, gunScale), rotation), matrix),
+                Vector2.Transform(position + Vector2.Transform(new Vector2(gunScale / 1.5f, gunScale), rotation), matrix),
+                Vector2.Transform(position + Vector2.Transform(new Vector2(0, -gunScale), rotation), matrix)
             };
 
             for (var i = 0; i < verts.Length; i++)
@@ -256,7 +255,7 @@ public class ShipGunDisplayControl : MapGridControl
         }
     }
 
-    private void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, EntityUid gridUid, MapGridComponent grid, Color color, bool drawInterior)
+    private void DrawGrid(DrawingHandleScreen handle, Matrix3x2 matrix, EntityUid gridUid, MapGridComponent grid, Color color, bool drawInterior)
     {
         if (!_entManager.TryGetComponent<FixturesComponent>(gridUid, out var fixutreComp))
             return;
@@ -273,7 +272,7 @@ public class ShipGunDisplayControl : MapGridControl
             for (var i = 0; i < shape.VertexCount; i++)
             {
                 var vertex = shape.Vertices[i];
-                var radarVertex = matrix.Transform(vertex);
+                var radarVertex = Vector2.Transform(vertex, matrix);
 
                 if (radarVertex.Length() > ActualRadarRange)
                     continue;
@@ -284,14 +283,14 @@ public class ShipGunDisplayControl : MapGridControl
 
                 if (i < shape.VertexCount - 1)
                 {
-                    var nextVertex = matrix.Transform(shape.Vertices[i + 1]);
+                    var nextVertex = Vector2.Transform(shape.Vertices[i + 1], matrix);
                     nextVertex.Y = -nextVertex.Y;
                     var nextRadarVertex = ScalePosition(nextVertex);
                     handle.DrawLine(newVertex, nextRadarVertex, color);
                 }
                 else
                 {
-                    var nextVertex = matrix.Transform(shape.Vertices[0]);
+                    var nextVertex = Vector2.Transform(shape.Vertices[0], matrix);
                     nextVertex.Y = -nextVertex.Y;
                     var nextRadarVertex = ScalePosition(nextVertex);
                     handle.DrawLine(newVertex, nextRadarVertex, color);

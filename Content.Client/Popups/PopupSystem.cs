@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.GameTicking;
 using Content.Shared.Popups;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
@@ -22,6 +23,7 @@ namespace Content.Client.Popups
         [Dependency] private readonly IInputManager _inputManager = default!;
         [Dependency] private readonly IOverlayManager _overlay = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly TransformSystem _xformSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototype = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
@@ -51,6 +53,7 @@ namespace Content.Client.Popups
                     _prototype,
                     _uiManager,
                     _uiManager.GetUIController<PopupUIController>(),
+                    _xformSystem,
                     this));
         }
 
