@@ -40,7 +40,7 @@
   id: TPFleshDebrisSmall
   parent: TPBaseFleshDebris
   name: Scrap Debris Small
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 32
@@ -49,7 +49,7 @@
   id: TPFleshDebrisMedium
   parent: TPBaseFleshDebris
   name: Scrap Debris Medium
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 48
@@ -58,7 +58,7 @@
   id: TPFleshDebrisLarge
   parent: TPBaseFleshDebris
   name: Scrap Debris Large
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 64

@@ -323,7 +323,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         FTLTimer.Text = GetFTLText();
 
         var (_, worldRot, worldMatrix) = gridXform.GetWorldPositionRotationMatrix();
-        var worldPos = worldMatrix.Transform(gridBody.LocalCenter);
+        var worldPos = Vector2.Transform(gridBody.LocalCenter, worldMatrix);
 
         // Get the positive reduced angle.
         var displayRot = -worldRot.Reduced();

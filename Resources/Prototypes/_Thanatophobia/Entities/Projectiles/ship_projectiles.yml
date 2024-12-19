@@ -2,7 +2,7 @@
   parent: PelletShotgun
   id: PelletShotgunShip
   name: pellet (grapeshot)
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective: None
@@ -16,7 +16,7 @@
   parent: BaseBullet
   id: ShipBulletLaserBolt
   name: high powered laser bolt
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective: None
@@ -64,7 +64,7 @@
   parent: BaseBullet
   id: ShipBulletAntiShip
   name: bullet (material penetration)
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective: None
@@ -78,7 +78,7 @@
   parent: BaseBullet
   id: ShipCannonBallProjectile
   name: cannon ball
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective: None

@@ -25,7 +25,7 @@ public sealed partial class DungeonGateComponent : Component
     /// What prototype will the exit gate be?
     /// </summary>
     [DataField(required: true)]
-    public ProtoId<EntityPrototype> ExitGateProto = default!;
+    public EntProtoId ExitGateProto = default!;
 
     /// <summary>
     /// What entity does this gate lead to? This is usually another gate. DO NOT SET THIS!

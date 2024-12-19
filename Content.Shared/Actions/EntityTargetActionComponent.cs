@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Actions;

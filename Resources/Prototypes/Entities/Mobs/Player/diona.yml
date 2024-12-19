@@ -15,9 +15,9 @@
 # Reformed Diona
 - type: entity
   parent: MobDiona
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MobDionaReformed
   name: Reformed Diona
   components:
     - type: IsDeadIC
-    - type: RandomHumanoidAppearance 
+    - type: RandomHumanoidAppearance

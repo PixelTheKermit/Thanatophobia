@@ -4,6 +4,6 @@
     - BaseStation
     - BaseStationAllEventsEligible
     - BaseStationJobsSpawning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform

@@ -3,7 +3,7 @@
   id: TPSalvageGlobalLootSpawner
   parent: MarkerBase
   suffix: Global
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

@@ -640,7 +640,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             return false;
         }
 
-        if (!_mapManager.TryGetGrid(coordinates.GetGridUid(EntityManager), out var mapGrid))
+        if (!TryComp<MapGridComponent>(coordinates.GetGridUid(EntityManager), out var mapGrid))
         {
             puddleUid = EntityUid.Invalid;
             return false;
@@ -685,7 +685,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         // Let's not spill to invalid grids.
         var gridId = tileRef.GridUid;
-        if (!_mapManager.TryGetGrid(gridId, out var mapGrid))
+        if (!TryComp<MapGridComponent>(gridId, out var mapGrid))
         {
             puddleUid = EntityUid.Invalid;
             return false;

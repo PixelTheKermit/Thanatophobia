@@ -13,6 +13,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -27,6 +28,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly TransformSystem _xform = default!;
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -385,14 +387,14 @@ namespace Content.Server.GameTicking
                 // Ideally engine would just spawn them on grid directly I guess? Right now grid traversal is handling it during
                 // update which means we need to add a hack somewhere around it.
                 var spawn = _robustRandom.Pick(_possiblePositions);
-                var toMap = spawn.ToMap(EntityManager);
+                var toMap = spawn.ToMap(EntityManager, _xform);
 
                 if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
                 {
                     var gridXform = Transform(gridUid);
 
                     return new EntityCoordinates(gridUid,
-                        gridXform.InvWorldMatrix.Transform(toMap.Position));
+                        Vector2.Transform(toMap.Position, gridXform.InvWorldMatrix));
                 }
 
                 return spawn;

@@ -70,7 +70,7 @@
   id: TPSnowDebrisSmall
   parent: TPBaseSnowDebris
   name: Scrap Debris Small
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 32
@@ -79,7 +79,7 @@
   id: TPSnowDebrisMedium
   parent: TPBaseSnowDebris
   name: Scrap Debris Medium
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 64
@@ -88,7 +88,7 @@
   id: TPSnowDebrisLarge
   parent: TPBaseSnowDebris
   name: Scrap Debris Large
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 96

@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
@@ -343,7 +344,7 @@ namespace Content.Server.NodeContainer.EntitySystems
         private IEnumerable<Node> GetCompatibleNodes(Node node, EntityQuery<TransformComponent> xformQuery, EntityQuery<NodeContainerComponent> nodeQuery)
         {
             var xform = xformQuery.GetComponent(node.Owner);
-            _mapManager.TryGetGrid(xform.GridUid, out var grid);
+            TryComp<MapGridComponent>(xform.GridUid, out var grid);
 
             if (!node.Connectable(EntityManager, xform))
                 yield break;

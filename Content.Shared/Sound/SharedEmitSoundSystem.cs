@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -54,7 +55,7 @@ public abstract class SharedEmitSoundSystem : EntitySystem
     {
         if (!args.PlaySound ||
             !TryComp<TransformComponent>(uid, out var xform) ||
-            !_mapManager.TryGetGrid(xform.GridUid, out var grid))
+            !TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             return;
         }

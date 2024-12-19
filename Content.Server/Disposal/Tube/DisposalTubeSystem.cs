@@ -16,6 +16,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
@@ -349,7 +350,7 @@ namespace Content.Server.Disposal.Tube
             var oppositeDirection = nextDirection.GetOpposite();
 
             var xform = Transform(target);
-            if (!_mapManager.TryGetGrid(xform.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 return null;
 
             var position = xform.Coordinates;

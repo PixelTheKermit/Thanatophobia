@@ -4,6 +4,7 @@ using Content.Server.NPC.Components;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.NPC.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
@@ -85,8 +86,8 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             !_entManager.TryGetComponent<PhysicsComponent>(owner, out var body))
             return (false, null);
 
-        if (!_mapManager.TryGetGrid(xform.GridUid, out var ownerGrid) ||
-            !_mapManager.TryGetGrid(targetCoordinates.GetGridUid(_entManager), out var targetGrid))
+        if (!_entManager.TryGetComponent<MapGridComponent>(xform.GridUid, out var ownerGrid) ||
+            !_entManager.TryGetComponent<MapGridComponent>(targetCoordinates.GetGridUid(_entManager), out var targetGrid))
         {
             return (false, null);
         }

@@ -6,6 +6,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
@@ -33,7 +34,7 @@ public sealed class ImmovableRodSystem : EntitySystem
             if (!rod.DestroyTiles)
                 continue;
 
-            if (!_map.TryGetGrid(trans.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(trans.GridUid, out var grid))
                 continue;
 
             grid.SetTile(trans.Coordinates, Tile.Empty);
@@ -53,9 +54,9 @@ public sealed class ImmovableRodSystem : EntitySystem
     {
         if (EntityManager.TryGetComponent(uid, out PhysicsComponent? phys))
         {
-            _physics.SetLinearDamping(phys, 0f);
-            _physics.SetFriction(phys, 0f);
-            _physics.SetBodyStatus(phys, BodyStatus.InAir);
+            _physics.SetLinearDamping(uid, phys, 0f);
+            _physics.SetFriction(uid, phys, 0f);
+            _physics.SetBodyStatus(uid, phys, BodyStatus.InAir);
 
             if (!component.RandomizeVelocity)
                 return;

@@ -349,7 +349,7 @@ public sealed partial class ExplosionSystem
         if (xform.ParentUid == state.LookupOwner)
         {
             // parented directly to the map, use local position
-            if (state.GridBox.Contains(state.InvSpaceMatrix.Transform(xform.LocalPosition)))
+            if (state.GridBox.Contains(Vector2.Transform(xform.LocalPosition, state.InvSpaceMatrix)))
                 state.List.Add((uid, xform));
 
             return true;
@@ -357,7 +357,7 @@ public sealed partial class ExplosionSystem
 
         // finally check if it intersects our tile
         var wpos = state.System.GetWorldPosition(xform);
-        if (state.GridBox.Contains(state.InvSpaceMatrix.Transform(wpos)))
+        if (state.GridBox.Contains(Vector2.Transform(wpos, state.InvSpaceMatrix)))
             state.List.Add((uid, xform));
 
         return true;

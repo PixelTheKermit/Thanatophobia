@@ -7,6 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using System.Linq;
 using System.Numerics;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -55,7 +56,7 @@ public sealed class GasProducerAnomalySystem : EntitySystem
     {
         var xform = Transform(uid);
 
-        if (!_map.TryGetGrid(xform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return;
 
         var localpos = xform.Coordinates.Position;

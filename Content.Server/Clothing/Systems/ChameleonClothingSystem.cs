@@ -64,7 +64,7 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
             return;
 
         var state = new ChameleonBoundUserInterfaceState(component.Slot, component.Default);
-        _uiSystem.TrySetUiState(uid, ChameleonUiKey.Key, state);
+        _uiSystem.SetUiState(uid, ChameleonUiKey.Key, state);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         UpdateIdentityBlocker(uid, component, proto);
         UpdateVisuals(uid, component);
         UpdateUi(uid, component);
-        Dirty(component);
+        Dirty(uid, component);
     }
 
     private void UpdateIdentityBlocker(EntityUid uid, ChameleonClothingComponent component, EntityPrototype proto)

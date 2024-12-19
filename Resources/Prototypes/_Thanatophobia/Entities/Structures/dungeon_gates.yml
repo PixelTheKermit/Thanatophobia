@@ -3,7 +3,7 @@
   id: TPDungeonGateBase
   name: mirror gate
   description: A mirror that leads to a mirror world. These tend to be unstable nowadays, and the magic behind them is pretty much unknown.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   abstract: true
   components:
   - type: DoAfter
@@ -34,7 +34,7 @@
   id: TPDungeonGateExit
   name: mirror exit gate
   description: A mirror that leads out of a mirror world. Use it before it breaks.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

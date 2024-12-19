@@ -45,7 +45,7 @@ public sealed class TurfSystem : EntitySystem
 
         var size = grid.TileSize;
         var localPos = new Vector2(indices.X * size + (size / 2f), indices.Y * size + (size / 2f));
-        var worldPos = matrix.Transform(localPos);
+        var worldPos = Vector2.Transform(localPos, matrix);
 
         // This is scaled to 95 % so it doesn't encompass walls on other tiles.
         var tileAabb = Box2.UnitCentered.Scale(0.95f * size);
@@ -92,7 +92,7 @@ public sealed class TurfSystem : EntitySystem
     /// </summary>
     public EntityCoordinates GetTileCenter(TileRef turf)
     {
-        var grid = _mapMan.GetGrid(turf.GridUid);
+        var grid = Comp<MapGridComponent>(turf.GridUid);
         var center = (turf.GridIndices + new Vector2(0.5f, 0.5f)) * grid.TileSize;
         return new EntityCoordinates(turf.GridUid, center);
     }

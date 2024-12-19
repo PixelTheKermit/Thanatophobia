@@ -1,6 +1,7 @@
 using Content.Shared.Mind;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Objectives.Components;
@@ -9,6 +10,7 @@ namespace Content.Shared.Objectives.Components;
 /// Required component for an objective entity prototype.
 /// </summary>
 [RegisterComponent, Access(typeof(SharedObjectivesSystem))]
+[EntityCategory("Objectives")]
 public sealed partial class ObjectiveComponent : Component
 {
     /// <summary>

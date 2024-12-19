@@ -466,7 +466,7 @@ namespace Content.Server.Construction
                 return;
             }
 
-            var mapPos = location.ToMap(EntityManager);
+            var mapPos = location.ToMap(EntityManager, TransformSystem);
             var predicate = GetPredicate(constructionPrototype.CanBuildInImpassable, mapPos);
 
             if (!_interactionSystem.InRangeUnobstructed(user, mapPos, predicate: predicate))

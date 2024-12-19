@@ -12,7 +12,6 @@
       - TerminatorRole
 
 - type: entity
-  noSpawn: true
   parent: [BaseTerminatorObjective, BaseKillObjective]
   id: TerminateObjective
   description: Follow your programming and terminate the target.
@@ -27,7 +26,6 @@
     requireDead: true
 
 - type: entity
-  noSpawn: true
   parent: BaseTerminatorObjective
   id: ShutDownObjective
   name: Shut down

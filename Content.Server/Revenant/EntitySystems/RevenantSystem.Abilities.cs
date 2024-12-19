@@ -213,7 +213,7 @@ public sealed partial class RevenantSystem
         //var coords = Transform(uid).Coordinates;
         //var gridId = coords.GetGridUid(EntityManager);
         var xform = Transform(uid);
-        if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
             return;
         var tiles = map.GetTilesIntersecting(Box2.CenteredAround(xform.WorldPosition,
             new Vector2(component.DefileRadius * 2, component.DefileRadius))).ToArray();

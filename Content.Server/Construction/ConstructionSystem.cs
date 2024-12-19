@@ -4,6 +4,7 @@ using Content.Shared.Construction;
 using Content.Shared.DoAfter;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
@@ -22,6 +23,7 @@ namespace Content.Server.Construction
         [Dependency] private readonly ContainerSystem _container = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!;
         [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+        [Dependency] public readonly TransformSystem TransformSystem = default!;
 
         public override void Initialize()
         {

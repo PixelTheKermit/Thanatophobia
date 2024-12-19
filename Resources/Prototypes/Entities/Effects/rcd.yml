@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: EffectRCDBase
   abstract: true
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
     anchored: True
@@ -15,59 +15,59 @@
     tags:
     - HideContextMenu
   - type: AnimationPlayer
-  
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDDeconstructPreview
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: deconstructPreview
-  
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDConstruct0
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: construct0
   - type: TimedDespawn
     lifetime: 1.2
-    
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDConstruct1
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: construct1
   - type: TimedDespawn
     lifetime: 2.2
-    
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDConstruct2
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: construct2
   - type: TimedDespawn
     lifetime: 3.2
-    
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDConstruct3
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: construct3
   - type: TimedDespawn
     lifetime: 4.2
-    
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDConstruct4
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: construct4
@@ -77,17 +77,17 @@
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDDeconstruct2
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: deconstruct2
   - type: TimedDespawn
     lifetime: 3.2
-    
+
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDDeconstruct4
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: deconstruct4
@@ -97,7 +97,7 @@
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDDeconstruct6
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: deconstruct6
@@ -107,7 +107,7 @@
 - type: entity
   parent: EffectRCDBase
   id: EffectRCDDeconstruct8
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: deconstruct8

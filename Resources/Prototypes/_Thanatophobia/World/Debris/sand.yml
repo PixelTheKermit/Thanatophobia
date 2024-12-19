@@ -65,7 +65,7 @@
 - type: entity
   id: TPSandDebrisSmall
   parent: TPBaseSandDebris
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 32
@@ -73,7 +73,7 @@
 - type: entity
   id: TPSandDebrisMedium
   parent: TPBaseSandDebris
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 64
@@ -81,7 +81,7 @@
 - type: entity
   id: TPSandDebrisLarge
   parent: TPBaseSandDebris
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 96

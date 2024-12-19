@@ -14,6 +14,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 
 namespace Content.Server.Dragon;
@@ -137,7 +138,7 @@ public sealed partial class DragonSystem : EntitySystem
         var xform = Transform(uid);
 
         // Have to be on a grid fam
-        if (!_mapManager.TryGetGrid(xform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             _popup.PopupEntity(Loc.GetString("carp-rift-anchor"), uid, uid);
             return;

@@ -1,7 +1,9 @@
 ﻿using Content.Shared.Interaction;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Actions;
 
+[EntityCategory("Actions")]
 public abstract partial class BaseTargetActionComponent : BaseActionComponent
 {
     /// <summary>

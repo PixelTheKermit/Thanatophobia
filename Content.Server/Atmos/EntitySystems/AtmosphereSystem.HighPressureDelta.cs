@@ -54,7 +54,7 @@ namespace Content.Server.Atmos.EntitySystems
                 if (HasComp<MobStateComponent>(uid) &&
                     TryComp<PhysicsComponent>(uid, out var body))
                 {
-                    _physics.SetBodyStatus(body, BodyStatus.OnGround);
+                    _physics.SetBodyStatus(uid, body, BodyStatus.OnGround);
                 }
 
                 if (TryComp<FixturesComponent>(uid, out var fixtures))
@@ -77,7 +77,7 @@ namespace Content.Server.Atmos.EntitySystems
             if (!TryComp<FixturesComponent>(uid, out var fixtures))
                 return;
 
-            _physics.SetBodyStatus(body, BodyStatus.InAir);
+            _physics.SetBodyStatus(uid, body, BodyStatus.InAir);
 
             foreach (var (id, fixture) in fixtures.Fixtures)
             {
@@ -238,7 +238,7 @@ namespace Content.Server.Atmos.EntitySystems
                     // TODO: Technically these directions won't be correct but uhh I'm just here for optimisations buddy not to fix my old bugs.
                     if (throwTarget != EntityCoordinates.Invalid)
                     {
-                        var pos = ((throwTarget.ToMap(EntityManager).Position - xform.WorldPosition).Normalized() + dirVec).Normalized();
+                        var pos = ((throwTarget.ToMap(EntityManager, TransformSystem).Position - xform.WorldPosition).Normalized() + dirVec).Normalized();
                         _physics.ApplyLinearImpulse(uid, pos * moveForce, body: physics);
                     }
                     else

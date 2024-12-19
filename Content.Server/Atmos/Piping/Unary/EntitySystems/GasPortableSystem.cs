@@ -9,6 +9,7 @@ using Content.Shared.Construction.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
@@ -58,7 +59,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         {
             port = null;
 
-            if (!_mapManager.TryGetGrid(gridId, out var grid))
+            if (!TryComp<MapGridComponent>(gridId, out var grid))
                 return false;
 
             foreach (var entityUid in grid.GetLocal(coordinates))

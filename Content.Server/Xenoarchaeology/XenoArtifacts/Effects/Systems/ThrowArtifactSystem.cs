@@ -7,6 +7,7 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Throwing;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 
@@ -29,7 +30,7 @@ public sealed class ThrowArtifactSystem : EntitySystem
     private void OnActivated(EntityUid uid, ThrowArtifactComponent component, ArtifactActivatedEvent args)
     {
         var xform = Transform(uid);
-        if (_map.TryGetGrid(xform.GridUid, out var grid))
+        if (TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             var tiles = grid.GetTilesIntersecting(
                 Box2.CenteredAround(xform.WorldPosition, new Vector2(component.Range * 2, component.Range)));

@@ -79,7 +79,7 @@ public sealed partial class MeleeWeaponSystem
                 var (mapPos, mapRot) = TransformSystem.GetWorldPositionRotation(userXform);
                 TransformSystem.AttachToGridOrMap(animationUid, xform);
                 var worldPos = mapPos + (mapRot - userXform.LocalRotation).RotateVec(localPos);
-                var newLocalPos = TransformSystem.GetInvWorldMatrix(xform.ParentUid).Transform(worldPos);
+                var newLocalPos = Vector2.Transform(worldPos, TransformSystem.GetInvWorldMatrix(xform.ParentUid));
                 TransformSystem.SetLocalPositionNoLerp(xform, newLocalPos);
                 if (arcComponent.Fadeout)
                     _animation.Play(animationUid, GetFadeAnimation(sprite, 0f, 0.15f), FadeAnimationKey);

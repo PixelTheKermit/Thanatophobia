@@ -37,6 +37,7 @@ namespace Content.Server.Pointing.EntitySystems
         [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly TransformSystem _xformSystem = default!;
 
         private static readonly TimeSpan PointDelay = TimeSpan.FromSeconds(0.5f);
 
@@ -141,7 +142,7 @@ namespace Content.Server.Pointing.EntitySystems
                 return false;
             }
 
-            var mapCoordsPointed = coordsPointed.ToMap(EntityManager);
+            var mapCoordsPointed = coordsPointed.ToMap(EntityManager, _xformSystem);
             _rotateToFaceSystem.TryFaceCoordinates(player, mapCoordsPointed.Position);
 
             var arrow = EntityManager.SpawnEntity("PointingArrow", coordsPointed);
@@ -149,7 +150,7 @@ namespace Content.Server.Pointing.EntitySystems
             if (TryComp<PointingArrowComponent>(arrow, out var pointing))
             {
                 if (TryComp(player, out TransformComponent? xformPlayer))
-                    pointing.StartPosition = EntityCoordinates.FromMap(arrow, xformPlayer.Coordinates.ToMap(EntityManager)).Position;
+                    pointing.StartPosition = EntityCoordinates.FromMap(arrow, xformPlayer.Coordinates.ToMap(EntityManager, _xformSystem), _xformSystem).Position;
 
                 pointing.EndTime = _gameTiming.CurTime + PointDuration;
 
@@ -164,12 +165,12 @@ namespace Content.Server.Pointing.EntitySystems
                 }
             }
 
-            var layer = (int) VisibilityFlags.Normal;
+            var layer = (ushort) VisibilityFlags.Normal;
             if (TryComp(player, out VisibilityComponent? playerVisibility))
             {
                 var arrowVisibility = EntityManager.EnsureComponent<VisibilityComponent>(arrow);
                 layer = playerVisibility.Layer;
-                _visibilitySystem.SetLayer(arrow, arrowVisibility, layer);
+                _visibilitySystem.SetLayer(arrow, layer);
             }
 
             // Get players that are in range and whose visibility layer matches the arrow's.

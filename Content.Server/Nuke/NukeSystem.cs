@@ -18,6 +18,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
@@ -174,7 +175,7 @@ public sealed class NukeSystem : EntitySystem
         }
         else
         {
-            if (!_mapManager.TryGetGrid(xform.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 return;
 
             var worldPos = _transform.GetWorldPosition(xform);

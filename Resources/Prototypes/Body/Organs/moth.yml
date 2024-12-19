@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: OrganMothStomach
   parent: [OrganAnimalStomach, OrganHumanStomach]
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
     specialDigestible:
@@ -28,7 +28,7 @@
 - type: entity
   id: OrganMothEyes
   parent: OrganHumanEyes
-  noSpawn: true # noSpawn until moths get their own eyeball sprites.
+  categories: [ HideSpawnMenu ] # noSpawn until moths get their own eyeball sprites.
   components:
   - type: Sprite
     layers:

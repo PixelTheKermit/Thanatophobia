@@ -14,6 +14,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Smoking;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -305,7 +306,7 @@ public sealed class SmokeSystem : EntitySystem
         if (!_solutionContainerSystem.ResolveSolution(uid, SmokeComponent.SolutionName, ref component.Solution, out var solution) || !solution.Any())
             return;
 
-        if (!_mapManager.TryGetGrid(xform.GridUid, out var mapGrid))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var mapGrid))
             return;
 
         var tile = mapGrid.GetTileRef(xform.Coordinates.ToVector2i(EntityManager, _mapManager, _transform));

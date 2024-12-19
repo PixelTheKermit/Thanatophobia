@@ -52,7 +52,12 @@ public sealed class WeatherSystem : SharedWeatherSystem
         if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null)
             return;
 
-        weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true).Value.Entity;
+        var audio = _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true);
+
+        if (audio == null)
+            return;
+
+        weather.Stream = audio.Value.Entity;
 
         var stream = weather.Stream.Value;
         var comp = Comp<AudioComponent>(stream);

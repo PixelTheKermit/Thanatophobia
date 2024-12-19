@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Content.Shared.Physics;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Maps
@@ -17,8 +18,9 @@ namespace Content.Shared.Maps
         public static TileRef GetTileRef(this Vector2i vector2i, EntityUid gridId, IMapManager? mapManager = null)
         {
             mapManager ??= IoCManager.Resolve<IMapManager>();
+            var entityManager = IoCManager.Resolve<IEntityManager>();
 
-            if (!mapManager.TryGetGrid(gridId, out var grid))
+            if (!entityManager.TryGetComponent<MapGridComponent>(gridId, out var grid))
                 return default;
 
             if (!grid.TryGetTileRef(vector2i, out var tile))
@@ -146,7 +148,7 @@ namespace Content.Shared.Maps
             var entManager = IoCManager.Resolve<IEntityManager>();
             var map = IoCManager.Resolve<IMapManager>();
 
-            if (map.TryGetGrid(turf.GridUid, out var tileGrid))
+            if (entManager.TryGetComponent<MapGridComponent>(turf.GridUid, out var tileGrid))
             {
                 var gridRot = entManager.GetComponent<TransformComponent>(turf.GridUid).WorldRotation;
 

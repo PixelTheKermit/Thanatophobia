@@ -4,6 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.Atmos;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.Commands
 {
@@ -119,7 +120,7 @@ namespace Content.Server.Atmos.Commands
                     return;
             }
 
-            if (!_mapManager.TryGetGrid(gridId, out _))
+            if (!_entManager.TryGetComponent<MapGridComponent>(gridId, out _))
             {
                 shell.WriteLine($"No grid exists with id {gridId}");
                 return;

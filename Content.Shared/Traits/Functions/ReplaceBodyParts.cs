@@ -7,7 +7,7 @@ namespace Content.Shared.Traits;
 public sealed partial class TraitReplaceBodyPartsFunction : BaseTraitFunction
 {
     [DataField]
-    public List<(string container, ProtoId<EntityPrototype>? protoId)> Replace = new();
+    public List<(string container, EntProtoId? protoId)> Replace = new();
 
     public override void AddTrait(EntityUid uid, TraitPrototype traitProto, IPrototypeManager protoManager, IEntityManager entityManager)
     {

@@ -4,7 +4,7 @@
   name: demonomicon
   parent: BookBase
   id: BookDemonomicon
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: 'Who knows what dark spells may be contained in these horrid pages?'
   components:
   - type: Sprite

@@ -197,7 +197,7 @@ public sealed class ThrowingSystem : EntitySystem
         }
         else
         {
-            _physics.SetBodyStatus(physics, BodyStatus.InAir);
+            _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
         }
 
         if (user == null)

@@ -189,7 +189,7 @@ public sealed class SpreaderSystem : EntitySystem
         occupiedTiles = new ValueList<Vector2i>();
         neighbors = new ValueList<EntityUid>();
 
-        if (!_mapManager.TryGetGrid(transform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
             return;
 
         var tile = grid.TileIndicesFor(transform.Coordinates);
@@ -313,13 +313,13 @@ public sealed class SpreaderSystem : EntitySystem
         if (position == null)
         {
             var transform = Transform(uid);
-            if (!_mapManager.TryGetGrid(transform.GridUid, out grid) || TerminatingOrDeleted(transform.GridUid.Value))
+            if (!TryComp<MapGridComponent>(transform.GridUid, out grid) || TerminatingOrDeleted(transform.GridUid.Value))
                 return neighbors;
             tile = grid.TileIndicesFor(transform.Coordinates);
         }
         else
         {
-            if (!_mapManager.TryGetGrid(position.Value.Grid, out grid))
+            if (!TryComp<MapGridComponent>(position.Value.Grid, out grid))
                 return neighbors;
             tile = position.Value.Tile;
         }

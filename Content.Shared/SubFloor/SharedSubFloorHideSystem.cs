@@ -104,7 +104,7 @@ namespace Content.Shared.SubFloor
             if (!Resolve(uid, ref component, ref xform))
                 return;
 
-            if (xform.Anchored && MapManager.TryGetGrid(xform.GridUid, out var grid))
+            if (xform.Anchored && TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 component.IsUnderCover = HasFloorCover(grid, grid.TileIndicesFor(xform.Coordinates));
             else
                 component.IsUnderCover = false;

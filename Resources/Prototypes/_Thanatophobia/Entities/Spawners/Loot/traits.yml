@@ -1,7 +1,7 @@
 - type: entity
   id: LootboxTraitLoot
   parent: MarkerBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     prototypes:

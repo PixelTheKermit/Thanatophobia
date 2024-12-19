@@ -6,6 +6,7 @@ using Content.Shared.Wires;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Power.EntitySystems
 {
@@ -32,7 +33,7 @@ namespace Content.Server.Power.EntitySystems
                 return;
 
             var transform = Transform(uid);
-            if (!_mapManager.TryGetGrid(transform.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
                 return;
 
             var mask = WireVisDirFlags.None;

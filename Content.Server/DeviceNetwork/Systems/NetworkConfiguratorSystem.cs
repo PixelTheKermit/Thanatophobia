@@ -89,7 +89,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
                 continue;
 
             //The network configurator is a handheld device. There can only ever be an ui session open for the player holding the device.
-            _uiSystem.TryCloseAll(uid, NetworkConfiguratorUiKey.Configure);
+            _uiSystem.CloseUi(uid, NetworkConfiguratorUiKey.Configure);
         }
     }
 
@@ -215,7 +215,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
 
     private void OnComponentRemoved(EntityUid uid, DeviceListComponent component, ComponentRemove args)
     {
-        _uiSystem.TryCloseAll(uid, NetworkConfiguratorUiKey.Configure);
+        _uiSystem.CloseUi(uid, NetworkConfiguratorUiKey.Configure);
     }
 
     /// <summary>
@@ -255,7 +255,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
     /// </summary>
     private void UpdateModeAppearance(EntityUid userUid, EntityUid configuratorUid, NetworkConfiguratorComponent configurator)
     {
-        Dirty(configurator);
+        Dirty(configuratorUid, configurator);
         _appearanceSystem.SetData(configuratorUid, NetworkConfiguratorVisuals.Mode, configurator.LinkModeActive);
 
         var pitch = configurator.LinkModeActive ? 1 : 0.8f;
@@ -433,7 +433,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             return;
 
 
-        _uiSystem.TryOpen(configuratorUid, NetworkConfiguratorUiKey.Link, actor.PlayerSession);
+        _uiSystem.OpenUi(configuratorUid, NetworkConfiguratorUiKey.Link, actor.PlayerSession);
         configurator.DeviceLinkTarget = targetUid;
 
 
@@ -464,7 +464,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         var sinkAddress = Resolve(sinkUid, ref sinkNetworkComponent, false) ? sinkNetworkComponent.Address : "";
 
         var state = new DeviceLinkUserInterfaceState(sources, sinks, links, sourceAddress, sinkAddress, defaults);
-        _uiSystem.TrySetUiState(configuratorUid, NetworkConfiguratorUiKey.Link, state);
+        _uiSystem.SetUiState(configuratorUid, NetworkConfiguratorUiKey.Link, state);
     }
 
     /// <summary>
