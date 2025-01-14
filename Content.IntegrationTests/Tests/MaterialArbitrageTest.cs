@@ -1,4 +1,3 @@
-using Content.Server.Cargo.Systems;
 using Content.Server.Construction.Completions;
 using Content.Server.Construction.Components;
 using Content.Server.Destructible;
@@ -42,7 +41,6 @@ public sealed class MaterialArbitrageTest
         Assert.That(mapManager.IsMapInitialized(testMap.MapId));
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
-        var pricing = sysManager.GetEntitySystem<PricingSystem>();
         var stackSys = sysManager.GetEntitySystem<StackSystem>();
         var compFact = server.ResolveDependency<IComponentFactory>();
 
@@ -359,7 +357,6 @@ public sealed class MaterialArbitrageTest
                 {
                     var ent = entManager.SpawnEntity(id, testMap.GridCoords);
                     stackSys.SetCount(ent, 1);
-                    priceCache[id] = price = pricing.GetPrice(ent);
                     entManager.DeleteEntity(ent);
                 });
             }

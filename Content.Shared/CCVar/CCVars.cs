@@ -1491,16 +1491,6 @@ namespace Content.Shared.CCVar
             CVarDef.Create("biomass.easy_mode", true, CVar.SERVERONLY);
 
         /*
-         * Anomaly
-         */
-
-        /// <summary>
-        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate an anomaly.
-        /// </summary>
-        public static readonly CVarDef<float> AnomalyGenerationGridBoundsScale =
-            CVarDef.Create("anomaly.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
-
-        /*
          * VIEWPORT
          */
 
@@ -1681,22 +1671,6 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<bool> ICShowSSDIndicator =
             CVarDef.Create("ic.show_ssd_indicator", true, CVar.CLIENTONLY);
-
-        /*
-         * Salvage
-         */
-
-        /// <summary>
-        /// Duration for missions
-        /// </summary>
-        public static readonly CVarDef<float>
-            SalvageExpeditionDuration = CVarDef.Create("salvage.expedition_duration", 660f, CVar.REPLICATED);
-
-        /// <summary>
-        /// Cooldown for missions.
-        /// </summary>
-        public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 780f, CVar.REPLICATED);
 
         /*
          * Flavor

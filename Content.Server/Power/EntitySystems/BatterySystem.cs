@@ -1,4 +1,3 @@
-using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.Examine;
@@ -18,7 +17,6 @@ namespace Content.Server.Power.EntitySystems
             SubscribeLocalEvent<ExaminableBatteryComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<PowerNetworkBatteryComponent, RejuvenateEvent>(OnNetBatteryRejuvenate);
             SubscribeLocalEvent<BatteryComponent, RejuvenateEvent>(OnBatteryRejuvenate);
-            SubscribeLocalEvent<BatteryComponent, PriceCalculationEvent>(CalculateBatteryPrice);
             SubscribeLocalEvent<BatteryComponent, EmpPulseEvent>(OnEmpPulse);
 
             SubscribeLocalEvent<NetworkBatteryPreSync>(PreSync);
@@ -87,14 +85,6 @@ namespace Content.Server.Power.EntitySystems
                 if (batt.IsFullyCharged) continue;
                 SetCharge(uid, batt.CurrentCharge + comp.AutoRechargeRate * frameTime, batt);
             }
-        }
-
-        /// <summary>
-        /// Gets the price for the power contained in an entity's battery.
-        /// </summary>
-        private void CalculateBatteryPrice(EntityUid uid, BatteryComponent component, ref PriceCalculationEvent args)
-        {
-            args.Price += component.CurrentCharge * component.PricePerJoule;
         }
 
         private void OnEmpPulse(EntityUid uid, BatteryComponent component, ref EmpPulseEvent args)
