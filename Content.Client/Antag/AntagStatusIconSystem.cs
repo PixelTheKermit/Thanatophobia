@@ -1,5 +1,4 @@
 using Content.Shared.Antag;
-using Content.Shared.Revolutionary.Components;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Zombies;
@@ -19,9 +18,7 @@ public sealed class AntagStatusIconSystem : SharedStatusIconSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RevolutionaryComponent, GetStatusIconsEvent>(GetRevIcon);
         SubscribeLocalEvent<ZombieComponent, GetStatusIconsEvent>(GetIcon);
-        SubscribeLocalEvent<HeadRevolutionaryComponent, GetStatusIconsEvent>(GetIcon);
     }
 
     /// <summary>
@@ -36,19 +33,5 @@ public sealed class AntagStatusIconSystem : SharedStatusIconSystem
 
         if (!canEv.Cancelled)
             ev.StatusIcons.Add(_prototype.Index(comp.StatusIcon));
-    }
-
-
-    /// <summary>
-    /// Adds the Rev Icon on an entity if the player is supposed to see it. This additional function is needed to deal
-    /// with a special case where if someone is a head rev we only want to display the headrev icon.
-    /// </summary>
-    private void GetRevIcon(EntityUid uid, RevolutionaryComponent comp, ref GetStatusIconsEvent ev)
-    {
-        if (HasComp<HeadRevolutionaryComponent>(uid))
-            return;
-
-        GetIcon(uid, comp, ref ev);
-
     }
 }

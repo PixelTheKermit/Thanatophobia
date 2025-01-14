@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Xenoarchaeology.Equipment.Components;
@@ -32,25 +31,8 @@ public sealed partial class ArtifactSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ArtifactComponent, PriceCalculationEvent>(GetPrice);
-
         InitializeCommands();
         InitializeActions();
-    }
-
-    /// <summary>
-    /// Calculates the price of an artifact based on
-    /// how many nodes have been unlocked/triggered
-    /// </summary>
-    /// <remarks>
-    /// General balancing (for fully unlocked artifacts):
-    /// Simple (1-2 Nodes): 1-2K
-    /// Medium (5-8 Nodes): 6-7K
-    /// Complex (7-12 Nodes): 10-11K
-    /// </remarks>
-    private void GetPrice(EntityUid uid, ArtifactComponent component, ref PriceCalculationEvent args)
-    {
-        args.Price += (GetResearchPointValue(uid, component) + component.ConsumedPoints) * component.PriceMultiplier;
     }
 
     /// <summary>

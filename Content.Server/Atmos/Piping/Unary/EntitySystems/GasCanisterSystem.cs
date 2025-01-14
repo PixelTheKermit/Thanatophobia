@@ -3,7 +3,6 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
-using Content.Server.Cargo.Systems;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
@@ -47,7 +46,6 @@ public sealed class GasCanisterSystem : EntitySystem
         SubscribeLocalEvent<GasCanisterComponent, ItemSlotInsertAttemptEvent>(OnCanisterInsertAttempt);
         SubscribeLocalEvent<GasCanisterComponent, EntInsertedIntoContainerMessage>(OnCanisterContainerInserted);
         SubscribeLocalEvent<GasCanisterComponent, EntRemovedFromContainerMessage>(OnCanisterContainerRemoved);
-        SubscribeLocalEvent<GasCanisterComponent, PriceCalculationEvent>(CalculateCanisterPrice);
         SubscribeLocalEvent<GasCanisterComponent, GasAnalyzerScanEvent>(OnAnalyzed);
         // Bound UI subscriptions
         SubscribeLocalEvent<GasCanisterComponent, GasCanisterHoldingTankEjectMessage>(OnHoldingTankEjectMessage);
@@ -287,11 +285,6 @@ public sealed class GasCanisterSystem : EntitySystem
         containerAir.Clear();
         _atmos.Merge(containerAir, buffer);
         containerAir.Multiply(containerAir.Volume / buffer.Volume);
-    }
-
-    private void CalculateCanisterPrice(EntityUid uid, GasCanisterComponent component, ref PriceCalculationEvent args)
-    {
-        args.Price += _atmos.GetPrice(component.Air);
     }
 
     /// <summary>

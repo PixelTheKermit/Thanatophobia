@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Advertise;
-using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
@@ -35,7 +34,6 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedActionsSystem _action = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
@@ -53,7 +51,6 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
-            SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
@@ -68,32 +65,12 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
-
-            SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
         }
 
         private void OnComponentMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
         {
             _action.AddAction(uid, ref component.ActionEntity, component.Action, uid);
             Dirty(uid, component);
-        }
-
-        private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
-        {
-            var price = 0.0;
-
-            foreach (var entry in component.Inventory.Values)
-            {
-                if (!PrototypeManager.TryIndex<EntityPrototype>(entry.ID, out var proto))
-                {
-                    _sawmill.Error($"Unable to find entity prototype {entry.ID} on {ToPrettyString(uid)} vending.");
-                    continue;
-                }
-
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
-            }
-
-            args.Price += price;
         }
 
         protected override void OnComponentInit(EntityUid uid, VendingMachineComponent component, ComponentInit args)
@@ -484,30 +461,6 @@ namespace Content.Server.VendingMachines
 
             UpdateVendingMachineInterfaceState(uid, vendComponent);
             TryUpdateVisualState(uid, vendComponent);
-        }
-
-        private void OnPriceCalculation(EntityUid uid, VendingMachineRestockComponent component, ref PriceCalculationEvent args)
-        {
-            List<double> priceSets = new();
-
-            // Find the most expensive inventory and use that as the highest price.
-            foreach (var vendingInventory in component.CanRestock)
-            {
-                double total = 0;
-
-                if (PrototypeManager.TryIndex(vendingInventory, out VendingMachineInventoryPrototype? inventoryPrototype))
-                {
-                    foreach (var (item, amount) in inventoryPrototype.StartingInventory)
-                    {
-                        if (PrototypeManager.TryIndex(item, out EntityPrototype? entity))
-                            total += _pricing.GetEstimatedPrice(entity) * amount;
-                    }
-                }
-
-                priceSets.Add(total);
-            }
-
-            args.Price += priceSets.Max();
         }
 
         private void OnEmpPulse(EntityUid uid, VendingMachineComponent component, ref EmpPulseEvent args)

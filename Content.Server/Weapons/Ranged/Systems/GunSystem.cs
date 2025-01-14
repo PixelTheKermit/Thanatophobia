@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
-using Content.Server.Cargo.Systems;
 using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stunnable;
@@ -36,7 +35,6 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
@@ -49,23 +47,6 @@ public sealed partial class GunSystem : SharedGunSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
-    }
-
-    private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)
-    {
-        if (string.IsNullOrEmpty(component.Proto) || component.UnspawnedCount == 0)
-            return;
-
-        if (!ProtoManager.TryIndex<EntityPrototype>(component.Proto, out var proto))
-        {
-            Log.Error($"Unable to find fill prototype for price on {component.Proto} on {ToPrettyString(uid)}");
-            return;
-        }
-
-        // Probably good enough for most.
-        var price = _pricing.GetEstimatedPrice(proto);
-        args.Price += price * component.UnspawnedCount;
     }
 
     public override void Shoot(EntityUid gunUid, GunComponent gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,

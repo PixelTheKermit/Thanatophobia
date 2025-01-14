@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Server.Salvage;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Components;
 using Content.Shared.Clothing;
 
@@ -17,7 +16,6 @@ public sealed class ArtifactMagnetTriggerSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<SalvageMagnetActivatedEvent>(OnMagnetActivated);
     }
 
     public override void Update(float frameTime)
@@ -47,28 +45,6 @@ public sealed class ArtifactMagnetTriggerSystem : EntitySystem
 
                 _toActivate.Add(artifactUid);
             }
-        }
-
-        foreach (var a in _toActivate)
-        {
-            _artifact.TryActivateArtifact(a);
-        }
-    }
-
-    private void OnMagnetActivated(ref SalvageMagnetActivatedEvent ev)
-    {
-        var magXform = Transform(ev.Magnet);
-
-        var query = EntityQueryEnumerator<ArtifactMagnetTriggerComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var artifact, out var xform))
-        {
-            if (!magXform.Coordinates.TryDistance(EntityManager, xform.Coordinates, out var distance))
-                continue;
-
-            if (distance > artifact.Range)
-                continue;
-
-            _toActivate.Add(uid);
         }
 
         foreach (var a in _toActivate)

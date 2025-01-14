@@ -1,5 +1,4 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Cargo.Systems;
 using Content.Server.Storage.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
@@ -18,7 +17,6 @@ namespace Content.Server.Storage.EntitySystems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         public override void Initialize()
@@ -26,39 +24,6 @@ namespace Content.Server.Storage.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<SpawnItemsOnUseComponent, UseInHandEvent>(OnUseInHand);
-            SubscribeLocalEvent<SpawnItemsOnUseComponent, PriceCalculationEvent>(CalculatePrice, before: new[] { typeof(PricingSystem) });
-        }
-
-        private void CalculatePrice(EntityUid uid, SpawnItemsOnUseComponent component, ref PriceCalculationEvent args)
-        {
-            var ungrouped = CollectOrGroups(component.Items, out var orGroups);
-
-            foreach (var entry in ungrouped)
-            {
-                var protUid = Spawn(entry.PrototypeId, MapCoordinates.Nullspace);
-
-                // Calculate the average price of the possible spawned items
-                args.Price += _pricing.GetPrice(protUid) * entry.SpawnProbability * entry.GetAmount(getAverage: true);
-
-                EntityManager.DeleteEntity(protUid);
-            }
-
-            foreach (var group in orGroups)
-            {
-                foreach (var entry in group.Entries)
-                {
-                    var protUid = Spawn(entry.PrototypeId, MapCoordinates.Nullspace);
-
-                    // Calculate the average price of the possible spawned items
-                    args.Price += _pricing.GetPrice(protUid) *
-                                  (entry.SpawnProbability / group.CumulativeProbability) *
-                                  entry.GetAmount(getAverage: true);
-
-                    EntityManager.DeleteEntity(protUid);
-                }
-            }
-
-            args.Handled = true;
         }
 
         private void OnUseInHand(EntityUid uid, SpawnItemsOnUseComponent component, UseInHandEvent args)
